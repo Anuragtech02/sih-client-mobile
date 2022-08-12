@@ -8,26 +8,30 @@ interface IButton {
   onPress?: () => void;
   icon?: React.ReactNode;
   position?: "left" | "right";
+  variant?: "primary" | "secondary";
 }
 
-const styles = StyleSheet.create({
-  container: {
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 8,
-  },
-});
-
-function getStyles(theme: ITheme): any {
-  return {
+function getStyles(theme: ITheme, variant: "primary" | "secondary"): any {
+  return StyleSheet.create({
     container: {
-      paddingVertical: 8,
-      paddingHorizontal: 16,
+      paddingVertical: 16,
+      paddingHorizontal: 32,
       borderRadius: 8,
-      backgroundColor: theme.colors.primary,
-      color: theme.colors.background,
+      backgroundColor:
+        variant === "primary" ? theme.colors.primary : "transparent",
+      borderWidth: variant === "primary" ? 0 : 2,
+      borderColor: variant === "primary" ? "transparent" : theme.colors.primary,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
     },
-  };
+    text: {
+      color: variant === "primary" ? "white" : theme.colors.primary,
+      fontFamily: theme.fonts.body.fontFamily,
+      fontSize: theme.fonts.body.fontSize,
+      fontWeight: "500",
+    },
+  });
 }
 
 const Button: React.FC<IButton> = ({
@@ -35,17 +39,18 @@ const Button: React.FC<IButton> = ({
   onPress,
   icon: IconComp,
   position,
+  variant = "primary",
 }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <TouchableOpacity onPress={onPress}>
-      <View style={getStyles(theme).container}>
+    <View style={getStyles(theme, variant).container}>
+      <TouchableOpacity onPress={onPress}>
         {position && position === "left" && IconComp}
-        <Text>{children}</Text>
+        <Text style={getStyles(theme, variant).text}>{children}</Text>
         {position && position === "right" && IconComp}
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
   );
 };
 

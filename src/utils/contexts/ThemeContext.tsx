@@ -6,6 +6,7 @@ import { ITheme, IThemeContext } from "./interfaces";
 export const ThemeContext = createContext<IThemeContext>({
   theme: themeLight,
   handleChangeTheme: () => {},
+  isDarkMode: false,
 });
 
 const ThemeContextProvider: React.FC<{
@@ -13,6 +14,7 @@ const ThemeContextProvider: React.FC<{
   handleChangeTheme?: void;
 }> = ({ children }) => {
   const [theme, setTheme] = useState<ITheme>({ ...themeLight });
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
     async function getTheme() {
@@ -28,7 +30,7 @@ const ThemeContextProvider: React.FC<{
   }
 
   return (
-    <ThemeContext.Provider value={{ theme, handleChangeTheme }}>
+    <ThemeContext.Provider value={{ theme, handleChangeTheme, isDarkMode }}>
       {children}
     </ThemeContext.Provider>
   );
