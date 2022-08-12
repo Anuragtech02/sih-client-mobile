@@ -10,7 +10,7 @@ export const ThemeContext = createContext<IThemeContext>({
 
 const ThemeContextProvider: React.FC<{
   children: ReactNode;
-  handleChangeTheme: void;
+  handleChangeTheme?: void;
 }> = ({ children }) => {
   const [theme, setTheme] = useState<ITheme>({ ...themeLight });
 

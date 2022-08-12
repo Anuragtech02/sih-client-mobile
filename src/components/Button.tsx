@@ -19,14 +19,15 @@ const styles = StyleSheet.create({
 });
 
 function getStyles(theme: ITheme): any {
-  return StyleSheet.create({
+  return {
     container: {
       paddingVertical: 8,
       paddingHorizontal: 16,
       borderRadius: 8,
       backgroundColor: theme.colors.primary,
+      color: theme.colors.background,
     },
-  });
+  };
 }
 
 const Button: React.FC<IButton> = ({
@@ -39,10 +40,10 @@ const Button: React.FC<IButton> = ({
 
   return (
     <TouchableOpacity onPress={onPress}>
-      <View style={getStyles(theme)}>
-        {/* {position && position === "left" && IconComp} */}
+      <View style={getStyles(theme).container}>
+        {position && position === "left" && IconComp}
         <Text>{children}</Text>
-        {/* {position && position === "right" && IconComp} */}
+        {position && position === "right" && IconComp}
       </View>
     </TouchableOpacity>
   );

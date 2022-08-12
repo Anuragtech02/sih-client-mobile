@@ -1,6 +1,6 @@
 export interface IThemeContext {
   theme: any;
-  handleChangeTheme: (theme: string) => void;
+  handleChangeTheme?: (theme: string) => void;
 }
 
 export interface ITheme {
