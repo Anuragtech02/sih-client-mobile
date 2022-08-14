@@ -6,6 +6,7 @@ import { ThemeContext } from "../utils/contexts/ThemeContext";
 interface ICard {
   children: React.ReactNode;
   style?: any;
+  onPress: () => void;
 }
 
 function getStyles(theme: ITheme): any {
@@ -18,12 +19,12 @@ function getStyles(theme: ITheme): any {
   });
 }
 
-const Card: React.FC<ICard> = ({ children, style }) => {
+const Card: React.FC<ICard> = ({ children, style, onPress }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
     <View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onPress}>
         <View style={{ ...getStyles(theme).container, ...style }}>
           {children}
         </View>

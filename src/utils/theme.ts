@@ -25,18 +25,17 @@ const themeLight = {
   },
   fonts: {
     title: {
-      fontFamily: "Poppins",
-      fontSize: 24,
+      fontFamily: "Poppins-SemiBold",
+      fontSize: 22,
       fontWeight: "700",
     },
     subTitle: {
-      fontFamily: "Poppins",
-      fontSize: 18,
-      fontWeight: "500",
+      fontFamily: "Poppins-Medium",
+      fontSize: 20,
     },
     body: {
-      fontFamily: "Poppins",
-      fontSize: 16,
+      fontFamily: "Poppins-Regular",
+      fontSize: 14,
       fontWeight: "400",
     },
   },

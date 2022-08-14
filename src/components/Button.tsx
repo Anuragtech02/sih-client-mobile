@@ -7,6 +7,7 @@ interface IButton {
   children: React.ReactNode;
   onPress?: () => void;
   icon?: React.ReactNode;
+  customStyle: any;
   position?: "left" | "right";
   variant?: "primary" | "secondary";
 }
@@ -14,14 +15,21 @@ interface IButton {
 function getStyles(theme: ITheme, variant: "primary" | "secondary"): any {
   return StyleSheet.create({
     container: {
-      paddingVertical: 16,
-      paddingHorizontal: 32,
+      width: "100%",
       borderRadius: 8,
       backgroundColor:
         variant === "primary" ? theme.colors.primary : "transparent",
       borderWidth: variant === "primary" ? 0 : 2,
       borderColor: variant === "primary" ? "transparent" : theme.colors.primary,
       display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      overflow: "hidden",
+    },
+    innerContainer: {
+      paddingVertical: 16,
+      paddingHorizontal: 32,
+      width: "100%",
       justifyContent: "center",
       alignItems: "center",
     },
@@ -39,13 +47,19 @@ const Button: React.FC<IButton> = ({
   onPress,
   icon: IconComp,
   position,
+  customStyle = {},
   variant = "primary",
 }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <View style={getStyles(theme, variant).container}>
-      <TouchableOpacity onPress={onPress}>
+    <View style={[getStyles(theme, variant).container, customStyle]}>
+      <TouchableOpacity
+        onPress={onPress}
+        style={{
+          ...getStyles(theme, variant).innerContainer,
+        }}
+      >
         {position && position === "left" && IconComp}
         <Text style={getStyles(theme, variant).text}>{children}</Text>
         {position && position === "right" && IconComp}
