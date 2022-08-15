@@ -6,6 +6,7 @@ import {
   Text,
   FlatList,
   Animated,
+  Easing,
 } from "react-native";
 import TickIcon from "../assets/icons/TickIcon";
 import { Button, Card } from "../components";
@@ -16,13 +17,13 @@ import MainLayout from "../layouts/MainLayout";
 const data = [
   {
     id: "1",
-    language: "English",
-    startingLetter: "A",
+    language: "हिन्दी",
+    startingLetter: "अ",
   },
   {
     id: "2",
-    language: "हिन्दी",
-    startingLetter: "अ",
+    language: "English",
+    startingLetter: "A",
   },
   {
     id: "3",
@@ -63,14 +64,15 @@ const data = [
 
 const colors = [
   "#4091DB",
-  "#38B6C7",
   "#4CB74C",
   "#31B27C",
   "#D84A1D",
   "#F4C01E",
+  "#38B6C7",
   "#794A4A",
   "#8B1EF4",
   "#ED9A72",
+  "#F41E1E",
 ];
 
 function getStyles(theme: ITheme): any {
@@ -79,48 +81,55 @@ function getStyles(theme: ITheme): any {
       position: "absolute",
       alignSelf: "center",
       width: "100%",
+      paddingHorizontal: 13,
     },
     cardContainer: {
-      width: 150,
-      height: 150,
-      marginTop: 20,
-      marginHorizontal: 10,
+      width: 130,
+      height: 100,
+      justifyContent: "center",
+      alignContent: "center",
+      alignItems: "center",
+      marginTop: 26,
+      marginHorizontal: 13,
     },
     contentStyle: {
-      alignItems: "center",
-      paddingBottom: 50,
+      alignItems: "flex-start",
+      paddingBottom: 130,
+      //minHeight: , Dimension se leke daalan hai yaha
     },
-    headerContainer: { marginTop: 20 },
+    headerContainer: { marginTop: 20, marginLeft: 13 }, //13 because we used the same no in card container so change accordingly
     headerHeading: {
       fontFamily: theme.fonts.title.fontFamily,
       fontSize: theme.fonts.title.fontSize,
       color: theme.colors.primary,
+      marginVertical: 4,
       fontWeight: "700",
     },
     headerStyle: {
-      marginStart: 24,
       alignSelf: "flex-start",
     },
     innerContainer: {
       width: "100%",
     },
     languageFirstLetter: {
-      alignSelf: "center",
-      marginTop: 16,
-      fontSize: 50,
+      fontSize: 36,
       fontWeight: "800",
       fontFamily: "Poppins-Black",
     },
     languageName: {
       alignSelf: "flex-start",
-      fontSize: 16,
+      position: "absolute",
+      top: 6,
+      left: 8,
+      fontSize: 11,
+      fontFamily: theme.fonts.body.fontFamily,
     },
     onClickedView: {
       position: "absolute",
       top: 0,
       left: 0,
-      width: 150,
-      height: 150,
+      width: 130,
+      height: 100,
       borderRadius: 8,
       backgroundColor: "rgba(0, 0, 0, 0.2)",
       display: "flex",
@@ -137,6 +146,7 @@ function ChooseLanguageScreen() {
   return (
     <MainLayout>
       <FlatList
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={getStyles(theme).contentStyle}
         ListHeaderComponentStyle={getStyles(theme).headerStyle}
         ListHeaderComponent={
@@ -223,18 +233,17 @@ const FadeInView: React.FC<{ children: any; theme: any }> = ({
   useEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: 50,
-      duration: 1000,
+      duration: 100,
       useNativeDriver: false,
+      easing: Easing.cubic,
     }).start();
   }, [fadeAnim]);
 
   return (
-    <MainLayout>
-      <Animated.View
-        style={{ ...getStyles(theme).animatedButton, bottom: fadeAnim }}
-      >
-        {children}
-      </Animated.View>
-    </MainLayout>
+    <Animated.View
+      style={{ ...getStyles(theme).animatedButton, bottom: fadeAnim }}
+    >
+      {children}
+    </Animated.View>
   );
 };

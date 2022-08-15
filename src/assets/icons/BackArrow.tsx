@@ -11,7 +11,7 @@ function BackArrow() {
           d="M9.57 5.92999L3.5 12L9.57 18.07"
           stroke="#292D32"
           stroke-width="1.5"
-          stroke-miterlimit="10"
+          stroke-miterlimit="100"
           stroke-linecap="round"
           stroke-linejoin="round"
         />
