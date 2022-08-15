@@ -16,9 +16,7 @@ interface IMainLayout {
 
 const styles = StyleSheet.create({
   innerContainer: {
-    // previously paddingHorizontal was 32
-    paddingHorizontal: 16,
-    // flex: 1,
+    paddingHorizontal: 24,
   },
   container: {
     flex: 1,

@@ -12,7 +12,7 @@ function getStyles(theme: ITheme): any {
       marginTop: 24,
     },
     innerContainer: {
-      marginTop: 8,
+      marginTop: 24,
       justifyContent: "space-around",
       alignItems: "center",
       flexDirection: "row",
@@ -26,36 +26,40 @@ function getStyles(theme: ITheme): any {
       lineHeight: 32,
     },
     newMessage: {
-      color: theme.colors.primary,
+      color: "#757575",
       fontFamily: theme.fonts.body.fontFamily,
       fontSize: theme.fonts.body.fontSize,
       marginTop: 16,
-      fontWeight: "400",
+      fontWeight: "100",
     },
     textInputView: {
       alignItems: "center",
       justifyContent: "center",
       borderBottomWidth: 1,
+      borderBottomColor: "#B3B3B3",
       width: 50,
     },
     option: {
       marginTop: 8,
       textDecorationLine: "underline",
-      fontSize: 12,
+      fontSize: theme.fonts.body.fontSize,
+      color: theme.colors.primary,
     },
     OTPinput: {
       width: "100%",
       textAlign: "center",
+      fontSize: theme.fonts.subTitle.fontSize,
+      fontWeight: "500",
     },
     resendCodeContainer: {
-      marginTop: 32,
+      marginTop: 70,
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "center",
     },
     resendCode: {
       color: theme.colors.primary,
-      fontFamily: theme.fonts.body.fontFamily,
+      fontFamily: "Poppins-Medium",
       fontSize: theme.fonts.body.fontSize,
       marginEnd: 5,
     },
@@ -88,8 +92,7 @@ export default function OTPVerificationScreen() {
 number`}
         </Text>
         <Text style={getStyles(theme).newMessage}>
-          {`We sent it to the number 
-+91 (987) 654-23-10`}
+          We sent it to the number +91 (987) 654-23-10
         </Text>
         <Text style={getStyles(theme).option}>Change number</Text>
       </View>
