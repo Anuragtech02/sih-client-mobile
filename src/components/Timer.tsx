@@ -33,7 +33,7 @@ const Timer = (props: any) => {
     <View>
       {minutes === 0 && seconds === 0 ? (
         <Text
-          style={getStyles(theme, "secondary").resend}
+          style={getStyles(theme).resend}
           onPress={() => {
             setSeconds(3);
           }}
@@ -41,7 +41,7 @@ const Timer = (props: any) => {
           {text}
         </Text>
       ) : (
-        <Text style={getStyles(theme, "secondary").timer}>
+        <Text style={getStyles(theme).timer}>
           {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
         </Text>
       )}
@@ -49,17 +49,17 @@ const Timer = (props: any) => {
   );
 };
 
-function getStyles(theme: ITheme, variant: "primary" | "secondary"): any {
+function getStyles(theme: ITheme): any {
   return StyleSheet.create({
     resend: {
       textDecorationLine: "underline",
-      color: variant === "primary" ? "white" : theme.colors.primary,
-      fontFamily: theme.fonts.body.fontFamily,
+      color: theme.colors.primary,
+      fontFamily: "Poppins-Medium",
       fontSize: theme.fonts.body.fontSize,
     },
     timer: {
-      color: variant === "primary" ? "white" : theme.colors.primary,
-      fontFamily: theme.fonts.body.fontFamily,
+      color: theme.colors.primary,
+      fontFamily: "Poppins-Medium",
       fontSize: theme.fonts.body.fontSize,
     },
   });
