@@ -14,7 +14,7 @@ import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts/ThemeContext";
 import MainLayout from "../layouts/MainLayout";
 
-const data = [
+const languageOptions = [
   {
     id: "1",
     language: "हिन्दी",
@@ -60,6 +60,11 @@ const data = [
     language: "Gujarati-ગુજરાતી",
     startingLetter: "અ",
   },
+  {
+    id: "10",
+    language: "Marathi-मराठी",
+    startingLetter: "आ",
+  },
 ];
 
 const colors = [
@@ -73,6 +78,7 @@ const colors = [
   "#8B1EF4",
   "#ED9A72",
   "#F41E1E",
+  "#D84A1D",
 ];
 
 function getStyles(theme: ITheme): any {
@@ -84,20 +90,19 @@ function getStyles(theme: ITheme): any {
       paddingHorizontal: 13,
     },
     cardContainer: {
-      width: 130,
-      height: 100,
+      width: 150,
+      height: 110,
       justifyContent: "center",
       alignContent: "center",
       alignItems: "center",
       marginTop: 26,
-      marginHorizontal: 13,
+      marginHorizontal: 10,
     },
     contentStyle: {
-      alignItems: "flex-start",
-      paddingBottom: 130,
+      alignItems: "center",
       //minHeight: , Dimension se leke daalan hai yaha
     },
-    headerContainer: { marginTop: 20, marginLeft: 13 }, //13 because we used the same no in card container so change accordingly
+    headerContainer: { marginTop: 20, marginLeft: 20 },
     headerHeading: {
       fontFamily: theme.fonts.title.fontFamily,
       fontSize: theme.fonts.title.fontSize,
@@ -107,6 +112,7 @@ function getStyles(theme: ITheme): any {
     },
     headerStyle: {
       alignSelf: "flex-start",
+      marginLeft: 4,
     },
     innerContainer: {
       width: "100%",
@@ -128,8 +134,8 @@ function getStyles(theme: ITheme): any {
       position: "absolute",
       top: 0,
       left: 0,
-      width: 130,
-      height: 100,
+      width: 150,
+      height: 110,
       borderRadius: 8,
       backgroundColor: "rgba(0, 0, 0, 0.2)",
       display: "flex",
@@ -142,12 +148,36 @@ function getStyles(theme: ITheme): any {
 function ChooseLanguageScreen() {
   const [selectedId, setSelectedId] = useState<string>("");
   const { theme } = useContext(ThemeContext);
+  const slideAnim = useRef(new Animated.Value(0)).current;
 
+  function handleShowButton() {
+    Animated.timing(slideAnim, {
+      toValue: 50,
+      duration: 200,
+      useNativeDriver: false,
+      easing: Easing.inOut(Easing.linear),
+    }).start();
+  }
+  function handleHideButton() {
+    Animated.timing(slideAnim, {
+      toValue: -100,
+      duration: 200,
+      useNativeDriver: false,
+      easing: Easing.inOut(Easing.linear),
+    }).start();
+  }
+
+  useEffect(() => {
+    selectedId ? handleShowButton() : handleHideButton();
+  }, [selectedId]);
   return (
     <MainLayout>
       <FlatList
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={getStyles(theme).contentStyle}
+        contentContainerStyle={[
+          getStyles(theme).contentStyle,
+          { paddingBottom: selectedId ? 130 : 30 },
+        ]}
         ListHeaderComponentStyle={getStyles(theme).headerStyle}
         ListHeaderComponent={
           <View style={getStyles(theme).headerContainer}>
@@ -156,14 +186,15 @@ function ChooseLanguageScreen() {
           </View>
         }
         numColumns={2}
-        data={data.map((it, i) => ({
+        data={languageOptions?.map((it, i) => ({
           ...it,
           color: colors[i % colors.length],
         }))}
         keyExtractor={(item) => item.id}
-        renderItem={(data: any) => (
+        renderItem={({ item, index }) => (
           <StyledCard
-            data={data}
+            index={index}
+            data={item}
             selectedId={selectedId}
             setSelectedId={setSelectedId}
             theme={theme}
@@ -171,13 +202,18 @@ function ChooseLanguageScreen() {
         )}
       />
 
-      {selectedId && (
-        <FadeInView theme={theme}>
-          <View style={getStyles(theme).innerContainer}>
-            <Button customStyle={{}}>Continue</Button>
-          </View>
-        </FadeInView>
-      )}
+      {/* <FadeInView theme={theme}>
+        <View style={getStyles(theme).innerContainer}>
+          <Button customStyle={{}}>Continue</Button>
+        </View>
+      </FadeInView> */}
+      <Animated.View
+        style={{ ...getStyles(theme).animatedButton, bottom: slideAnim }}
+      >
+        <View style={getStyles(theme).innerContainer}>
+          <Button customStyle={{}}>Continue</Button>
+        </View>
+      </Animated.View>
     </MainLayout>
   );
 }
@@ -188,34 +224,33 @@ const StyledCard: React.FC<{
   selectedId: string;
   setSelectedId: (data: any) => void;
   theme: any;
-}> = ({ data, selectedId, setSelectedId, theme }) => {
+  index: number;
+}> = ({ data, selectedId, setSelectedId, theme, index }) => {
   return (
     <Card
-      onPress={() =>
-        setSelectedId(selectedId === data?.item?.id ? "" : data?.item?.id)
-      }
+      onPress={() => setSelectedId(selectedId === data?.id ? "" : data?.id)}
       style={{
         ...getStyles(theme).cardContainer,
-        backgroundColor: `${data.item.color}33`,
+        backgroundColor: `${data?.color}33`,
       }}
     >
       <Text
         style={{
           ...getStyles(theme).languageName,
-          color: data.item.color,
+          color: data?.color,
         }}
       >
-        {data.item.language}
+        {data?.language}
       </Text>
       <Text
         style={{
           ...getStyles(theme).languageFirstLetter,
-          color: data.item.color,
+          color: data?.color,
         }}
       >
-        {data.item.startingLetter}
+        {data?.startingLetter}
       </Text>
-      {selectedId === data.item.id && (
+      {selectedId === data?.id && (
         <View style={getStyles(theme).onClickedView}>
           <TickIcon />
         </View>
@@ -224,26 +259,25 @@ const StyledCard: React.FC<{
   );
 };
 
-const FadeInView: React.FC<{ children: any; theme: any }> = ({
-  children,
-  theme,
-}) => {
-  const fadeAnim = useRef(new Animated.Value(0)).current;
+// const FadeInView: React.FC<{ children: any; theme: any }> = ({
+//   children,
+//   theme,
+// }) => {
 
-  useEffect(() => {
-    Animated.timing(fadeAnim, {
-      toValue: 50,
-      duration: 100,
-      useNativeDriver: false,
-      easing: Easing.cubic,
-    }).start();
-  }, [fadeAnim]);
+//   useEffect(() => {
+//     Animated.timing(fadeAnim, {
+//       toValue: 50,
+//       duration: 100,
+//       useNativeDriver: false,
+//       easing: Easing.inOut(Easing.linear),
+//     }).start();
+//   }, [fadeAnim]);
 
-  return (
-    <Animated.View
-      style={{ ...getStyles(theme).animatedButton, bottom: fadeAnim }}
-    >
-      {children}
-    </Animated.View>
-  );
-};
+//   return (
+//     <Animated.View
+//       style={{ ...getStyles(theme).animatedButton, bottom: fadeAnim }}
+//     >
+//       {children}
+//     </Animated.View>
+//   );
+// };
