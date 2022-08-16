@@ -13,7 +13,7 @@ const ThemeContextProvider: React.FC<{
   children: ReactNode;
   handleChangeTheme?: void;
 }> = ({ children }) => {
-  const [theme, setTheme] = useState<ITheme>({ ...themeLight });
+  const [theme, setTheme] = useState<any>({ ...themeLight });
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   useEffect(() => {

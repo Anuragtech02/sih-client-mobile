@@ -138,7 +138,9 @@ function getStyles(theme: ITheme): any {
   });
 }
 
-function ChooseLanguageScreen() {
+const ChooseLanguageScreen: React.FC<{ navigation: any }> = ({
+  navigation,
+}) => {
   const [selectedId, setSelectedId] = useState<string>("");
   const { theme } = useContext(ThemeContext);
 
@@ -173,13 +175,15 @@ function ChooseLanguageScreen() {
       {selectedId && (
         <FadeInView theme={theme}>
           <View style={getStyles(theme).innerContainer}>
-            <Button customStyle={{}}>Continue</Button>
+            <Button onPress={() => navigation.navigate("LoginScreen")}>
+              Continue
+            </Button>
           </View>
         </FadeInView>
       )}
     </MainLayout>
   );
-}
+};
 export default ChooseLanguageScreen;
 
 const StyledCard: React.FC<{

@@ -7,7 +7,7 @@ interface IButton {
   children: React.ReactNode;
   onPress?: () => void;
   icon?: React.ReactNode;
-  customStyle: any;
+  customStyle?: any;
   position?: "left" | "right";
   variant?: "primary" | "secondary";
 }

@@ -66,7 +66,9 @@ function getStyles(theme: ITheme): any {
   });
 }
 
-export default function OTPVerificationScreen() {
+const OTPVerificationScreen: React.FC<{ navigation: any }> = ({
+  navigation,
+}) => {
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
@@ -146,6 +148,9 @@ number`}
             maxLength={1}
             onChangeText={(pin4) => {
               setPin4(pin4);
+              pin1 && pin2 && pin3 && pin4
+                ? navigation.navigate("AppNavigation")
+                : "";
             }}
             style={getStyles(theme).OTPinput}
           />
@@ -157,4 +162,6 @@ number`}
       </View>
     </MainLayout>
   );
-}
+};
+
+export default OTPVerificationScreen;
