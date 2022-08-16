@@ -3,11 +3,11 @@ import { Text, useColorScheme, View } from "react-native";
 
 import { Card, Button } from "./src/components";
 import MainLayout from "./src/layouts/MainLayout";
-import ChooseLanguageScreen from "./src/screens/ChooseLanguageScreen";
-import SendOTPScreen from "./src/screens/SendOTPScreen";
-import OTPVerificationScreen from "./src/screens/OTPVerificationScreen";
-import ThemeContextProvider from "./src/utils/contexts/ThemeContext";
-import LoginScreen from "./src/screens/LoginScreen";
+import ChooseLanguageScreen from "./src/screens/ChooseLanguage";
+import SendOTPScreen from "./src/screens/SendOTP";
+import OTPVerificationScreen from "./src/screens/OTPVerification";
+import { ThemeContextProvider } from "./src/utils/contexts";
+import LoginScreen from "./src/screens/Login";
 
 const App = () => {
   const isDarkMode = useColorScheme() === "dark";

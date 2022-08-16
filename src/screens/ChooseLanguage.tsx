@@ -11,7 +11,7 @@ import {
 import TickIcon from "../assets/icons/TickIcon";
 import { Button, Card } from "../components";
 import { ITheme } from "../utils/contexts/interfaces";
-import { ThemeContext } from "../utils/contexts/ThemeContext";
+import { ThemeContext } from "../utils/contexts";
 import MainLayout from "../layouts/MainLayout";
 
 const languageOptions = [
@@ -60,11 +60,11 @@ const languageOptions = [
     language: "Gujarati-ગુજરાતી",
     startingLetter: "અ",
   },
-  {
-    id: "10",
-    language: "Marathi-मराठी",
-    startingLetter: "आ",
-  },
+  // {
+  //   id: "10",
+  //   language: "Marathi-मराठी",
+  //   startingLetter: "आ",
+  // },
 ];
 
 const colors = [
@@ -78,7 +78,7 @@ const colors = [
   "#8B1EF4",
   "#ED9A72",
   "#F41E1E",
-  "#D84A1D",
+  // "#D84A1D",
 ];
 
 function getStyles(theme: ITheme): any {
@@ -99,10 +99,11 @@ function getStyles(theme: ITheme): any {
       marginHorizontal: 10,
     },
     contentStyle: {
-      alignItems: "center",
+      alignItems: "flex-start",
+      paddingBottom: 30,
       //minHeight: , Dimension se leke daalan hai yaha
     },
-    headerContainer: { marginTop: 20, marginLeft: 20 },
+    headerContainer: { marginTop: 20, marginLeft: 8 },
     headerHeading: {
       fontFamily: theme.fonts.title.fontFamily,
       fontSize: theme.fonts.title.fontSize,
@@ -112,7 +113,7 @@ function getStyles(theme: ITheme): any {
     },
     headerStyle: {
       alignSelf: "flex-start",
-      marginLeft: 4,
+      marginLeft: 0,
     },
     innerContainer: {
       width: "100%",
@@ -145,39 +146,44 @@ function getStyles(theme: ITheme): any {
   });
 }
 
-function ChooseLanguageScreen() {
+const ChooseLanguage = () => {
   const [selectedId, setSelectedId] = useState<string>("");
   const { theme } = useContext(ThemeContext);
   const slideAnim = useRef(new Animated.Value(0)).current;
 
-  function handleShowButton() {
+  const handleSBtn = function handleShowButton() {
     Animated.timing(slideAnim, {
       toValue: 50,
       duration: 200,
       useNativeDriver: false,
       easing: Easing.inOut(Easing.linear),
     }).start();
-  }
-  function handleHideButton() {
+  };
+  const handleHBtn = function handleHideButton() {
     Animated.timing(slideAnim, {
       toValue: -100,
       duration: 200,
       useNativeDriver: false,
       easing: Easing.inOut(Easing.linear),
     }).start();
-  }
+  };
 
   useEffect(() => {
-    selectedId ? handleShowButton() : handleHideButton();
+    selectedId ? handleSBtn() : handleHBtn();
   }, [selectedId]);
   return (
-    <MainLayout>
-      <FlatList
+    <MainLayout
+      customStyles={{
+        alignItems: "center",
+      }}
+      disablePadding
+    >
+      <Animated.FlatList
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={[
-          getStyles(theme).contentStyle,
-          { paddingBottom: selectedId ? 130 : 30 },
-        ]}
+        contentContainerStyle={{
+          ...getStyles(theme).contentStyle,
+          paddingBottom: 130,
+        }}
         ListHeaderComponentStyle={getStyles(theme).headerStyle}
         ListHeaderComponent={
           <View style={getStyles(theme).headerContainer}>
@@ -200,7 +206,7 @@ function ChooseLanguageScreen() {
             theme={theme}
           />
         )}
-      />
+      ></Animated.FlatList>
 
       {/* <FadeInView theme={theme}>
         <View style={getStyles(theme).innerContainer}>
@@ -208,7 +214,10 @@ function ChooseLanguageScreen() {
         </View>
       </FadeInView> */}
       <Animated.View
-        style={{ ...getStyles(theme).animatedButton, bottom: slideAnim }}
+        style={{
+          ...getStyles(theme).animatedButton,
+          bottom: slideAnim,
+        }}
       >
         <View style={getStyles(theme).innerContainer}>
           <Button customStyle={{}}>Continue</Button>
@@ -216,8 +225,7 @@ function ChooseLanguageScreen() {
       </Animated.View>
     </MainLayout>
   );
-}
-export default ChooseLanguageScreen;
+};
 
 const StyledCard: React.FC<{
   data: any;
@@ -225,7 +233,7 @@ const StyledCard: React.FC<{
   setSelectedId: (data: any) => void;
   theme: any;
   index: number;
-}> = ({ data, selectedId, setSelectedId, theme, index }) => {
+}> = ({ data, selectedId, setSelectedId, theme }) => {
   return (
     <Card
       onPress={() => setSelectedId(selectedId === data?.id ? "" : data?.id)}
@@ -281,3 +289,5 @@ const StyledCard: React.FC<{
 //     </Animated.View>
 //   );
 // };
+
+export default ChooseLanguage;

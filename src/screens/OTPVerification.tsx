@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { ITheme } from "../utils/contexts/interfaces";
-import { ThemeContext } from "../utils/contexts/ThemeContext";
+import { ThemeContext } from "../utils/contexts";
 import Timer from "../components/Timer";
 import MainLayout from "../layouts/MainLayout";
 import BackArrow from "../assets/icons/BackArrow";
@@ -66,7 +66,7 @@ function getStyles(theme: ITheme): any {
   });
 }
 
-export default function OTPVerificationScreen() {
+const OTPVerification = () => {
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
@@ -157,4 +157,6 @@ number`}
       </View>
     </MainLayout>
   );
-}
+};
+
+export default OTPVerification;

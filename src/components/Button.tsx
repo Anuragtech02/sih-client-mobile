@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Text, TouchableOpacity, StyleSheet, View } from "react-native";
 import { ITheme } from "../utils/contexts/interfaces";
-import { ThemeContext } from "../utils/contexts/ThemeContext";
+import { ThemeContext } from "../utils/contexts";
 
 interface IButton {
   children: React.ReactNode;

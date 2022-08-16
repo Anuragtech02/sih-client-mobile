@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { ITheme } from "../utils/contexts/interfaces";
-import { ThemeContext } from "../utils/contexts/ThemeContext";
+import { ThemeContext } from "../utils/contexts/";
 import Button from "../components/Button";
 import BackArrow from "../assets/icons/BackArrow";
 import MainLayout from "../layouts/MainLayout";
@@ -58,7 +58,7 @@ function getStyles(theme: ITheme): any {
   });
 }
 
-function SendOTPScreen() {
+function SendOTP() {
   const { theme } = useContext(ThemeContext);
   return (
     <MainLayout>
@@ -91,4 +91,4 @@ mobile number`}
   );
 }
 
-export default SendOTPScreen;
+export default SendOTP;
