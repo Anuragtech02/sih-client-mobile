@@ -15,7 +15,7 @@ export interface ITheme {
     title: {
       fontFamily: string;
       fontSize: number;
-      fontWeight: string;
+      fontWeight?: string;
     };
     subTitle: {
       fontFamily: string;
