@@ -115,8 +115,14 @@ function getStyles(theme: ITheme): any {
       alignSelf: "flex-start",
       marginLeft: 0,
     },
-    innerContainer: {
+    buttonContainer: {
       width: "100%",
+      paddingHorizontal: 7,
+      alignItems: "center",
+      // shadowColor: "black",
+      // shadowOffset: { width: 4, height: 4 },
+      // shadowOpacity: 1,
+      // shadowRadius: 3,
     },
     languageFirstLetter: {
       fontSize: 36,
@@ -131,7 +137,7 @@ function getStyles(theme: ITheme): any {
       fontSize: 11,
       fontFamily: theme.fonts.body.fontFamily,
     },
-    onClickedView: {
+    tickContainer: {
       position: "absolute",
       top: 0,
       left: 0,
@@ -219,7 +225,7 @@ const ChooseLanguage = () => {
           bottom: slideAnim,
         }}
       >
-        <View style={getStyles(theme).innerContainer}>
+        <View style={getStyles(theme).buttonContainer}>
           <Button customStyle={{}}>Continue</Button>
         </View>
       </Animated.View>
@@ -237,6 +243,7 @@ const StyledCard: React.FC<{
   return (
     <Card
       onPress={() => setSelectedId(selectedId === data?.id ? "" : data?.id)}
+      activeOpacity={1}
       style={{
         ...getStyles(theme).cardContainer,
         backgroundColor: `${data?.color}33`,
@@ -259,7 +266,7 @@ const StyledCard: React.FC<{
         {data?.startingLetter}
       </Text>
       {selectedId === data?.id && (
-        <View style={getStyles(theme).onClickedView}>
+        <View style={getStyles(theme).tickContainer}>
           <TickIcon />
         </View>
       )}

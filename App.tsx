@@ -1,20 +1,17 @@
 import React from "react";
-import { Text, useColorScheme, View } from "react-native";
-
-import { Card, Button } from "./src/components";
-import MainLayout from "./src/layouts/MainLayout";
-import ChooseLanguageScreen from "./src/screens/ChooseLanguage";
-import SendOTPScreen from "./src/screens/SendOTP";
-import OTPVerificationScreen from "./src/screens/OTPVerification";
+import { StatusBar, Text, useColorScheme, View } from "react-native";
+import { ChooseLanguage } from "./src/screens";
 import { ThemeContextProvider } from "./src/utils/contexts";
-import LoginScreen from "./src/screens/Login";
 
 const App = () => {
   const isDarkMode = useColorScheme() === "dark";
-
+  // React.useEffect(() => {
+  //   StatusBar.setHidden(true);
+  // });
   return (
     <ThemeContextProvider>
-      <ChooseLanguageScreen />
+      <StatusBar animated={true} backgroundColor="white" hidden={false} />
+      <ChooseLanguage />
     </ThemeContextProvider>
   );
 };

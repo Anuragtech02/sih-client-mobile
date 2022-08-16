@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   innerContainer: {},
   container: {
     flex: 1,
+    backgroundColor: "white",
   },
 });
 
