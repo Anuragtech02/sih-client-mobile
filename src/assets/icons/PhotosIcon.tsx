@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { ITheme } from "../../utils/contexts/interfaces";
-import { ThemeContext } from "../../utils/contexts/ThemeContext";
+import { ThemeContext } from "../../utils/contexts";
 
 import Svg, { Path } from "react-native-svg";
 

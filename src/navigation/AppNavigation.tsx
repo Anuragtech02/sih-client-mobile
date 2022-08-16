@@ -1,18 +1,15 @@
 import React, { useContext } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { ThemeContext } from "../utils/contexts/ThemeContext";
+import { ThemeContext } from "../utils/contexts";
 
-import HomeScreen from "../screens/HomeScreen";
-import HomeIcon from "../assets/icons/HomeIcon";
-import TrendingScreen from "../screens/TrendingScreen";
-import LiveScreen from "../screens/LiveScreen";
-import PhotosScreen from "../screens/PhotosScreen";
-import NotificationsScreen from "../screens/NotificationsScreen";
-import TrendingIcon from "../assets/icons/TrendingIcon";
-import LiveIcon from "../assets/icons/LiveIcon";
-import PhotosIcon from "../assets/icons/PhotosIcon";
-import NotificationsIcon from "../assets/icons/NotificationsIcon";
-
+import { Home, Live, Notifications, Photos, Trending } from "../screens";
+import {
+  HomeIcon,
+  TrendingIcon,
+  LiveIcon,
+  PhotosIcon,
+  NotificationsIcon,
+} from "../assets/icons";
 const App = createBottomTabNavigator();
 
 function AppNavigation() {
@@ -21,7 +18,7 @@ function AppNavigation() {
     <App.Navigator>
       <App.Screen
         name="Home"
-        component={HomeScreen}
+        component={Home}
         options={{
           tabBarShowLabel: false,
           headerShown: false,
@@ -37,7 +34,7 @@ function AppNavigation() {
       />
       <App.Screen
         name="Trending"
-        component={TrendingScreen}
+        component={Trending}
         options={{
           headerShown: false,
           tabBarShowLabel: false,
@@ -53,7 +50,7 @@ function AppNavigation() {
       />
       <App.Screen
         name="Live"
-        component={LiveScreen}
+        component={Live}
         options={{
           headerShown: false,
           tabBarShowLabel: false,
@@ -69,7 +66,7 @@ function AppNavigation() {
       />
       <App.Screen
         name="Photos"
-        component={PhotosScreen}
+        component={Photos}
         options={{
           headerShown: false,
           tabBarShowLabel: false,
@@ -85,7 +82,7 @@ function AppNavigation() {
       />
       <App.Screen
         name="Notifications"
-        component={NotificationsScreen}
+        component={Notifications}
         options={{
           headerShown: false,
           tabBarShowLabel: false,

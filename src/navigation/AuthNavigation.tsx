@@ -2,10 +2,7 @@ import React from "react";
 import {} from "react-native";
 
 import { createStackNavigator } from "@react-navigation/stack";
-import LoginScreen from "../screens/LoginScreen";
-import SendOTPScreen from "../screens/SendOTPScreen";
-import OTPVerificationScreen from "../screens/OTPVerificationScreen";
-import ChooseLanguageScreen from "../screens/ChooseLanguageScreen";
+import { Login, SendOTP, OTPVerification, ChooseLanguage } from "../screens/";
 import AppNavigation from "./AppNavigation";
 
 const Stack = createStackNavigator();
@@ -15,22 +12,22 @@ const AuthNavigation = () => {
     <Stack.Navigator>
       <Stack.Screen
         name="ChooseLanguageScreen"
-        component={ChooseLanguageScreen}
+        component={ChooseLanguage}
         options={{ headerShown: false }}
       />
       <Stack.Screen
         name="LoginScreen"
-        component={LoginScreen}
+        component={Login}
         options={{ headerShown: false }}
       />
       <Stack.Screen
         name="SendOTPScreen"
-        component={SendOTPScreen}
+        component={SendOTP}
         options={{ headerShown: false }}
       />
       <Stack.Screen
         name="OTPVerificationScreen"
-        component={OTPVerificationScreen}
+        component={OTPVerification}
         options={{ headerShown: false }}
       />
       <Stack.Screen

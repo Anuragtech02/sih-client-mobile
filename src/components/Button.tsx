@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Text, TouchableOpacity, StyleSheet, View } from "react-native";
 import { ITheme } from "../utils/contexts/interfaces";
-import { ThemeContext } from "../utils/contexts/ThemeContext";
+import { ThemeContext } from "../utils/contexts";
 
 interface IButton {
   children: React.ReactNode;
@@ -10,6 +10,7 @@ interface IButton {
   customStyle?: any;
   position?: "left" | "right";
   variant?: "primary" | "secondary";
+  [x: string]: any;
 }
 
 function getStyles(theme: ITheme, variant: "primary" | "secondary"): any {
@@ -49,9 +50,9 @@ const Button: React.FC<IButton> = ({
   position,
   customStyle = {},
   variant = "primary",
+  ...remaining
 }) => {
   const { theme } = useContext(ThemeContext);
-
   return (
     <View style={[getStyles(theme, variant).container, customStyle]}>
       <TouchableOpacity
@@ -59,6 +60,7 @@ const Button: React.FC<IButton> = ({
         style={{
           ...getStyles(theme, variant).innerContainer,
         }}
+        {...remaining}
       >
         {position && position === "left" && IconComp}
         <Text style={getStyles(theme, variant).text}>{children}</Text>
