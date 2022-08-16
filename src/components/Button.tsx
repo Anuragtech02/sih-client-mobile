@@ -10,6 +10,7 @@ interface IButton {
   customStyle?: any;
   position?: "left" | "right";
   variant?: "primary" | "secondary";
+  disabled?: boolean;
   [x: string]: any;
 }
 
@@ -26,6 +27,9 @@ function getStyles(theme: ITheme, variant: "primary" | "secondary"): any {
       justifyContent: "center",
       alignItems: "center",
       overflow: "hidden",
+    },
+    disabled: {
+      backgroundColor: "grey",
     },
     innerContainer: {
       paddingVertical: 16,
@@ -49,6 +53,7 @@ const Button: React.FC<IButton> = ({
   icon: IconComp,
   position,
   customStyle = {},
+  disabled = false,
   variant = "primary",
   ...remaining
 }) => {
@@ -57,8 +62,10 @@ const Button: React.FC<IButton> = ({
     <View style={[getStyles(theme, variant).container, customStyle]}>
       <TouchableOpacity
         onPress={onPress}
+        disabled={disabled}
         style={{
           ...getStyles(theme, variant).innerContainer,
+          ...(disabled ? getStyles(theme, variant).disabled : {}),
         }}
         {...remaining}
       >
