@@ -152,7 +152,7 @@ function getStyles(theme: ITheme): any {
   });
 }
 
-const ChooseLanguage = () => {
+const ChooseLanguage: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [selectedId, setSelectedId] = useState<string>("");
   const { theme } = useContext(ThemeContext);
   const slideAnim = useRef(new Animated.Value(0)).current;
@@ -214,11 +214,6 @@ const ChooseLanguage = () => {
         )}
       ></Animated.FlatList>
 
-      {/* <FadeInView theme={theme}>
-        <View style={getStyles(theme).innerContainer}>
-          <Button customStyle={{}}>Continue</Button>
-        </View>
-      </FadeInView> */}
       <Animated.View
         style={{
           ...getStyles(theme).animatedButton,
@@ -226,7 +221,12 @@ const ChooseLanguage = () => {
         }}
       >
         <View style={getStyles(theme).buttonContainer}>
-          <Button customStyle={{}}>Continue</Button>
+          <Button
+            customStyle={{}}
+            onPress={() => navigation.navigate("LoginScreen")}
+          >
+            Continue
+          </Button>
         </View>
       </Animated.View>
     </MainLayout>
@@ -273,28 +273,5 @@ const StyledCard: React.FC<{
     </Card>
   );
 };
-
-// const FadeInView: React.FC<{ children: any; theme: any }> = ({
-//   children,
-//   theme,
-// }) => {
-
-//   useEffect(() => {
-//     Animated.timing(fadeAnim, {
-//       toValue: 50,
-//       duration: 100,
-//       useNativeDriver: false,
-//       easing: Easing.inOut(Easing.linear),
-//     }).start();
-//   }, [fadeAnim]);
-
-//   return (
-//     <Animated.View
-//       style={{ ...getStyles(theme).animatedButton, bottom: fadeAnim }}
-//     >
-//       {children}
-//     </Animated.View>
-//   );
-// };
 
 export default ChooseLanguage;

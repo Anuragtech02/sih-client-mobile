@@ -1,4 +1,9 @@
 export { default as ChooseLanguage } from "./ChooseLanguage";
-export { default as LoginScreen } from "./Login";
+export { default as Login } from "./Login";
 export { default as OTPVerification } from "./OTPVerification";
 export { default as SendOTP } from "./SendOTP";
+export { default as Home } from "./Home";
+export { default as Live } from "./Live";
+export { default as Notifications } from "./Notifications";
+export { default as Photos } from "./Photos";
+export { default as Trending } from "./Trending";

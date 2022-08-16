@@ -58,7 +58,7 @@ function getStyles(theme: ITheme): any {
   });
 }
 
-function SendOTP() {
+const SendOTP: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <MainLayout>
@@ -81,7 +81,9 @@ mobile number`}
           />
         </View>
         <Button
-          onPress={() => console.log("DONE")}
+          onPress={() =>
+            console.log(navigation.navigate("OTPVerificationScreen"))
+          }
           customStyle={getStyles(theme).button}
         >
           Send OTP
@@ -89,6 +91,6 @@ mobile number`}
       </View>
     </MainLayout>
   );
-}
+};
 
 export default SendOTP;
