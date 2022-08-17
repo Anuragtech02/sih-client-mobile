@@ -12,12 +12,14 @@ import { ThemeContext } from "../utils/contexts";
 const { width, height } = Dimensions.get("window");
 interface IMainLayout {
   children: React.ReactNode;
-  disablePadding?: boolean;
+  disableDefaultPadding?: boolean;
   customStyles?: any;
 }
 
 const styles = StyleSheet.create({
-  innerContainer: {},
+  innerContainer: {
+    // backgroundColor: "blue",
+  },
   container: {
     flex: 1,
     backgroundColor: "white",
@@ -26,7 +28,7 @@ const styles = StyleSheet.create({
 
 const MainLayout: React.FC<IMainLayout> = ({
   children,
-  disablePadding = false,
+  disableDefaultPadding = false,
   customStyles,
 }) => {
   const { isDarkMode } = useContext(ThemeContext);
@@ -37,7 +39,7 @@ const MainLayout: React.FC<IMainLayout> = ({
       <View
         style={{
           ...styles.innerContainer,
-          paddingHorizontal: disablePadding ? 0 : 24,
+          paddingHorizontal: disableDefaultPadding ? 0 : 24,
           ...customStyles,
         }}
       >

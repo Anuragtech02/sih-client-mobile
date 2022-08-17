@@ -13,6 +13,7 @@ import { Button, Card } from "../components";
 import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
 import MainLayout from "../layouts/MainLayout";
+import metrics from "../utils/metrics";
 
 const languageOptions = [
   {
@@ -83,11 +84,12 @@ const colors = [
 
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
-    animatedButton: {
+    animatedButtonContainer: {
       position: "absolute",
-      alignSelf: "center",
-      width: "100%",
-      paddingHorizontal: 13,
+      // alignSelf: "center",
+      width: "96%",
+      // paddingHorizontal: 13,
+      // paddingHorizontal: 20,
     },
     cardContainer: {
       width: 150,
@@ -95,15 +97,15 @@ function getStyles(theme: ITheme): any {
       justifyContent: "center",
       alignContent: "center",
       alignItems: "center",
-      marginTop: 26,
-      marginHorizontal: 10,
+      marginTop: 10,
+      // marginHorizontal: 10,
     },
     contentStyle: {
       alignItems: "flex-start",
       paddingBottom: 30,
       //minHeight: , Dimension se leke daalan hai yaha
     },
-    headerContainer: { marginTop: 20, marginLeft: 8 },
+    headerContainer: { marginTop: 20 },
     headerHeading: {
       fontFamily: theme.fonts.title.fontFamily,
       fontSize: theme.fonts.title.fontSize,
@@ -111,18 +113,18 @@ function getStyles(theme: ITheme): any {
       marginVertical: 4,
       fontWeight: "700",
     },
+    widthContainer: {
+      width: "100%",
+      alignItems: "center",
+      paddingHorizontal: 20,
+    },
     headerStyle: {
       alignSelf: "flex-start",
       marginLeft: 0,
     },
     buttonContainer: {
+      alignSelf: "center",
       width: "100%",
-      paddingHorizontal: 7,
-      alignItems: "center",
-      // shadowColor: "black",
-      // shadowOffset: { width: 4, height: 4 },
-      // shadowOpacity: 1,
-      // shadowRadius: 3,
     },
     languageFirstLetter: {
       fontSize: 36,
@@ -159,7 +161,7 @@ const ChooseLanguage: React.FC<{ navigation: any }> = ({ navigation }) => {
 
   const handleSBtn = function handleShowButton() {
     Animated.timing(slideAnim, {
-      toValue: 50,
+      toValue: 60,
       duration: 200,
       useNativeDriver: false,
       easing: Easing.inOut(Easing.linear),
@@ -167,7 +169,7 @@ const ChooseLanguage: React.FC<{ navigation: any }> = ({ navigation }) => {
   };
   const handleHBtn = function handleHideButton() {
     Animated.timing(slideAnim, {
-      toValue: -100,
+      toValue: -130,
       duration: 200,
       useNativeDriver: false,
       easing: Easing.inOut(Easing.linear),
@@ -181,54 +183,60 @@ const ChooseLanguage: React.FC<{ navigation: any }> = ({ navigation }) => {
     <MainLayout
       customStyles={{
         alignItems: "center",
+        // paddingHorizontal: 10,
       }}
-      disablePadding
+      disableDefaultPadding
     >
-      <Animated.FlatList
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          ...getStyles(theme).contentStyle,
-          paddingBottom: 130,
-        }}
-        ListHeaderComponentStyle={getStyles(theme).headerStyle}
-        ListHeaderComponent={
-          <View style={getStyles(theme).headerContainer}>
-            <Text style={getStyles(theme).headerHeading}>Choose Language </Text>
-            <Text style={getStyles(theme).headerHeading}>भाषा चुनें</Text>
-          </View>
-        }
-        numColumns={2}
-        data={languageOptions?.map((it, i) => ({
-          ...it,
-          color: colors[i % colors.length],
-        }))}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item, index }) => (
-          <StyledCard
-            index={index}
-            data={item}
-            selectedId={selectedId}
-            setSelectedId={setSelectedId}
-            theme={theme}
-          />
-        )}
-      ></Animated.FlatList>
+      <View style={getStyles(theme).widthContainer}>
+        <FlatList
+          style={{ minHeight: metrics.screenHeight }}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            ...getStyles(theme).contentStyle,
+            paddingBottom: 130,
+          }}
+          ListHeaderComponentStyle={getStyles(theme).headerStyle}
+          ListHeaderComponent={
+            <View style={getStyles(theme).headerContainer}>
+              <Text style={getStyles(theme).headerHeading}>
+                Choose Language{" "}
+              </Text>
+              <Text style={getStyles(theme).headerHeading}>भाषा चुनें</Text>
+            </View>
+          }
+          numColumns={2}
+          data={languageOptions?.map((it, i) => ({
+            ...it,
+            color: colors[i % colors.length],
+          }))}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item, index }) => (
+            <StyledCard
+              index={index}
+              data={item}
+              selectedId={selectedId}
+              setSelectedId={setSelectedId}
+              theme={theme}
+            />
+          )}
+        />
 
-      <Animated.View
-        style={{
-          ...getStyles(theme).animatedButton,
-          bottom: slideAnim,
-        }}
-      >
-        <View style={getStyles(theme).buttonContainer}>
-          <Button
-            customStyle={{}}
-            onPress={() => navigation.navigate("LoginScreen")}
-          >
-            Continue
-          </Button>
-        </View>
-      </Animated.View>
+        <Animated.View
+          style={{
+            ...getStyles(theme).animatedButtonContainer,
+            bottom: slideAnim,
+          }}
+        >
+          <View style={getStyles(theme).buttonContainer}>
+            <Button
+              customStyle={{}}
+              onPress={() => navigation.navigate("LoginScreen")}
+            >
+              Continue
+            </Button>
+          </View>
+        </Animated.View>
+      </View>
     </MainLayout>
   );
 };
@@ -239,7 +247,7 @@ const StyledCard: React.FC<{
   setSelectedId: (data: any) => void;
   theme: any;
   index: number;
-}> = ({ data, selectedId, setSelectedId, theme }) => {
+}> = ({ data, selectedId, setSelectedId, theme, index }) => {
   return (
     <Card
       onPress={() => setSelectedId(selectedId === data?.id ? "" : data?.id)}
@@ -247,6 +255,8 @@ const StyledCard: React.FC<{
       style={{
         ...getStyles(theme).cardContainer,
         backgroundColor: `${data?.color}33`,
+        // marginRight: index % 2 === 0 ? 10 : 0,
+        marginLeft: index % 2 !== 0 ? 10 : 0,
       }}
     >
       <Text
