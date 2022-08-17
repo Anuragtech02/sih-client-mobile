@@ -123,9 +123,7 @@ mobile number`}
         </View>
         <Button
           disabled={phoneNumber?.length !== 14}
-          onPress={() =>
-            console.log(navigation.navigate("OTPVerificationScreen"))
-          }
+          onPress={() => navigation.navigate("OTPVerificationScreen")}
           customStyle={getStyles(theme).button}
         >
           Send OTP
