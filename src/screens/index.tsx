@@ -7,3 +7,6 @@ export { default as Live } from "./Live";
 export { default as Notifications } from "./Notifications";
 export { default as Photos } from "./Photos";
 export { default as Trending } from "./Trending";
+export { default as TrendingTabs } from "./TrendingTabs";
+export { default as PressReleases } from "./PressReleases";
+export { default as SocialMedia } from "./SocialMedia";
