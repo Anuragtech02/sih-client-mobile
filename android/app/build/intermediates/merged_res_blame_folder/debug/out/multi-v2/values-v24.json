@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/adarsh/ReactNative/sih-client-mobile/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
+            "outputFile": "/home/anurag/vscode/sih22/client/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "/home/adarsh/.gradle/caches/transforms-3/a5da391e889210c4d2ba1ae6744f6033/transformed/appcompat-1.4.1/res/values-v24/values-v24.xml",
+                    "source": "/home/anurag/.gradle/caches/transforms-3/4709c75cfc5deab73eadee5f65c3d319/transformed/appcompat-1.4.1/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
