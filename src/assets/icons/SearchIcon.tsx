@@ -7,8 +7,8 @@ const SearchIcon: React.FC<{ customStyles?: any }> = ({ customStyles }) => {
     <View style={customStyles}>
       <TouchableOpacity activeOpacity={0.8}>
         <Svg
-          width="40"
-          height="38"
+          width="48"
+          height="48"
           viewBox="0 0 40 40"
           fill="none"
           //xmlns="http://www.w3.org/2000/svg"

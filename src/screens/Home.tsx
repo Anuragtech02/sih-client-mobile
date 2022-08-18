@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet, Text, View, Image, TextInput } from "react-native";
 import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
@@ -20,6 +20,9 @@ function getStyle(theme: ITheme): any {
       fontSize: theme.fonts.title.fontSize,
       fontFamily: theme.fonts.title.fontFamily,
     },
+    innerContainer: {
+      paddingHorizontal: 24,
+    },
     name: {
       fontSize: theme.fonts.body.fontSize,
       fontFamily: theme.fonts.body.fontFamily,
@@ -31,41 +34,50 @@ function getStyle(theme: ITheme): any {
       position: "absolute",
       right: 0,
     },
+    search: {
+      position: "absolute",
+      right: 0,
+    },
     searchContainer: {
-      marginTop: 16,
-      height: 40,
+      marginVertical: 20,
       borderRadius: 8,
       borderWidth: 1,
       borderColor: "#989898",
-      // marginEnd: 24,
       flexDirection: "row",
     },
     searchInput: {
       marginStart: 12,
-      width: "86%",
+      width: "100%",
     },
   });
 }
 
-function Home() {
+const Home: React.FC = () => {
   const { theme } = useContext(ThemeContext);
+
+  const [name, setName] = useState("Adarsh");
   return (
-    <MainLayout customStyles={getStyle(theme).container}>
-      <DrawerIcon />
-      <View style={getStyle(theme).profileContainer}>
-        <Text style={getStyle(theme).name}>Hi Name,</Text>
-        <Text style={getStyle(theme).greetings}>Welcome!</Text>
-        <Image
-          style={getStyle(theme).profilePhoto}
-          source={require("../assets/ProfilePhoto.png")}
-        />
-      </View>
-      <View style={getStyle(theme).searchContainer}>
-        <TextInput style={getStyle(theme).searchInput} placeholder="Search" />
-        <SearchIcon />
+    <MainLayout
+      customStyles={getStyle(theme).container}
+      disableDefaultPadding={true}
+    >
+      <View style={getStyle(theme).innerContainer}>
+        <DrawerIcon />
+        <View style={getStyle(theme).profileContainer}>
+          <Text style={getStyle(theme).name}>{`Hi ${name},`}</Text>
+          <Text style={getStyle(theme).greetings}>Welcome!</Text>
+          <Image
+            style={getStyle(theme).profilePhoto}
+            source={require("../assets/ProfilePhoto.png")}
+          />
+        </View>
+        <View style={getStyle(theme).searchContainer}>
+          <TextInput style={getStyle(theme).searchInput} placeholder="Search" />
+          <SearchIcon customStyles={getStyle(theme).search} />
+        </View>
       </View>
       <TopTabsNavigation />
     </MainLayout>
   );
-}
+};
 export default Home;
