@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { PressReleases, SocialMedia, TrendingTabs } from "../screens";
 import { ThemeContext } from "../utils/contexts";
@@ -9,7 +9,10 @@ const Tab = createMaterialTopTabNavigator();
 function TopTabsNavigation() {
   const { theme } = useContext(ThemeContext);
   return (
-    <Tab.Navigator initialRouteName="Press Releases">
+    <Tab.Navigator
+      style={{ marginStart: 24 }}
+      initialRouteName="Press Releases"
+    >
       <Tab.Screen
         name="Press Releases"
         component={PressReleases}
@@ -17,6 +20,7 @@ function TopTabsNavigation() {
           tabBarLabel: "Press Releases",
           tabBarInactiveTintColor: "#9E9E9E",
           tabBarLabelStyle: {
+            width: "100%",
             textTransform: "none",
             fontFamily: theme.fonts.subTitle.fontFamily,
             fontSize: theme.fonts.body.fontSize,
@@ -31,6 +35,7 @@ function TopTabsNavigation() {
           tabBarLabel: "Trending",
           tabBarInactiveTintColor: "#9E9E9E",
           tabBarLabelStyle: {
+            width: "100%",
             textTransform: "none",
             fontFamily: theme.fonts.subTitle.fontFamily,
             fontSize: theme.fonts.body.fontSize,
@@ -44,6 +49,7 @@ function TopTabsNavigation() {
           tabBarLabel: "Social Media",
           tabBarInactiveTintColor: "#9E9E9E",
           tabBarLabelStyle: {
+            width: "100%",
             textTransform: "none",
             fontFamily: theme.fonts.subTitle.fontFamily,
             fontSize: theme.fonts.body.fontSize,
