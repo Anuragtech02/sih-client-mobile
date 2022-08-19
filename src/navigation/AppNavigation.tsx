@@ -10,6 +10,7 @@ import {
   PhotosIcon,
   NotificationsIcon,
 } from "../assets/icons";
+import DrawerNavigation from "./DrawerNavigation";
 const App = createBottomTabNavigator();
 
 function AppNavigation() {
@@ -17,8 +18,8 @@ function AppNavigation() {
   return (
     <App.Navigator>
       <App.Screen
-        name="Home"
-        component={Home}
+        name="DrawerNavigation"
+        component={DrawerNavigation}
         options={{
           tabBarShowLabel: false,
           headerShown: false,

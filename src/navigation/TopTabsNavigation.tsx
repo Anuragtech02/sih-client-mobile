@@ -12,6 +12,12 @@ function TopTabsNavigation() {
     <Tab.Navigator
       style={{ marginStart: 24 }}
       initialRouteName="Press Releases"
+      screenOptions={{
+        tabBarItemStyle: { padding: 0 },
+        tabBarIndicatorStyle: {
+          backgroundColor: theme.colors.primary,
+        },
+      }}
     >
       <Tab.Screen
         name="Press Releases"
@@ -20,7 +26,6 @@ function TopTabsNavigation() {
           tabBarLabel: "Press Releases",
           tabBarInactiveTintColor: "#9E9E9E",
           tabBarLabelStyle: {
-            width: "100%",
             textTransform: "none",
             fontFamily: theme.fonts.subTitle.fontFamily,
             fontSize: theme.fonts.body.fontSize,
@@ -35,7 +40,6 @@ function TopTabsNavigation() {
           tabBarLabel: "Trending",
           tabBarInactiveTintColor: "#9E9E9E",
           tabBarLabelStyle: {
-            width: "100%",
             textTransform: "none",
             fontFamily: theme.fonts.subTitle.fontFamily,
             fontSize: theme.fonts.body.fontSize,
@@ -49,7 +53,6 @@ function TopTabsNavigation() {
           tabBarLabel: "Social Media",
           tabBarInactiveTintColor: "#9E9E9E",
           tabBarLabelStyle: {
-            width: "100%",
             textTransform: "none",
             fontFamily: theme.fonts.subTitle.fontFamily,
             fontSize: theme.fonts.body.fontSize,

@@ -67,7 +67,6 @@ const Home: React.FC = () => {
       disableDefaultPadding={true}
     >
       <View style={getStyle(theme).innerContainer}>
-        <DrawerIcon />
         <View style={getStyle(theme).profileContainer}>
           <Text style={getStyle(theme).name}>{`Hi ${name},`}</Text>
           <Text style={getStyle(theme).greetings}>Welcome!</Text>
