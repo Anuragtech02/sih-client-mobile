@@ -52,7 +52,7 @@ function getVariantStyle(theme: ITheme, variant: string, target: string) {
       }
       case "tertiary": {
         return {
-          color: "red",
+          color: theme.colors.primary,
         };
       }
       default:

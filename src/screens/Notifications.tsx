@@ -55,6 +55,30 @@ const notifications = [
         icon: PIBImage,
         timestamp: "3 Aug 2022",
       },
+      {
+        id: "6",
+        title: "Ministry of Finance",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
+        icon: PIBImage,
+        timestamp: "3 Aug 2022",
+      },
+      {
+        id: "7",
+        title: "Ministry of Finance",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
+        icon: PIBImage,
+        timestamp: "3 Aug 2022",
+      },
+      {
+        id: "8",
+        title: "Ministry of Finance",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
+        icon: PIBImage,
+        timestamp: "3 Aug 2022",
+      },
     ],
   },
 ];
@@ -68,11 +92,21 @@ function getStyle(theme: ITheme): any {
       flexDirection: "row",
       width: "100%",
       justifyContent: "space-between",
-      backgroundColor: "pink",
+      // backgroundColor: "pink",
+      alignItems: "center",
+      marginVertical: 8,
     },
-    leftButtons: {
+    lButtons: {
       flexDirection: "row",
-      backgroundColor: "red",
+      // backgroundColor: "red",
+    },
+    allButton: {
+      paddingVertical: 4,
+      paddingHorizontal: 16,
+    },
+    unreadButton: {
+      paddingVertical: 4,
+      paddingHorizontal: 16,
     },
     rightButton: {
       flexDirection: "row",
@@ -88,6 +122,7 @@ function getStyle(theme: ITheme): any {
       fontFamily: theme.fonts.title.fontFamily,
       alignSelf: "flex-start",
       color: theme.colors.p2,
+      marginTop: 24,
     },
     sectionHeadingContainer: {},
     sectionHeading: {
@@ -146,9 +181,13 @@ function Notifications() {
     <MainLayout customStyles={getStyle(theme).container}>
       <Text style={getStyle(theme).heading}>Notifications</Text>
       <View style={getStyle(theme).actions}>
-        <View style={getStyle(theme).leftButtons}>
+        <View style={getStyle(theme).lButtons}>
           <Button style={getStyle(theme).allButton}>All</Button>
-          <Button style={getStyle(theme).unreadButton} variant="secondary">
+          <Button
+            customStyle={{ marginLeft: 8 }}
+            style={getStyle(theme).unreadButton}
+            variant="secondary"
+          >
             Unread
           </Button>
         </View>
