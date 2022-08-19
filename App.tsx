@@ -9,6 +9,8 @@ import {
   notificationServices,
   requestUserPermission,
 } from "./src/utils/notification/pushNotification";
+import DrawerOptions from "./src/components/DrawerOptions";
+import AppNavigation from "./src/navigation/AppNavigation";
 
 const App = () => {
   const isDarkMode = useColorScheme() === "dark";
@@ -23,7 +25,8 @@ const App = () => {
     <ThemeContextProvider>
       <StatusBar animated={true} backgroundColor="white" hidden={false} />
       <NavigationContainer>
-        <AuthNavigation />
+        {/* <AuthNavigation /> */}
+        <AppNavigation />
       </NavigationContainer>
     </ThemeContextProvider>
   );

@@ -10,3 +10,8 @@ export { default as Trending } from "./Trending";
 export { default as TrendingTabs } from "./TrendingTabs";
 export { default as PressReleases } from "./PressReleases";
 export { default as SocialMedia } from "./SocialMedia";
+export { default as MyAccount } from "./MyAccount";
+export { default as Events } from "./Events";
+export { default as PMVideo } from "./PMVideo";
+export { default as FactChecker } from "./FactChecker";
+export { default as Settings } from "./Settings";
