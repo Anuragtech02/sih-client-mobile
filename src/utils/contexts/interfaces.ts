@@ -4,12 +4,20 @@ export interface IThemeContext {
   isDarkMode: boolean;
 }
 
+export interface ISvg{
+  style?:any;
+  [x:string]:any
+}
+
 export interface ITheme {
   colors: {
     primary: string;
     success: string;
     error: string;
     background: string;
+    textLight:string;
+    textMedium:string;
+    separation:string;
   };
   fonts: {
     title: {
@@ -35,4 +43,5 @@ export interface ITheme {
     lg: number;
     xl: number;
   };
+  default:any
 }

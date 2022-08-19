@@ -7,6 +7,9 @@ const paletteLight: paletteType = {
   green: "#00B894",
   red: "#CD0E61",
   white: "#F0F2F3",
+  lightGrey:"#E5E5E5",
+  mediumGrey:'#9E9E9E',
+  darkGrey:"#646464",
 };
 
 const paletteDark: paletteType = {
@@ -14,6 +17,9 @@ const paletteDark: paletteType = {
   green: "#00B894",
   red: "#CD0E61",
   white: "#FFFFFF",
+  lightGrey:"#E5E5E5",
+  mediumGrey:'#9E9E9E',
+  darkGrey:"#646464",
 };
 
 const themeLight = {
@@ -22,6 +28,9 @@ const themeLight = {
     success: paletteLight.green,
     error: paletteLight.red,
     background: paletteLight.white,
+    textLight:paletteLight.lightGrey,
+    textMedium:paletteLight.darkGrey,
+    separation:paletteDark.lightGrey,
   },
   fonts: {
     title: {
@@ -46,16 +55,29 @@ const themeLight = {
     lg: 30,
     xl: 40,
   },
+   default:{
+    fontSize:16,
+    color:paletteLight.black,
+    background: paletteLight.white,
+  }
 };
 
 const themeDark = {
   ...themeLight,
   colors: {
-    primary: paletteDark.black,
+    primary: paletteDark.white,
     success: paletteDark.green,
     error: paletteDark.red,
     background: paletteDark.white,
+    textLight:paletteDark.mediumGrey,
+    textMedium:paletteDark.darkGrey,
+    separation:paletteDark.lightGrey,
   },
+ default:{
+    fontSize:16,
+    color:paletteDark.white,
+    background: paletteLight.black,
+  }
 };
 
 export { themeLight, themeDark };

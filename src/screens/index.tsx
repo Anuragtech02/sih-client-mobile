@@ -10,3 +10,4 @@ export { default as Trending } from "./Trending";
 export { default as TrendingTabs } from "./TrendingTabs";
 export { default as PressReleases } from "./PressReleases";
 export { default as SocialMedia } from "./SocialMedia";
+export { default as About } from "./About";

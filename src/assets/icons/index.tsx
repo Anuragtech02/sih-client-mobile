@@ -7,3 +7,8 @@ export { default as TickIcon } from "./TickIcon";
 export { default as TrendingIcon } from "./TrendingIcon";
 export { default as DrawerIcon } from "./DrawerIcon";
 export { default as SearchIcon } from "./SearchIcon";
+export { default as FacebookIcon } from "./FacebookIcon";
+export { default as InstagramIcon } from "./InstagramIcon";
+export { default as PeopleIcon } from "./PeopleIcon";
+export { default as PhoneIcon } from "./PhoneIcon";
+export { default as TwitterIcon } from "./TwitterIcon";

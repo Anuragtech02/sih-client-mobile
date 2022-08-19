@@ -2,7 +2,13 @@ import React from "react";
 import {} from "react-native";
 
 import { createStackNavigator } from "@react-navigation/stack";
-import { Login, SendOTP, OTPVerification, ChooseLanguage } from "../screens/";
+import {
+  Login,
+  SendOTP,
+  OTPVerification,
+  ChooseLanguage,
+  About,
+} from "../screens/";
 import AppNavigation from "./AppNavigation";
 
 const Stack = createStackNavigator();
@@ -10,6 +16,11 @@ const Stack = createStackNavigator();
 const AuthNavigation = () => {
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name="About"
+        component={About}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="ChooseLanguageScreen"
         component={ChooseLanguage}
