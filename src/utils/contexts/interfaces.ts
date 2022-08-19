@@ -36,3 +36,27 @@ export interface ITheme {
     xl: number;
   };
 }
+
+export interface IVoiceType {
+  id: string;
+  name: string;
+  language: string;
+}
+
+export interface ITextToSpeech {
+  voices: Array<IVoiceType>;
+  ttsStatus:
+    | "initializing"
+    | "started"
+    | "ready"
+    | "finished"
+    | "canceled"
+    | string;
+  selectedVoice: any;
+  speechRate: number;
+  speechPitch: number;
+  readText: (text: string) => void;
+  updateSpeechRate: (rate: number) => void;
+  updateSpeechPitch: (rate: number) => void;
+  handleChangeSelectedVoice: (voice: IVoiceType) => void;
+}
