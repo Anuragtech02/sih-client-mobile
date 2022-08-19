@@ -18,3 +18,8 @@ export { default as SettingsIcon } from "./SettingsIcon";
 export { default as ShareIcon } from "./ShareIcon";
 export { default as VideoIcon } from "./VideoIcon";
 export { default as SendIcon } from "./SendIcon";
+export { default as FacebookIcon } from "./FacebookIcon";
+export { default as InstagramIcon } from "./InstagramIcon";
+export { default as PeopleIcon } from "./PeopleIcon";
+export { default as PhoneIcon } from "./PhoneIcon";
+export { default as TwitterIcon } from "./TwitterIcon";
