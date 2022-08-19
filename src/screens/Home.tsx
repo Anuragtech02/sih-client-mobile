@@ -44,6 +44,11 @@ function getStyle(theme: ITheme): any {
       borderWidth: 1,
       borderColor: "#989898",
       flexDirection: "row",
+      // backgroundColor: "red",
+    },
+    searchIcon: {
+      position: "absolute",
+      right: -1,
     },
     searchInput: {
       marginStart: 12,
