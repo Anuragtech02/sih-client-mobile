@@ -66,8 +66,8 @@ const data = [
   {
     id: "8",
     icon: LogOutIcon,
-    name: "Log out",
-    goto: RightArrowIcon,
+    name: "Log Out",
+    goto: "",
   },
 ];
 
@@ -130,12 +130,14 @@ const CustomDrawerContent: React.FC<{ navigation: any }> = ({ navigation }) => {
             }
             optionName={item.name}
             icon={
-              <item.goto
-                color={
-                  selectedID === item.id ? theme.colors.primary : "#989898"
-                }
-                customStyle={getStyles(theme).nextPage}
-              />
+              item.id !== "8" && (
+                <item.goto
+                  color={
+                    selectedID === item.id ? theme.colors.primary : "#989898"
+                  }
+                  customStyle={getStyles(theme).nextPage}
+                />
+              )
             }
             myStyle={{
               color: selectedID === item.id ? theme.colors.primary : "#989898",
