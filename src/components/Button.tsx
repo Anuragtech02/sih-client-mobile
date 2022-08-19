@@ -9,20 +9,67 @@ interface IButton {
   icon?: React.ReactNode;
   customStyle?: any;
   position?: "left" | "right";
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "tertiary";
   disabled?: boolean;
   [x: string]: any;
 }
 
-function getStyles(theme: ITheme, variant: "primary" | "secondary"): any {
+function getVariantStyle(theme: ITheme, variant: string, target: string) {
+  if (target === "container") {
+    switch (variant) {
+      case "primary": {
+        return {
+          backgroundColor: theme.colors.primary,
+          borderWidth: 0,
+          borderColor: "transparent",
+        };
+      }
+      case "secondary": {
+        return {
+          backgroundColor: "transparent",
+          borderWidth: 2,
+          borderColor: theme.colors.primary,
+        };
+      }
+      case "tertiary": {
+        return {};
+      }
+      default: {
+        return {};
+      }
+    }
+  } else if (target === "text") {
+    switch (variant) {
+      case "primary": {
+        return {
+          color: "white",
+        };
+      }
+      case "secondary": {
+        return {
+          color: theme.colors.primary,
+        };
+      }
+      case "tertiary": {
+        return {
+          color: "red",
+        };
+      }
+      default:
+        break;
+    }
+  }
+}
+
+function getStyles(
+  theme: ITheme,
+  variant: "primary" | "secondary" | "tertiary"
+): any {
   return StyleSheet.create({
     container: {
-      width: "100%",
+      // width: "100%",
       borderRadius: 8,
-      backgroundColor:
-        variant === "primary" ? theme.colors.primary : "transparent",
-      borderWidth: variant === "primary" ? 0 : 2,
-      borderColor: variant === "primary" ? "transparent" : theme.colors.primary,
+      ...getVariantStyle(theme, variant, "container"),
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -33,14 +80,15 @@ function getStyles(theme: ITheme, variant: "primary" | "secondary"): any {
     },
     innerContainer: {
       paddingVertical: 16,
-      paddingHorizontal: 32,
+      paddingHorizontal: 0,
       width: "100%",
       justifyContent: "center",
       alignItems: "center",
+      backgroundColor: "green",
     },
     text: {
-      color: variant === "primary" ? "white" : theme.colors.primary,
       fontFamily: theme.fonts.body.fontFamily,
+      ...getVariantStyle(theme, variant, "text"),
       fontSize: theme.fonts.body.fontSize,
       fontWeight: "500",
     },

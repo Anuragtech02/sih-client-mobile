@@ -4,6 +4,16 @@ export interface IThemeContext {
   isDarkMode: boolean;
 }
 
+export interface INotificationCard{
+  item:{
+    id:string;
+    title:string;
+    description:string;
+    timestamp:string;
+    icon?:any;
+  }
+}
+
 export interface ISvg{
   style?:any;
   [x:string]:any
@@ -15,10 +25,15 @@ export interface ITheme {
     success: string;
     error: string;
     background: string;
-    textLight:string;
-    textMedium:string;
-    separation:string;
-  };
+     p1:string;
+  p2:string;
+  p3:string;
+  p4:string;
+  g1:string;
+  g2:string;
+  g3:string;
+  g4:string;
+  g5:string;  };
   fonts: {
     title: {
       fontFamily: string;

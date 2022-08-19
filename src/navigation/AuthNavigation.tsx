@@ -8,6 +8,7 @@ import {
   OTPVerification,
   ChooseLanguage,
   About,
+  Notifications,
 } from "../screens/";
 import AppNavigation from "./AppNavigation";
 
@@ -17,8 +18,8 @@ const AuthNavigation = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="About"
-        component={About}
+        name="Notifications"
+        component={Notifications}
         options={{ headerShown: false }}
       />
       <Stack.Screen

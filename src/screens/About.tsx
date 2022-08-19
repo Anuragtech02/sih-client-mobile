@@ -32,7 +32,7 @@ function getStyle(theme: ITheme): any {
       marginTop: 8,
       fontSize: 13,
       lineHeight: 20,
-      color: theme.colors.textMedium,
+      color: theme.colors.g5,
     },
     title: {
       ...theme.default,
@@ -49,7 +49,7 @@ function getStyle(theme: ITheme): any {
       marginLeft: "-50%",
       height: 1,
       marginVertical: 10,
-      backgroundColor: theme.colors.separation,
+      backgroundColor: theme.colors.g4,
     },
   });
 }
