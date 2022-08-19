@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import {
+  About,
   Events,
   FactChecker,
   Home,
@@ -24,7 +25,7 @@ const DrawerNavigation: React.FC<{ navigation: any }> = ({ navigation }) => {
     >
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="My Account" component={MyAccount} />
-      <Drawer.Screen name="About PIB" component={MyAccount} />
+      <Drawer.Screen name="About PIB" component={About} />
       <Drawer.Screen name="Events" component={Events} />
       <Drawer.Screen name="PMVideos" component={PMVideo} />
       <Drawer.Screen name="Fact Checker" component={FactChecker} />
