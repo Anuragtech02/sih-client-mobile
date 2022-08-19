@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Shishir\\github\\web-development\\sih-client-mobile\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v22\\values-v22.xml",
+            "outputFile": "/home/anurag/vscode/sih22/client/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v22/values-v22.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\lenovo\\.gradle\\caches\\transforms-3\\4709c75cfc5deab73eadee5f65c3d319\\transformed\\appcompat-1.4.1\\res\\values-v22\\values-v22.xml",
+                    "source": "/home/anurag/.gradle/caches/transforms-3/4709c75cfc5deab73eadee5f65c3d319/transformed/appcompat-1.4.1/res/values-v22/values-v22.xml",
                     "from": {
                         "startLines": "2,3,4,9",
                         "startColumns": "4,4,4,4",

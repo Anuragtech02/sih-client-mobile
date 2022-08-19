@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Shishir\\github\\web-development\\sih-client-mobile\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-watch-v20\\values-watch-v20.xml",
+            "outputFile": "/home/anurag/vscode/sih22/client/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\lenovo\\.gradle\\caches\\transforms-3\\ec411a1ccb8a0c508a7056109ea43972\\transformed\\jetified-play-services-auth-20.2.0\\res\\values-watch-v20\\values.xml",
+                    "source": "/home/anurag/.gradle/caches/transforms-3/ec411a1ccb8a0c508a7056109ea43972/transformed/jetified-play-services-auth-20.2.0/res/values-watch-v20/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\lenovo\\.gradle\\caches\\transforms-3\\4709c75cfc5deab73eadee5f65c3d319\\transformed\\appcompat-1.4.1\\res\\values-watch-v20\\values-watch-v20.xml",
+                    "source": "/home/anurag/.gradle/caches/transforms-3/4709c75cfc5deab73eadee5f65c3d319/transformed/appcompat-1.4.1/res/values-watch-v20/values-watch-v20.xml",
                     "from": {
                         "startLines": "2,5,8",
                         "startColumns": "4,4,4",

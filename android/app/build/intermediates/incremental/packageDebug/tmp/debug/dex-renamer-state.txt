@@ -1,17 +1,17 @@
-#Fri Aug 19 17:40:46 IST 2022
-base.0=D\:\\Shishir\\github\\web-development\\sih-client-mobile\\android\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=D\:\\Shishir\\github\\web-development\\sih-client-mobile\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
-base.2=D\:\\Shishir\\github\\web-development\\sih-client-mobile\\android\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.3=D\:\\Shishir\\github\\web-development\\sih-client-mobile\\android\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\14\\classes.dex
-base.4=D\:\\Shishir\\github\\web-development\\sih-client-mobile\\android\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
-base.5=D\:\\Shishir\\github\\web-development\\sih-client-mobile\\android\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex
-base.6=D\:\\Shishir\\github\\web-development\\sih-client-mobile\\android\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex
-base.7=D\:\\Shishir\\github\\web-development\\sih-client-mobile\\android\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+#Fri Aug 19 22:08:37 IST 2022
+base.0=/home/anurag/vscode/sih22/client/android/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+base.1=/home/anurag/vscode/sih22/client/android/app/build/intermediates/dex/debug/mergeLibDexDebug/0/classes.dex
+base.2=/home/anurag/vscode/sih22/client/android/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+base.3=/home/anurag/vscode/sih22/client/android/app/build/intermediates/dex/debug/mergeProjectDexDebug/1/classes.dex
+base.4=/home/anurag/vscode/sih22/client/android/app/build/intermediates/dex/debug/mergeProjectDexDebug/14/classes.dex
+base.5=/home/anurag/vscode/sih22/client/android/app/build/intermediates/dex/debug/mergeProjectDexDebug/2/classes.dex
+base.6=/home/anurag/vscode/sih22/client/android/app/build/intermediates/dex/debug/mergeProjectDexDebug/7/classes.dex
+base.7=/home/anurag/vscode/sih22/client/android/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=0/classes.dex
-path.3=14/classes.dex
-path.4=1/classes.dex
+path.3=1/classes.dex
+path.4=14/classes.dex
 path.5=2/classes.dex
 path.6=7/classes.dex
 path.7=classes2.dex
