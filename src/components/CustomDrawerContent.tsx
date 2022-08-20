@@ -13,11 +13,12 @@ import {
   EventIcon,
   InfoIcon,
   LogOutIcon,
+  PMVideoIcon,
   RightArrowIcon,
   SendIcon,
   SettingsIcon,
   ShareIcon,
-  VideoIcon,
+  Videos2Icon,
 } from "../assets/icons";
 import DrawerOptions from "./DrawerOptions";
 
@@ -42,8 +43,8 @@ const data = [
   },
   {
     id: "4",
-    icon: VideoIcon,
-    name: "PMVideos",
+    icon: PMVideoIcon,
+    name: "PM Videos",
     goto: RightArrowIcon,
   },
   {
@@ -54,18 +55,25 @@ const data = [
   },
   {
     id: "6",
+    icon: Videos2Icon,
+    name: "Videos",
+    goto: RightArrowIcon,
+  },
+
+  {
+    id: "7",
     icon: ShareIcon,
     name: "Share this App",
     goto: RightArrowIcon,
   },
   {
-    id: "7",
+    id: "8",
     icon: SettingsIcon,
     name: "Settings",
     goto: RightArrowIcon,
   },
   {
-    id: "8",
+    id: "9",
     icon: LogOutIcon,
     name: "Log Out",
     goto: "",
@@ -124,6 +132,7 @@ const CustomDrawerContent: React.FC<{
       disableDefaultPadding={true}
     >
       <FlatList
+        contentContainerStyle={{ paddingBottom: 24 }}
         style={getStyles(theme).innerContainer}
         ListHeaderComponent={
           <View style={getStyles(theme).headerContainer}>
@@ -154,7 +163,7 @@ const CustomDrawerContent: React.FC<{
             }
             optionName={item.name}
             icon={
-              item.id !== "8" && (
+              item.id !== "9" && (
                 <item.goto
                   color={
                     selectedID === item.id

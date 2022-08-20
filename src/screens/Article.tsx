@@ -12,7 +12,13 @@ import {
 } from "react-native";
 import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
-import { BackArrowIcon, ShareIcon } from "../assets/icons";
+import {
+  BackArrowIcon,
+  ClockIcon,
+  EyeIcon,
+  PhotosIcon,
+  ShareIcon,
+} from "../assets/icons";
 import BackArrow from "../assets/icons/BackArrow";
 import MainLayout from "../layouts/MainLayout";
 import TextToSpeech from "../utils/contexts/TextToSpeech";
@@ -25,53 +31,49 @@ function getStyles(theme: ITheme): any {
       marginStart: 32,
     },
     container: {
+      flex: 1,
       backgroundColor: theme.colors.background,
-      position: "relative",
     },
 
     content: {
-      marginTop: 50,
-      color: "black",
+      marginTop: 20,
+      color: theme.colors.primary,
       fontSize: theme.fonts.subTitle.fontSize,
       fontFamily: theme.fonts.subTitle.fontFamily,
     },
     contentBody: {
       marginTop: 12,
-      //color: "black",
+      color: theme.colors.primary,
       fontSize: theme.fonts.body.fontSize,
       fontFamily: theme.fonts.body.fontFamily,
     },
     contentContainer: {
-      color: "black",
+      backgroundColor: theme.colors.background,
       paddingHorizontal: 24,
-      borderTopLeftRadius: 20,
-      borderTopRightRadius: 20,
-      marginTop: -20,
-      zIndex: 9999,
-      elevation: -1,
+
+      marginBottom: 20,
+      marginTop: -68,
     },
     dayNews: {
       position: "absolute",
       backgroundColor: "rgba(246, 246, 246, 0.2)",
       alignItems: "center",
       borderRadius: 12,
-      top: 180,
+      top: 140,
       padding: 4,
       width: 130,
       marginStart: 32,
     },
     innerContainer: {
-      backgroundColor: "white",
+      backgroundColor: theme.colors.background,
       position: "absolute",
       width: SCREEN_WIDTH,
       top: 0,
       left: 0,
-      zIndex: 9999,
     },
     header: {
       textAlign: "center",
       fontSize: 18,
-      color: "black",
       marginTop: 16,
       marginStart: 10,
       alignSelf: "flex-start",
@@ -80,25 +82,29 @@ function getStyles(theme: ITheme): any {
 
     more: {
       position: "absolute",
-      top: 315,
+      top: 305,
       left: 32,
       width: 300,
-      color: "white",
+      color: "white", //theme.colors.primary,
       fontSize: 16,
     },
     news: {
-      color: "white",
+      color: "white", //theme.colors.primary,
       fontWeight: "bold",
       position: "absolute",
-      top: 220,
+      top: 190,
       left: 32,
       fontSize: 24,
       width: 300,
     },
-    scrollContainer: {
-      //padding: 16,
-      paddingTop: HEADER_EXPANDED_HEIGHT,
+    propertiesContainer: {
+      flexDirection: "row",
+      marginTop: 20,
     },
+    scrollContainer: {
+      paddingTop: 400,
+    },
+    savedContainer: { marginStart: "auto", marginEnd: 12 },
     shareIconContainer: {
       position: "absolute",
       top: 44,
@@ -112,8 +118,33 @@ function getStyles(theme: ITheme): any {
     },
     textNews: {
       fontSize: 12,
-      color: "white",
+      color: "white", //theme.colors.primary,
       fontWeight: "bold",
+    },
+    time: {
+      marginStart: 8,
+      color: theme.colors.primary,
+      fontSize: theme.fonts.body.fontSize,
+      fontFamily: theme.fonts.body.fontFamily,
+    },
+    timeContainer: { marginStart: 24 },
+    textToSpeechContainer: {
+      backgroundColor: theme.colors.background,
+      borderRadius: 25,
+      position: "absolute",
+      bottom: 20,
+      right: 20,
+      shadowColor: "black",
+      width: 50,
+      height: 50,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    viewsCount: {
+      marginStart: 8,
+      color: theme.colors.primary,
+      fontSize: theme.fonts.body.fontSize,
+      fontFamily: theme.fonts.body.fontFamily,
     },
   });
 }
@@ -149,7 +180,7 @@ const Article: React.FC = () => {
     setBorderRadius(
       scrollY.interpolate({
         inputRange: [0, HEADER_EXPANDED_HEIGHT - HEADER_COLLAPSED_HEIGHT],
-        outputRange: [30, 0],
+        outputRange: [20, 0],
         extrapolate: "clamp",
       })
     );
@@ -188,14 +219,12 @@ const Article: React.FC = () => {
         style={{
           ...getStyles(theme).innerContainer,
           height: headerHeight,
-          // borderBottomLeftRadius: borderRadius,
-          // borderBottomRightRadius: borderRadius,
         }}
       >
         <Animated.View
           style={{ ...getStyles(theme).header, opacity: headerTitleOpacity }}
         >
-          <BackArrowIcon />
+          <BackArrowIcon color={theme.colors.primary} />
         </Animated.View>
 
         <Animated.View
@@ -204,16 +233,12 @@ const Article: React.FC = () => {
             backgroundColor: "rgba(0, 0, 0, 0.8)",
             opacity: heroTitleOpacity,
             top: topHeight,
-            // borderBottomLeftRadius: borderRadius,
-            // borderBottomRightRadius: borderRadius,
           }}
         >
           <Animated.Image
             source={require("../assets/ArticleBackground.png")}
             style={{
               opacity: 0.6,
-              // borderBottomLeftRadius: borderRadius,
-              // borderBottomRightRadius: borderRadius,
               width: SCREEN_WIDTH,
               height: HEADER_EXPANDED_HEIGHT,
             }}
@@ -243,7 +268,7 @@ const Article: React.FC = () => {
       </Animated.View>
 
       <ScrollView
-        style={{ flex: 1 }}
+        style={{ marginTop: 50 }}
         contentContainerStyle={getStyles(theme).scrollContainer}
         onScroll={Animated.event([
           {
@@ -255,35 +280,48 @@ const Article: React.FC = () => {
           },
         ])}
         scrollEventThrottle={16}
+        StickyHeaderComponent={BackArrow}
       >
-        <View style={getStyles(theme).contentContainer}>
+        <Animated.View
+          style={{
+            ...getStyles(theme).contentContainer,
+            borderTopLeftRadius: borderRadius,
+            borderTopRightRadius: borderRadius,
+          }}
+        >
+          <View style={getStyles(theme).propertiesContainer}>
+            <EyeIcon />
+            <Text style={getStyles(theme).viewsCount}>1.2k</Text>
+
+            <ClockIcon customStyle={getStyles(theme).timeContainer} />
+            <Text style={getStyles(theme).time}>30 MAR 2022</Text>
+            <View style={getStyles(theme).savedContainer}>
+              <PhotosIcon opacity={0} />
+            </View>
+          </View>
           <Text style={getStyles(theme).content}>
             प्रीतम सिवाच अकादमी ने खेलो इंडिया महिला हॉकी लीग जीती (यू-21)
           </Text>
           <Text style={getStyles(theme).contentBody}>{body}</Text>
-
-          <TouchableOpacity
-            style={{
-              marginStart: "auto",
-              marginTop: 10,
-            }}
-            onPress={() => {
-              if (flag) {
-                stopTTS();
-                setFlag(false);
-              } else {
-                readText(body);
-                setFlag(true);
-              }
-            }}
-          >
-            <Image
-              source={require("../assets/TTSIcon.png")}
-              style={{ width: 100, height: 100 }}
-            />
-          </TouchableOpacity>
-        </View>
+        </Animated.View>
       </ScrollView>
+      <TouchableOpacity
+        style={getStyles(theme).textToSpeechContainer}
+        onPress={() => {
+          if (flag) {
+            stopTTS();
+            setFlag(false);
+          } else {
+            readText(body);
+            setFlag(true);
+          }
+        }}
+      >
+        <Image
+          source={require("../assets/text-to-speech.png")}
+          style={{ width: 40, height: 40 }}
+        />
+      </TouchableOpacity>
     </MainLayout>
   );
 };

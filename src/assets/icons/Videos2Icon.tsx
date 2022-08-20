@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
+import Svg, { Path } from "react-native-svg";
 import { ITheme } from "../../utils/contexts/interfaces";
 import { ThemeContext } from "../../utils/contexts";
-
-import Svg, { Path } from "react-native-svg";
 
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
@@ -19,10 +18,9 @@ function getStyles(theme: ITheme): any {
   });
 }
 
-const PhotosIcon: React.FC<{ color?: any; opacity?: any }> = ({
-  color,
-  opacity,
-}) => {
+const Videos2Icon: React.FC<{
+  color: string;
+}> = ({ color }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <>
@@ -34,19 +32,24 @@ const PhotosIcon: React.FC<{ color?: any; opacity?: any }> = ({
         //xmlns="http://www.w3.org/2000/svg"
       >
         <Path
-          d="M16.82 2H7.18C5.05 2 3.32 3.74 3.32 5.86V19.95C3.32 21.75 4.61 22.51 6.19 21.64L11.07 18.93C11.59 18.64 12.43 18.64 12.94 18.93L17.82 21.64C19.4 22.52 20.69 21.76 20.69 19.95V5.86C20.68 3.74 18.95 2 16.82 2Z"
-          stroke={
-            color === theme.colors.primary ? theme.colors.primary : "#989898"
-          }
-          fill={color}
+          d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z"
+          stroke={color}
           stroke-width="1.5"
           stroke-linecap="round"
           stroke-linejoin="round"
         />
+        <Path
+          d="M9.1001 12V10.52C9.1001 8.60999 10.4501 7.83999 12.1001 8.78999L13.3801 9.52999L14.6601 10.27C16.3101 11.22 16.3101 12.78 14.6601 13.73L13.3801 14.47L12.1001 15.21C10.4501 16.16 9.1001 15.38 9.1001 13.48V12Z"
+          stroke={color}
+          stroke-width="1.5"
+          stroke-miterlimit="10"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
       </Svg>
-      <View style={{ ...getStyles(theme).bar, opacity: opacity }} />
     </>
   );
 };
 
-export default PhotosIcon;
+const styles = StyleSheet.create({});
+export default Videos2Icon;
