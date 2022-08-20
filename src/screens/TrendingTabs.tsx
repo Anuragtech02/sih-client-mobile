@@ -3,6 +3,7 @@ import { StyleSheet, Text } from "react-native";
 import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
+import { Button } from "../components";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -18,12 +19,12 @@ function getStyle(theme: ITheme): any {
   });
 }
 
-function TrendingTabs() {
+const TrendingTabs: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <MainLayout customStyles={getStyle(theme).container}>
-      <Text style={getStyle(theme).heading}>TRENDING TABS</Text>
+      <Text style={getStyle(theme).heading}>New Article</Text>
     </MainLayout>
   );
-}
+};
 export default TrendingTabs;

@@ -6,9 +6,9 @@ import { Home, Live, Notifications, Photos, Trending } from "../screens";
 import {
   HomeIcon,
   TrendingIcon,
-  LiveIcon,
   PhotosIcon,
   NotificationsIcon,
+  VideoIcon,
 } from "../assets/icons";
 import DrawerNavigation from "./DrawerNavigation";
 const App = createBottomTabNavigator();
@@ -57,8 +57,10 @@ function AppNavigation() {
           tabBarShowLabel: false,
           tabBarIcon: ({ focused }: { focused: any }) => {
             return (
-              <LiveIcon
-                color={focused ? theme.colors.primary : "white"}
+              <VideoIcon
+                color={focused ? theme.colors.primary : "#989898"}
+                fillColor={focused ? theme.colors.primary : "white"}
+                newColor={focused ? "red" : "#989898"}
                 opacity={focused ? 1 : 0}
               />
             );

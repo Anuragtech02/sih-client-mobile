@@ -5,6 +5,7 @@ import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
 import { DrawerIcon, SearchIcon } from "../assets/icons";
 import TopTabsNavigation from "../navigation/TopTabsNavigation";
+import DrawerNavigation from "../navigation/DrawerNavigation";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -57,9 +58,8 @@ function getStyle(theme: ITheme): any {
   });
 }
 
-const Home: React.FC = () => {
+const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
-
   const [name, setName] = useState("Adarsh");
   return (
     <MainLayout
@@ -67,6 +67,7 @@ const Home: React.FC = () => {
       disableDefaultPadding={true}
     >
       <View style={getStyle(theme).innerContainer}>
+        <DrawerIcon customOnPress={() => navigation.openDrawer()} />
         <View style={getStyle(theme).profileContainer}>
           <Text style={getStyle(theme).name}>{`Hi ${name},`}</Text>
           <Text style={getStyle(theme).greetings}>Welcome!</Text>

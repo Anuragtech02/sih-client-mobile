@@ -54,13 +54,13 @@ function getStyle(theme: ITheme): any {
   });
 }
 
-const About: React.FC = () => {
+const About: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
     <MainLayout customStyles={getStyle(theme).container}>
       <View style={getStyle(theme).header}>
-        <BackArrowIcon />
+        <BackArrowIcon customOnPress={() => navigation.navigate("Home")} />
       </View>
       <View style={getStyle(theme).horizontalLine}></View>
       <View style={getStyle(theme).section}>
