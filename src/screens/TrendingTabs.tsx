@@ -11,6 +11,7 @@ function getStyle(theme: ITheme): any {
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
+      backgroundColor: theme.colors.background,
     },
     heading: {
       fontSize: theme.fonts.title.fontSize,

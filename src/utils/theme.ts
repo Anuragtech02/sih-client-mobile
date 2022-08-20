@@ -49,6 +49,8 @@ const themeLight = {
     g3: paletteLight.g3,
     g4: paletteLight.g4,
     g5: paletteLight.g5,
+    white: "#F0F2F3",
+    black: "#292D32",
   },
   fonts: {
     title: {
@@ -96,6 +98,8 @@ const themeDark = {
     g3: paletteDark.g3,
     g4: paletteDark.g4,
     g5: paletteDark.g5,
+    white: "#F0F2F3",
+    black: "#292D32",
   },
   default: {
     fontSize: 16,

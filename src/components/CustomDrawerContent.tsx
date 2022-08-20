@@ -11,8 +11,8 @@ import {
   CheckerIcon,
   CloseIcon,
   EventIcon,
+  InfoIcon,
   LogOutIcon,
-  PIBIcon,
   RightArrowIcon,
   SendIcon,
   SettingsIcon,
@@ -30,7 +30,7 @@ const data = [
   },
   {
     id: "2",
-    icon: PIBIcon,
+    icon: InfoIcon,
     name: "About PIB",
     goto: RightArrowIcon,
   },
@@ -74,12 +74,14 @@ const data = [
 
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
-    container: { marginTop: 24 },
+    container: { flex: 1 },
+    headerContainer: { marginTop: 24 },
     iconContainer: {
       marginStart: "auto",
       marginEnd: 18,
       marginBottom: 16,
     },
+    innerContainer: { backgroundColor: theme.colors.background },
     itemSeperator: {
       height: 1,
       width: "100%",
@@ -122,11 +124,12 @@ const CustomDrawerContent: React.FC<{
       disableDefaultPadding={true}
     >
       <FlatList
+        style={getStyles(theme).innerContainer}
         ListHeaderComponent={
-          <View>
+          <View style={getStyles(theme).headerContainer}>
             <View style={getStyles(theme).iconContainer}>
               <CloseIcon
-                color="black"
+                color={theme.colors.primary}
                 customOnPress={() => navigation.closeDrawer()}
               />
             </View>
@@ -142,7 +145,9 @@ const CustomDrawerContent: React.FC<{
             children={
               <item.icon
                 color={
-                  selectedID === item.id ? theme.colors.primary : "#989898"
+                  selectedID === item.id
+                    ? theme.colors.primary
+                    : theme.colors.g1
                 }
                 customStyle={{}}
               />
@@ -152,14 +157,17 @@ const CustomDrawerContent: React.FC<{
               item.id !== "8" && (
                 <item.goto
                   color={
-                    selectedID === item.id ? theme.colors.primary : "#989898"
+                    selectedID === item.id
+                      ? theme.colors.primary
+                      : theme.colors.g1
                   }
                   customStyle={getStyles(theme).nextPage}
                 />
               )
             }
             myStyle={{
-              color: selectedID === item.id ? theme.colors.primary : "#989898",
+              color:
+                selectedID === item.id ? theme.colors.primary : theme.colors.g1,
             }}
             customOnPress={() => {
               setSelectedID(item.id);

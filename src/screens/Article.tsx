@@ -25,8 +25,7 @@ function getStyles(theme: ITheme): any {
       marginStart: 32,
     },
     container: {
-      flex: 1,
-      backgroundColor: "white",
+      backgroundColor: theme.colors.background,
       position: "relative",
     },
 

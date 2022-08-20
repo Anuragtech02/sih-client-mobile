@@ -14,7 +14,12 @@ interface IButton {
   [x: string]: any;
 }
 
-function getVariantStyle(theme: ITheme, variant: string, target: string) {
+function getVariantStyle(
+  theme: ITheme,
+  variant: string,
+  target: string,
+  isDarkMode: boolean
+) {
   if (target === "container") {
     switch (variant) {
       case "primary": {
@@ -42,7 +47,7 @@ function getVariantStyle(theme: ITheme, variant: string, target: string) {
     switch (variant) {
       case "primary": {
         return {
-          color: "white",
+          color: isDarkMode ? theme.colors.black : theme.colors.white,
         };
       }
       case "secondary": {
@@ -63,13 +68,14 @@ function getVariantStyle(theme: ITheme, variant: string, target: string) {
 
 function getStyles(
   theme: ITheme,
-  variant: "primary" | "secondary" | "tertiary"
+  variant: "primary" | "secondary" | "tertiary",
+  isDarkMode: boolean
 ): any {
   return StyleSheet.create({
     container: {
       // width: "100%",
       borderRadius: 8,
-      ...getVariantStyle(theme, variant, "container"),
+      ...getVariantStyle(theme, variant, "container", isDarkMode),
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -79,16 +85,16 @@ function getStyles(
       backgroundColor: "grey",
     },
     innerContainer: {
-      paddingVertical: 4,
-      paddingHorizontal: 10,
+      paddingVertical: 16,
+      paddingHorizontal: 0,
       width: "100%",
       justifyContent: "center",
       alignItems: "center",
-      backgroundColor: "black",
+      backgroundColor: theme.colors.primary,
     },
     text: {
       fontFamily: theme.fonts.body.fontFamily,
-      ...getVariantStyle(theme, variant, "text"),
+      ...getVariantStyle(theme, variant, "text", isDarkMode),
       fontSize: theme.fonts.body.fontSize,
       fontWeight: "500",
     },
@@ -105,20 +111,24 @@ const Button: React.FC<IButton> = ({
   variant = "primary",
   ...remaining
 }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, isDarkMode } = useContext(ThemeContext);
   return (
-    <View style={[getStyles(theme, variant).container, customStyle]}>
+    <View
+      style={[getStyles(theme, variant, isDarkMode).container, customStyle]}
+    >
       <TouchableOpacity
         onPress={onPress}
         disabled={disabled}
         style={{
-          ...getStyles(theme, variant).innerContainer,
-          ...(disabled ? getStyles(theme, variant).disabled : {}),
+          ...getStyles(theme, variant, isDarkMode).innerContainer,
+          ...(disabled ? getStyles(theme, variant, isDarkMode).disabled : {}),
         }}
         {...remaining}
       >
         {position && position === "left" && IconComp}
-        <Text style={getStyles(theme, variant).text}>{children}</Text>
+        <Text style={getStyles(theme, variant, isDarkMode).text}>
+          {children}
+        </Text>
         {position && position === "right" && IconComp}
       </TouchableOpacity>
     </View>

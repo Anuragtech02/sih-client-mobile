@@ -24,11 +24,10 @@ const App = () => {
 
   return (
     <ThemeContextProvider>
-      <StatusBar animated={true} backgroundColor="white" hidden={true} />
       <TextToSpeechProvider>
         <NavigationContainer>
-          {/* <AuthNavigation /> */}
-          <AppNavigation />
+          <AuthNavigation />
+          {/* <AppNavigation /> */}
           {/* <Article /> */}
         </NavigationContainer>
       </TextToSpeechProvider>

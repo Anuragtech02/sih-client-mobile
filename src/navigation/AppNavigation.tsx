@@ -16,7 +16,11 @@ const App = createBottomTabNavigator();
 function AppNavigation() {
   const { theme } = useContext(ThemeContext);
   return (
-    <App.Navigator>
+    <App.Navigator
+      screenOptions={{
+        tabBarStyle: { backgroundColor: theme.colors.background },
+      }}
+    >
       <App.Screen
         name="DrawerNavigation"
         component={DrawerNavigation}

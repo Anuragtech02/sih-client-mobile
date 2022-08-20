@@ -26,19 +26,18 @@ function getStyles(theme: ITheme): any {
     },
     container: {
       flex: 1,
-      backgroundColor: "white",
-      position: "relative",
+      backgroundColor: theme.colors.background,
     },
 
     content: {
       marginTop: 50,
-      color: "black",
+      color: theme.colors.primary,
       fontSize: theme.fonts.subTitle.fontSize,
       fontFamily: theme.fonts.subTitle.fontFamily,
     },
     contentBody: {
       marginTop: 12,
-      //color: "black",
+      color: theme.colors.primary,
       fontSize: theme.fonts.body.fontSize,
       fontFamily: theme.fonts.body.fontFamily,
     },
@@ -48,8 +47,6 @@ function getStyles(theme: ITheme): any {
       borderTopLeftRadius: 20,
       borderTopRightRadius: 20,
       marginTop: -20,
-      zIndex: 9999,
-      elevation: -1,
     },
     dayNews: {
       position: "absolute",
@@ -62,12 +59,12 @@ function getStyles(theme: ITheme): any {
       marginStart: 32,
     },
     innerContainer: {
-      backgroundColor: "white",
+      backgroundColor: theme.colors.background,
       position: "absolute",
       width: SCREEN_WIDTH,
       top: 0,
       left: 0,
-      zIndex: 9999,
+      zIndex: 1,
     },
     header: {
       textAlign: "center",
@@ -97,8 +94,7 @@ function getStyles(theme: ITheme): any {
       width: 300,
     },
     scrollContainer: {
-      //padding: 16,
-      paddingTop: HEADER_EXPANDED_HEIGHT,
+      paddingTop: 400,
     },
     shareIconContainer: {
       position: "absolute",
@@ -189,14 +185,12 @@ const Article: React.FC = () => {
         style={{
           ...getStyles(theme).innerContainer,
           height: headerHeight,
-          // borderBottomLeftRadius: borderRadius,
-          // borderBottomRightRadius: borderRadius,
         }}
       >
         <Animated.View
           style={{ ...getStyles(theme).header, opacity: headerTitleOpacity }}
         >
-          <BackArrowIcon />
+          <BackArrowIcon color={theme.colors.primary} />
         </Animated.View>
 
         <Animated.View
@@ -205,16 +199,12 @@ const Article: React.FC = () => {
             backgroundColor: "rgba(0, 0, 0, 0.8)",
             opacity: heroTitleOpacity,
             top: topHeight,
-            // borderBottomLeftRadius: borderRadius,
-            // borderBottomRightRadius: borderRadius,
           }}
         >
           <Animated.Image
             source={require("../assets/ArticleBackground.png")}
             style={{
               opacity: 0.6,
-              // borderBottomLeftRadius: borderRadius,
-              // borderBottomRightRadius: borderRadius,
               width: SCREEN_WIDTH,
               height: HEADER_EXPANDED_HEIGHT,
             }}
@@ -244,7 +234,6 @@ const Article: React.FC = () => {
       </Animated.View>
 
       <ScrollView
-        style={{ flex: 1 }}
         contentContainerStyle={getStyles(theme).scrollContainer}
         onScroll={Animated.event([
           {

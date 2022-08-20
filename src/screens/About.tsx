@@ -10,13 +10,16 @@ import {
   PhoneIcon,
   TwitterIcon,
   BackArrowIcon,
+  InfoIcon,
 } from "../assets/icons";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
     container: {
+      flex: 1,
       ...theme.default,
-      marginTop: 24,
+
+      backgroundColor: theme.colors.background,
     },
     section: {
       marginVertical: 12,
@@ -51,6 +54,9 @@ function getStyle(theme: ITheme): any {
       marginVertical: 10,
       backgroundColor: theme.colors.g4,
     },
+    header: {
+      marginTop: 24,
+    },
   });
 }
 
@@ -60,14 +66,18 @@ const About: React.FC<{ navigation: any }> = ({ navigation }) => {
   return (
     <MainLayout customStyles={getStyle(theme).container}>
       <View style={getStyle(theme).header}>
-        <BackArrowIcon customOnPress={() => navigation.navigate("Home")} />
+        <BackArrowIcon
+          customOnPress={() => navigation.navigate("Home")}
+          color={theme.colors.primary}
+        />
       </View>
       <View style={getStyle(theme).horizontalLine}></View>
       <View style={getStyle(theme).section}>
         <View style={getStyle(theme).subHeader}>
+          <InfoIcon color={theme.colors.primary} width={16} />
           <Text style={getStyle(theme).title}>ABOUT PIB</Text>
         </View>
-        <Text style={getStyle(theme).description}>
+        <Text style={getStyle(theme).fullLine}>
           The Press Information Bureau (PIB) is the nodal agency of the
           Government of India to disseminate information to the print and
           electronic media on government policies, programmes, interface between

@@ -22,3 +22,4 @@ export { default as InstagramIcon } from "./InstagramIcon";
 export { default as PeopleIcon } from "./PeopleIcon";
 export { default as PhoneIcon } from "./PhoneIcon";
 export { default as TwitterIcon } from "./TwitterIcon";
+export { default as InfoIcon } from "./InfoIcon";
