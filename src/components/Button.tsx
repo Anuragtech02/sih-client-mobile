@@ -79,12 +79,12 @@ function getStyles(
       backgroundColor: "grey",
     },
     innerContainer: {
-      paddingVertical: 16,
-      paddingHorizontal: 0,
+      paddingVertical: 4,
+      paddingHorizontal: 10,
       width: "100%",
       justifyContent: "center",
       alignItems: "center",
-      backgroundColor: "green",
+      backgroundColor: "black",
     },
     text: {
       fontFamily: theme.fonts.body.fontFamily,

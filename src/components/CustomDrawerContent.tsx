@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
 import MainLayout from "../layouts/MainLayout";
 import { FlatList } from "react-native-gesture-handler";
+import { useNavigationState } from "@react-navigation/native";
 
 import {
   AccountIcon,
@@ -94,9 +95,27 @@ function getStyles(theme: ITheme): any {
   });
 }
 
-const CustomDrawerContent: React.FC<{ navigation: any }> = ({ navigation }) => {
+const CustomDrawerContent: React.FC<{
+  navigation: any;
+  state: any;
+}> = ({ navigation, state }) => {
   const { theme } = useContext(ThemeContext);
   const [selectedID, setSelectedID] = useState<string>("");
+  const [leftFocus, setLeftFocus] = useState<boolean>(false);
+  const index = useNavigationState((state) => state.index);
+
+  useEffect(() => {
+    if (!state.index) setSelectedID("");
+    if (index !== 0) {
+      setLeftFocus(true);
+    } else {
+      setLeftFocus(false);
+    }
+    if (leftFocus && index === 0) {
+      setSelectedID("");
+      navigation.navigate("Home");
+    }
+  }, [state, index, leftFocus]);
   return (
     <MainLayout
       customStyles={getStyles(theme).container}
@@ -144,7 +163,7 @@ const CustomDrawerContent: React.FC<{ navigation: any }> = ({ navigation }) => {
             }}
             customOnPress={() => {
               setSelectedID(item.id);
-              navigation.navigate(`${item.name}`);
+              navigation.navigate(`${item.name}`), { name: item.name };
             }}
           />
         )}

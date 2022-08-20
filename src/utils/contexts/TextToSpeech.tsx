@@ -12,6 +12,7 @@ const TextToSpeech = createContext<ITextToSpeech>({
   updateSpeechRate: () => {},
   updateSpeechPitch: () => {},
   handleChangeSelectedVoice: () => {},
+  stopTTS: () => {},
 });
 
 interface ITextToSpeechContextProvider {
@@ -34,6 +35,8 @@ export const TextToSpeechProvider: React.FC<ITextToSpeechContextProvider> = ({
       .map((v) => {
         return { id: v.id, name: v.name, language: v.language };
       });
+    console.log(availableVoices);
+
     let selectedVoice = null;
     if (tempVoices && tempVoices.length > 0) {
       selectedVoice = tempVoices[0].id;
@@ -71,6 +74,7 @@ export const TextToSpeechProvider: React.FC<ITextToSpeechContextProvider> = ({
   function readText(text: string) {
     Tts.stop();
     Tts.speak(text);
+    console.log(voices, selectedVoice);
   }
 
   async function updateSpeechRate(rate: number) {
@@ -81,6 +85,10 @@ export const TextToSpeechProvider: React.FC<ITextToSpeechContextProvider> = ({
   async function updateSpeechPitch(rate: number) {
     await Tts.setDefaultPitch(rate);
     setSpeechPitch(rate);
+  }
+
+  function stopTTS() {
+    Tts.stop();
   }
 
   async function handleChangeSelectedVoice(voice: IVoiceType) {
@@ -107,6 +115,7 @@ export const TextToSpeechProvider: React.FC<ITextToSpeechContextProvider> = ({
         updateSpeechRate,
         updateSpeechPitch,
         handleChangeSelectedVoice,
+        stopTTS,
       }}
     >
       {children}

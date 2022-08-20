@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 
 import Svg, { Path } from "react-native-svg";
 
-const ShareIcon: React.FC<{ color: string; customStyle?: any }> = ({
+const ShareIcon: React.FC<{ color?: string; customStyle?: any }> = ({
   color,
   customStyle,
 }) => {

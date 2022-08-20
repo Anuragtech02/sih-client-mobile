@@ -18,12 +18,12 @@ function getStyle(theme: ITheme): any {
   });
 }
 
-function MyAccount() {
+const MyAccount: React.FC = ({}) => {
   const { theme } = useContext(ThemeContext);
   return (
     <MainLayout customStyles={getStyle(theme).container}>
       <Text style={getStyle(theme).heading}>MY ACCOUNT</Text>
     </MainLayout>
   );
-}
+};
 export default MyAccount;

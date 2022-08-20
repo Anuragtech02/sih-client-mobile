@@ -23,6 +23,7 @@ function getStyles(theme: ITheme): any {
     },
     optionContainer: {
       flexDirection: "row",
+      alignItems: "center",
       marginTop: 18,
     },
     seperatorContainer: {

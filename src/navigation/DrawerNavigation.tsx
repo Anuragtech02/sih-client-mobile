@@ -14,17 +14,21 @@ import CustomDrawerContent from "../components/CustomDrawerContent";
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigation: React.FC<{ navigation: any }> = ({ navigation }) => {
+const DrawerNavigation: React.FC<{ navigation: any; rest: any }> = ({
+  navigation,
+  ...rest
+}) => {
   return (
     <Drawer.Navigator
       initialRouteName="Home"
       screenOptions={{
         drawerStyle: { width: "100%" },
+        headerShown: false,
       }}
       drawerContent={(props) => <CustomDrawerContent {...props} />}
     >
       <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="My Account" component={MyAccount} />
+      <Drawer.Screen name="My Account" component={MyAccount} options={{}} />
       <Drawer.Screen name="About PIB" component={About} />
       <Drawer.Screen name="Events" component={Events} />
       <Drawer.Screen name="PMVideos" component={PMVideo} />
