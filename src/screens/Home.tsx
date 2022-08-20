@@ -11,7 +11,7 @@ function getStyle(theme: ITheme): any {
   return StyleSheet.create({
     container: {
       flex: 1,
-      marginTop: 20,
+      backgroundColor: theme.colors.background,
     },
     greetings: {
       fontSize: theme.fonts.subTitle.fontSize,
@@ -22,6 +22,7 @@ function getStyle(theme: ITheme): any {
       fontFamily: theme.fonts.title.fontFamily,
     },
     innerContainer: {
+      marginTop: 24,
       paddingHorizontal: 24,
     },
     name: {

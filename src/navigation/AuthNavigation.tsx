@@ -18,11 +18,6 @@ const AuthNavigation = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Notifications"
-        component={Notifications}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
         name="ChooseLanguageScreen"
         component={ChooseLanguage}
         options={{ headerShown: false }}

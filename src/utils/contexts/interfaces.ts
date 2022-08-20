@@ -34,6 +34,8 @@ export interface ITheme {
     g3: string;
     g4: string;
     g5: string;
+    white: string;
+    black: string;
   };
   fonts: {
     title: {

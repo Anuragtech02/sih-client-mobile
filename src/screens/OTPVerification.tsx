@@ -9,7 +9,8 @@ import BackArrow from "../assets/icons/BackArrow";
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
     container: {
-      marginTop: 24,
+      //marginTop: 24,
+      backgroundColor: theme.colors.background,
     },
     innerContainer: {
       marginTop: 24,
@@ -84,7 +85,9 @@ const OTPVerification: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [pin4, setPin4] = useState<any>("");
 
   return (
-    <MainLayout>
+    <MainLayout
+      customStyles={{ backgroundColor: theme.colors.background, flex: 1 }}
+    >
       <View style={getStyles(theme).container}>
         <BackArrow />
         <Text style={getStyles(theme).message}>

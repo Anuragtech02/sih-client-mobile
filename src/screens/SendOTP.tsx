@@ -16,7 +16,8 @@ import MainLayout from "../layouts/MainLayout";
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
     container: {
-      marginTop: 24,
+      //marginTop: 24,
+      //backgroundColor: theme.colors.background,
     },
     countryCode: {
       color: theme.colors.primary,
@@ -88,7 +89,9 @@ const SendOTP: React.FC<{ navigation: any }> = ({ navigation }) => {
     setPhoneNumber(formatedString);
   };
   return (
-    <MainLayout>
+    <MainLayout
+      customStyles={{ backgroundColor: theme.colors.background, flex: 1 }}
+    >
       <View style={getStyles(theme).container}>
         <BackArrow />
         <Text style={getStyles(theme).message}>

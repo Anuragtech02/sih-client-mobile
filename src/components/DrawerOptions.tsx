@@ -6,14 +6,17 @@ import MainLayout from "../layouts/MainLayout";
 
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
-    container: { paddingHorizontal: 40 },
+    container: {
+      paddingHorizontal: 40,
+      backgroundColor: theme.colors.background,
+    },
     innerContainer: {
       width: "100%",
     },
     itemSeperator: {
       height: 1,
       width: "100%",
-      backgroundColor: "#E5E5E5",
+      backgroundColor: theme.colors.g4,
     },
     name: {
       fontSize: theme.fonts.body.fontSize,

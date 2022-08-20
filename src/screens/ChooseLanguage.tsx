@@ -184,6 +184,7 @@ const ChooseLanguage: React.FC<{ navigation: any }> = ({ navigation }) => {
       customStyles={{
         alignItems: "center",
         // paddingHorizontal: 10,
+        backgroundColor: theme.colors.background,
       }}
       disableDefaultPadding
     >

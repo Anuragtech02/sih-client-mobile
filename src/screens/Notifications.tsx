@@ -4,8 +4,8 @@ import MainLayout from "../layouts/MainLayout";
 import { INotificationCard, ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
 import { Button } from "../components";
-import PIBImage from "../assets/pib.png";
 
+const PIBImage = require("../assets/pib.png");
 const notifications = [
   {
     title: "New",
@@ -116,6 +116,7 @@ function getStyle(theme: ITheme): any {
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
+      backgroundColor: theme.colors.background,
     },
     heading: {
       fontSize: theme.fonts.title.fontSize,

@@ -59,6 +59,7 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
     <MainLayout
       customStyles={{
         alignItems: "center",
+        backgroundColor: theme.colors.background,
       }}
       disableDefaultPadding
     >
