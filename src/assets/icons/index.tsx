@@ -23,3 +23,7 @@ export { default as PeopleIcon } from "./PeopleIcon";
 export { default as PhoneIcon } from "./PhoneIcon";
 export { default as TwitterIcon } from "./TwitterIcon";
 export { default as InfoIcon } from "./InfoIcon";
+export { default as EyeIcon } from "./EyeIcon";
+export { default as ClockIcon } from "./ClockIcon";
+export { default as Videos2Icon } from "./Videos2Icon";
+export { default as PMVideoIcon } from "./PMVideoIcon";

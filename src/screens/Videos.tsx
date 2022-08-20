@@ -10,8 +10,8 @@ function getStyle(theme: ITheme): any {
   return StyleSheet.create({
     container: {
       flex: 1,
-      //justifyContent: "center",
-      //alignItems: "center",
+      // justifyContent: "center",
+      // alignItems: "center",
       padding: 40,
       backgroundColor: theme.colors.background,
     },
@@ -27,7 +27,7 @@ function getStyle(theme: ITheme): any {
   });
 }
 
-const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
+const Videos: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <MainLayout customStyles={getStyle(theme).container}>
@@ -37,8 +37,8 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
           <DrawerIcon customOnPress={() => navigation.openDrawer()} />
         </View>
       </View>
-      <Text style={getStyle(theme).heading}>MY ACCOUNT</Text>
+      <Text style={getStyle(theme).heading}>VIDEOS</Text>
     </MainLayout>
   );
 };
-export default MyAccount;
+export default Videos;

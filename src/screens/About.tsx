@@ -11,6 +11,7 @@ import {
   TwitterIcon,
   BackArrowIcon,
   InfoIcon,
+  DrawerIcon,
 } from "../assets/icons";
 
 function getStyle(theme: ITheme): any {
@@ -55,6 +56,7 @@ function getStyle(theme: ITheme): any {
       backgroundColor: theme.colors.g4,
     },
     header: {
+      flexDirection: "row",
       marginTop: 24,
     },
   });
@@ -70,6 +72,9 @@ const About: React.FC<{ navigation: any }> = ({ navigation }) => {
           customOnPress={() => navigation.navigate("Home")}
           color={theme.colors.primary}
         />
+        <View style={{ marginStart: "auto" }}>
+          <DrawerIcon customOnPress={() => navigation.openDrawer()} />
+        </View>
       </View>
       <View style={getStyle(theme).horizontalLine}></View>
       <View style={getStyle(theme).section}>
