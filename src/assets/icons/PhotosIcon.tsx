@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { ITheme } from "../../utils/contexts/interfaces";
 import { ThemeContext } from "../../utils/contexts";
 
@@ -19,10 +19,13 @@ function getStyles(theme: ITheme): any {
   });
 }
 
-const PhotosIcon: React.FC<{ color?: any; opacity?: any }> = ({
-  color,
-  opacity,
-}) => {
+const PhotosIcon: React.FC<{
+  color?: any;
+  opacity?: any;
+  colorFill?: any;
+  touchableOpacity?: number;
+  customOnPress?: any;
+}> = ({ color, opacity, colorFill, touchableOpacity = 1, customOnPress }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <>
@@ -38,7 +41,7 @@ const PhotosIcon: React.FC<{ color?: any; opacity?: any }> = ({
           stroke={
             color === theme.colors.primary ? theme.colors.primary : "#989898"
           }
-          fill={color}
+          fill={colorFill}
           stroke-width="1.5"
           stroke-linecap="round"
           stroke-linejoin="round"

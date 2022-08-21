@@ -81,6 +81,7 @@ function AppNavigation() {
             return (
               <PhotosIcon
                 color={focused ? theme.colors.primary : "white"}
+                colorFill={focused ? theme.colors.primary : "white"}
                 opacity={focused ? 1 : 0}
               />
             );
