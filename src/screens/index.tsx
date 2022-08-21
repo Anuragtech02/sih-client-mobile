@@ -18,3 +18,4 @@ export { default as Settings } from "./Settings";
 export { default as About } from "./About";
 export { default as Article } from "./Article";
 export { default as Videos } from "./Videos";
+export { default as MediaInvitations } from "./MediaInvitaions";
