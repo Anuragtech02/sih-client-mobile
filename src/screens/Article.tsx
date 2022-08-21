@@ -149,11 +149,12 @@ function getStyles(theme: ITheme): any {
       position: "absolute",
       bottom: 20,
       right: 20,
-      shadowColor: "black",
       width: 50,
       height: 50,
       alignItems: "center",
       justifyContent: "center",
+      padding: 12,
+      elevation: 2,
     },
     viewsCount: {
       marginStart: 8,
@@ -230,17 +231,17 @@ const Article: React.FC = () => {
   const handleSBtn = function handleShowButton() {
     Animated.timing(slideAnim, {
       toValue: SCREEN_WIDTH - 34,
-      duration: 1000,
+      duration: 400,
       useNativeDriver: false,
-      easing: Easing.inOut(Easing.linear),
+      easing: Easing.elastic(1),
     }).start();
   };
   const handleHBtn = function handleHideButton() {
     Animated.timing(slideAnim, {
       toValue: 50,
-      duration: 1000,
+      duration: 400,
       useNativeDriver: false,
-      easing: Easing.inOut(Easing.linear),
+      easing: Easing.elastic(1),
     }).start();
   };
 
@@ -384,8 +385,9 @@ const Article: React.FC = () => {
         }}
       >
         <Image
+          style={getStyles(theme).textToSpeechImage}
           source={require("../assets/text-to-speech.png")}
-          style={{ width: 40, height: 40 }}
+          // style={{ width: 40, height: 40 }}
         />
       </TouchableOpacity>
     </MainLayout>
