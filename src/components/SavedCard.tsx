@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
-import SavedTopTabsNavigation from "../navigation/SavedTopTabsNavigation";
+import Card from "./Card";
+import { ClockIcon, EyeIcon, SavedIcon } from "../assets/icons";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -16,20 +16,11 @@ function getStyle(theme: ITheme): any {
     cardContainer: {
       borderWidth: 1,
       borderRadius: 0,
-    },
-    container: {
-      flex: 1,
-      backgroundColor: theme.colors.background,
+      borderColor: theme.colors.g4,
+      marginVertical: 12,
     },
     eyeContainer: {
       marginStart: 20,
-    },
-    heading: {
-      fontSize: theme.fonts.title.fontSize,
-      fontFamily: theme.fonts.title.fontFamily,
-      color: theme.colors.primary,
-      marginVertical: 24,
-      marginStart: 24,
     },
     iconContainer: {
       flexDirection: "row",
@@ -59,17 +50,37 @@ function getStyle(theme: ITheme): any {
   });
 }
 
-const Saved: React.FC = () => {
+const SavedCard: React.FC<{
+  image: any;
+  articleHeading: string;
+  time: string;
+  views: string;
+}> = ({ image, articleHeading, time, views }) => {
   const { theme } = useContext(ThemeContext);
   return (
-    <MainLayout
-      customStyles={getStyle(theme).container}
-      disableDefaultPadding={true}
-    >
-      <Text style={getStyle(theme).heading}>Saved</Text>
-      <SavedTopTabsNavigation />
-    </MainLayout>
+    <Card onPress={() => {}} style={getStyle(theme).cardContainer}>
+      <View style={getStyle(theme).innerContainer}>
+        <Image source={image} style={getStyle(theme).image} />
+        <Text style={getStyle(theme).articelHeading}>{articleHeading}</Text>
+        <View style={getStyle(theme).iconContainer}>
+          <ClockIcon color={theme.colors.g1} />
+          <Text style={getStyle(theme).time}>{time}</Text>
+          <View style={getStyle(theme).eyeContainer}>
+            <EyeIcon color={theme.colors.g1} />
+          </View>
+          <Text style={getStyle(theme).views}>{views}</Text>
+
+          <View style={{ marginStart: "auto" }}>
+            <SavedIcon
+              opacity={0}
+              color={theme.colors.primary}
+              colorFill={theme.colors.primary}
+            />
+          </View>
+        </View>
+      </View>
+    </Card>
   );
 };
 
-export default Saved;
+export default SavedCard;

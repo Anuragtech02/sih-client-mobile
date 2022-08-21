@@ -6,13 +6,14 @@ import { ThemeContext } from "../utils/contexts";
 
 const Tab = createMaterialTopTabNavigator();
 
-function TopTabsNavigation() {
+function SavedTopTabsNavigation() {
   const { theme } = useContext(ThemeContext);
   return (
     <Tab.Navigator
-      style={{ marginStart: 24 }}
-      initialRouteName="Press Releases"
+      style={{ marginStart: 0 }}
+      initialRouteName="Releases"
       screenOptions={{
+        tabBarScrollEnabled: true,
         tabBarStyle: { backgroundColor: theme.colors.background },
         tabBarItemStyle: { padding: 0 },
         tabBarIndicatorStyle: {
@@ -21,10 +22,10 @@ function TopTabsNavigation() {
       }}
     >
       <Tab.Screen
-        name="Press Releases"
+        name="Releases"
         component={PressReleases}
         options={{
-          tabBarLabel: "Press Releases",
+          tabBarLabel: "Releases",
           tabBarInactiveTintColor: theme.colors.g1,
           tabBarLabelStyle: {
             textTransform: "none",
@@ -35,10 +36,10 @@ function TopTabsNavigation() {
         }}
       />
       <Tab.Screen
-        name="Trending"
+        name="Photos"
         component={TrendingTabs}
         options={{
-          tabBarLabel: "Articles",
+          tabBarLabel: "Photos",
           tabBarInactiveTintColor: theme.colors.g1,
           tabBarLabelStyle: {
             textTransform: "none",
@@ -49,10 +50,24 @@ function TopTabsNavigation() {
         }}
       />
       <Tab.Screen
-        name="SocialMedia"
+        name="Events"
         component={SocialMedia}
         options={{
-          tabBarLabel: "Social Media",
+          tabBarLabel: "Events",
+          tabBarInactiveTintColor: theme.colors.g1,
+          tabBarLabelStyle: {
+            textTransform: "none",
+            fontFamily: theme.fonts.subTitle.fontFamily,
+            fontSize: theme.fonts.body.fontSize,
+          },
+          tabBarActiveTintColor: theme.colors.primary,
+        }}
+      />
+      <Tab.Screen
+        name="Media Invitation"
+        component={SocialMedia}
+        options={{
+          tabBarLabel: "Media Invitation",
           tabBarInactiveTintColor: theme.colors.g1,
           tabBarLabelStyle: {
             textTransform: "none",
@@ -66,4 +81,4 @@ function TopTabsNavigation() {
   );
 }
 
-export default TopTabsNavigation;
+export default SavedTopTabsNavigation;
