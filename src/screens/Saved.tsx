@@ -19,12 +19,12 @@ function getStyle(theme: ITheme): any {
   });
 }
 
-const Photos: React.FC = () => {
+function Saved() {
   const { theme } = useContext(ThemeContext);
   return (
     <MainLayout customStyles={getStyle(theme).container}>
-      <Text style={getStyle(theme).heading}>PHOTOS SCREEN</Text>
+      <Text style={getStyle(theme).heading}>SAVED SCREEN</Text>
     </MainLayout>
   );
-};
-export default Photos;
+}
+export default Saved;

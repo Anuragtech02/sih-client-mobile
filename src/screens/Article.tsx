@@ -1,4 +1,10 @@
-import React, { Component, useContext, useEffect, useState } from "react";
+import React, {
+  Component,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   Animated,
   Dimensions,
@@ -9,6 +15,7 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
+  Easing,
 } from "react-native";
 import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
@@ -16,19 +23,21 @@ import {
   BackArrowIcon,
   ClockIcon,
   EyeIcon,
-  PhotosIcon,
+  PlayIcon,
+  SavedIcon,
   ShareIcon,
 } from "../assets/icons";
 import BackArrow from "../assets/icons/BackArrow";
 import MainLayout from "../layouts/MainLayout";
 import TextToSpeech from "../utils/contexts/TextToSpeech";
+import Slider from "@react-native-community/slider";
 
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
-    backArrowContainer: {
-      position: "absolute",
-      top: 44,
-      marginStart: 32,
+    iconContainer: {
+      alignItems: "center",
+      flexDirection: "row",
+      width: "100%",
     },
     container: {
       flex: 1,
@@ -55,14 +64,12 @@ function getStyles(theme: ITheme): any {
       marginTop: -68,
     },
     dayNews: {
-      position: "absolute",
       backgroundColor: "rgba(246, 246, 246, 0.2)",
       alignItems: "center",
       borderRadius: 12,
-      top: 140,
       padding: 4,
-      width: 130,
-      marginStart: 32,
+      width: 100,
+      marginTop: 32,
     },
     innerContainer: {
       backgroundColor: theme.colors.background,
@@ -81,40 +88,48 @@ function getStyles(theme: ITheme): any {
     },
 
     more: {
-      position: "absolute",
-      top: 305,
-      left: 32,
       width: 300,
       color: "white", //theme.colors.primary,
       fontSize: 16,
+      marginTop: 12,
     },
     news: {
       color: "white", //theme.colors.primary,
       fontWeight: "bold",
-      position: "absolute",
-      top: 190,
-      left: 32,
       fontSize: 24,
       width: 300,
+      marginTop: 24,
     },
     propertiesContainer: {
       flexDirection: "row",
       marginTop: 20,
+    },
+    playTime: {
+      fontSize: theme.fonts.body.fontSize,
+      fontFamily: theme.fonts.body.fontFamily,
     },
     scrollContainer: {
       paddingTop: 400,
     },
     savedContainer: { marginStart: "auto", marginEnd: 12 },
     shareIconContainer: {
-      position: "absolute",
-      top: 44,
-      right: 40,
+      marginStart: "auto",
       width: 40,
       height: 40,
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: "rgba(255, 255, 255, 0.2)",
       borderRadius: 20,
+    },
+    sliderCpntainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      backgroundColor: "white",
+      height: 50,
+      borderRadius: 25,
+      position: "absolute",
+      bottom: 20,
+      right: 20,
     },
     textNews: {
       fontSize: 12,
@@ -210,6 +225,30 @@ const Article: React.FC = () => {
 
   const { theme } = useContext(ThemeContext);
 
+  const slideAnim = useRef(new Animated.Value(0)).current;
+
+  const handleSBtn = function handleShowButton() {
+    Animated.timing(slideAnim, {
+      toValue: SCREEN_WIDTH - 34,
+      duration: 1000,
+      useNativeDriver: false,
+      easing: Easing.inOut(Easing.linear),
+    }).start();
+  };
+  const handleHBtn = function handleHideButton() {
+    Animated.timing(slideAnim, {
+      toValue: 50,
+      duration: 1000,
+      useNativeDriver: false,
+      easing: Easing.inOut(Easing.linear),
+    }).start();
+  };
+
+  const [isPressed, setIsPressed] = useState<boolean>(false);
+  useEffect(() => {
+    isPressed ? handleSBtn() : handleHBtn();
+  }, [isPressed]);
+
   return (
     <MainLayout
       customStyles={getStyles(theme).container}
@@ -226,7 +265,6 @@ const Article: React.FC = () => {
         >
           <BackArrowIcon color={theme.colors.primary} />
         </Animated.View>
-
         <Animated.View
           style={{
             position: "absolute",
@@ -243,16 +281,27 @@ const Article: React.FC = () => {
               height: HEADER_EXPANDED_HEIGHT,
             }}
           />
-
-          <View style={getStyles(theme).backArrowContainer}>
+        </Animated.View>
+        <Animated.View
+          style={{
+            position: "absolute",
+            marginTop: 50,
+            opacity: heroTitleOpacity,
+            top: topHeight,
+            marginHorizontal: 40,
+          }}
+        >
+          <View style={getStyles(theme).iconContainer}>
             <BackArrow color="white" />
+            <View style={getStyles(theme).shareIconContainer}>
+              <ShareIcon color="white" />
+            </View>
           </View>
-          <View style={getStyles(theme).shareIconContainer}>
-            <ShareIcon color="white" />
-          </View>
+
           <View style={getStyles(theme).dayNews}>
             <Text style={getStyles(theme).textNews}>वित्त मत्रांलय</Text>
           </View>
+
           <Text
             numberOfLines={4}
             ellipsizeMode="tail"
@@ -260,6 +309,7 @@ const Article: React.FC = () => {
           >
             प्रीतम सिवाच अकादमी ने खेलो इंडिया महिला हॉकी लीग जीती (यू-21)
           </Text>
+
           <Text style={getStyles(theme).more}>
             प्रीतम सिवाच हॉकी अकादमी, सोनीपत, खेलो के विजेता बने भारत महिला हॉकी
             लीग (अंडर-21) के बाद...
@@ -296,7 +346,7 @@ const Article: React.FC = () => {
             <ClockIcon customStyle={getStyles(theme).timeContainer} />
             <Text style={getStyles(theme).time}>30 MAR 2022</Text>
             <View style={getStyles(theme).savedContainer}>
-              <PhotosIcon opacity={0} />
+              <SavedIcon opacity={0} color={theme.colors.primary} />
             </View>
           </View>
           <Text style={getStyles(theme).content}>
@@ -305,9 +355,25 @@ const Article: React.FC = () => {
           <Text style={getStyles(theme).contentBody}>{body}</Text>
         </Animated.View>
       </ScrollView>
+      <Animated.View
+        style={{ ...getStyles(theme).sliderCpntainer, width: slideAnim }}
+      >
+        <View style={{ marginStart: 16 }}>
+          <PlayIcon />
+        </View>
+        {isPressed && (
+          <Slider
+            minimumTrackTintColor={theme.colors.primary}
+            style={{ width: SCREEN_WIDTH - 160 }}
+            thumbTintColor={theme.colors.primary}
+          />
+        )}
+        {isPressed && <Text style={getStyles(theme).playTime}>03:00</Text>}
+      </Animated.View>
       <TouchableOpacity
         style={getStyles(theme).textToSpeechContainer}
         onPress={() => {
+          isPressed ? setIsPressed(false) : setIsPressed(true);
           if (flag) {
             stopTTS();
             setFlag(false);

@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ThemeContext } from "../utils/contexts";
 
-import { Home, Live, Notifications, Photos, Trending } from "../screens";
+import { Home, Live, Notifications, Photos, Saved } from "../screens";
 import {
   HomeIcon,
-  TrendingIcon,
-  PhotosIcon,
   NotificationsIcon,
   VideoIcon,
+  SavedIcon,
+  PhotosIcon,
 } from "../assets/icons";
 import DrawerNavigation from "./DrawerNavigation";
 const App = createBottomTabNavigator();
@@ -38,14 +38,14 @@ function AppNavigation() {
         }}
       />
       <App.Screen
-        name="Trending"
-        component={Trending}
+        name="Photos"
+        component={Photos}
         options={{
           headerShown: false,
           tabBarShowLabel: false,
           tabBarIcon: ({ focused }) => {
             return (
-              <TrendingIcon
+              <PhotosIcon
                 color={focused ? theme.colors.primary : "white"}
                 opacity={focused ? 1 : 0}
               />
@@ -72,14 +72,14 @@ function AppNavigation() {
         }}
       />
       <App.Screen
-        name="Photos"
-        component={Photos}
+        name="Saved"
+        component={Saved}
         options={{
           headerShown: false,
           tabBarShowLabel: false,
           tabBarIcon: ({ focused }) => {
             return (
-              <PhotosIcon
+              <SavedIcon
                 color={focused ? theme.colors.primary : "white"}
                 colorFill={focused ? theme.colors.primary : "white"}
                 opacity={focused ? 1 : 0}

@@ -26,9 +26,8 @@ const App = () => {
     <ThemeContextProvider>
       <TextToSpeechProvider>
         <NavigationContainer>
-          {/* <AuthNavigation /> */}
-          <AppNavigation />
-          {/* <Article /> */}
+          <AuthNavigation />
+          {/* <AppNavigation /> */}
         </NavigationContainer>
       </TextToSpeechProvider>
     </ThemeContextProvider>
