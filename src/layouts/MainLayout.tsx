@@ -31,11 +31,14 @@ const MainLayout: React.FC<IMainLayout> = ({
   disableDefaultPadding = false,
   customStyles,
 }) => {
-  const { isDarkMode } = useContext(ThemeContext);
+  const { isDarkMode, theme } = useContext(ThemeContext);
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
+      <StatusBar
+        barStyle={isDarkMode ? "light-content" : "dark-content"}
+        backgroundColor={theme.colors.background}
+      />
       <View
         style={{
           ...styles.innerContainer,
