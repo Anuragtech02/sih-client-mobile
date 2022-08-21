@@ -1,9 +1,9 @@
 export { default as BackArrowIcon } from "./BackArrow";
 export { default as HomeIcon } from "./HomeIcon";
 export { default as NotificationsIcon } from "./NotificationsIcon";
-export { default as PhotosIcon } from "./PhotosIcon";
+export { default as SavedIcon } from "./SavedIcon";
 export { default as TickIcon } from "./TickIcon";
-export { default as TrendingIcon } from "./TrendingIcon";
+export { default as PhotosIcon } from "./PhotosIcon";
 export { default as DrawerIcon } from "./DrawerIcon";
 export { default as SearchIcon } from "./SearchIcon";
 export { default as AccountIcon } from "./AccountIcon";

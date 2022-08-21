@@ -32,7 +32,10 @@ const Events: React.FC<{ navigation: any }> = ({ navigation }) => {
   return (
     <MainLayout customStyles={getStyle(theme).container}>
       <View style={getStyle(theme).iconContainer}>
-        <BackArrow customOnPress={() => navigation.navigate("Home")} />
+        <BackArrow
+          customOnPress={() => navigation.navigate("Home")}
+          color={theme.colors.primary}
+        />
         <View style={{ marginStart: "auto" }}>
           <DrawerIcon customOnPress={() => navigation.openDrawer()} />
         </View>
