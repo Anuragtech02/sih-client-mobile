@@ -231,7 +231,7 @@ const Article: React.FC = () => {
   const handleSBtn = function handleShowButton() {
     Animated.timing(slideAnim, {
       toValue: SCREEN_WIDTH - 34,
-      duration: 300,
+      duration: 400,
       useNativeDriver: false,
       easing: Easing.elastic(1),
     }).start();
@@ -239,7 +239,7 @@ const Article: React.FC = () => {
   const handleHBtn = function handleHideButton() {
     Animated.timing(slideAnim, {
       toValue: 50,
-      duration: 300,
+      duration: 400,
       useNativeDriver: false,
       easing: Easing.elastic(1),
     }).start();
