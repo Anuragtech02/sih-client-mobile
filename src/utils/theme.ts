@@ -63,8 +63,8 @@ const themeLight = {
       fontSize: 20,
     },
     body: {
-      fontFamily: "Poppins-Regular",
-      fontSize: 14,
+      fontFamily: "Inter-Regular",
+      fontSize: 16,
       fontWeight: "400",
     },
   },
