@@ -10,7 +10,7 @@ import { FlatList } from "react-native-gesture-handler";
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
     cardContainer: {
-      backgroundColor: "white", //theme.colors.background,
+      backgroundColor: theme.colors.background, //theme.colors.background,
       marginVertical: 12,
       padding: 0,
     },
