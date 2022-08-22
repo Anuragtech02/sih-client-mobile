@@ -13,6 +13,10 @@ function getStyle(theme: ITheme): any {
       flex: 1,
       backgroundColor: theme.colors.background,
     },
+    drawerContainer: {
+      marginStart: "auto",
+      marginEnd: 12,
+    },
     greetings: {
       fontSize: theme.fonts.subTitle.fontSize,
       fontFamily: theme.fonts.subTitle.fontFamily,
@@ -75,7 +79,9 @@ const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
       disableDefaultPadding={true}
     >
       <View style={getStyle(theme).innerContainer}>
-        <DrawerIcon customOnPress={() => navigation.openDrawer()} />
+        <View style={getStyle(theme).drawerContainer}>
+          <DrawerIcon customOnPress={() => navigation.openDrawer()} />
+        </View>
         <View style={getStyle(theme).profileContainer}>
           <Text style={getStyle(theme).name}>
             {translations.formatString(translations["home.greeting"], { name })}

@@ -13,6 +13,7 @@ import {
   EventIcon,
   InfoIcon,
   LogOutIcon,
+  MediaInvitaionsIcon,
   PMVideoIcon,
   RightArrowIcon,
   SendIcon,
@@ -61,7 +62,7 @@ const data = [
   },
   {
     id: "7",
-    icon: ShareIcon,
+    icon: MediaInvitaionsIcon,
     name: "Media Invitations",
     goto: RightArrowIcon,
   },

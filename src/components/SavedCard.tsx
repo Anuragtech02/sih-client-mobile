@@ -14,7 +14,8 @@ function getStyle(theme: ITheme): any {
       marginTop: 8,
     },
     cardContainer: {
-      borderWidth: 1,
+      borderTopWidth: 1,
+      borderBottomWidth: 1,
       borderRadius: 0,
       borderColor: theme.colors.g4,
       marginVertical: 12,
