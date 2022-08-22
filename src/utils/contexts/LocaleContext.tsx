@@ -6,7 +6,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import en from "../i18n/en.json";
 import hi from "../i18n/hi.json";
 
-const DEFAULT_LANGUAGE = "hi";
+const DEFAULT_LANGUAGE = "en";
 const APP_LANGUAGE = "APP_LANGUAGE";
 
 const languages = { en, hi };
