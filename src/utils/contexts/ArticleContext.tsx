@@ -1,9 +1,14 @@
-import React, { createContext, useState, ReactNode } from "react";
+import axios from "axios";
+import React, { createContext, useState, ReactNode, useEffect } from "react";
 import { IArticle, IArticleCard, IArticleContext } from "./interfaces";
+
+const API_ARTICLE = axios.create({
+  baseURL: `https://sih-server-staging.onrender.com/article`,
+});
 
 const ArticleContext = createContext<IArticleContext>({
   articles: [],
-  getArticle: () => ({} as IArticle),
+  getArticle: () => {},
   updateViewsByOne: () => {},
   likeArticle: () => {},
   saveArticle: () => {},
@@ -18,20 +23,47 @@ export const ArticleContextProvider: React.FC<
 > = ({ children }) => {
   const [articles, setArticles] = useState<Array<IArticleCard>>([]);
 
-  function getArticle(id: string) {
-    return {} as IArticle;
+  useEffect(() => {
+    async function fetchArticles() {
+      const res = await API_ARTICLE.get("/all");
+      setArticles(res.data);
+      console.log({ res });
+    }
+    fetchArticles();
+  }, []);
+
+  async function getArticle(id: string) {
+    try {
+      return await API_ARTICLE.get("/single", {
+        params: { id },
+      });
+    } catch (error) {
+      console.log("GET_ARTICLE", error);
+    }
   }
 
   async function updateViewsByOne(id: string) {
-    return await {};
+    try {
+      await API_ARTICLE.patch("/views", { id });
+    } catch (error) {
+      console.log("UPDATE_VIEWS_ARTICLE", error);
+    }
   }
 
   async function likeArticle(id: string) {
-    return await {};
+    try {
+      await API_ARTICLE.patch("/likes", {
+        params: { id },
+      });
+    } catch (error) {}
   }
 
   async function saveArticle(id: string) {
-    return await {};
+    try {
+      await API_ARTICLE.patch("/user-save", {
+        parmas: { id },
+      });
+    } catch (error) {}
   }
 
   return (

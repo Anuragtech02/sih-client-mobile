@@ -1,3 +1,5 @@
+import { AxiosResponse } from "axios";
+
 export interface IThemeContext {
   theme: any;
   handleChangeTheme?: (theme: string) => void;
@@ -140,7 +142,7 @@ export interface IArticleCard {
 
 export interface IArticleContext {
   articles: Array<IArticleCard>;
-  getArticle: (id: string) => IArticle;
+  getArticle: (id: string) => any;
   updateViewsByOne: (id: string) => void;
   likeArticle: (id: string) => void;
   saveArticle: (id: string) => void;
