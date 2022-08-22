@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image, TextInput } from "react-native";
 import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
@@ -63,7 +63,11 @@ const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   const [name, setName] = useState("Adarsh");
 
-  const { translations } = useContext(LocaleContext);
+  const { translations, initializeAppLanguage } = useContext(LocaleContext);
+
+  useEffect(() => {
+    initializeAppLanguage();
+  }, [initializeAppLanguage]);
 
   return (
     <MainLayout
@@ -76,7 +80,9 @@ const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
           <Text style={getStyle(theme).name}>
             {translations.formatString(translations["home.greeting"], { name })}
           </Text>
-          <Text style={getStyle(theme).greetings}>Welcome!</Text>
+          <Text style={getStyle(theme).greetings}>
+            {translations["home.greeting2"]}
+          </Text>
           <Image
             style={getStyle(theme).profilePhoto}
             source={require("../assets/ProfilePhoto.png")}
