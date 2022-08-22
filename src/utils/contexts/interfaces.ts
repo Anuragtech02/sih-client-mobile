@@ -95,3 +95,53 @@ export interface ILocaleContext {
   appLanguage: string;
   initializeAppLanguage: () => void;
 }
+
+export interface IArticle {
+  id: string;
+  title: string;
+  slug: string; // slug is the url friendly version of the title
+  content: {
+    en: string; // english
+    hi: string; // hindi
+    gu: string; // gujarati
+    kn: string; // kannada
+    pa: string; // punjabi
+    ta: string; // tamil
+    te: string; // telugu
+    mr: string; // marathi
+    ml: string; // malayalam
+  }; // HTMLString, comes from the editor
+  thumbnail: string; // CDN URI
+  views: number; // number of views
+  likes: Array<string>; // array of UserIDS
+  shares: number; // number of shares
+  savedByCount: number; // number of users who saved this article
+  categories: Array<any>;
+  createdBy: {
+    id: string;
+    userType: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IArticleCard {
+  id: string;
+  title: string;
+  thumbnail: string;
+  views: number;
+  slug: string;
+  createdAt: string;
+  createdBy: {
+    id: string;
+    userType: string;
+  };
+}
+
+export interface IArticleContext {
+  articles: Array<IArticleCard>;
+  getArticle: (id: string) => IArticle;
+  updateViewsByOne: (id: string) => void;
+  likeArticle: (id: string) => void;
+  saveArticle: (id: string) => void;
+}
