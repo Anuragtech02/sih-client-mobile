@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { ITheme } from "../utils/contexts/interfaces";
-import { ThemeContext } from "../utils/contexts";
+import { LocaleContext, ThemeContext } from "../utils/contexts";
 import MainLayout from "../layouts/MainLayout";
 import { FlatList } from "react-native-gesture-handler";
 import { useNavigationState } from "@react-navigation/native";
@@ -28,60 +28,70 @@ const data = [
     id: "1",
     icon: AccountIcon,
     name: "My Account",
+    label: "drawer.myAccount",
     goto: RightArrowIcon,
   },
   {
     id: "2",
     icon: InfoIcon,
     name: "About PIB",
+    label: "drawer.aboutPIB",
     goto: RightArrowIcon,
   },
   {
     id: "3",
     icon: EventIcon,
     name: "Events",
+    label: "drawer.events",
     goto: RightArrowIcon,
   },
   {
     id: "4",
     icon: PMVideoIcon,
     name: "PM Videos",
+    label: "drawer.pmVideos",
     goto: RightArrowIcon,
   },
   {
     id: "5",
     icon: CheckerIcon,
     name: "Fact Checker",
+    label: "drawer.factChacker",
     goto: SendIcon,
   },
   {
     id: "6",
     icon: Videos2Icon,
     name: "Videos",
+    label: "drawer.videos",
     goto: RightArrowIcon,
   },
   {
     id: "7",
     icon: MediaInvitaionsIcon,
     name: "Media Invitations",
+    label: "drawer.mediaInvitations",
     goto: RightArrowIcon,
   },
   {
     id: "8",
     icon: ShareIcon,
     name: "Share this App",
+    label: "drawer.shareApp",
     goto: RightArrowIcon,
   },
   {
     id: "9",
     icon: SettingsIcon,
     name: "Settings",
+    label: "drawer.settings",
     goto: RightArrowIcon,
   },
   {
     id: "10",
     icon: LogOutIcon,
     name: "Log Out",
+    label: "drawer.logOut",
     goto: "",
   },
 ];
@@ -118,7 +128,11 @@ const CustomDrawerContent: React.FC<{
   const { theme } = useContext(ThemeContext);
   const [selectedID, setSelectedID] = useState<string>("");
   const [leftFocus, setLeftFocus] = useState<boolean>(false);
+  const [drawerList, setDrawerList] = useState(data);
   const index = useNavigationState((state) => state.index);
+
+  const { initializeAppLanguage, translations, appLanguage } =
+    useContext(LocaleContext);
 
   useEffect(() => {
     if (!state.index) setSelectedID("");
@@ -132,6 +146,13 @@ const CustomDrawerContent: React.FC<{
       navigation.navigate("Home");
     }
   }, [state, index, leftFocus]);
+
+  useEffect(() => {
+    if (appLanguage && translations) {
+      initializeAppLanguage();
+    }
+  }, [appLanguage, translations]);
+
   return (
     <MainLayout
       customStyles={getStyles(theme).container}
@@ -153,7 +174,7 @@ const CustomDrawerContent: React.FC<{
             </View>
           </View>
         }
-        data={data}
+        data={drawerList}
         keyExtractor={(item) => item.id}
         renderItem={({ item, index }) => (
           <DrawerOptions
@@ -167,7 +188,7 @@ const CustomDrawerContent: React.FC<{
                 customStyle={{}}
               />
             }
-            optionName={item.name}
+            optionName={translations[item.label] || item.name}
             icon={
               item.id !== "10" && (
                 <item.goto
