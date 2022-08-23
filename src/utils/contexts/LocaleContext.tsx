@@ -29,7 +29,9 @@ interface ILocaleContextContextProvider {
 export const LocaleContextProvider: React.FC<ILocaleContextContextProvider> = ({
   children,
 }) => {
-  const [appLanguage, setAppLanguage] = useState<string>(DEFAULT_LANGUAGE);
+  const [appLanguage, setAppLanguage] = useState<
+    "en" | "hi" | "gu" | "kn" | "pa" | "ta" | "te" | "mr" | "ml" | string
+  >(DEFAULT_LANGUAGE);
 
   function setLocaleLanguage(language: string) {
     translations.setLanguage(language);

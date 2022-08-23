@@ -102,17 +102,19 @@ export interface IArticle {
   _id: string;
   title: string;
   slug: string; // slug is the url friendly version of the title
-  content: {
-    en: string; // english
-    hi: string; // hindi
-    gu: string; // gujarati
-    kn: string; // kannada
-    pa: string; // punjabi
-    ta: string; // tamil
-    te: string; // telugu
-    mr: string; // marathi
-    ml: string; // malayalam
-  }; // HTMLString, comes from the editor
+  content:
+    | any
+    | {
+        en: string; // english
+        hi: string; // hindi
+        gu: string; // gujarati
+        kn: string; // kannada
+        pa: string; // punjabi
+        ta: string; // tamil
+        te: string; // telugu
+        mr: string; // marathi
+        ml: string; // malayalam
+      }; // HTMLString, comes from the editor
   thumbnail: string; // CDN URI
   views: number; // number of views
   likes: Array<string>; // array of UserIDS

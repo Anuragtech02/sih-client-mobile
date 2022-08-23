@@ -1,4 +1,4 @@
-export { default as BackArrowIcon } from "./BackArrow";
+export { default as BackArrowIcon } from "./BackArrowIcon";
 export { default as HomeIcon } from "./HomeIcon";
 export { default as NotificationsIcon } from "./NotificationsIcon";
 export { default as SavedIcon } from "./SavedIcon";

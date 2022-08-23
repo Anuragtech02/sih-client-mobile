@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
 import { LocaleContext, ThemeContext } from "../utils/contexts";
-import BackArrow from "../assets/icons/BackArrow";
+import BackArrow from "../assets/icons/BackArrowIcon";
 import { CloseIcon, DrawerIcon } from "../assets/icons";
 import { Dropdown } from "react-native-element-dropdown";
 import AsyncStorage from "@react-native-async-storage/async-storage";

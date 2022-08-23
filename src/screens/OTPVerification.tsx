@@ -4,7 +4,7 @@ import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
 import Timer from "../components/Timer";
 import MainLayout from "../layouts/MainLayout";
-import BackArrow from "../assets/icons/BackArrow";
+import BackArrow from "../assets/icons/BackArrowIcon";
 
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
