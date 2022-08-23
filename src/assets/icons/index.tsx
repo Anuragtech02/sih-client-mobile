@@ -29,3 +29,4 @@ export { default as Videos2Icon } from "./Videos2Icon";
 export { default as PMVideoIcon } from "./PMVideoIcon";
 export { default as PlayIcon } from "./PlayIcon";
 export { default as MediaInvitaionsIcon } from "./MediaInvitaionsIcon";
+export { default as TTSIcon } from "./TTSIcon";
