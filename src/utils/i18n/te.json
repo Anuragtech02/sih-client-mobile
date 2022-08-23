@@ -1,0 +1,21 @@
+{
+  "home.title": "ఇల్లు",
+  "home.greeting": "నమస్తే, {name}",
+  "home.greeting2": "స్వాగతం",
+  "home.search": "వెతకండి",
+
+  "commons.pressReleases": "పత్రికా ప్రకటన",
+  "commons.articles": "వ్యాసం",
+  "commons.socialMedia": "సాంఘిక ప్రసార మాధ్యమం",
+
+  "drawer.myAccount": "నా ఖాతా",
+  "drawer.aboutPIB": "PIB గురించి",
+  "drawer.events": "సంఘటనలు",
+  "drawer.pmVideos": "PM వీడియోలు",
+  "drawer.factChacker": "వాస్తవ తనిఖీదారు",
+  "drawer.videos": "వీడియోలు",
+  "drawer.mediaInvitations": "మీడియా ఆహ్వానాలు",
+  "drawer.shareApp": "ఈ అనువర్తనాన్ని భాగస్వామ్యం చేయండి",
+  "drawer.settings": "సెట్టింగులు",
+  "drawer.logOut": "లాగ్ అవుట్"
+}

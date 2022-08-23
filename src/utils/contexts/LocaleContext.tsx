@@ -5,11 +5,13 @@ import * as RNLocalize from "react-native-localize";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import en from "../i18n/en.json";
 import hi from "../i18n/hi.json";
+import te from "../i18n/te.json";
+import kn from "../i18n/kn.json";
 import { APP_LANGUAGE } from "../constants";
 
 const DEFAULT_LANGUAGE = "en";
 
-const languages = { en, hi };
+const languages = { en, hi, te, kn };
 
 const translations = new LocalizedStrings(languages);
 

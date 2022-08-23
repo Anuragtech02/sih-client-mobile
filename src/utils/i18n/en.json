@@ -1,5 +1,21 @@
 {
   "home.title": "Home",
   "home.greeting": "Hi, {name}",
-  "home.greeting2": "Welcome"
+  "home.greeting2": "Welcome",
+  "home.search": "Search",
+
+  "commons.pressReleases": "Press Releases",
+  "commons.articles": "Articles",
+  "commons.socialMedia": "Social Media",
+
+  "drawer.myAccount": "My Account",
+  "drawer.aboutPIB": "About PIB",
+  "drawer.events": "Events",
+  "drawer.pmVideos": "PM Videos",
+  "drawer.factChacker": "Fact Checker",
+  "drawer.videos": "Videos",
+  "drawer.mediaInvitations": "Media Invitations",
+  "drawer.shareApp": "Share This App",
+  "drawer.settings": "Settings",
+  "drawer.logOut": "Log Out"
 }
