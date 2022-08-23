@@ -93,7 +93,7 @@ export interface ITextToSpeech {
 
 export interface ILocaleContext {
   translations: any;
-  setLanguage: (language: string) => void;
+  setLocaleLanguage: (language: string) => void;
   appLanguage: string;
   initializeAppLanguage: () => void;
 }

@@ -5,9 +5,9 @@ import * as RNLocalize from "react-native-localize";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import en from "../i18n/en.json";
 import hi from "../i18n/hi.json";
+import { APP_LANGUAGE } from "../constants";
 
 const DEFAULT_LANGUAGE = "en";
-const APP_LANGUAGE = "APP_LANGUAGE";
 
 const languages = { en, hi };
 
@@ -15,7 +15,7 @@ const translations = new LocalizedStrings(languages);
 
 const LocaleContext = createContext<ILocaleContext>({
   translations: [],
-  setLanguage: () => {},
+  setLocaleLanguage: () => {},
   appLanguage: DEFAULT_LANGUAGE,
   initializeAppLanguage: () => {},
 });
@@ -29,7 +29,7 @@ export const LocaleContextProvider: React.FC<ILocaleContextContextProvider> = ({
 }) => {
   const [appLanguage, setAppLanguage] = useState<string>(DEFAULT_LANGUAGE);
 
-  function setLanguage(language: string) {
+  function setLocaleLanguage(language: string) {
     translations.setLanguage(language);
     setAppLanguage(language);
     AsyncStorage.setItem(APP_LANGUAGE, language);
@@ -39,7 +39,8 @@ export const LocaleContextProvider: React.FC<ILocaleContextContextProvider> = ({
     const currentLanguage = await AsyncStorage.getItem(APP_LANGUAGE);
 
     if (currentLanguage) {
-      setLanguage(currentLanguage);
+      console.log(currentLanguage);
+      setLocaleLanguage(currentLanguage);
     } else {
       let localeCode = DEFAULT_LANGUAGE;
       const supportedLocaleCodes = translations.getAvailableLanguages();
@@ -53,13 +54,18 @@ export const LocaleContextProvider: React.FC<ILocaleContextContextProvider> = ({
           return true;
         }
       });
-      setLanguage(localeCode);
+      setLocaleLanguage(localeCode);
     }
   };
 
   return (
     <LocaleContext.Provider
-      value={{ appLanguage, setLanguage, translations, initializeAppLanguage }}
+      value={{
+        appLanguage,
+        setLocaleLanguage,
+        translations,
+        initializeAppLanguage,
+      }}
     >
       {children}
     </LocaleContext.Provider>

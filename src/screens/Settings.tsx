@@ -1,36 +1,38 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
-import { ThemeContext } from "../utils/contexts";
+import { LocaleContext, ThemeContext } from "../utils/contexts";
 import BackArrow from "../assets/icons/BackArrow";
 import { CloseIcon, DrawerIcon } from "../assets/icons";
 import { Dropdown } from "react-native-element-dropdown";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { APP_LANGUAGE } from "../utils/constants";
 
-const fontSize = [
+const fontSizes = [
   { label: "Small", value: "1" },
   { label: "Normal", value: "2" },
   { label: "Large", value: "3" },
   { label: "ExtraLarge", value: "4" },
 ];
-const langugage = [
-  { label: "Hindi", value: "1" },
-  { label: "English", value: "2" },
-  { label: "Bengail", value: "3" },
-  { label: "Marathi", value: "4" },
-  { label: "Telgu", value: "5" },
-  { label: "Tamil", value: "6" },
-  { label: "Malayalam", value: "7" },
-  { label: "Kannada", value: "8" },
-  { label: "Gujarati", value: "9" },
+const langugages = [
+  { label: "Hindi", value: "hi" },
+  { label: "English", value: "en" },
+  { label: "Bengail", value: "be" },
+  { label: "Marathi", value: "mr" },
+  { label: "Telgu", value: "tl" },
+  { label: "Tamil", value: "tm" },
+  { label: "Malayalam", value: "ml" },
+  { label: "Kannada", value: "kn" },
+  { label: "Gujarati", value: "gu" },
 ];
-const region = [
+const regions = [
   { label: "Small", value: "1" },
   { label: "Normal", value: "2" },
   { label: "Large", value: "3" },
   { label: "ExtraLarge", value: "4" },
 ];
-const ministry = [
+const ministries = [
   { label: "Small", value: "1" },
   { label: "Normal", value: "2" },
   { label: "Large", value: "3" },
@@ -121,6 +123,16 @@ function getStyle(theme: ITheme): any {
 
 const Settings: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
+  const [fontSize, setFontSize] = useState("1");
+  const [region, setRegion] = useState("1");
+  const [ministry, setMinistry] = useState("1");
+
+  const { setLocaleLanguage, appLanguage } = useContext(LocaleContext);
+
+  function handleChangeLanguage(lang: any) {
+    setLocaleLanguage(lang.value);
+  }
+
   return (
     <MainLayout customStyles={getStyle(theme).container}>
       <View style={getStyle(theme).iconContainer}>
@@ -133,21 +145,39 @@ const Settings: React.FC<{ navigation: any }> = ({ navigation }) => {
       </View>
       <View style={getStyle(theme).dropDownContainer}>
         <Text style={getStyle(theme).selectSize}>Select font size</Text>
-        <DropdownComponent myData={fontSize} />
+        <DropdownComponent
+          value={fontSize}
+          myData={fontSizes}
+          onChange={(value: string) => setFontSize(value)}
+        />
         <Text style={getStyle(theme).selectSize}>Change Language</Text>
-        <DropdownComponent myData={langugage} />
+        <DropdownComponent
+          value={appLanguage}
+          myData={langugages}
+          onChange={(value: string) => handleChangeLanguage(value)}
+        />
         <Text style={getStyle(theme).selectSize}>Change Region</Text>
-        <DropdownComponent />
+        <DropdownComponent
+          value={region}
+          myData={regions}
+          onChange={(value: string) => setRegion(value)}
+        />
         <Text style={getStyle(theme).selectSize}>Change Ministry</Text>
-        <DropdownComponent />
+        <DropdownComponent
+          value={ministry}
+          myData={ministries}
+          onChange={(value: string) => setMinistry(value)}
+        />
       </View>
     </MainLayout>
   );
 };
 
-const DropdownComponent: React.FC<{ myData?: any }> = ({ myData }) => {
-  const [value, setValue] = useState(null);
-
+const DropdownComponent: React.FC<{
+  myData?: any;
+  value: string;
+  onChange: (value: any) => void;
+}> = ({ myData, value, onChange }) => {
   const renderItem = (item: any) => {
     return (
       <View style={getStyle(theme).item}>
@@ -173,9 +203,7 @@ const DropdownComponent: React.FC<{ myData?: any }> = ({ myData }) => {
       placeholder="Select item"
       searchPlaceholder="Search..."
       value={value}
-      onChange={(item: any) => {
-        setValue(item.value);
-      }}
+      onChange={onChange}
       renderItem={renderItem}
     />
   );
