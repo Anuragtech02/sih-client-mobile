@@ -27,6 +27,7 @@ import {
   PlayIcon,
   SavedIcon,
   ShareIcon,
+  TTSIcon,
 } from "../assets/icons";
 import BackArrow from "../assets/icons/BackArrow";
 import MainLayout from "../layouts/MainLayout";
@@ -251,7 +252,7 @@ const Article: React.FC = () => {
     isPressed ? handleSBtn() : handleHBtn();
   }, [isPressed]);
 
-  //LogBox.ignoreAllLogs();
+  LogBox.ignoreAllLogs();
   return (
     <MainLayout
       customStyles={getStyles(theme).container}
@@ -389,11 +390,7 @@ const Article: React.FC = () => {
           }
         }}
       >
-        <Image
-          style={getStyles(theme).textToSpeechImage}
-          source={require("../assets/text-to-speech.png")}
-          // style={{ width: 40, height: 40 }}
-        />
+        <TTSIcon color={theme.colors.primary} />
       </TouchableOpacity>
     </MainLayout>
   );
