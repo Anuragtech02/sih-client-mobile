@@ -99,7 +99,7 @@ export interface ILocaleContext {
 }
 
 export interface IArticle {
-  id: string;
+  _id: string;
   title: string;
   slug: string; // slug is the url friendly version of the title
   content: {
@@ -128,7 +128,7 @@ export interface IArticle {
 }
 
 export interface IArticleCard {
-  id: string;
+  _id: string;
   title: string;
   thumbnail: string;
   views: number;
@@ -142,6 +142,7 @@ export interface IArticleCard {
 
 export interface IArticleContext {
   articles: Array<IArticleCard>;
+  articleLoading: boolean;
   getArticle: (id: string) => any;
   updateViewsByOne: (id: string) => void;
   likeArticle: (id: string) => void;
