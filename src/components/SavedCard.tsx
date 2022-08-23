@@ -57,10 +57,11 @@ const SavedCard: React.FC<{
   articleHeading: string;
   time: string;
   views: string;
-}> = ({ image, articleHeading, time, views }) => {
+  onPress: () => void;
+}> = ({ image, articleHeading, time, views, onPress }) => {
   const { theme } = useContext(ThemeContext);
   return (
-    <Card onPress={() => {}} style={getStyle(theme).cardContainer}>
+    <Card onPress={onPress} style={getStyle(theme).cardContainer}>
       <View style={getStyle(theme).innerContainer}>
         <Image source={{ uri: image }} style={getStyle(theme).image} />
         <Text style={getStyle(theme).articelHeading}>{articleHeading}</Text>

@@ -3,7 +3,7 @@ import { FlatList, StyleSheet, Text, View } from "react-native";
 import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
-import BackArrow from "../assets/icons/BackArrow";
+import BackArrow from "../assets/icons/BackArrowIcon";
 import { ClockIcon, DrawerIcon, EventIcon, ShareIcon } from "../assets/icons";
 import { Card } from "../components";
 

@@ -9,6 +9,7 @@ import {
   ChooseLanguage,
   About,
   Notifications,
+  Article,
 } from "../screens/";
 import AppNavigation from "./AppNavigation";
 
@@ -40,6 +41,11 @@ const AuthNavigation = () => {
       <Stack.Screen
         name="AppNavigation"
         component={AppNavigation}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Article"
+        component={Article}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

@@ -10,7 +10,7 @@ import {
 import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts/";
 import Button from "../components/Button";
-import BackArrow from "../assets/icons/BackArrow";
+import BackArrow from "../assets/icons/BackArrowIcon";
 import MainLayout from "../layouts/MainLayout";
 
 function getStyles(theme: ITheme): any {

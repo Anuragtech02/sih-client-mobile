@@ -32,9 +32,9 @@ const App = () => {
         <TextToSpeechProvider>
           <ArticleContextProvider>
             <NavigationContainer>
-              {/* <AuthNavigation /> */}
+              <AuthNavigation />
               {/* <Article /> */}
-              <AppNavigation />
+              {/* <AppNavigation /> */}
             </NavigationContainer>
           </ArticleContextProvider>
         </TextToSpeechProvider>
