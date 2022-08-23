@@ -1,1 +1,2 @@
-export const SOMETHING = "something";
+export const MAIN_LAYOUT_DEFAULT_PADDING = 24;
+export const APP_LANGUAGE = "APP_LANGUAGE";

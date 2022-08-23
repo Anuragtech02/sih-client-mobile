@@ -1,0 +1,21 @@
+{
+  "home.title": "ಮನೆ",
+  "home.greeting": "ನಮಸ್ತೆ, {name}",
+  "home.greeting2": "ಸ್ವಾಗತ",
+  "home.search": "Search",
+
+  "commons.pressReleases": "ಪತ್ರಿಕಾ ಪ್ರಕಟಣೆ",
+  "commons.articles": "ಲೇಖನ",
+  "commons.socialMedia": "ಸಾಮಾಜಿಕ ಮಾಧ್ಯಮ",
+
+  "drawer.myAccount": "ನನ್ನ ಖಾತೆ",
+  "drawer.aboutPIB": "PIB ಬಗ್ಗೆ",
+  "drawer.events": "ಕಾರ್ಯಕ್ರಮಗಳು",
+  "drawer.pmVideos": "PM ವೀಡಿಯೊಗಳು",
+  "drawer.factChacker": "ಸತ್ಯ ಪರೀಕ್ಷಕ",
+  "drawer.videos": "ವೀಡಿಯೊಗಳು",
+  "drawer.mediaInvitations": "ಮಾಧ್ಯಮ ಆಹ್ವಾನ",
+  "drawer.shareApp": "ಈ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಹಂಚಿಕೊಳ್ಳಿ",
+  "drawer.settings": "ಸಂಯೋಜನೆಗಳು",
+  "drawer.logOut": "ಲಾಗ್ ಔಟ್"
+}

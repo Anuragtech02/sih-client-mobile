@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import {
@@ -13,6 +13,7 @@ import {
   Videos,
 } from "../screens";
 import CustomDrawerContent from "../components/CustomDrawerContent";
+import { LocaleContext } from "../utils/contexts";
 
 const Drawer = createDrawerNavigator();
 
