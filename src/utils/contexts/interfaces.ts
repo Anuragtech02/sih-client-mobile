@@ -88,3 +88,10 @@ export interface ITextToSpeech {
   handleChangeSelectedVoice: (voice: IVoiceType) => void;
   stopTTS: () => void;
 }
+
+export interface ILocaleContext {
+  translations: any;
+  setLanguage: (language: string) => void;
+  appLanguage: string;
+  initializeAppLanguage: () => void;
+}

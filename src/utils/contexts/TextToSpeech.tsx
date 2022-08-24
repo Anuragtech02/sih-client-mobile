@@ -35,7 +35,6 @@ export const TextToSpeechProvider: React.FC<ITextToSpeechContextProvider> = ({
       .map((v) => {
         return { id: v.id, name: v.name, language: v.language };
       });
-    console.log(availableVoices);
 
     let selectedVoice = null;
     if (tempVoices && tempVoices.length > 0) {

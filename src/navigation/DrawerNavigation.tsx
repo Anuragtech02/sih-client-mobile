@@ -6,6 +6,7 @@ import {
   Events,
   FactChecker,
   Home,
+  MediaInvitations,
   MyAccount,
   PMVideo,
   Settings,
@@ -35,6 +36,7 @@ const DrawerNavigation: React.FC<{ navigation: any; rest: any }> = ({
       <Drawer.Screen name="PM Videos" component={PMVideo} />
       <Drawer.Screen name="Fact Checker" component={FactChecker} />
       <Drawer.Screen name="Videos" component={Videos} />
+      <Drawer.Screen name="Media Invitations" component={MediaInvitations} />
       <Drawer.Screen name="Share this App" component={FactChecker} />
       <Drawer.Screen name="Settings" component={Settings} />
       <Drawer.Screen name="Log Out" component={Settings} />

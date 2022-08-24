@@ -13,6 +13,7 @@ import {
   EventIcon,
   InfoIcon,
   LogOutIcon,
+  MediaInvitaionsIcon,
   PMVideoIcon,
   RightArrowIcon,
   SendIcon,
@@ -59,21 +60,26 @@ const data = [
     name: "Videos",
     goto: RightArrowIcon,
   },
-
   {
     id: "7",
+    icon: MediaInvitaionsIcon,
+    name: "Media Invitations",
+    goto: RightArrowIcon,
+  },
+  {
+    id: "8",
     icon: ShareIcon,
     name: "Share this App",
     goto: RightArrowIcon,
   },
   {
-    id: "8",
+    id: "9",
     icon: SettingsIcon,
     name: "Settings",
     goto: RightArrowIcon,
   },
   {
-    id: "9",
+    id: "10",
     icon: LogOutIcon,
     name: "Log Out",
     goto: "",
@@ -163,7 +169,7 @@ const CustomDrawerContent: React.FC<{
             }
             optionName={item.name}
             icon={
-              item.id !== "9" && (
+              item.id !== "10" && (
                 <item.goto
                   color={
                     selectedID === item.id

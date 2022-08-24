@@ -16,6 +16,7 @@ import {
   FlatList,
   TouchableOpacity,
   Easing,
+  LogBox,
 } from "react-native";
 import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
@@ -250,6 +251,7 @@ const Article: React.FC = () => {
     isPressed ? handleSBtn() : handleHBtn();
   }, [isPressed]);
 
+  //LogBox.ignoreAllLogs();
   return (
     <MainLayout
       customStyles={getStyles(theme).container}
@@ -341,10 +343,13 @@ const Article: React.FC = () => {
           }}
         >
           <View style={getStyles(theme).propertiesContainer}>
-            <EyeIcon />
+            <EyeIcon color={theme.colors.g1} />
             <Text style={getStyles(theme).viewsCount}>1.2k</Text>
 
-            <ClockIcon customStyle={getStyles(theme).timeContainer} />
+            <ClockIcon
+              customStyle={getStyles(theme).timeContainer}
+              color={theme.colors.g1}
+            />
             <Text style={getStyles(theme).time}>30 MAR 2022</Text>
             <View style={getStyles(theme).savedContainer}>
               <SavedIcon opacity={0} color={theme.colors.primary} />

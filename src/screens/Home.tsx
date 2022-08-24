@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image, TextInput } from "react-native";
 import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
-import { ThemeContext } from "../utils/contexts";
+import { LocaleContext, ThemeContext } from "../utils/contexts";
 import { DrawerIcon, SearchIcon } from "../assets/icons";
 import TopTabsNavigation from "../navigation/TopTabsNavigation";
 import DrawerNavigation from "../navigation/DrawerNavigation";
@@ -12,6 +12,10 @@ function getStyle(theme: ITheme): any {
     container: {
       flex: 1,
       backgroundColor: theme.colors.background,
+    },
+    drawerContainer: {
+      marginStart: "auto",
+      marginEnd: 12,
     },
     greetings: {
       fontSize: theme.fonts.subTitle.fontSize,
@@ -62,16 +66,29 @@ function getStyle(theme: ITheme): any {
 const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   const [name, setName] = useState("Adarsh");
+
+  const { translations, initializeAppLanguage } = useContext(LocaleContext);
+
+  useEffect(() => {
+    initializeAppLanguage();
+  }, [initializeAppLanguage]);
+
   return (
     <MainLayout
       customStyles={getStyle(theme).container}
       disableDefaultPadding={true}
     >
       <View style={getStyle(theme).innerContainer}>
-        <DrawerIcon customOnPress={() => navigation.openDrawer()} />
+        <View style={getStyle(theme).drawerContainer}>
+          <DrawerIcon customOnPress={() => navigation.openDrawer()} />
+        </View>
         <View style={getStyle(theme).profileContainer}>
-          <Text style={getStyle(theme).name}>{`Hi ${name},`}</Text>
-          <Text style={getStyle(theme).greetings}>Welcome!</Text>
+          <Text style={getStyle(theme).name}>
+            {translations.formatString(translations["home.greeting"], { name })}
+          </Text>
+          <Text style={getStyle(theme).greetings}>
+            {translations["home.greeting2"]}
+          </Text>
           <Image
             style={getStyle(theme).profilePhoto}
             source={require("../assets/ProfilePhoto.png")}

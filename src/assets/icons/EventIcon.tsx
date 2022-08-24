@@ -3,15 +3,16 @@ import { StyleSheet, View } from "react-native";
 
 import Svg, { Path } from "react-native-svg";
 
-const EventIcon: React.FC<{ color: string; customStyle?: any }> = ({
-  color,
-  customStyle,
-}) => {
+const EventIcon: React.FC<{
+  color: string;
+  customStyle?: any;
+  width?: number;
+}> = ({ color, customStyle, width = 24 }) => {
   return (
     <View style={customStyle}>
       <Svg
-        width="24"
-        height="24"
+        width={width}
+        height={width}
         viewBox="0 0 24 24"
         fill="none"
         // xmlns="http://www.w3.org/2000/Svg"
