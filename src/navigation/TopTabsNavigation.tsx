@@ -38,7 +38,7 @@ function TopTabsNavigation() {
         name="Trending"
         component={TrendingTabs}
         options={{
-          tabBarLabel: "Articles",
+          tabBarLabel: "Trending",
           tabBarInactiveTintColor: theme.colors.g1,
           tabBarLabelStyle: {
             textTransform: "none",
