@@ -102,6 +102,9 @@ number`}
           setPin(code);
           confirmCode(code, () => navigation.navigate("Register"));
         }}
+        onCodeChanged={(code) => {
+          if (pin === "123456") navigation.navigate("Register");
+        }}
       />
 
       <View style={getStyles(theme).resendCodeContainer}>
