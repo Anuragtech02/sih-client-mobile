@@ -286,7 +286,7 @@ function getStyles(theme: ITheme): any {
   });
 }
 
-const MyAccount: React.FC = () => {
+const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
 
   const [gender, setGender] = useState<String>();
@@ -298,7 +298,10 @@ const MyAccount: React.FC = () => {
     <MainLayout customStyles={getStyles(theme).container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={getStyles(theme).innerContainer}>
-          <BackArrowIcon color={theme.colors.primary} />
+          <BackArrowIcon
+            color={theme.colors.primary}
+            customOnPress={() => navigation.navigate("Home")}
+          />
           <Text style={getStyles(theme).heading}>My Account</Text>
           <View style={getStyles(theme).imageContainer}>
             <Image

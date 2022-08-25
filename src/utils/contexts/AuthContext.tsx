@@ -18,7 +18,7 @@ const AuthContext = createContext<IAuthContext>({
   confirmCode: () => {},
   code: "",
   setCode: () => {},
-  handleLogin: () => {},
+  setCurrentUser: () => {},
 });
 
 interface IAuthContextProvider {
@@ -39,6 +39,31 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
       //   console.log({ res });
     }
     fetchArticles();
+  }, []);
+
+  useEffect(() => {
+    setCurrentUser({
+      _id: "123",
+      name: "Testing User",
+      contact: "124567890",
+      gender: "female",
+      pibs: ["234"],
+      interests: ["test"],
+      avatar: "url", // CDN Img URI
+      userType: "user",
+      savedArticles: [], // array of articleIds
+      likedArticles: [], // array of articleIds
+      rewards: [],
+      rewardPoints: 234, // number of rewardPoints
+      notifications: [
+        {
+          _id: "234234",
+          status: "status", // read or unread or sent
+        },
+      ],
+      createdAt: "234nkji jfjhhdfs",
+      updatedAt: "3wefwfds",
+    });
   }, []);
 
   async function signInWithPhoneNumber(phoneNumber: string) {
@@ -79,6 +104,7 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
     <AuthContext.Provider
       value={{
         currentUser,
+        setCurrentUser,
         signInWithPhoneNumber,
         confirmCode,
         code,
