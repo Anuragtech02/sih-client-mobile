@@ -1,10 +1,10 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { ITheme } from "../utils/contexts/interfaces";
-import { ThemeContext } from "../utils/contexts";
+import { AuthContext, ThemeContext } from "../utils/contexts";
 import Timer from "../components/Timer";
 import MainLayout from "../layouts/MainLayout";
-import BackArrow from "../assets/icons/BackArrow";
+import BackArrow from "../assets/icons/BackArrowIcon";
 
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
@@ -78,11 +78,17 @@ const OTPVerification: React.FC<{ navigation: any }> = ({ navigation }) => {
   const pin2Ref = useRef<any>(null);
   const pin3Ref = useRef<any>(null);
   const pin4Ref = useRef<any>(null);
+  const pin5Ref = useRef<any>(null);
+  const pin6Ref = useRef<any>(null);
 
   const [pin1, setPin1] = useState<any>("");
   const [pin2, setPin2] = useState<any>("");
   const [pin3, setPin3] = useState<any>("");
   const [pin4, setPin4] = useState<any>("");
+  const [pin5, setPin5] = useState<any>("");
+  const [pin6, setPin6] = useState<any>("");
+
+  const { confirmCode } = useContext(AuthContext);
 
   return (
     <MainLayout
@@ -149,9 +155,38 @@ number`}
             maxLength={1}
             onChangeText={(pin4) => {
               setPin4(pin4);
-              pin1 && pin2 && pin3 && pin4
-                ? navigation.navigate("AppNavigation")
-                : "";
+              if (pin4 !== "") {
+                pin5Ref.current.focus();
+              }
+            }}
+            style={getStyles(theme).OTPinput}
+          />
+        </View>
+        <View style={getStyles(theme).textInputView}>
+          <TextInput
+            ref={pin5Ref}
+            keyboardType="number-pad"
+            maxLength={1}
+            onChangeText={(pin5) => {
+              setPin5(pin5);
+              if (pin5 !== "") {
+                pin6Ref.current.focus();
+              }
+            }}
+            style={getStyles(theme).OTPinput}
+          />
+        </View>
+        <View style={getStyles(theme).textInputView}>
+          <TextInput
+            ref={pin6Ref}
+            keyboardType="number-pad"
+            maxLength={1}
+            onChangeText={(pin6) => {
+              setPin6(pin6);
+              console.log(pin1 + pin2 + pin3 + pin4 + pin5 + pin6);
+              confirmCode(pin1 + pin2 + pin3 + pin4 + pin5 + pin6, () => {
+                navigation.navigate("Home");
+              });
             }}
             style={getStyles(theme).OTPinput}
           />

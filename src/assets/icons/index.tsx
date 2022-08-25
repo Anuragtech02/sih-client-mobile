@@ -1,4 +1,4 @@
-export { default as BackArrowIcon } from "./BackArrow";
+export { default as BackArrowIcon } from "./BackArrowIcon";
 export { default as HomeIcon } from "./HomeIcon";
 export { default as NotificationsIcon } from "./NotificationsIcon";
 export { default as SavedIcon } from "./SavedIcon";
@@ -29,3 +29,4 @@ export { default as Videos2Icon } from "./Videos2Icon";
 export { default as PMVideoIcon } from "./PMVideoIcon";
 export { default as PlayIcon } from "./PlayIcon";
 export { default as MediaInvitaionsIcon } from "./MediaInvitaionsIcon";
+export { default as TTSIcon } from "./TTSIcon";

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
-import BackArrow from "../assets/icons/BackArrow";
+import BackArrow from "../assets/icons/BackArrowIcon";
 import { DrawerIcon } from "../assets/icons";
 
 function getStyle(theme: ITheme): any {

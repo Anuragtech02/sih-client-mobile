@@ -10,10 +10,12 @@ function TopTabsNavigation() {
   const { theme } = useContext(ThemeContext);
   return (
     <Tab.Navigator
-      style={{ marginStart: 24 }}
       initialRouteName="Press Releases"
       screenOptions={{
-        tabBarStyle: { backgroundColor: theme.colors.background },
+        tabBarStyle: {
+          backgroundColor: theme.colors.background,
+          marginStart: 24,
+        },
         tabBarItemStyle: { padding: 0 },
         tabBarIndicatorStyle: {
           backgroundColor: theme.colors.primary,
@@ -38,7 +40,7 @@ function TopTabsNavigation() {
         name="Trending"
         component={TrendingTabs}
         options={{
-          tabBarLabel: "Articles",
+          tabBarLabel: "Trending",
           tabBarInactiveTintColor: theme.colors.g1,
           tabBarLabelStyle: {
             textTransform: "none",

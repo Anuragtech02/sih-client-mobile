@@ -20,6 +20,7 @@ function getStyle(theme: ITheme): any {
     greetings: {
       fontSize: theme.fonts.subTitle.fontSize,
       fontFamily: theme.fonts.subTitle.fontFamily,
+      color: theme.colors.primary,
     },
     heading: {
       fontSize: theme.fonts.title.fontSize,
@@ -32,6 +33,7 @@ function getStyle(theme: ITheme): any {
     name: {
       fontSize: theme.fonts.body.fontSize,
       fontFamily: theme.fonts.body.fontFamily,
+      color: theme.colors.primary,
     },
     profileContainer: {
       marginTop: 24,

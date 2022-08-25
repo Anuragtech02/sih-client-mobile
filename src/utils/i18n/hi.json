@@ -1,5 +1,21 @@
 {
   "home.title": "घर",
   "home.greeting": "नमस्ते, {name}",
-  "home.greeting2": "आपका स्वागत है"
+  "home.greeting2": "आपका स्वागत है",
+  "home.search": "Search",
+
+  "commons.pressReleases": "प्रेस प्रकाशनी",
+  "commons.articles": "लेख",
+  "commons.socialMedia": "सामाजिक मीडिया",
+
+  "drawer.myAccount": "मेरा खाता",
+  "drawer.aboutPIB": "पीआईबी . के बारे में",
+  "drawer.events": "आयोजन",
+  "drawer.pmVideos": "पीएम वीडियो",
+  "drawer.factChacker": "तथ्य जांचकर्ता",
+  "drawer.videos": "वीडियो",
+  "drawer.mediaInvitations": "मीडिया आमंत्रण",
+  "drawer.shareApp": "इस एप को शेयर करे",
+  "drawer.settings": "समायोजन",
+  "drawer.logOut": "लॉग आउट"
 }

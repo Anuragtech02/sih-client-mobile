@@ -14,7 +14,7 @@ function getStyle(theme: ITheme): any {
       marginTop: 8,
     },
     cardContainer: {
-      borderTopWidth: 1,
+      // borderTopWidth: 1,
       borderBottomWidth: 1,
       borderRadius: 0,
       borderColor: theme.colors.g4,
@@ -30,10 +30,11 @@ function getStyle(theme: ITheme): any {
     },
     innerContainer: {
       width: "100%",
-      padding: 8,
+      // padding: 8,
     },
     image: {
       width: "100%",
+      height: 100,
       borderRadius: 8,
     },
     time: {
@@ -56,12 +57,13 @@ const SavedCard: React.FC<{
   articleHeading: string;
   time: string;
   views: string;
-}> = ({ image, articleHeading, time, views }) => {
+  onPress: () => void;
+}> = ({ image, articleHeading, time, views, onPress }) => {
   const { theme } = useContext(ThemeContext);
   return (
-    <Card onPress={() => {}} style={getStyle(theme).cardContainer}>
+    <Card onPress={onPress} style={getStyle(theme).cardContainer}>
       <View style={getStyle(theme).innerContainer}>
-        <Image source={image} style={getStyle(theme).image} />
+        <Image source={{ uri: image }} style={getStyle(theme).image} />
         <Text style={getStyle(theme).articelHeading}>{articleHeading}</Text>
         <View style={getStyle(theme).iconContainer}>
           <ClockIcon color={theme.colors.g1} />

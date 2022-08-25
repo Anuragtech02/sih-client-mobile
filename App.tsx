@@ -13,6 +13,8 @@ import {
   ThemeContextProvider,
   TextToSpeechProvider,
   LocaleContextProvider,
+  ArticleContextProvider,
+  AuthContextProvider,
 } from "./src/utils/contexts/";
 
 const App = () => {
@@ -28,13 +30,17 @@ const App = () => {
   return (
     <ThemeContextProvider>
       <LocaleContextProvider>
-        <TextToSpeechProvider>
-          <NavigationContainer>
-            {/* <AuthNavigation /> */}
-            {/* <Article /> */}
-            <AppNavigation />
-          </NavigationContainer>
-        </TextToSpeechProvider>
+        <AuthContextProvider>
+          <TextToSpeechProvider>
+            <ArticleContextProvider>
+              <NavigationContainer>
+                <AuthNavigation />
+                {/* <Article /> */}
+                {/* <AppNavigation /> */}
+              </NavigationContainer>
+            </ArticleContextProvider>
+          </TextToSpeechProvider>
+        </AuthContextProvider>
       </LocaleContextProvider>
     </ThemeContextProvider>
   );

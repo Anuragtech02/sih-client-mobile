@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 
 import Svg, { Path } from "react-native-svg";
 
-const BackArrow: React.FC<{
+const BackArrowIcon: React.FC<{
   customStyles?: any;
   customOnPress?: any;
   color?: string;
@@ -37,4 +37,4 @@ const BackArrow: React.FC<{
 };
 
 const styles = StyleSheet.create({});
-export default BackArrow;
+export default BackArrowIcon;
