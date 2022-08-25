@@ -181,7 +181,7 @@ function Live() {
               <Pressable
                 onPress={() => {
                   setLoading(true);
-                  console.log("Clicked");
+                  // console.log("Clicked");
                   setPlayer(
                     videos[
                       videos.findIndex(

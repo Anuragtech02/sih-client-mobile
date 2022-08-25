@@ -9,7 +9,7 @@ export async function requestUserPermission() {
     authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
   if (enabled) {
-    console.log("Authorization status:", authStatus);
+    // console.log("Authorization status:", authStatus);
     getFCMToken();
   }
 }
@@ -30,21 +30,21 @@ async function getFCMToken() {
   if (fcmToken) {
     // console.log("FCM Token:", fcmToken);
   } else {
-    console.log("Failed to get FCM token");
+    // console.log("Failed to get FCM token");
   }
 }
 
 export function notificationServices() {
   messaging().onNotificationOpenedApp((remoteMessage) => {
-    console.log(
-      "Notification caused app to open from background state:",
-      remoteMessage.notification
-    );
+    // console.log(
+    //   "Notification caused app to open from background state:",
+    //   remoteMessage.notification
+    // );
   });
 
   // Foreground Message
   messaging().onMessage(async (remoteMessage) => {
-    console.log("Notification foreground", remoteMessage);
+    // console.log("Notification foreground", remoteMessage);
   });
 
   // Check whether an initial notification is available
@@ -52,10 +52,10 @@ export function notificationServices() {
     .getInitialNotification()
     .then((remoteMessage) => {
       if (remoteMessage) {
-        console.log(
-          "Notification caused app to open from quit state:",
-          remoteMessage.notification
-        );
+        // console.log(
+        //   "Notification caused app to open from quit state:",
+        //   remoteMessage.notification
+        // );
         // setInitialRoute(remoteMessage.data.type); // e.g. "Settings"
       }
       // setLoading(false);

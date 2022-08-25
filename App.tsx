@@ -16,6 +16,7 @@ import {
   ArticleContextProvider,
   AuthContextProvider,
 } from "./src/utils/contexts/";
+import { LogBox } from "react-native";
 
 const App = () => {
   React.useEffect(() => {

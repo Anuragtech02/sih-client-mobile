@@ -83,13 +83,6 @@ number`}
         <Text style={getStyles(theme).newMessage}>
           {`We sent it to the number +91 ${phoneNumber}`}
         </Text>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("SendOTPScreen");
-          }}
-        >
-          <Text style={getStyles(theme).option}>Change number</Text>
-        </TouchableOpacity>
       </View>
 
       <OTPInputView
@@ -98,9 +91,10 @@ number`}
         autoFocusOnLoad
         codeInputFieldStyle={getStyles(theme).underlineStyleBase}
         codeInputHighlightStyle={getStyles(theme).underlineStyleHighLighted}
-        onCodeFilled={(code) => {
-          setPin(code);
-          confirmCode(code, () => navigation.navigate("Register"));
+        onCodeFilled={(code: any) => {
+          navigation.navigate("Register");
+          // setPin(code);
+          // confirmCode(code, () => navigation.navigate("Register"));
         }}
       />
 
