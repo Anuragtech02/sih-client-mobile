@@ -125,7 +125,7 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
 }) => {
   const { theme } = useContext(ThemeContext);
   const { articles, articleLoading } = useContext(ArticleContext);
-  const { value: stackNavigator } = useStackNavigator();
+  const { navigation: myNavigation } = useStackNavigator();
   return (
     <MainLayout
       customStyles={getStyle(theme).container}

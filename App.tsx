@@ -36,7 +36,7 @@ const App = () => {
             <ArticleContextProvider>
               <NavigationContainer>
                 <AuthNavigation />
-                {/* <Register /> */}
+                {/* <Register navigation={""} /> */}
                 {/* <Article /> */}
                 {/* <AppNavigation /> */}
               </NavigationContainer>

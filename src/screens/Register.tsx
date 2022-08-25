@@ -12,7 +12,7 @@ import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
 import MainLayout from "../layouts/MainLayout";
 import { BackArrowIcon, RadioButtonIcon } from "../assets/icons";
-import { Dropdown } from "react-native-element-dropdown";
+import { Dropdown, MultiSelect } from "react-native-element-dropdown";
 import { Button } from "../components";
 
 const female = [
@@ -227,6 +227,47 @@ function getStyles(theme: ITheme): any {
       width: 80,
       height: 80,
     },
+    multiSelectDropdown: {
+      height: 50,
+      backgroundColor: theme.colors.background,
+      borderRadius: 4,
+      padding: 12,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 1.41,
+      color: theme.colors.primary,
+      elevation: 2,
+      marginTop: 8,
+    },
+    multiSelectPlaceholder: {
+      fontSize: theme.fonts.subTitle.fontSize,
+      fontFamily: theme.fonts.body.fontFamily,
+      color: theme.colors.g1,
+    },
+    multiSelectedText: {
+      fontSize: theme.fonts.subTitle.fontSize,
+      fontFamily: theme.fonts.body.fontFamily,
+      color: theme.colors.primary,
+    },
+    multiSelectInputSearch: {
+      height: 40,
+      fontSize: 16,
+      backgroundColor: theme.colors.background,
+    },
+    multiSelectIconStyle: {
+      width: 20,
+      height: 20,
+    },
+    multiSelectSelectedStyle: {
+      borderRadius: 12,
+    },
+    multiSelectDropdownItemContainer: {
+      backgroundColor: theme.colors.background,
+    },
     placeholderStyle: {
       fontSize: theme.fonts.subTitle.fontSize,
       fontFamily: theme.fonts.body.fontFamily,
@@ -291,7 +332,10 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [name, setName] = useState<any>();
   const [gender, setGender] = useState<any>();
   const [region, setRegion] = useState<any>();
+
   const [ministry, setMinistry] = useState<any>();
+  const [selected, setSelected] = useState([]);
+
   const [image, setImage] = useState<any>(
     require("../assets/avatars/Starting/StartingAvatar.png")
   );
@@ -419,30 +463,48 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
             myData={regions}
             onChange={(label: string) => setRegion(label)}
             colorStyle={{
-              tintColor: region === "" ? theme.colors.g1 : theme.colors.primary,
+              tintColor: region ? theme.colors.primary : theme.colors.g1,
             }}
           />
 
           <Text style={getStyles(theme).title}>Select Ministry</Text>
-          <DropdownComponent
-            value={ministry}
-            myData={ministries}
-            onChange={(value: string) => setMinistry(value)}
-            colorStyle={{
-              tintColor:
-                ministry === "" ? theme.colors.g1 : theme.colors.primary,
+          <MultiSelect
+            style={getStyles(theme).multiSelectDropdown}
+            placeholderStyle={getStyles(theme).multiSelectPlaceholder}
+            selectedTextStyle={getStyles(theme).multiSelectedText}
+            inputSearchStyle={getStyles(theme).multiSelectInputSearch}
+            iconStyle={{
+              ...getStyles(theme).multiSelectIconStyle,
+              tintColor: ministry ? theme.colors.primary : theme.colors.g1,
             }}
+            data={ministries}
+            containerStyle={getStyles(theme).multiSelectDropdownItemContainer}
+            maxHeight={300}
+            showsVerticalScrollIndicator={false}
+            labelField="label"
+            valueField="value"
+            placeholder="Select item"
+            searchPlaceholder="Search..."
+            alwaysRenderItemSelected
+            //renderItem={renderItem}
+            value={selected}
+            onChange={(item) => {
+              setSelected(item);
+              setMinistry(item);
+            }}
+            selectedStyle={getStyles(theme).multiSelectSelectedStyle}
           />
-          <View style={getStyles(theme).buttonContainer}>
-            <Button
-              disabled={gender && name && region && ministry ? false : true}
-              onPress={() => {
-                navigation.navigate("AppNavigation");
-              }}
-            >
-              Register
-            </Button>
-          </View>
+        </View>
+
+        <View style={getStyles(theme).buttonContainer}>
+          <Button
+            disabled={gender && name && region && ministry ? false : true}
+            onPress={() => {
+              navigation.navigate("AppNavigation");
+            }}
+          >
+            Register
+          </Button>
         </View>
       </ScrollView>
     </MainLayout>
@@ -478,12 +540,20 @@ const DropdownComponent: React.FC<{
       labelField="label"
       valueField="value"
       placeholder="Select item"
-      searchPlaceholder="Search..."
-      value={value}
+      //searchPlaceholder="Search..."
+      //value={value}
       onChange={onChange}
-      renderItem={renderItem}
+      //renderItem={renderItem}
     />
   );
 };
 
+const renderItem = (item: any) => {
+  const { theme } = useContext(ThemeContext);
+  return (
+    <View style={getStyles(theme).item}>
+      <Text style={getStyles(theme).textItem}>{item.label}</Text>
+    </View>
+  );
+};
 export default Register;

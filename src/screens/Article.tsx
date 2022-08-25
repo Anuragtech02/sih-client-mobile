@@ -63,7 +63,7 @@ function getStyles(theme: ITheme): any {
       backgroundColor: theme.colors.background,
       paddingHorizontal: 24,
       marginBottom: 20,
-      marginTop: -68,
+      marginTop: -66,
     },
     dayNews: {
       backgroundColor: "rgba(246, 246, 246, 0.2)",
@@ -90,7 +90,7 @@ function getStyles(theme: ITheme): any {
       width: 300,
       color: "white", //theme.colors.primary,
       fontSize: 16,
-      marginTop: 12,
+      marginTop: 8,
     },
     news: {
       color: "white", //theme.colors.primary,

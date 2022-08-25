@@ -8,6 +8,10 @@ const API_ARTICLE = axios.create({
   baseURL: `https://sih-server-staging.onrender.com/article`,
 });
 
+const API_AUTH = axios.create({
+  baseURL: "https://dsalgo.tech/auth",
+});
+
 const AuthContext = createContext<IAuthContext>({
   currentUser: {},
   signInWithPhoneNumber: () => {},
@@ -27,6 +31,7 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
   const [currentUser, setCurrentUser] = useState<any>({});
   const [confirmOTP, setConfirmOTP] = useState<any>(null);
   const [code, setCode] = useState("");
+  const [phone, setPhone] = useState("");
 
   useEffect(() => {
     async function fetchArticles() {
@@ -62,6 +67,7 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
   }, []);
 
   async function signInWithPhoneNumber(phoneNumber: string) {
+    setPhone(phoneNumber);
     const confirmation = await auth().signInWithPhoneNumber(
       `+91 ${phoneNumber}`
     );
@@ -74,10 +80,23 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
       // const res = await auth().verifyPhoneNumber
       // let userData = await auth().currentUser?.linkWithCredential(credential);
       await confirmOTP.confirm(cd);
+      console.log(phone);
+      handleLogin(phone);
       if (cb) cb();
       setConfirmOTP(null);
     } catch (error) {
       console.log(error, "Invalid code.");
+    }
+  }
+
+  async function handleLogin(phone: string) {
+    try {
+      const res = await API_AUTH.post("/login", {
+        phone,
+      });
+      console.log(res.data);
+    } catch (error) {
+      console.log(error.message);
     }
   }
 
@@ -90,6 +109,7 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
         confirmCode,
         code,
         setCode,
+        handleLogin,
       }}
     >
       {children}
