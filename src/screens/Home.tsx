@@ -64,7 +64,7 @@ function getStyle(theme: ITheme): any {
   });
 }
 
-const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
+const Home: React.FC<{ navigation?: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   const [name, setName] = useState("Adarsh");
 
@@ -83,9 +83,12 @@ const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
         <View style={getStyle(theme).drawerContainer}>
           <DrawerIcon customOnPress={() => navigation.openDrawer()} />
         </View>
+
         <View style={getStyle(theme).profileContainer}>
           <Text style={getStyle(theme).name}>
-            {translations.formatString(translations["home.greeting"], { name })}
+            {translations.formatString(translations["home.greeting"], {
+              name,
+            })}
           </Text>
           <Text style={getStyle(theme).greetings}>
             {translations["home.greeting2"]}
@@ -95,6 +98,7 @@ const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
             source={require("../assets/ProfilePhoto.png")}
           />
         </View>
+
         <View style={getStyle(theme).searchContainer}>
           <TextInput style={getStyle(theme).searchInput} placeholder="Search" />
           <SearchIcon

@@ -157,17 +157,21 @@ const HomeCard: React.FC<{
   const { navigation } = useContext(StackNavigatorContext);
 
   function onPress() {
-    navigation.navigate("Article", { id: article._id, value: article.link });
+    navigation.navigate("WebViewArticle", {
+      id: article._id,
+      value: article.link,
+    });
   }
   const {
     thumbnail: image,
     title: articleHeading,
     createdAt: time,
+    created,
     views,
     id: _id,
   } = article;
   const { theme } = useContext(ThemeContext);
-  const [isSaved, setIsSaved] = useState(true);
+  const [isSaved, setIsSaved] = useState(false);
   const { currentUser, setCurrentUser } = useContext(AuthContext);
   function handlePressSave() {
     setIsSaved((prev) => !prev);
@@ -198,7 +202,7 @@ const HomeCard: React.FC<{
               color={theme.colors.g1}
             />
             <Text style={getStyle(theme).text}>
-              {new Date(time).toLocaleDateString()}
+              {new Date(created).toLocaleDateString()}
             </Text>
           </View>
 

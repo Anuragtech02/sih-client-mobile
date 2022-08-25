@@ -16,7 +16,7 @@ export { default as PMVideo } from "./PMVideo";
 export { default as FactChecker } from "./FactChecker";
 export { default as Settings } from "./Settings";
 export { default as About } from "./About";
-export { default as Article } from "./Article";
+export { WebViewArticle, Article } from "./Article";
 export { default as Videos } from "./Videos";
 export { default as MediaInvitations } from "./MediaInvitaions";
 export { default as SavedReleases } from "./SavedReleases";

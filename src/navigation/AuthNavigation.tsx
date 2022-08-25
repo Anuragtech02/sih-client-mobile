@@ -11,6 +11,7 @@ import {
   Notifications,
   Article,
   Register,
+  WebViewArticle,
 } from "../screens/";
 import AppNavigation from "./AppNavigation";
 
@@ -52,6 +53,11 @@ const AuthNavigation = () => {
       <Stack.Screen
         name="Article"
         component={Article}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="WebViewArticle"
+        component={WebViewArticle}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

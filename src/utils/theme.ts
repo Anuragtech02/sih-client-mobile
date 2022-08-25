@@ -28,7 +28,7 @@ export const regionalThemes = {
   },
 };
 
-export const currentRegion = regionalThemes.blue;
+export const currentRegion = regionalThemes.default;
 
 type paletteType = {
   [key: string]: string;

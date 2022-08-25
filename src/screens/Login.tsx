@@ -1,5 +1,13 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet, Image, ImageBackground } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import { Button } from "../components";
 // import LoginBackgroundImage from "../assets/LoginBackgroundImage";
 // import {ReactComponent as LoginBackground} from "../assets/LoginBackgroundImage.svg"
@@ -12,8 +20,9 @@ import MainLayout from "../layouts/MainLayout";
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
     button: {
-      marginBottom: 60,
-      alignSelf: "center",
+      marginBottom: 20,
+      marginTop: "auto",
+      alignSelf: "flex-end",
       width: "96%",
     },
     container: {
@@ -50,6 +59,15 @@ function getStyles(theme: ITheme): any {
       elevation: 4,
     },
     mainContainer: { backgroundColor: "white" },
+    skipButton: {
+      fontSize: theme.fonts.body.fontSize,
+      color: theme.colors.g2,
+      fontFamily: theme.fonts.body.fontFamily,
+      alignSelf: "center",
+      marginBottom: 32,
+      fontWeight: "bold",
+      textDecorationLine: "underline",
+    },
   });
 }
 
@@ -83,6 +101,9 @@ Let’s get started.`}</Text>
         >
           Login
         </Button>
+        <TouchableOpacity onPress={() => navigation.navigate("AppNavigation")}>
+          <Text style={getStyles(theme).skipButton}>{`Skip & Continue`}</Text>
+        </TouchableOpacity>
       </View>
     </MainLayout>
   );

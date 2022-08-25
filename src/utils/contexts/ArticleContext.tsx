@@ -9,6 +9,7 @@ const API_ARTICLE = axios.create({
 const ArticleContext = createContext<IArticleContext>({
   articleLoading: true,
   articles: [],
+  articlesOwn: [],
   getArticle: () => {},
   updateViewsByOne: () => {},
   likeArticle: () => {},
@@ -23,6 +24,7 @@ export const ArticleContextProvider: React.FC<
   IArticleContextContextProvider
 > = ({ children }) => {
   const [articles, setArticles] = useState<Array<IArticleCard>>([]);
+  const [articlesOwn, setArticlesOwn] = useState<Array<IArticleCard>>([]);
   const [articleLoading, setArticleLoading] = useState(true);
 
   useEffect(() => {
@@ -32,7 +34,14 @@ export const ArticleContextProvider: React.FC<
       // console.log({ res });
       setArticleLoading(false);
     }
+    async function fetchArticlesOwn() {
+      const res = await API_ARTICLE.get("/all");
+      setArticlesOwn(res.data);
+      // console.log({ res });
+      setArticleLoading(false);
+    }
     fetchArticles();
+    fetchArticlesOwn();
   }, []);
 
   async function getArticle(id: string) {
@@ -78,6 +87,7 @@ export const ArticleContextProvider: React.FC<
         updateViewsByOne,
         likeArticle,
         saveArticle,
+        articlesOwn,
       }}
     >
       {children}
