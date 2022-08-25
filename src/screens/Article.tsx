@@ -461,7 +461,15 @@ const Article: React.FC<{ props: any; navigation: any }> = ({
 const WebViewArticle: React.FC<{ route: any }> = ({ route }) => {
   const adb = route.params.value;
   console.log(adb);
-  return <WebView source={{ uri: adb }}></WebView>;
+  const { theme } = useContext(ThemeContext);
+  return (
+    <MainLayout
+      customStyles={getStyles(theme).container}
+      disableDefaultPadding={true}
+    >
+      <WebView source={{ uri: adb }}></WebView>
+    </MainLayout>
+  );
 };
 
-export default WebViewArticle;
+export { WebViewArticle, Article };

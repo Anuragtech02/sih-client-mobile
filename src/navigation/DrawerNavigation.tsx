@@ -17,9 +17,9 @@ import { LocaleContext } from "../utils/contexts";
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigation: React.FC<{ navigation: any; rest: any }> = ({
+const DrawerNavigation: React.FC<{ navigation?: any; display: any }> = ({
   navigation,
-  ...rest
+  display,
 }) => {
   return (
     <Drawer.Navigator

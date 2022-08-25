@@ -147,6 +147,7 @@ export interface IArticleCard {
 
 export interface IArticleContext {
   articles: Array<IArticleCard>;
+  articlesOwn: Array<IArticleCard>;
   articleLoading: boolean;
   getArticle: (id: string) => any;
   updateViewsByOne: (id: string) => void;
@@ -161,4 +162,5 @@ export interface IAuthContext {
   code: string;
   setCode: Dispatch<SetStateAction<string>>;
   setCurrentUser: any;
+  handleLogin: any;
 }

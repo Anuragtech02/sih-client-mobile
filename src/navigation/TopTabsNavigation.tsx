@@ -21,10 +21,14 @@ function TopTabsNavigation() {
       screenOptions={{
         tabBarScrollEnabled: true,
         tabBarStyle: {
+          elevation: 0,
           backgroundColor: theme.colors.background,
           marginStart: 24,
         },
-        tabBarItemStyle: { padding: 0 },
+        tabBarItemStyle: {
+          padding: 0,
+          alignSelf: "center",
+        },
         tabBarIndicatorStyle: {
           backgroundColor: theme.colors.primary,
         },

@@ -19,6 +19,7 @@ const AuthContext = createContext<IAuthContext>({
   code: "",
   setCode: () => {},
   setCurrentUser: () => {},
+  handleLogin: () => {},
 });
 
 interface IAuthContextProvider {
@@ -96,7 +97,7 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
       });
       console.log(res.data);
     } catch (error) {
-      console.log(error.message);
+      console.log(error?.message);
     }
   }
 

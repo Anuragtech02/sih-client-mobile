@@ -68,8 +68,8 @@ const SavedReleases: React.FC<{ navigation: any; route: any }> = ({
   route,
 }) => {
   const { theme } = useContext(ThemeContext);
-  const { articles, articleLoading } = useContext(ArticleContext);
-  const { value: stackNavigator } = useStackNavigator();
+  const { articlesOwn: articles, articleLoading } = useContext(ArticleContext);
+  const { navigation: navigator } = useStackNavigator();
   return (
     <MainLayout
       customStyles={getStyle(theme).container}
@@ -95,7 +95,7 @@ const SavedReleases: React.FC<{ navigation: any; route: any }> = ({
               time={new Date(item.createdAt).toLocaleString()}
               views={item.views?.toString()}
               onPress={() => {
-                stackNavigator.navigate("Article", { id: item._id });
+                navigator.navigate("Article", { id: item._id });
               }}
             />
           )}

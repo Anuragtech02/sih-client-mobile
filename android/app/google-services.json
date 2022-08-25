@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "316282747008",
-    "project_id": "smart-india-hackathon-22",
-    "storage_bucket": "smart-india-hackathon-22.appspot.com"
+    "project_number": "992858061968",
+    "project_id": "sih-2022-ed3da",
+    "storage_bucket": "sih-2022-ed3da.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:316282747008:android:52f6fcd07e3f56ba5b4e65",
+        "mobilesdk_app_id": "1:992858061968:android:c5ff5f677280f10c9a2c15",
         "android_client_info": {
           "package_name": "com.pib"
         }
       },
       "oauth_client": [
         {
-          "client_id": "316282747008-4caqofiooa0bme58snjdc0qrdl6gdnhg.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.pib",
-            "certificate_hash": "c5e4c0fe57e4ea9d838567e3f1d897ee8b3033e9"
-          }
-        },
-        {
-          "client_id": "316282747008-vm6418fdn9t0vt0gr2peoo3nfs8uqnm0.apps.googleusercontent.com",
+          "client_id": "992858061968-3djingc726m643nhah14gpi3hmbb10fn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBYj2e-4psQdHXbUbWvRG2oHByaCPHBMOI"
+          "current_key": "AIzaSyCIjb2XhgCZBmOXGUnnXSIxRj7f8s0-Nok"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "316282747008-vm6418fdn9t0vt0gr2peoo3nfs8uqnm0.apps.googleusercontent.com",
+              "client_id": "992858061968-3djingc726m643nhah14gpi3hmbb10fn.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
