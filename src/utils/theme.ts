@@ -28,12 +28,11 @@ export const regionalThemes = {
   },
 };
 
-
 export const currentRegion = regionalThemes.blue;
 
 type paletteType = {
   [key: string]: string;
-}
+};
 
 const paletteLight: paletteType = {
   black: "#292D32", //p2
@@ -50,9 +49,9 @@ const paletteLight: paletteType = {
   g3: "#565656",
   g4: "#E5E5E5",
   g5: "#646464",
-  regionalColor:currentRegion?.color,
+  regionalColor: currentRegion?.color,
 };
-console.log(currentRegion)
+console.log(currentRegion);
 const paletteDark: paletteType = {
   black: "#292D32",
   green: "#00B894",
@@ -67,13 +66,13 @@ const paletteDark: paletteType = {
   g3: "#565656",
   g4: "#E5E5E5",
   g5: "#646464",
-  regionalColor:currentRegion?.color,
+  regionalColor: currentRegion?.color,
 };
 
 const themeLight = {
   colors: {
     primary: paletteLight.black,
-    regionalColor:paletteLight.regionalColor,
+    regionalColor: paletteLight.regionalColor,
     success: paletteLight.green,
     error: paletteLight.red,
     background: paletteLight.white,
@@ -126,7 +125,7 @@ const themeDark = {
     primary: paletteDark.white,
     success: paletteDark.green,
     error: paletteDark.red,
-    regionalColor:paletteLight.regionalColor,
+    regionalColor: paletteLight.regionalColor,
     background: paletteDark.black,
     p1: paletteDark.p1,
     p2: paletteDark.p2,

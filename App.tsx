@@ -18,7 +18,6 @@ import {
 } from "./src/utils/contexts/";
 import { LogBox } from "react-native";
 
-LogBox.ignoreAllLogs();
 const App = () => {
   React.useEffect(() => {
     // StatusBar.setHidden(true);

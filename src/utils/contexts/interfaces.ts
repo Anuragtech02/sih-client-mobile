@@ -28,7 +28,7 @@ export interface ITheme {
     success: string;
     error: string;
     background: string;
-    regionalColor:string;
+    regionalColor: string;
     p1: string;
     p2: string;
     p3: string;
@@ -40,6 +40,7 @@ export interface ITheme {
     g5: string;
     white: string;
     black: string;
+    absoluteWhite: string;
   };
   fonts: {
     title: {

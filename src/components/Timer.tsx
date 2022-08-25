@@ -30,7 +30,7 @@ const Timer = (props: any) => {
   });
 
   return (
-    <View>
+    <View style={getStyles(theme).textContainer}>
       {minutes === 0 && seconds === 0 ? (
         <Text
           style={getStyles(theme).resend}
@@ -41,9 +41,12 @@ const Timer = (props: any) => {
           {text}
         </Text>
       ) : (
-        <Text style={getStyles(theme).timer}>
-          {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-        </Text>
+        <>
+          <Text style={getStyles(theme).resendCode}>Resend code in</Text>
+          <Text style={getStyles(theme).timer}>
+            {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+          </Text>
+        </>
       )}
     </View>
   );
@@ -57,10 +60,19 @@ function getStyles(theme: ITheme): any {
       fontFamily: "Poppins-Medium",
       fontSize: theme.fonts.body.fontSize,
     },
+    resendCode: {
+      color: theme.colors.primary,
+      fontFamily: "Poppins-Medium",
+      fontSize: theme.fonts.body.fontSize,
+      marginEnd: 5,
+    },
     timer: {
       color: theme.colors.primary,
       fontFamily: "Poppins-Medium",
       fontSize: theme.fonts.body.fontSize,
+    },
+    textContainer: {
+      flexDirection: "row",
     },
   });
 }

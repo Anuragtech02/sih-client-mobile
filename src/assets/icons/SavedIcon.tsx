@@ -8,7 +8,7 @@ import Svg, { Path } from "react-native-svg";
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
     bar: {
-      backgroundColor: theme.colors.primary,
+      backgroundColor: theme.colors.regionalColor,
       position: "absolute",
       bottom: 0,
       width: 36,

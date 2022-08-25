@@ -15,7 +15,9 @@ import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 import { Card } from "../components";
 import metrics from "../utils/metrics";
 import { MAIN_LAYOUT_DEFAULT_PADDING } from "../utils/constants";
-import { useStackNavigator } from "../navigation/stackNaviagtionContext";
+import StackNavigatorContext, {
+  useStackNavigator,
+} from "../navigation/stackNaviagtionContext";
 import { ClockIcon, EyeIcon, SavedIcon, ShareIcon } from "../assets/icons";
 
 function getStyle(theme: ITheme): any {
@@ -142,14 +144,7 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
           contentContainerStyle={{ marginTop: 12, paddingBottom: 24 }}
           data={articles}
           keyExtractor={(item) => item._id}
-          renderItem={({ item }) => (
-            <HomeCard
-              article={item}
-              onPress={() => {
-                stackNavigator.navigate("Article", { id: item._id });
-              }}
-            />
-          )}
+          renderItem={({ item }) => <HomeCard article={item} />}
         />
       )}
     </MainLayout>
@@ -158,8 +153,12 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
 
 const HomeCard: React.FC<{
   article: any;
-  onPress: () => void;
-}> = ({ article, onPress }) => {
+}> = ({ article }) => {
+  const { navigation } = useContext(StackNavigatorContext);
+
+  function onPress() {
+    navigation.navigate("Article", { id: article._id });
+  }
   const {
     thumbnail: image,
     title: articleHeading,

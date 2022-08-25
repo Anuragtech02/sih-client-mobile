@@ -15,10 +15,7 @@ import MainLayout from "../layouts/MainLayout";
 
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
-    container: {
-      //marginTop: 24,
-      //backgroundColor: theme.colors.background,
-    },
+    container: {},
     countryCode: {
       color: theme.colors.primary,
       fontFamily: theme.fonts.subTitle.fontFamily,
@@ -67,33 +64,33 @@ function getStyles(theme: ITheme): any {
 
 const SendOTP: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [phoneNumber, setPhoneNumber] = useState<any>();
 
-  const formatPN = function formatPhoneNumber(value: string) {
-    if (!value) return value;
-    const phoneNumber = value.replace(/[^\d]/g, "");
-    const phoneNumberLength = phoneNumber.length;
+  // const formatPN = function formatPhoneNumber(value: string) {
+  //   if (!value) return value;
+  //   const phoneNumber = value.replace(/[^\d]/g, "");
+  //   const phoneNumberLength = phoneNumber.length;
 
-    if (phoneNumberLength < 4) return phoneNumber;
+  //   if (phoneNumberLength < 4) return phoneNumber;
 
-    if (phoneNumberLength < 7) {
-      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
-    }
-    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
-      3,
-      6
-    )}-${phoneNumber.slice(6, 10)}`;
-  };
-  const handlePhoneChange = function handlePhoneNumberChange(e: string) {
-    const formatedString = formatPN(e);
-    setPhoneNumber(e);
-  };
+  //   if (phoneNumberLength < 7) {
+  //     return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+  //   }
+  //   return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+  //     3,
+  //     6
+  //   )}-${phoneNumber.slice(6, 10)}`;
+  // };
+  // const handlePhoneChange = function handlePhoneNumberChange(e: string) {
+  //   const formatedString = formatPN(e);
+  //   setPhoneNumber(e);
+  // };
 
   const { signInWithPhoneNumber } = useContext(AuthContext);
 
   function handleClickSendOTP() {
     signInWithPhoneNumber(phoneNumber);
-    navigation.navigate("OTPVerificationScreen");
+    navigation.navigate("OTPVerificationScreen", { number: phoneNumber });
   }
 
   return (
@@ -113,10 +110,11 @@ mobile number`}
           <Text style={getStyles(theme).countryCode}>+91</Text>
           <TextInput
             value={phoneNumber}
-            onChangeText={handlePhoneChange}
+            //onChangeText={handlePhoneChange}
+            onChangeText={(number) => setPhoneNumber(number)}
             keyboardType="numeric"
             style={getStyles(theme).phoneNumber}
-            placeholder="(XXX) XXX-XX-XX"
+            placeholder="XXXXX-XXXXX"
             maxLength={10}
           />
         </View>
