@@ -10,6 +10,7 @@ import {
   About,
   Notifications,
   Article,
+  Register,
 } from "../screens/";
 import AppNavigation from "./AppNavigation";
 
@@ -17,7 +18,7 @@ const Stack = createStackNavigator();
 
 const AuthNavigation = () => {
   return (
-    <Stack.Navigator initialRouteName="AppNavigation">
+    <Stack.Navigator>
       <Stack.Screen
         name="ChooseLanguageScreen"
         component={ChooseLanguage}
@@ -36,6 +37,11 @@ const AuthNavigation = () => {
       <Stack.Screen
         name="OTPVerificationScreen"
         component={OTPVerification}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Register"
+        component={Register}
         options={{ headerShown: false }}
       />
       <Stack.Screen

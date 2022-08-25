@@ -1,7 +1,14 @@
 import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { PressReleases, SocialMedia, TrendingTabs } from "../screens";
+import {
+  MediaInvitations,
+  Photos,
+  PMVideo,
+  PressReleases,
+  SocialMedia,
+  TrendingTabs,
+} from "../screens";
 import { ThemeContext } from "../utils/contexts";
 
 const Tab = createMaterialTopTabNavigator();
@@ -12,6 +19,7 @@ function TopTabsNavigation() {
     <Tab.Navigator
       initialRouteName="Press Releases"
       screenOptions={{
+        tabBarScrollEnabled: true,
         tabBarStyle: {
           backgroundColor: theme.colors.background,
           marginStart: 24,
@@ -37,10 +45,38 @@ function TopTabsNavigation() {
         }}
       />
       <Tab.Screen
-        name="Trending"
-        component={TrendingTabs}
+        name="PMVideos"
+        component={PMVideo}
         options={{
-          tabBarLabel: "Trending",
+          tabBarLabel: "PMVideos",
+          tabBarInactiveTintColor: theme.colors.g1,
+          tabBarLabelStyle: {
+            textTransform: "none",
+            fontFamily: theme.fonts.subTitle.fontFamily,
+            fontSize: theme.fonts.body.fontSize,
+          },
+          tabBarActiveTintColor: theme.colors.primary,
+        }}
+      />
+      <Tab.Screen
+        name="Media Invitations"
+        component={MediaInvitations}
+        options={{
+          tabBarLabel: "Media Invitations",
+          tabBarInactiveTintColor: theme.colors.g1,
+          tabBarLabelStyle: {
+            textTransform: "none",
+            fontFamily: theme.fonts.subTitle.fontFamily,
+            fontSize: theme.fonts.body.fontSize,
+          },
+          tabBarActiveTintColor: theme.colors.primary,
+        }}
+      />
+      <Tab.Screen
+        name="Events"
+        component={SocialMedia}
+        options={{
+          tabBarLabel: "Events",
           tabBarInactiveTintColor: theme.colors.g1,
           tabBarLabelStyle: {
             textTransform: "none",
@@ -55,6 +91,20 @@ function TopTabsNavigation() {
         component={SocialMedia}
         options={{
           tabBarLabel: "Social Media",
+          tabBarInactiveTintColor: theme.colors.g1,
+          tabBarLabelStyle: {
+            textTransform: "none",
+            fontFamily: theme.fonts.subTitle.fontFamily,
+            fontSize: theme.fonts.body.fontSize,
+          },
+          tabBarActiveTintColor: theme.colors.primary,
+        }}
+      />
+      <Tab.Screen
+        name="Videos"
+        component={SocialMedia}
+        options={{
+          tabBarLabel: "Videos",
           tabBarInactiveTintColor: theme.colors.g1,
           tabBarLabelStyle: {
             textTransform: "none",

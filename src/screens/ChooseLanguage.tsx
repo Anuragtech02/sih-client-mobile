@@ -14,35 +14,37 @@ import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
 import MainLayout from "../layouts/MainLayout";
 import metrics from "../utils/metrics";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { APP_LANGUAGE } from "../utils/constants";
 
 const languageOptions = [
   {
-    id: "1",
+    id: "hi",
     language: "हिन्दी",
     startingLetter: "अ",
   },
   {
-    id: "2",
+    id: "en",
     language: "English",
     startingLetter: "A",
   },
   {
-    id: "3",
+    id: "be",
     language: "Bengali-বাংলা",
     startingLetter: "আ",
   },
   {
-    id: "4",
+    id: "ma",
     language: "Marathi-मराठी",
     startingLetter: "आ",
   },
   {
-    id: "5",
+    id: "tl",
     language: "Telugu-తెలుగు",
     startingLetter: "అ",
   },
   {
-    id: "6",
+    id: "tm",
     language: "Tamil-தமிழ்",
     startingLetter: "அ",
   },
@@ -52,12 +54,12 @@ const languageOptions = [
     startingLetter: "അ",
   },
   {
-    id: "8",
+    id: "kn",
     language: "Kannad-ಕನ್ನಡ",
     startingLetter: "ಅ",
   },
   {
-    id: "9",
+    id: "gu",
     language: "Gujarati-ગુજરાતી",
     startingLetter: "અ",
   },
@@ -231,7 +233,10 @@ const ChooseLanguage: React.FC<{ navigation: any }> = ({ navigation }) => {
           <View style={getStyles(theme).buttonContainer}>
             <Button
               customStyle={{}}
-              onPress={() => navigation.navigate("LoginScreen")}
+              onPress={() => {
+                AsyncStorage.setItem(APP_LANGUAGE, selectedId);
+                navigation.navigate("LoginScreen");
+              }}
             >
               Continue
             </Button>
