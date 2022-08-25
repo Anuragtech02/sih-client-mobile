@@ -104,20 +104,20 @@ const MediaInvitations: React.FC<{ navigation: any }> = ({ navigation }) => {
       disableDefaultPadding={true}
     >
       <FlatList
-        ListHeaderComponent={
-          <View>
-            <View style={getStyle(theme).iconContainer}>
-              <BackArrow
-                customOnPress={() => navigation.navigate("Home")}
-                color={theme.colors.primary}
-              />
-              <View style={{ marginStart: "auto" }}>
-                <DrawerIcon customOnPress={() => navigation.openDrawer()} />
-              </View>
-            </View>
-            <Text style={getStyle(theme).heading}>Media Invitations</Text>
-          </View>
-        }
+        // ListHeaderComponent={
+        //   <View>
+        //     <View style={getStyle(theme).iconContainer}>
+        //       <BackArrow
+        //         customOnPress={() => navigation.navigate("Home")}
+        //         color={theme.colors.primary}
+        //       />
+        //       <View style={{ marginStart: "auto" }}>
+        //         <DrawerIcon customOnPress={() => navigation.openDrawer()} />
+        //       </View>
+        //     </View>
+        //     <Text style={getStyle(theme).heading}>Media Invitations</Text>
+        //   </View>
+        // }
         showsVerticalScrollIndicator={false}
         data={data}
         keyExtractor={(item) => item.id}

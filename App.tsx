@@ -34,8 +34,8 @@ const App = () => {
           <TextToSpeechProvider>
             <ArticleContextProvider>
               <NavigationContainer>
-                {/* <AuthNavigation /> */}
-                <Register />
+                <AuthNavigation />
+                {/* <Register /> */}
                 {/* <Article /> */}
                 {/* <AppNavigation /> */}
               </NavigationContainer>

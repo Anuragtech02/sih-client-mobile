@@ -24,7 +24,7 @@ const TrendingTabs: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <MainLayout customStyles={getStyle(theme).container}>
-      <Text style={getStyle(theme).heading}>Trending Tabs</Text>
+      <Text style={getStyle(theme).heading}>PM Videos</Text>
     </MainLayout>
   );
 };
