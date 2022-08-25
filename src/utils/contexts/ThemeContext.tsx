@@ -10,38 +10,6 @@ const ThemeContext = createContext<IThemeContext>({
   isDarkMode: false,
 });
 
-export const regionalThemes = {
-  default: {
-    color: "#292D32",
-  },
-  blue: {
-    color: "#0077B6",
-  },
-  yellow: {
-    color: "#F9DC5C",
-  },
-  pink: {
-    color: "#F582A8",
-  },
-  green: {
-    color: "#88CA5E",
-  },
-  lavender: {
-    color: "#CDB4DB",
-  },
-  bhagwa: {
-    color: "#FF7F51",
-  },
-  reddishBrown: {
-    color: "#A44A3F",
-  },
-  orange: {
-    color: "#E7625F",
-  },
-};
-
-export const currentRegion = regionalThemes.orange;
-
 export const ThemeContextProvider: React.FC<{
   children: ReactNode;
   handleChangeTheme?: void;

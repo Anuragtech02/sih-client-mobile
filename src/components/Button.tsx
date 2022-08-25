@@ -24,7 +24,7 @@ function getVariantStyle(
     switch (variant) {
       case "primary": {
         return {
-          backgroundColor: theme.colors.primary,
+          backgroundColor: theme.colors.regionalColor,
           borderWidth: 0,
           borderColor: "transparent",
         };
@@ -90,7 +90,7 @@ function getStyles(
       width: "100%",
       justifyContent: "center",
       alignItems: "center",
-      backgroundColor: theme.colors.primary,
+      backgroundColor: theme.colors.regionalColor,
     },
     text: {
       fontFamily: theme.fonts.body.fontFamily,

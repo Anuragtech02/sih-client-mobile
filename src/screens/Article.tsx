@@ -55,6 +55,7 @@ function getStyles(theme: ITheme): any {
     contentBody: {
       marginTop: 12,
       color: theme.colors.primary,
+      // fonSize: 18,
       fontSize: theme.fonts.body.fontSize,
       fontFamily: theme.fonts.body.fontFamily,
     },

@@ -20,7 +20,7 @@ import { ClockIcon, EyeIcon, SavedIcon, ShareIcon } from "../assets/icons";
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
     articelHeading: {
-      fontSize: theme.fonts.subTitle.fontSize,
+      fontSize: theme.fonts.body.fontSize,
       fontFamily: theme.fonts.subTitle.fontFamily,
       color: theme.colors.primary,
       marginTop: 8,
@@ -60,8 +60,19 @@ function getStyle(theme: ITheme): any {
       height: 100,
       borderRadius: 8,
     },
-
-    time: {
+    iconWithText: {
+      flexDirection: "row",
+      alignItem: "center",
+      // backgroundColor: "red",
+      // height: 50,
+      marginRight: 15,
+      justifyContent: "flex-start",
+    },
+    icon: {
+      width: 16,
+    },
+    text: {
+      backgroundColor: "blue",
       fontSize: theme.fonts.body.fontSize,
       fontFamily: theme.fonts.body.fontFamily,
       color: theme.colors.g1,
@@ -163,19 +174,32 @@ const HomeCard: React.FC<{
         <Image source={{ uri: image }} style={getStyle(theme).image} />
         <Text style={getStyle(theme).articelHeading}>{articleHeading}</Text>
         <View style={getStyle(theme).iconContainer}>
-          <ClockIcon color={theme.colors.g1} />
-          <Text style={getStyle(theme).time}>{time}</Text>
-          <View style={getStyle(theme).eyeContainer}>
-            <EyeIcon color={theme.colors.g1} />
+          <View style={getStyle(theme).iconWithText}>
+            <ClockIcon
+              width={18}
+              customStyle={getStyle(theme).icon}
+              color={theme.colors.g1}
+            />
+            <Text style={getStyle(theme).text}>{time}</Text>
           </View>
-          <Text style={getStyle(theme).views}>{views}</Text>
+
+          <View style={getStyle(theme).iconWithText}>
+            <EyeIcon
+              width={18}
+              customStyle={getStyle(theme).icon}
+              color={theme.colors.g1}
+            />
+            <Text style={getStyle(theme).text}>{views || 0}</Text>
+          </View>
 
           <View style={{ marginStart: "auto", flexDirection: "row" }}>
             <ShareIcon
+              width={18}
               color={theme.colors.g1}
               customStyle={{ marginEnd: 12 }}
             />
             <SavedIcon
+              width={18}
               opacity={0}
               color={theme.colors.g1}
               colorFill={theme.colors.white}

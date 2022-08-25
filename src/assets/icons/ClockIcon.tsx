@@ -7,11 +7,13 @@ const ClockIcon: React.FC<{
   color?: string;
   customStyle?: any;
   width?: number;
-}> = ({ color, customStyle, width = 24 }) => {
+  style?: any;
+}> = ({ color, customStyle, width = 24, style = {} }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <View style={customStyle}>
       <Svg
+        style={style}
         width={width}
         height={width}
         viewBox="0 0 20 20"

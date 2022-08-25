@@ -3,14 +3,15 @@ import { StyleSheet, View } from "react-native";
 import { ThemeContext } from "../../utils/contexts";
 import Svg, { Path } from "react-native-svg";
 
-const EyeIcon: React.FC<{ color?: string; customStyle?: any }> = ({
-  color,
-  customStyle,
-}) => {
+const EyeIcon: React.FC<{
+  color?: string;
+  customStyle?: any;
+  width?: number;
+}> = ({ color, customStyle, width = "20" }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <Svg
-      width="20"
+      width={width}
       height="20"
       viewBox="0 0 20 20"
       fill="none"
