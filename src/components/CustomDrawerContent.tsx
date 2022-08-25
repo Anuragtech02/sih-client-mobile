@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Share } from "react-native";
 import { ITheme } from "../utils/contexts/interfaces";
 import { LocaleContext, ThemeContext } from "../utils/contexts";
 import MainLayout from "../layouts/MainLayout";
@@ -133,7 +133,24 @@ const CustomDrawerContent: React.FC<{
 
   const { initializeAppLanguage, translations, appLanguage } =
     useContext(LocaleContext);
-
+  async function handleShare() {
+    try {
+      const result = await Share.share({
+        message: "https://google.com",
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  }
   useEffect(() => {
     if (!state.index) setSelectedID("");
     if (index !== 0) {
@@ -206,6 +223,7 @@ const CustomDrawerContent: React.FC<{
                 selectedID === item.id ? theme.colors.primary : theme.colors.g1,
             }}
             customOnPress={() => {
+              if ((item.name = "Share This App")) handleShare();
               setSelectedID(item.id);
               navigation.navigate(`${item.name}`), { name: item.name };
             }}

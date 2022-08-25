@@ -5,6 +5,8 @@ export interface IThemeContext {
   theme: any;
   handleChangeTheme?: (theme: string) => void;
   isDarkMode: boolean;
+  currentRegion:string;
+  setCurrentRegion:any;
 }
 
 export interface INotificationCard {

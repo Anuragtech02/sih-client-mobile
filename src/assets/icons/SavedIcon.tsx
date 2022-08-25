@@ -4,6 +4,7 @@ import { ITheme } from "../../utils/contexts/interfaces";
 import { ThemeContext } from "../../utils/contexts";
 
 import Svg, { Path } from "react-native-svg";
+import { regionalThemes } from "../../utils/theme";
 
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
@@ -34,7 +35,7 @@ const SavedIcon: React.FC<{
   customOnPress,
   width = "24",
 }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, currentRegion } = useContext(ThemeContext);
   return (
     <>
       <Svg
@@ -47,8 +48,8 @@ const SavedIcon: React.FC<{
         <Path
           d="M16.82 2H7.18C5.05 2 3.32 3.74 3.32 5.86V19.95C3.32 21.75 4.61 22.51 6.19 21.64L11.07 18.93C11.59 18.64 12.43 18.64 12.94 18.93L17.82 21.64C19.4 22.52 20.69 21.76 20.69 19.95V5.86C20.68 3.74 18.95 2 16.82 2Z"
           stroke={
-            color === theme.colors.regionalColor
-              ? theme.colors.regionalColor
+            color === regionalThemes[currentRegion].color
+              ? regionalThemes[currentRegion].color
               : theme.colors.g1
           }
           fill={colorFill}
@@ -57,7 +58,13 @@ const SavedIcon: React.FC<{
           stroke-linejoin="round"
         />
       </Svg>
-      <View style={{ ...getStyles(theme).bar, opacity: opacity }} />
+      <View
+        style={{
+          ...getStyles(theme).bar,
+          opacity: opacity,
+          backgroundColor: regionalThemes[currentRegion].color,
+        }}
+      />
     </>
   );
 };

@@ -6,6 +6,7 @@ import {
   Text,
   View,
   Image,
+  Share,
   TouchableOpacity,
 } from "react-native";
 import MainLayout from "../layouts/MainLayout";
@@ -183,7 +184,24 @@ const HomeCard: React.FC<{
       }));
     };
   }
-  function handleShare() {}
+  async function handleShare() {
+    try {
+      const result = await Share.share({
+        message: article.link,
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  }
 
   return (
     <Card
