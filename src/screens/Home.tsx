@@ -109,4 +109,5 @@ const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
     </MainLayout>
   );
 };
+
 export default Home;

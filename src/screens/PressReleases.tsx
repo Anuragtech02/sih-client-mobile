@@ -157,7 +157,7 @@ const HomeCard: React.FC<{
   const { navigation } = useContext(StackNavigatorContext);
 
   function onPress() {
-    navigation.navigate("Article", { id: article._id });
+    navigation.navigate("Article", { id: article._id, value: article.link });
   }
   const {
     thumbnail: image,
