@@ -17,7 +17,7 @@ const Stack = createStackNavigator();
 
 const AuthNavigation = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="AppNavigation">
       <Stack.Screen
         name="ChooseLanguageScreen"
         component={ChooseLanguage}
