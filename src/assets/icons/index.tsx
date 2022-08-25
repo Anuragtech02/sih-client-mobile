@@ -30,3 +30,4 @@ export { default as PMVideoIcon } from "./PMVideoIcon";
 export { default as PlayIcon } from "./PlayIcon";
 export { default as MediaInvitaionsIcon } from "./MediaInvitaionsIcon";
 export { default as TTSIcon } from "./TTSIcon";
+export { default as RadioButtonIcon } from "./RadioButtonIcon";

@@ -50,9 +50,8 @@ function getStyle(theme: ITheme): any {
       marginVertical: 20,
       borderRadius: 8,
       borderWidth: 1,
-      borderColor: "#989898",
+      borderColor: theme.colors.g1,
       flexDirection: "row",
-      // backgroundColor: "red",
     },
     searchIcon: {
       position: "absolute",
@@ -98,7 +97,12 @@ const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
         </View>
         <View style={getStyle(theme).searchContainer}>
           <TextInput style={getStyle(theme).searchInput} placeholder="Search" />
-          <SearchIcon customStyles={getStyle(theme).search} />
+          <SearchIcon
+            customStyles={getStyle(theme).search}
+            color={theme.colors.absoluteWhite}
+            width={48}
+            height={48}
+          />
         </View>
       </View>
       <TopTabsNavigation />

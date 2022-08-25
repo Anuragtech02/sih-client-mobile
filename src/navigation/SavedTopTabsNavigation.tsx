@@ -1,7 +1,12 @@
 import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { PressReleases, SocialMedia, TrendingTabs } from "../screens";
+import {
+  PressReleases,
+  SavedReleases,
+  SocialMedia,
+  TrendingTabs,
+} from "../screens";
 import { ThemeContext } from "../utils/contexts";
 
 const Tab = createMaterialTopTabNavigator();
@@ -23,7 +28,7 @@ function SavedTopTabsNavigation() {
     >
       <Tab.Screen
         name="Releases"
-        component={PressReleases}
+        component={SavedReleases}
         options={{
           tabBarLabel: "Releases",
           tabBarInactiveTintColor: theme.colors.g1,
