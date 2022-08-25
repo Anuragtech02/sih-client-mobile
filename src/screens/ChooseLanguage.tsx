@@ -15,6 +15,7 @@ import { ThemeContext } from "../utils/contexts";
 import MainLayout from "../layouts/MainLayout";
 import metrics from "../utils/metrics";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { APP_LANGUAGE } from "../utils/constants";
 
 const languageOptions = [
   {
@@ -28,7 +29,7 @@ const languageOptions = [
     startingLetter: "A",
   },
   {
-    id: "bn",
+    id: "be",
     language: "Bengali-বাংলা",
     startingLetter: "আ",
   },
@@ -53,12 +54,12 @@ const languageOptions = [
     startingLetter: "അ",
   },
   {
-    id: "kd",
+    id: "kn",
     language: "Kannad-ಕನ್ನಡ",
     startingLetter: "ಅ",
   },
   {
-    id: "gj",
+    id: "gu",
     language: "Gujarati-ગુજરાતી",
     startingLetter: "અ",
   },
@@ -233,7 +234,7 @@ const ChooseLanguage: React.FC<{ navigation: any }> = ({ navigation }) => {
             <Button
               customStyle={{}}
               onPress={() => {
-                AsyncStorage.setItem("lanuage", selectedId);
+                AsyncStorage.setItem(APP_LANGUAGE, selectedId);
                 navigation.navigate("LoginScreen");
               }}
             >

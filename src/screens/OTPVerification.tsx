@@ -187,13 +187,9 @@ number`}
               // confirmCode(pin1 + pin2 + pin3 + pin4 + pin5 + pin6, () => {
               //   navigation.navigate("Home");
               // });
-              pin1 &&
-                pin2 &&
-                pin3 &&
-                pin4 &&
-                pin5 &&
-                pin6 &&
-                navigation.navigate("AppNavigation");
+              pin1 && pin2 && pin3 && pin4 && pin5 && pin6
+                ? navigation.navigate("Register")
+                : "";
             }}
             style={getStyles(theme).OTPinput}
           />

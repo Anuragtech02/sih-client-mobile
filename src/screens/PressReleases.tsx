@@ -20,7 +20,7 @@ import { ClockIcon, EyeIcon, SavedIcon, ShareIcon } from "../assets/icons";
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
     articelHeading: {
-      fontSize: theme.fonts.subTitle.fontSize,
+      fontSize: theme.fonts.body.fontSize,
       fontFamily: theme.fonts.subTitle.fontFamily,
       color: theme.colors.primary,
       marginTop: 8,
@@ -66,12 +66,13 @@ function getStyle(theme: ITheme): any {
       // backgroundColor: "red",
       // height: 50,
       marginRight: 15,
+      justifyContent: "flex-start",
     },
     icon: {
       width: 16,
     },
     text: {
-      // backgroundColor: "blue",
+      backgroundColor: "blue",
       fontSize: theme.fonts.body.fontSize,
       fontFamily: theme.fonts.body.fontFamily,
       color: theme.colors.g1,
