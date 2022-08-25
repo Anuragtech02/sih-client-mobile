@@ -28,6 +28,7 @@ export interface ITheme {
     success: string;
     error: string;
     background: string;
+    regionalColor:string;
     p1: string;
     p2: string;
     p3: string;

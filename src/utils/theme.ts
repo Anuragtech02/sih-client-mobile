@@ -1,8 +1,39 @@
-import { currentRegion } from "./contexts/ThemeContext";
+export const regionalThemes = {
+  default: {
+    color: "#292D32",
+  },
+  blue: {
+    color: "#0077B6",
+  },
+  yellow: {
+    color: "#F9DC5C",
+  },
+  pink: {
+    color: "#F582A8",
+  },
+  green: {
+    color: "#88CA5E",
+  },
+  lavender: {
+    color: "#CDB4DB",
+  },
+  bhagwa: {
+    color: "#FF7F51",
+  },
+  reddishBrown: {
+    color: "#A44A3F",
+  },
+  orange: {
+    color: "#E7625F",
+  },
+};
+
+
+export const currentRegion = regionalThemes.orange;
 
 type paletteType = {
   [key: string]: string;
-};
+}
 
 const paletteLight: paletteType = {
   black: "#292D32", //p2
@@ -18,9 +49,9 @@ const paletteLight: paletteType = {
   g3: "#565656",
   g4: "#E5E5E5",
   g5: "#646464",
-  regionalColor:currentRegion.color,
+  regionalColor:currentRegion?.color,
 };
-
+console.log(currentRegion)
 const paletteDark: paletteType = {
   black: "#292D32",
   green: "#00B894",
@@ -35,11 +66,13 @@ const paletteDark: paletteType = {
   g3: "#565656",
   g4: "#E5E5E5",
   g5: "#646464",
+  regionalColor:currentRegion?.color,
 };
 
 const themeLight = {
   colors: {
-    primary: paletteLight.regionalColor,
+    primary: paletteLight.black,
+    regionalColor:paletteLight.regionalColor,
     success: paletteLight.green,
     error: paletteLight.red,
     background: paletteLight.white,
@@ -91,6 +124,7 @@ const themeDark = {
     primary: paletteDark.white,
     success: paletteDark.green,
     error: paletteDark.red,
+    regionalColor:paletteLight.regionalColor,
     background: paletteDark.black,
     p1: paletteDark.p1,
     p2: paletteDark.p2,
