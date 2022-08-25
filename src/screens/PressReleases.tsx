@@ -124,7 +124,7 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
 }) => {
   const { theme } = useContext(ThemeContext);
   const { articles, articleLoading } = useContext(ArticleContext);
-  const { value: stackNavigator } = useStackNavigator();
+  const { navigation: myNavigation } = useStackNavigator();
   return (
     <MainLayout
       customStyles={getStyle(theme).container}
@@ -150,7 +150,7 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
               time={new Date(item.createdAt).toLocaleString()}
               views={item.views?.toString()}
               onPress={() => {
-                stackNavigator.navigate("Article", { id: item._id });
+                myNavigation.navigate("Article", { id: item._id });
               }}
             />
           )}
