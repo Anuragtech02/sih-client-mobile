@@ -14,10 +14,13 @@ import DrawerNavigation from "./DrawerNavigation";
 import StackNavigatorContext from "./stackNaviagtionContext";
 const App = createBottomTabNavigator();
 
-const AppNavigation: React.FC<{ navigation: any }> = ({ navigation }) => {
+const AppNavigation: React.FC<{ navigation: any; route: any }> = ({
+  navigation,
+  route,
+}) => {
   const { theme } = useContext(ThemeContext);
   return (
-    <StackNavigatorContext.Provider value={{ value: navigation }}>
+    <StackNavigatorContext.Provider value={{ navigation }}>
       <App.Navigator
         screenOptions={{
           tabBarStyle: { backgroundColor: theme.colors.background },
@@ -32,7 +35,9 @@ const AppNavigation: React.FC<{ navigation: any }> = ({ navigation }) => {
             tabBarIcon: ({ focused }) => {
               return (
                 <HomeIcon
-                  color={focused ? theme.colors.primary : theme.colors.white}
+                  color={
+                    focused ? theme.colors.regionalColor : theme.colors.white
+                  }
                   opacity={focused ? 1 : 0}
                 />
               );
@@ -48,7 +53,9 @@ const AppNavigation: React.FC<{ navigation: any }> = ({ navigation }) => {
             tabBarIcon: ({ focused }) => {
               return (
                 <PhotosIcon
-                  color={focused ? theme.colors.primary : theme.colors.white}
+                  color={
+                    focused ? theme.colors.regionalColor : theme.colors.white
+                  }
                   opacity={focused ? 1 : 0}
                 />
               );
@@ -64,9 +71,9 @@ const AppNavigation: React.FC<{ navigation: any }> = ({ navigation }) => {
             tabBarIcon: ({ focused }: { focused: any }) => {
               return (
                 <VideoIcon
-                  color={focused ? theme.colors.primary : theme.colors.g1}
+                  color={focused ? theme.colors.regionalColor : theme.colors.g1}
                   fillColor={
-                    focused ? theme.colors.primary : theme.colors.white
+                    focused ? theme.colors.regionalColor : theme.colors.white
                   }
                   newColor={focused ? "red" : theme.colors.g1}
                   opacity={focused ? 1 : 0}
@@ -84,9 +91,11 @@ const AppNavigation: React.FC<{ navigation: any }> = ({ navigation }) => {
             tabBarIcon: ({ focused }) => {
               return (
                 <SavedIcon
-                  color={focused ? theme.colors.primary : theme.colors.white}
+                  color={
+                    focused ? theme.colors.regionalColor : theme.colors.white
+                  }
                   colorFill={
-                    focused ? theme.colors.primary : theme.colors.white
+                    focused ? theme.colors.regionalColor : theme.colors.white
                   }
                   opacity={focused ? 1 : 0}
                 />
@@ -103,7 +112,9 @@ const AppNavigation: React.FC<{ navigation: any }> = ({ navigation }) => {
             tabBarIcon: ({ focused }) => {
               return (
                 <NotificationsIcon
-                  color={focused ? theme.colors.primary : theme.colors.white}
+                  color={
+                    focused ? theme.colors.regionalColor : theme.colors.white
+                  }
                   opacity={focused ? 1 : 0}
                 />
               );

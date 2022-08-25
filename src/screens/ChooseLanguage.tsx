@@ -49,7 +49,7 @@ const languageOptions = [
     startingLetter: "அ",
   },
   {
-    id: "ma",
+    id: "ml",
     language: "Malayalam-മലയാളം",
     startingLetter: "അ",
   },

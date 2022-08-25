@@ -45,11 +45,13 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
 
   async function confirmCode(cd: string, cb: any) {
     try {
-      await confirmOTP.confirm(code);
+      // const res = await auth().verifyPhoneNumber
+      // let userData = await auth().currentUser?.linkWithCredential(credential);
+      await confirmOTP.confirm(cd);
       if (cb) cb();
       setConfirmOTP(null);
     } catch (error) {
-      console.log(console.log(error), "Invalid code.");
+      console.log(error, "Invalid code.");
     }
   }
 
