@@ -73,7 +73,7 @@ export const TextToSpeechProvider: React.FC<ITextToSpeechContextProvider> = ({
   function readText(text: string) {
     Tts.stop();
     Tts.speak(text);
-    console.log(voices, selectedVoice);
+    // console.log(voices, selectedVoice);
   }
 
   async function updateSpeechRate(rate: number) {

@@ -1,3 +1,5 @@
+export { default as AuthContext, AuthContextProvider } from "./AuthContext";
+
 export { default as ThemeContext, ThemeContextProvider } from "./ThemeContext";
 export {
   default as TextToSpeechContext,

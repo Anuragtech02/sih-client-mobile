@@ -1,4 +1,5 @@
 import { AxiosResponse } from "axios";
+import { Dispatch, SetStateAction } from "react";
 
 export interface IThemeContext {
   theme: any;
@@ -149,4 +150,12 @@ export interface IArticleContext {
   updateViewsByOne: (id: string) => void;
   likeArticle: (id: string) => void;
   saveArticle: (id: string) => void;
+}
+
+export interface IAuthContext {
+  currentUser: any;
+  signInWithPhoneNumber: (number: string) => void;
+  confirmCode: (cd: string, cb: any) => void;
+  code: string;
+  setCode: Dispatch<SetStateAction<string>>;
 }
