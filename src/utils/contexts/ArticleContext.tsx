@@ -29,7 +29,7 @@ export const ArticleContextProvider: React.FC<
     async function fetchArticles() {
       const res = await API_ARTICLE.get("/all");
       setArticles(res.data);
-      console.log({ res });
+      // console.log({ res });
       setArticleLoading(false);
     }
     fetchArticles();

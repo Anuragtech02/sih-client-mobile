@@ -8,7 +8,7 @@ import {
   TextInputChangeEventData,
 } from "react-native";
 import { ITheme } from "../utils/contexts/interfaces";
-import { ThemeContext } from "../utils/contexts/";
+import { AuthContext, ThemeContext } from "../utils/contexts/";
 import Button from "../components/Button";
 import BackArrow from "../assets/icons/BackArrowIcon";
 import MainLayout from "../layouts/MainLayout";
@@ -86,8 +86,16 @@ const SendOTP: React.FC<{ navigation: any }> = ({ navigation }) => {
   };
   const handlePhoneChange = function handlePhoneNumberChange(e: string) {
     const formatedString = formatPN(e);
-    setPhoneNumber(formatedString);
+    setPhoneNumber(e);
   };
+
+  const { signInWithPhoneNumber } = useContext(AuthContext);
+
+  function handleClickSendOTP() {
+    signInWithPhoneNumber(phoneNumber);
+    navigation.navigate("OTPVerificationScreen");
+  }
+
   return (
     <MainLayout
       customStyles={{ backgroundColor: theme.colors.background, flex: 1 }}
@@ -109,12 +117,12 @@ mobile number`}
             keyboardType="numeric"
             style={getStyles(theme).phoneNumber}
             placeholder="(XXX) XXX-XX-XX"
-            maxLength={14}
+            maxLength={10}
           />
         </View>
         <Button
-          disabled={phoneNumber?.length !== 14}
-          onPress={() => navigation.navigate("OTPVerificationScreen")}
+          disabled={phoneNumber?.length !== 10}
+          onPress={handleClickSendOTP}
           customStyle={getStyles(theme).button}
         >
           Send OTP

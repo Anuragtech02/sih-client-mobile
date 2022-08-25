@@ -43,7 +43,7 @@ export const LocaleContextProvider: React.FC<ILocaleContextContextProvider> = ({
     const currentLanguage = await AsyncStorage.getItem(APP_LANGUAGE);
 
     if (currentLanguage) {
-      console.log(currentLanguage);
+      // console.log(currentLanguage);
       setLocaleLanguage(currentLanguage);
     } else {
       let localeCode = DEFAULT_LANGUAGE;

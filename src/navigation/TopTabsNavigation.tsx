@@ -10,10 +10,12 @@ function TopTabsNavigation() {
   const { theme } = useContext(ThemeContext);
   return (
     <Tab.Navigator
-      style={{ marginStart: 24 }}
       initialRouteName="Press Releases"
       screenOptions={{
-        tabBarStyle: { backgroundColor: theme.colors.background },
+        tabBarStyle: {
+          backgroundColor: theme.colors.background,
+          marginStart: 24,
+        },
         tabBarItemStyle: { padding: 0 },
         tabBarIndicatorStyle: {
           backgroundColor: theme.colors.primary,
