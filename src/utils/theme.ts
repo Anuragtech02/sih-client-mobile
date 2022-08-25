@@ -29,7 +29,7 @@ export const regionalThemes = {
 };
 
 
-export const currentRegion = regionalThemes.default;
+export const currentRegion = regionalThemes.blue;
 
 type paletteType = {
   [key: string]: string;
@@ -98,7 +98,7 @@ const themeLight = {
     },
     subTitle: {
       fontFamily: "Poppins-Medium",
-      fontSize: 18,
+      fontSize: 16,
     },
     body: {
       fontFamily: "Inter-Regular",

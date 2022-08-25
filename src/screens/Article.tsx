@@ -55,8 +55,7 @@ function getStyles(theme: ITheme): any {
     contentBody: {
       marginTop: 12,
       color: theme.colors.primary,
-      // fonSize: 18,
-      fontSize: theme.fonts.body.fontSize,
+      fontSize: theme.fonts.subTitle.fontSize,
       fontFamily: theme.fonts.body.fontFamily,
     },
     contentContainer: {
@@ -160,6 +159,22 @@ function getStyles(theme: ITheme): any {
       color: theme.colors.primary,
       fontSize: theme.fonts.body.fontSize,
       fontFamily: theme.fonts.body.fontFamily,
+    },
+    iconWithText: {
+      flexDirection: "row",
+      alignItems: "center",
+      // backgroundColor: "red",
+      // height: 50,
+      marginRight: 15,
+    },
+    icon: {
+      width: 16,
+    },
+    text: {
+      fontSize: theme.fonts.body.fontSize,
+      fontFamily: theme.fonts.body.fontFamily,
+      color: theme.colors.g1,
+      marginStart: 8,
     },
   });
 }
@@ -327,10 +342,10 @@ const Article: React.FC<{ props: any; navigation: any }> = ({
               }}
             >
               <View style={getStyles(theme).iconContainer}>
-                <BackArrowIcon
+                {/* <BackArrowIcon
                   color="white"
                   customOnPress={() => navigation.navigate("Home")}
-                />
+                /> */}
                 <View style={getStyles(theme).shareIconContainer}>
                   <ShareIcon color="white" />
                 </View>
@@ -374,16 +389,28 @@ const Article: React.FC<{ props: any; navigation: any }> = ({
               }}
             >
               <View style={getStyles(theme).propertiesContainer}>
-                <EyeIcon color={theme.colors.g1} />
-                <Text style={getStyles(theme).viewsCount}>1.2k</Text>
-
-                <ClockIcon
-                  customStyle={getStyles(theme).timeContainer}
-                  color={theme.colors.g1}
-                />
-                <Text style={getStyles(theme).time}>30 MAR 2022</Text>
+                <View style={getStyles(theme).iconWithText}>
+                  <EyeIcon
+                    width={18}
+                    customStyle={getStyles(theme).icon}
+                    color={theme.colors.g1}
+                  />
+                  <Text style={getStyles(theme).text}>
+                    {article.views || 0}
+                  </Text>
+                </View>
+                <View style={getStyles(theme).iconWithText}>
+                  <ClockIcon
+                    width={18}
+                    customStyle={getStyles(theme).icon}
+                    color={theme.colors.g1}
+                  />
+                  <Text style={getStyles(theme).text}>
+                    {new Date(article.createdAt).toLocaleDateString()}
+                  </Text>
+                </View>
                 <View style={getStyles(theme).savedContainer}>
-                  <SavedIcon opacity={0} color={theme.colors.primary} />
+                  <ShareIcon width={18} color={theme.colors.primary} />
                 </View>
               </View>
               <Text style={getStyles(theme).content}>{article.title}</Text>

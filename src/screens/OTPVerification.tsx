@@ -183,7 +183,7 @@ number`}
             maxLength={1}
             onChangeText={(pin6) => {
               setPin6(pin6);
-              console.log(pin1 + pin2 + pin3 + pin4 + pin5 + pin6);
+              // console.log(pin1 + pin2 + pin3 + pin4 + pin5 + pin6);
               // confirmCode(pin1 + pin2 + pin3 + pin4 + pin5 + pin6, () => {
               //   navigation.navigate("Home");
               // });

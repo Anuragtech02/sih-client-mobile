@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -6,10 +6,11 @@ import {
   Text,
   View,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import MainLayout from "../layouts/MainLayout";
 import { IArticleCard, ITheme } from "../utils/contexts/interfaces";
-import { ArticleContext, ThemeContext } from "../utils/contexts";
+import { ArticleContext, AuthContext, ThemeContext } from "../utils/contexts";
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 import { Card } from "../components";
 import metrics from "../utils/metrics";
@@ -62,17 +63,15 @@ function getStyle(theme: ITheme): any {
     },
     iconWithText: {
       flexDirection: "row",
-      alignItem: "center",
+      alignItems: "center",
       // backgroundColor: "red",
       // height: 50,
       marginRight: 15,
-      justifyContent: "flex-start",
     },
     icon: {
       width: 16,
     },
     text: {
-      backgroundColor: "blue",
       fontSize: theme.fonts.body.fontSize,
       fontFamily: theme.fonts.body.fontFamily,
       color: theme.colors.g1,
@@ -142,13 +141,10 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
           style={{ width: "100%" }}
           contentContainerStyle={{ marginTop: 12, paddingBottom: 24 }}
           data={articles}
-          keyExtractor={(itme) => itme._id}
+          keyExtractor={(item) => item._id}
           renderItem={({ item }) => (
             <HomeCard
-              image={item.thumbnail}
-              articleHeading={item.title}
-              time={new Date(item.createdAt).toLocaleString()}
-              views={item.views?.toString()}
+              article={item}
               onPress={() => {
                 stackNavigator.navigate("Article", { id: item._id });
               }}
@@ -161,15 +157,37 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
 };
 
 const HomeCard: React.FC<{
-  image: any;
-  articleHeading: string;
-  time: string;
-  views: string;
+  article: any;
   onPress: () => void;
-}> = ({ image, articleHeading, time, views, onPress }) => {
+}> = ({ article, onPress }) => {
+  const {
+    thumbnail: image,
+    title: articleHeading,
+    createdAt: time,
+    views,
+    id: _id,
+  } = article;
   const { theme } = useContext(ThemeContext);
+  const [isSaved, setIsSaved] = useState(true);
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  function handlePressSave() {
+    setIsSaved((prev) => !prev);
+    const newSavedArticles = [...currentUser.savedArticles, article];
+    return () => {
+      setCurrentUser((prev: any) => ({
+        ...prev,
+        savedArticles: newSavedArticles,
+      }));
+    };
+  }
+  function handleShare() {}
+
   return (
-    <Card onPress={onPress} style={getStyle(theme).cardContainer}>
+    <Card
+      activeOpacity={1}
+      onPress={onPress}
+      style={getStyle(theme).cardContainer}
+    >
       <View style={getStyle(theme).innerContainer}>
         <Image source={{ uri: image }} style={getStyle(theme).image} />
         <Text style={getStyle(theme).articelHeading}>{articleHeading}</Text>
@@ -180,7 +198,9 @@ const HomeCard: React.FC<{
               customStyle={getStyle(theme).icon}
               color={theme.colors.g1}
             />
-            <Text style={getStyle(theme).text}>{time}</Text>
+            <Text style={getStyle(theme).text}>
+              {new Date(time).toLocaleDateString()}
+            </Text>
           </View>
 
           <View style={getStyle(theme).iconWithText}>
@@ -193,17 +213,37 @@ const HomeCard: React.FC<{
           </View>
 
           <View style={{ marginStart: "auto", flexDirection: "row" }}>
-            <ShareIcon
-              width={18}
-              color={theme.colors.g1}
-              customStyle={{ marginEnd: 12 }}
-            />
-            <SavedIcon
-              width={18}
-              opacity={0}
-              color={theme.colors.g1}
-              colorFill={theme.colors.white}
-            />
+            <View
+              onStartShouldSetResponder={(event: any) => true}
+              onTouchEnd={(e) => {
+                e.stopPropagation();
+              }}
+            >
+              <TouchableOpacity onPress={handleShare}>
+                <ShareIcon
+                  width={18}
+                  color={theme.colors.g1}
+                  customStyle={{ marginEnd: 12 }}
+                />
+              </TouchableOpacity>
+            </View>
+            <View
+              onStartShouldSetResponder={(event: any) => true}
+              onTouchEnd={(e) => {
+                e.stopPropagation();
+              }}
+            >
+              <TouchableOpacity onPress={handlePressSave}>
+                <SavedIcon
+                  width={18}
+                  opacity={0}
+                  color={isSaved ? theme.colors.regionalColor : theme.colors.g1}
+                  colorFill={
+                    isSaved ? theme.colors.regionalColor : theme.colors.white
+                  }
+                />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </View>

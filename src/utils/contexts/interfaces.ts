@@ -159,4 +159,5 @@ export interface IAuthContext {
   confirmCode: (cd: string, cb: any) => void;
   code: string;
   setCode: Dispatch<SetStateAction<string>>;
+  setCurrentUser:any
 }
