@@ -3,15 +3,16 @@ import { StyleSheet, View } from "react-native";
 
 import Svg, { Path } from "react-native-svg";
 
-const ShareIcon: React.FC<{ color?: string; customStyle?: any }> = ({
-  color,
-  customStyle,
-}) => {
+const ShareIcon: React.FC<{
+  color?: string;
+  customStyle?: any;
+  width?: any;
+}> = ({ color, customStyle, width = "24" }) => {
   return (
     <View style={customStyle}>
       <Svg
         // xmlns="http://www.w3.org/2000/svg"
-        width="24"
+        width={width}
         height="24"
         viewBox="0 0 24 24"
         fill="none"

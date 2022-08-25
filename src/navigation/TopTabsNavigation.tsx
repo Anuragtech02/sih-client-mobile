@@ -12,6 +12,7 @@ function TopTabsNavigation() {
     <Tab.Navigator
       initialRouteName="Press Releases"
       screenOptions={{
+        tabBarScrollEnabled: true,
         tabBarStyle: {
           backgroundColor: theme.colors.background,
           marginStart: 24,

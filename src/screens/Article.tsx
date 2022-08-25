@@ -55,6 +55,7 @@ function getStyles(theme: ITheme): any {
     contentBody: {
       marginTop: 12,
       color: theme.colors.primary,
+      // fonSize: 18,
       fontSize: theme.fonts.body.fontSize,
       fontFamily: theme.fonts.body.fontFamily,
     },
@@ -285,8 +286,6 @@ const Article: React.FC<{ props: any; navigation: any }> = ({
             style={{
               ...getStyles(theme).innerContainer,
               height: headerHeight,
-              zIndex: 1,
-              elevation: 1,
             }}
           >
             <Animated.View
@@ -389,7 +388,9 @@ const Article: React.FC<{ props: any; navigation: any }> = ({
               </View>
               <Text style={getStyles(theme).content}>{article.title}</Text>
               <Text style={getStyles(theme).contentBody}>
-                {article.content[appLanguage]}
+                {article.content[appLanguage] +
+                  article.content[appLanguage] +
+                  article.content[appLanguage]}
               </Text>
             </Animated.View>
           </ScrollView>

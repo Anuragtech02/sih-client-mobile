@@ -24,13 +24,21 @@ const SavedIcon: React.FC<{
   opacity?: any;
   colorFill?: any;
   touchableOpacity?: number;
+  width?: any;
   customOnPress?: any;
-}> = ({ color, opacity, colorFill, touchableOpacity = 1, customOnPress }) => {
+}> = ({
+  color,
+  opacity,
+  colorFill,
+  touchableOpacity = 1,
+  customOnPress,
+  width = "24",
+}) => {
   const { theme } = useContext(ThemeContext);
   return (
     <>
       <Svg
-        width="24"
+        width={width}
         height="24"
         viewBox="0 0 24 24"
         fill="none"
