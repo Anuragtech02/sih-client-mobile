@@ -1,5 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
 import { LocaleContext, ThemeContext } from "../utils/contexts";
@@ -8,6 +14,7 @@ import { CloseIcon, DrawerIcon } from "../assets/icons";
 import { Dropdown } from "react-native-element-dropdown";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { APP_LANGUAGE } from "../utils/constants";
+import { regionalThemes } from "../utils/theme";
 
 const fontSizes = [
   { label: "Small", value: "1" },
@@ -226,7 +233,7 @@ const Settings: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [fontSize, setFontSize] = useState("1");
   const [region, setRegion] = useState("1");
   const [ministry, setMinistry] = useState("1");
-
+  const { currentRegion, setCurrentRegion } = useContext(ThemeContext);
   const { setLocaleLanguage, appLanguage } = useContext(LocaleContext);
 
   function handleChangeLanguage(lang: any) {
@@ -268,8 +275,36 @@ const Settings: React.FC<{ navigation: any }> = ({ navigation }) => {
           myData={ministries}
           onChange={(value: string) => setMinistry(value)}
         />
+        <FlatList
+          data={Object.keys(regionalThemes)}
+          keyExtractor={(item, idx) => item + idx}
+          renderItem={({ item }) => {
+            return (
+              <ThemeCard
+                onPress={() => setCurrentRegion(item)}
+                themeName={item}
+              />
+            );
+          }}
+        />
       </View>
     </MainLayout>
+  );
+};
+
+const ThemeCard: React.FC<{ themeName: string; onPress: any }> = ({
+  themeName,
+  onPress,
+}) => {
+  return (
+    <TouchableOpacity
+      style={{
+        width: 50,
+        height: 50,
+        backgroundColor: regionalThemes[themeName].color,
+      }}
+      onPress={onPress}
+    ></TouchableOpacity>
   );
 };
 

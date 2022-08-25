@@ -1,4 +1,4 @@
-export const regionalThemes = {
+export const regionalThemes:any = {
   default: {
     color: "#292D32",
   },
@@ -49,7 +49,6 @@ const paletteLight: paletteType = {
   g3: "#565656",
   g4: "#E5E5E5",
   g5: "#646464",
-  regionalColor: currentRegion?.color,
 };
 console.log(currentRegion);
 const paletteDark: paletteType = {
@@ -66,13 +65,11 @@ const paletteDark: paletteType = {
   g3: "#565656",
   g4: "#E5E5E5",
   g5: "#646464",
-  regionalColor: currentRegion?.color,
 };
 
 const themeLight = {
   colors: {
     primary: paletteLight.black,
-    regionalColor: paletteLight.regionalColor,
     success: paletteLight.green,
     error: paletteLight.red,
     background: paletteLight.white,
@@ -125,7 +122,6 @@ const themeDark = {
     primary: paletteDark.white,
     success: paletteDark.green,
     error: paletteDark.red,
-    regionalColor: paletteLight.regionalColor,
     background: paletteDark.black,
     p1: paletteDark.p1,
     p2: paletteDark.p2,

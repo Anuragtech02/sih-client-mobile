@@ -5,6 +5,7 @@ import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
 import BackArrow from "../assets/icons/BackArrowIcon";
 import { DrawerIcon } from "../assets/icons";
+import WebView from "react-native-webview";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -31,16 +32,7 @@ const FactChecker: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <MainLayout customStyles={getStyle(theme).container}>
-      <View style={getStyle(theme).iconContainer}>
-        <BackArrow
-          customOnPress={() => navigation.navigate("Home")}
-          color={theme.colors.primary}
-        />
-        <View style={{ marginStart: "auto" }}>
-          <DrawerIcon customOnPress={() => navigation.openDrawer()} />
-        </View>
-      </View>
-      <Text style={getStyle(theme).heading}>FACT CHECKER</Text>
+      <WebView source={{ uri: "https://factcheck.pib.gov.in/" }}></WebView>
     </MainLayout>
   );
 };

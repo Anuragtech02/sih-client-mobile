@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Text, TouchableOpacity, StyleSheet, View } from "react-native";
 import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
+import { regionalThemes } from "../utils/theme";
 
 interface IButton {
   children: React.ReactNode;
@@ -18,13 +19,14 @@ function getVariantStyle(
   theme: ITheme,
   variant: string,
   target: string,
-  isDarkMode: boolean
+  isDarkMode: boolean,
+  color: string
 ) {
   if (target === "container") {
     switch (variant) {
       case "primary": {
         return {
-          backgroundColor: theme.colors.regionalColor,
+          backgroundColor: color,
           borderWidth: 0,
           borderColor: "transparent",
         };
@@ -33,7 +35,7 @@ function getVariantStyle(
         return {
           backgroundColor: "transparent",
           borderWidth: 2,
-          borderColor: theme.colors.primary,
+          borderColor: color,
         };
       }
       case "tertiary": {
@@ -47,17 +49,18 @@ function getVariantStyle(
     switch (variant) {
       case "primary": {
         return {
-          color: isDarkMode ? theme.colors.black : theme.colors.white,
+          // color: isDarkMode ? theme.colors.black : theme.colors.white,
+          color: theme.colors.white,
         };
       }
       case "secondary": {
         return {
-          color: theme.colors.primary,
+          color: color,
         };
       }
       case "tertiary": {
         return {
-          color: theme.colors.primary,
+          color: color,
         };
       }
       default:
@@ -69,13 +72,14 @@ function getVariantStyle(
 function getStyles(
   theme: ITheme,
   variant: "primary" | "secondary" | "tertiary",
-  isDarkMode: boolean
+  isDarkMode: boolean,
+  color: string
 ): any {
   return StyleSheet.create({
     container: {
       // width: "100%",
       borderRadius: 8,
-      ...getVariantStyle(theme, variant, "container", isDarkMode),
+      ...getVariantStyle(theme, variant, "container", isDarkMode, color),
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -94,7 +98,7 @@ function getStyles(
     },
     text: {
       fontFamily: theme.fonts.body.fontFamily,
-      ...getVariantStyle(theme, variant, "text", isDarkMode),
+      ...getVariantStyle(theme, variant, "text", isDarkMode, color),
       fontSize: theme.fonts.body.fontSize,
       fontWeight: "500",
     },
@@ -111,22 +115,51 @@ const Button: React.FC<IButton> = ({
   variant = "primary",
   ...remaining
 }) => {
-  const { theme, isDarkMode } = useContext(ThemeContext);
+  const { theme, isDarkMode, currentRegion } = useContext(ThemeContext);
   return (
     <View
-      style={[getStyles(theme, variant, isDarkMode).container, customStyle]}
+      style={[
+        getStyles(
+          theme,
+          variant,
+          isDarkMode,
+          regionalThemes[currentRegion].color
+        ).container,
+        customStyle,
+      ]}
     >
       <TouchableOpacity
         onPress={onPress}
         disabled={disabled}
         style={{
-          ...getStyles(theme, variant, isDarkMode).innerContainer,
-          ...(disabled ? getStyles(theme, variant, isDarkMode).disabled : {}),
+          ...getStyles(
+            theme,
+            variant,
+            isDarkMode,
+            regionalThemes[currentRegion].color
+          ).innerContainer,
+          ...(disabled
+            ? getStyles(
+                theme,
+                variant,
+                isDarkMode,
+                regionalThemes[currentRegion].color
+              ).disabled
+            : {}),
         }}
         {...remaining}
       >
         {position && position === "left" && IconComp}
-        <Text style={getStyles(theme, variant, isDarkMode).text}>
+        <Text
+          style={
+            getStyles(
+              theme,
+              variant,
+              isDarkMode,
+              regionalThemes[currentRegion].color
+            ).text
+          }
+        >
           {children}
         </Text>
         {position && position === "right" && IconComp}

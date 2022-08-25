@@ -21,3 +21,4 @@ export { default as Videos } from "./Videos";
 export { default as MediaInvitations } from "./MediaInvitaions";
 export { default as SavedReleases } from "./SavedReleases";
 export { default as Register } from "./Register";
+export { default as Leaderboard } from "./Leaderboard";

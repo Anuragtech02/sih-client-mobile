@@ -17,6 +17,7 @@ import {
   AuthContextProvider,
 } from "./src/utils/contexts/";
 import { LogBox } from "react-native";
+import Leaderboard from "./src/screens/Leaderboard";
 
 const App = () => {
   React.useEffect(() => {
@@ -37,6 +38,7 @@ const App = () => {
               <NavigationContainer>
                 {/* <Settings navigation={""} /> */}
                 <AuthNavigation />
+                {/* <Leaderboard /> */}
                 {/* <Register navigation={""} /> */}
                 {/* <Article /> */}
                 {/* <AppNavigation /> */}

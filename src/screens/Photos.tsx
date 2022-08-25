@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { StyleSheet, Text, Image, View } from "react-native";
 import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
@@ -6,6 +6,11 @@ import { ThemeContext } from "../utils/contexts";
 import { Card } from "../components";
 import { ShareIcon } from "../assets/icons";
 import { FlatList } from "react-native-gesture-handler";
+import axios from "axios";
+
+export const API_IMAGES = axios.create({
+  baseURL: `https://dsalgo.tech/image`,
+});
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -98,6 +103,13 @@ const data = [
 
 const Photos: React.FC = () => {
   const { theme } = useContext(ThemeContext);
+  async function fetchPhotos() {
+    const res = await API_IMAGES.get("/all");
+    console.log(res?.data);
+  }
+  useEffect(() => {
+    fetchPhotos();
+  }, []);
   return (
     <MainLayout customStyles={getStyle(theme).container}>
       <FlatList
