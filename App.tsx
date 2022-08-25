@@ -1,7 +1,7 @@
 import React from "react";
 import AuthNavigation from "./src/navigation/AuthNavigation";
 import { NavigationContainer } from "@react-navigation/native";
-import { About, Article, Home } from "./src/screens";
+import { About, Article, Home, Register } from "./src/screens";
 import TopTabsNavigation from "./src/navigation/TopTabsNavigation";
 import {
   notificationServices,
@@ -34,7 +34,8 @@ const App = () => {
           <TextToSpeechProvider>
             <ArticleContextProvider>
               <NavigationContainer>
-                <AuthNavigation />
+                {/* <AuthNavigation /> */}
+                <Register />
                 {/* <Article /> */}
                 {/* <AppNavigation /> */}
               </NavigationContainer>

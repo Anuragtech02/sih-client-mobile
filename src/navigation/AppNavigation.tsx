@@ -32,7 +32,7 @@ const AppNavigation: React.FC<{ navigation: any }> = ({ navigation }) => {
             tabBarIcon: ({ focused }) => {
               return (
                 <HomeIcon
-                  color={focused ? theme.colors.primary : "white"}
+                  color={focused ? theme.colors.primary : theme.colors.white}
                   opacity={focused ? 1 : 0}
                 />
               );
@@ -48,7 +48,7 @@ const AppNavigation: React.FC<{ navigation: any }> = ({ navigation }) => {
             tabBarIcon: ({ focused }) => {
               return (
                 <PhotosIcon
-                  color={focused ? theme.colors.primary : "white"}
+                  color={focused ? theme.colors.primary : theme.colors.white}
                   opacity={focused ? 1 : 0}
                 />
               );
@@ -64,9 +64,11 @@ const AppNavigation: React.FC<{ navigation: any }> = ({ navigation }) => {
             tabBarIcon: ({ focused }: { focused: any }) => {
               return (
                 <VideoIcon
-                  color={focused ? theme.colors.primary : "#989898"}
-                  fillColor={focused ? theme.colors.primary : "white"}
-                  newColor={focused ? "red" : "#989898"}
+                  color={focused ? theme.colors.primary : theme.colors.g1}
+                  fillColor={
+                    focused ? theme.colors.primary : theme.colors.white
+                  }
+                  newColor={focused ? "red" : theme.colors.g1}
                   opacity={focused ? 1 : 0}
                 />
               );
@@ -82,8 +84,10 @@ const AppNavigation: React.FC<{ navigation: any }> = ({ navigation }) => {
             tabBarIcon: ({ focused }) => {
               return (
                 <SavedIcon
-                  color={focused ? theme.colors.primary : "white"}
-                  colorFill={focused ? theme.colors.primary : "white"}
+                  color={focused ? theme.colors.primary : theme.colors.white}
+                  colorFill={
+                    focused ? theme.colors.primary : theme.colors.white
+                  }
                   opacity={focused ? 1 : 0}
                 />
               );
@@ -99,7 +103,7 @@ const AppNavigation: React.FC<{ navigation: any }> = ({ navigation }) => {
             tabBarIcon: ({ focused }) => {
               return (
                 <NotificationsIcon
-                  color={focused ? theme.colors.primary : "white"}
+                  color={focused ? theme.colors.primary : theme.colors.white}
                   opacity={focused ? 1 : 0}
                 />
               );

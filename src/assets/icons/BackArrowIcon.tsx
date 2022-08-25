@@ -7,7 +7,7 @@ const BackArrowIcon: React.FC<{
   customStyles?: any;
   customOnPress?: any;
   color?: string;
-}> = ({ customOnPress, customStyles, color = "#292D32" }) => {
+}> = ({ customOnPress, customStyles, color }) => {
   return (
     <TouchableOpacity
       activeOpacity={0.5}

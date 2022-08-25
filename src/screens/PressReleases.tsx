@@ -5,63 +5,107 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
 } from "react-native";
 import MainLayout from "../layouts/MainLayout";
 import { IArticleCard, ITheme } from "../utils/contexts/interfaces";
 import { ArticleContext, ThemeContext } from "../utils/contexts";
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
-import { SavedCard } from "../components";
+import { Card } from "../components";
 import metrics from "../utils/metrics";
 import { MAIN_LAYOUT_DEFAULT_PADDING } from "../utils/constants";
 import { useStackNavigator } from "../navigation/stackNaviagtionContext";
+import { ClockIcon, EyeIcon, SavedIcon, ShareIcon } from "../assets/icons";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
+    articelHeading: {
+      fontSize: theme.fonts.subTitle.fontSize,
+      fontFamily: theme.fonts.subTitle.fontFamily,
+      color: theme.colors.primary,
+      marginTop: 8,
+    },
+    cardContainer: {
+      // borderTopWidth: 1,
+      borderBottomWidth: 1,
+      borderRadius: 0,
+      borderColor: theme.colors.g4,
+      marginVertical: 12,
+      marginHorizontal: 12,
+    },
     container: {
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
       backgroundColor: theme.colors.background,
-      padding: 0,
-      margin: 0,
+    },
+    eyeContainer: {
+      marginStart: 20,
+    },
+    iconContainer: {
+      flexDirection: "row",
+      marginTop: 12,
+      alignItems: "center",
+    },
+    innerContainer: {
+      width: "100%",
+      // padding: 8,
     },
     heading: {
       fontSize: theme.fonts.title.fontSize,
       fontFamily: theme.fonts.title.fontFamily,
     },
+    image: {
+      width: "100%",
+      height: 100,
+      borderRadius: 8,
+    },
+
+    time: {
+      fontSize: theme.fonts.body.fontSize,
+      fontFamily: theme.fonts.body.fontFamily,
+      color: theme.colors.g1,
+      marginStart: 8,
+    },
+    views: {
+      fontSize: theme.fonts.body.fontSize,
+      fontFamily: theme.fonts.body.fontFamily,
+      color: theme.colors.g1,
+      marginStart: 8,
+    },
   });
 }
 
-const data = [
-  {
-    id: "1",
-    image: require("../assets/SavedPhotos.png"),
-    heading: "President of india reached the netherlands yesterday",
-    time: "2 hours ago",
-    views: "1.2k",
-  },
-  {
-    id: "2",
-    image: require("../assets/SavedPhotos.png"),
-    heading: "President of india reached the netherlands yesterday",
-    time: "2 hours ago",
-    views: "1.2k",
-  },
-  {
-    id: "3",
-    image: require("../assets/SavedPhotos.png"),
-    heading: "President of india reached the netherlands yesterday",
-    time: "2 hours ago",
-    views: "1.2k",
-  },
-  {
-    id: "4",
-    image: require("../assets/SavedPhotos.png"),
-    heading: "President of india reached the netherlands yesterday",
-    time: "2 hours ago",
-    views: "1.2k",
-  },
-];
+// const data = [
+//   {
+//     id: "1",
+//     image: require("../assets/PressReleases.png"),
+//     heading: "President of india reached the netherlands yesterday",
+//     time: "2 hours ago",
+//     views: "1.2k",
+//   },
+//   {
+//     id: "2",
+//     image: require("../assets/PressReleases.png"),
+//     heading: "President of india reached the netherlands yesterday",
+//     time: "2 hours ago",
+//     views: "1.2k",
+//   },
+//   {
+//     id: "3",
+//     image: require("../assets/PressReleases.png"),
+//     heading: "President of india reached the netherlands yesterday",
+//     time: "2 hours ago",
+//     views: "1.2k",
+//   },
+//   {
+//     id: "4",
+//     image: require("../assets/SavedPhotos.png"),
+//     heading: "President of india reached the netherlands yesterday",
+//     time: "2 hours ago",
+//     views: "1.2k",
+//   },
+// ];
 
 const PressReleases: React.FC<{ navigation: any; route: any }> = ({
   navigation,
@@ -89,7 +133,7 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
           data={articles}
           keyExtractor={(itme) => itme._id}
           renderItem={({ item }) => (
-            <SavedCard
+            <HomeCard
               image={item.thumbnail}
               articleHeading={item.title}
               time={new Date(item.createdAt).toLocaleString()}
@@ -104,6 +148,45 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
     </MainLayout>
   );
 };
+
+const HomeCard: React.FC<{
+  image: any;
+  articleHeading: string;
+  time: string;
+  views: string;
+  onPress: () => void;
+}> = ({ image, articleHeading, time, views, onPress }) => {
+  const { theme } = useContext(ThemeContext);
+  return (
+    <Card onPress={onPress} style={getStyle(theme).cardContainer}>
+      <View style={getStyle(theme).innerContainer}>
+        <Image source={{ uri: image }} style={getStyle(theme).image} />
+        <Text style={getStyle(theme).articelHeading}>{articleHeading}</Text>
+        <View style={getStyle(theme).iconContainer}>
+          <ClockIcon color={theme.colors.g1} />
+          <Text style={getStyle(theme).time}>{time}</Text>
+          <View style={getStyle(theme).eyeContainer}>
+            <EyeIcon color={theme.colors.g1} />
+          </View>
+          <Text style={getStyle(theme).views}>{views}</Text>
+
+          <View style={{ marginStart: "auto", flexDirection: "row" }}>
+            <ShareIcon
+              color={theme.colors.g1}
+              customStyle={{ marginEnd: 12 }}
+            />
+            <SavedIcon
+              opacity={0}
+              color={theme.colors.g1}
+              colorFill={theme.colors.white}
+            />
+          </View>
+        </View>
+      </View>
+    </Card>
+  );
+};
+
 export default PressReleases;
 
 const LoadingSkeleton = () => {
