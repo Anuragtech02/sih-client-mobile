@@ -288,9 +288,10 @@ function getStyles(theme: ITheme): any {
 const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
 
-  const [gender, setGender] = useState<String>();
-  const [region, setRegion] = useState<any>("");
-  const [ministry, setMinistry] = useState<any>("");
+  const [name, setName] = useState<any>();
+  const [gender, setGender] = useState<any>();
+  const [region, setRegion] = useState<any>();
+  const [ministry, setMinistry] = useState<any>();
   const [image, setImage] = useState<any>(
     require("../assets/avatars/Starting/StartingAvatar.png")
   );
@@ -299,7 +300,6 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
     <MainLayout customStyles={getStyles(theme).container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={getStyles(theme).innerContainer}>
-          <BackArrowIcon color={theme.colors.primary} />
           <Text style={getStyles(theme).heading}>Register</Text>
           <View style={getStyles(theme).imageContainer}>
             <Image
@@ -315,6 +315,7 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
           <View style={getStyles(theme).searchContainer}>
             <TextInput
               style={getStyles(theme).searchInput}
+              onChangeText={(username) => setName(username)}
               placeholder="Enter Full Name"
             />
           </View>
@@ -416,7 +417,7 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
           <DropdownComponent
             value={region}
             myData={regions}
-            onChange={(value: string) => setRegion(value)}
+            onChange={(label: string) => setRegion(label)}
             colorStyle={{
               tintColor: region === "" ? theme.colors.g1 : theme.colors.primary,
             }}
@@ -433,7 +434,12 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
             }}
           />
           <View style={getStyles(theme).buttonContainer}>
-            <Button onPress={() => navigation.navigate("AppNavigation")}>
+            <Button
+              disabled={gender && name && region && ministry ? false : true}
+              onPress={() => {
+                navigation.navigate("AppNavigation");
+              }}
+            >
               Register
             </Button>
           </View>
