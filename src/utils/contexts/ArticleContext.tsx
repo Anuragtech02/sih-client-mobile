@@ -27,7 +27,7 @@ export const ArticleContextProvider: React.FC<
 
   useEffect(() => {
     async function fetchArticles() {
-      const res = await API_ARTICLE.get("/all");
+      const res = await API_ARTICLE.get("/rss");
       setArticles(res.data);
       // console.log({ res });
       setArticleLoading(false);

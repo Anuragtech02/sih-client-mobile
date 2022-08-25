@@ -33,6 +33,7 @@ import {
 import MainLayout from "../layouts/MainLayout";
 import TextToSpeech from "../utils/contexts/TextToSpeech";
 import Slider from "@react-native-community/slider";
+import WebView from "react-native-webview";
 
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
@@ -457,4 +458,10 @@ const Article: React.FC<{ props: any; navigation: any }> = ({
   );
 };
 
-export default Article;
+const WebViewArticle: React.FC<{ route: any }> = ({ route }) => {
+  const adb = route.params.value;
+  console.log(adb);
+  return <WebView source={{ uri: adb }}></WebView>;
+};
+
+export default WebViewArticle;
