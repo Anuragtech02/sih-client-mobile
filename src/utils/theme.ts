@@ -1,3 +1,5 @@
+import { currentRegion } from "./contexts/ThemeContext";
+
 type paletteType = {
   [key: string]: string;
 };
@@ -17,6 +19,7 @@ const paletteLight: paletteType = {
   g3: "#565656",
   g4: "#E5E5E5",
   g5: "#646464",
+  regionalColor:currentRegion.color,
 };
 
 const paletteDark: paletteType = {
@@ -37,7 +40,7 @@ const paletteDark: paletteType = {
 
 const themeLight = {
   colors: {
-    primary: paletteLight.black,
+    primary: paletteLight.regionalColor,
     success: paletteLight.green,
     error: paletteLight.red,
     background: paletteLight.white,
@@ -62,11 +65,11 @@ const themeLight = {
     },
     subTitle: {
       fontFamily: "Poppins-Medium",
-      fontSize: 20,
+      fontSize: 18,
     },
     body: {
       fontFamily: "Inter-Regular",
-      fontSize: 16,
+      fontSize: 14,
       fontWeight: "400",
     },
   },
@@ -78,7 +81,7 @@ const themeLight = {
     xl: 40,
   },
   default: {
-    fontSize: 16,
+    fontSize: 14,
     color: paletteLight.black,
     background: paletteLight.white,
   },
