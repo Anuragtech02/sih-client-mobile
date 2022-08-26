@@ -274,11 +274,18 @@ const Article: React.FC<{ props: any; navigation: any }> = ({
   //@ts-ignore
   const { id } = props.route.params;
   const { appLanguage } = useContext(LocaleContext);
+  const [content, setContent] = useState<any>({});
 
   useEffect(() => {
     async function fetchArticle() {
       const res = await getArticle(id);
       setArticle(res.data);
+      Object.keys(res.data.content).forEach((item) => {
+        setContent(
+          Object.values(res.data.content[item]).join("").replace("#$#", "\n")
+        );
+      });
+
       setLoading(false);
     }
     if (id) fetchArticle();
@@ -302,6 +309,7 @@ const Article: React.FC<{ props: any; navigation: any }> = ({
             style={{
               ...getStyles(theme).innerContainer,
               height: headerHeight,
+              display: "none",
             }}
           >
             <Animated.View
@@ -416,9 +424,7 @@ const Article: React.FC<{ props: any; navigation: any }> = ({
               </View>
               <Text style={getStyles(theme).content}>{article.title}</Text>
               <Text style={getStyles(theme).contentBody}>
-                {article.content[appLanguage] +
-                  article.content[appLanguage] +
-                  article.content[appLanguage]}
+                {content[appLanguage]}
               </Text>
             </Animated.View>
           </ScrollView>
