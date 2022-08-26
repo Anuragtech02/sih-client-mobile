@@ -281,10 +281,19 @@ const StyledCard: React.FC<{
       >
         {data?.startingLetter}
       </Text>
-      {selectedId === data?.id ?? (
+      {selectedId === data?.id ? (
         <View style={getStyles(theme).tickContainer}>
           <TickIcon />
         </View>
+      ) : selectedId ? (
+        <View
+          style={{
+            ...getStyles(theme).tickContainer,
+            backgroundColor: "rgba(255,255,255,0.4)",
+          }}
+        ></View>
+      ) : (
+        ""
       )}
     </Card>
   );
