@@ -21,7 +21,7 @@ import StackNavigatorContext, {
 } from "../navigation/stackNaviagtionContext";
 import { ClockIcon, EyeIcon, SavedIcon, ShareIcon } from "../assets/icons";
 import { regionalThemes } from "../utils/theme";
-import { DropdownComponent } from "./Settings";
+import { Dropdown } from "react-native-element-dropdown";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -134,10 +134,18 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
   const [filter, setFilter] = useState("");
   const { theme, currentRegion } = useContext(ThemeContext);
   const { articles, articleLoading } = useContext(ArticleContext);
+  const [tempArticles, setTempArticles] = useState<any>();
   const { navigation: myNavigation } = useStackNavigator();
   useEffect(() => {
     console.log(filter);
   });
+  useEffect(() => {
+    setTempArticles(articles);
+  }, [articles]);
+  function handleDateFilter(e: any) {
+    setFilter(e.target.value);
+    setTempArticles(articles);
+  }
   return (
     <MainLayout
       customStyles={getStyle(theme).container}
@@ -155,7 +163,7 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
         <DropdownComponent
           style={{ width: 150, marginRight: 10, marginTop: 5 }}
           value={filter}
-          onChange={setFilter}
+          onChange={handleDateFilter}
           myData={filterOptions}
         />
       </View>
@@ -170,7 +178,7 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
           showsVerticalScrollIndicator={false}
           style={{ width: "100%" }}
           contentContainerStyle={{ paddingBottom: 24 }}
-          data={articles}
+          data={tempArticles}
           keyExtractor={(item) => item._id}
           renderItem={({ item }) => <HomeCard article={item} />}
         />
@@ -178,7 +186,42 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
     </MainLayout>
   );
 };
-
+export const DropdownComponent: React.FC<{
+  myData?: any;
+  value: string;
+  style?: any;
+  onChange: (value: any) => void;
+}> = ({ myData, value, onChange, style }) => {
+  const renderItem = (item: any) => {
+    return (
+      <View style={getStyle(theme).item}>
+        <Text style={getStyle(theme).textItem}>{item.label}</Text>
+      </View>
+    );
+  };
+  const { theme } = useContext(ThemeContext);
+  return (
+    <Dropdown
+      style={{ ...getStyle(theme).dropdown, ...style }}
+      placeholderStyle={getStyle(theme).placeholderStyle}
+      selectedTextStyle={getStyle(theme).selectedTextStyle}
+      inputSearchStyle={getStyle(theme).inputSearchStyle}
+      iconStyle={getStyle(theme).iconStyle}
+      data={myData}
+      containerStyle={getStyle(theme).dropdownItemContainer}
+      iconColor={theme.colors.g1}
+      showsVerticalScrollIndicator={false}
+      maxHeight={300}
+      labelField="label"
+      valueField="value"
+      placeholder="Select item"
+      searchPlaceholder="Search..."
+      value={value}
+      onChange={onChange}
+      renderItem={renderItem}
+    />
+  );
+};
 const HomeCard: React.FC<{
   article: any;
 }> = ({ article }) => {
