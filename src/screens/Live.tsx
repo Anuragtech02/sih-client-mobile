@@ -7,6 +7,8 @@ import {
   Text,
   ToastAndroid,
   View,
+  TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
@@ -14,8 +16,8 @@ import { ThemeContext } from "../utils/contexts";
 import YoutubePlayer, { getYoutubeMeta } from "react-native-youtube-iframe";
 import metrics from "../utils/metrics";
 import { getYouTubeID } from "../utils";
-import { PinkThemeIcon, ShareIcon } from "../assets/icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { PinkThemeIcon } from "../assets/icons";
+import { BackArrowIcon, ShareIcon } from "../assets/icons";
 import {
   Collapse,
   CollapseHeader,
@@ -40,7 +42,7 @@ function getStyle(theme: ITheme): any {
       fontFamily: theme.fonts.title.fontFamily,
     },
     metaData: {
-      marginTop: 10,
+      // marginTop: 10,
     },
     shareContainer: {
       flexDirection: "row",
@@ -52,8 +54,9 @@ function getStyle(theme: ITheme): any {
       color: theme.colors.primary,
     },
     description: {
-      fontSize: theme.fonts.subTitle.fontSize,
-      lineHeight: 30,
+      // fontSize: theme.fonts.subTitle.fontSize,
+      lineHeight: 20,
+      fontSize: 14,
     },
   });
 }
@@ -62,10 +65,10 @@ function Live() {
   const { theme } = useContext(ThemeContext);
   const [videos, setVideos] = useState<any>([]);
   const [loading, setLoading] = useState(true);
+  const [mainVideos, setMainVideos] = useState([]);
   const [player, setPlayer] = useState<any>({});
 
   const [metaData, setMetaData] = useState<any>({});
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -92,7 +95,7 @@ function Live() {
       });
       Promise.all(promises)
         .then((res: any) => {
-          setVideos(
+          setMainVideos(
             videos.map((video: any, index: number) => {
               return {
                 ...video,
@@ -121,7 +124,7 @@ function Live() {
         <>
           {player && (
             <YoutubePlayer
-              height={250}
+              height={210}
               width={metrics.screenWidth}
               videoId={player?.videoId}
               onChangeState={(event: any) => {
@@ -131,71 +134,76 @@ function Live() {
               }}
             />
           )}
-          <Collapse
-            style={{
-              width: "100%",
-            }}
-            touchableOpacityProps={{
-              activeOpacity: 0.8,
-            }}
-          >
-            <CollapseHeader>
-              <View style={getStyle(theme).metaData}>
-                <Text style={getStyle(theme).title}>{metaData.title}</Text>
-                <View style={getStyle(theme).shareContainer}>
-                  <Text style={getStyle(theme).description}>Description</Text>
-                  <View>
-                    <TouchableOpacity onPress={() => console.log("clicked")}>
-                      <ShareIcon color="white" />
-                    </TouchableOpacity>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <Collapse
+              style={{
+                width: "100%",
+              }}
+              touchableOpacityProps={{
+                activeOpacity: 0.8,
+              }}
+            >
+              <CollapseHeader>
+                <View style={getStyle(theme).metaData}>
+                  <Text style={getStyle(theme).title}>{metaData.title}</Text>
+                  <View style={getStyle(theme).shareContainer}>
+                    <Text style={getStyle(theme).description}>Description</Text>
+                    <View>
+                      <TouchableOpacity onPress={() => console.log("clicked")}>
+                        <ShareIcon color="white" />
+                      </TouchableOpacity>
+                    </View>
+                    <BackArrowIcon color="black" />
                   </View>
                 </View>
-              </View>
-            </CollapseHeader>
-            <CollapseBody style={{ marginTop: 20 }}>
-              <Text style={getStyle(theme).description}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                eu turpis molestie, dictum est a, mattis tellus. Sed dignissim,
-                metus nec fringilla accumsan, risus sem sollicitudin lacus, ut
-                interdum tellus elit sed risus. Maecenas eget condimentum velit,
-                sit amet feugiat lectus. Class aptent taciti sociosqu ad litora
-                torquent per conubia nostra, per inceptos himenaeos. Praesent
-                auctor purus luctus enim egestas, ac scelerisque ante pulvinar.
-                Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor
-                urna. Curabitur vel bibendum lorem. Morbi convallis convallis
-                diam sit amet lacinia. Aliquam in elementum tellus.
-              </Text>
-            </CollapseBody>
-          </Collapse>
-          <View
-            style={{
-              width: "100%",
-              backgroundColor: theme.colors.g3,
-              height: 1,
-              marginTop: 30,
-            }}
-          ></View>
-          <FlatList
-            data={videos}
-            renderItem={({ item }: any) => (
-              <Pressable
-                onPress={() => {
-                  setLoading(true);
-                  // console.log("Clicked");
-                  setPlayer(
-                    videos[
-                      videos.findIndex(
-                        (video: any) => video.videoId === item.videoId
-                      )
-                    ]
-                  );
-                  setLoading(false);
-                }}
-              >
-                <VideoItem videoItem={item} />
-              </Pressable>
-            )}
-          />
+              </CollapseHeader>
+              <CollapseBody style={{ marginTop: 20 }}>
+                <Text style={getStyle(theme).description}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                  eu turpis molestie, dictum est a, mattis tellus. Sed
+                  dignissim, metus nec fringilla accumsan, risus sem
+                  sollicitudin lacus, ut interdum tellus elit sed risus.
+                  Maecenas eget condimentum velit, sit amet feugiat lectus.
+                  Class aptent taciti sociosqu ad litora torquent per conubia
+                  nostra, per inceptos himenaeos. Praesent auctor purus luctus
+                  enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus
+                  ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel
+                  bibendum lorem. Morbi convallis convallis diam sit amet
+                  lacinia. Aliquam in elementum tellus.
+                </Text>
+              </CollapseBody>
+            </Collapse>
+            <View
+              style={{
+                width: "100%",
+                backgroundColor: theme.colors.g4,
+                height: 1,
+                marginTop: 30,
+              }}
+            ></View>
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              data={mainVideos}
+              renderItem={({ item }: any) => (
+                <Pressable
+                  onPress={() => {
+                    setLoading(true);
+                    // console.log("Clicked");
+                    setPlayer(
+                      mainVideos[
+                        mainVideos.findIndex(
+                          (video: any) => video.videoId === item.videoId
+                        )
+                      ]
+                    );
+                    setLoading(false);
+                  }}
+                >
+                  <VideoItem videoItem={item} />
+                </Pressable>
+              )}
+            />
+          </ScrollView>
         </>
       )}
     </MainLayout>
@@ -217,7 +225,7 @@ const VideoItem: React.FC<{ videoItem: any }> = ({ videoItem }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <View style={{ marginVertical: 20, width: "100%" }}>
+    <View style={{ marginTop: 5, width: "100%" }}>
       <View
         style={{
           flexDirection: "row",
@@ -236,7 +244,7 @@ const VideoItem: React.FC<{ videoItem: any }> = ({ videoItem }) => {
       <View
         style={{
           width: "100%",
-          backgroundColor: theme.colors.g3,
+          backgroundColor: theme.colors.g4,
           height: 1,
           marginTop: 10,
         }}

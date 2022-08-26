@@ -28,6 +28,7 @@ import {
 } from "../assets/icons";
 import { regionalThemes } from "../utils/theme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Dropdown } from "react-native-element-dropdown";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -42,13 +43,32 @@ function getStyle(theme: ITheme): any {
       borderBottomWidth: 1,
       borderRadius: 0,
       borderColor: theme.colors.g4,
-      marginVertical: 12,
+      marginBottom: 12,
       marginHorizontal: 12,
     },
     container: {
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
+      backgroundColor: theme.colors.background,
+    },
+    dropdown: {
+      height: 50,
+      backgroundColor: theme.colors.background,
+      borderRadius: 4,
+      padding: 12,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 1.41,
+      color: theme.colors.primary,
+      elevation: 2,
+      marginBottom: 24,
+    },
+    dropdownItemContainer: {
       backgroundColor: theme.colors.background,
     },
     eyeContainer: {
@@ -94,6 +114,31 @@ function getStyle(theme: ITheme): any {
       color: theme.colors.g1,
       marginStart: 8,
     },
+    iconStyle: {
+      width: 20,
+      height: 20,
+    },
+    inputSearchStyle: {
+      height: 40,
+      fontSize: 16,
+      backgroundColor: theme.colors.background,
+    },
+    placeholderStyle: {
+      fontSize: theme.fonts.subTitle.fontSize,
+      fontFamily: theme.fonts.body.fontFamily,
+      color: theme.colors.g1,
+    },
+    selectedTextStyle: {
+      fontSize: theme.fonts.subTitle.fontSize,
+      fontFamily: theme.fonts.body.fontFamily,
+      color: theme.colors.primary,
+    },
+    selectSize: {
+      fontSize: theme.fonts.subTitle.fontSize,
+      fontFamily: theme.fonts.body.fontFamily,
+      color: theme.colors.g1,
+      marginBottom: 8,
+    },
   });
 }
 
@@ -127,19 +172,54 @@ function getStyle(theme: ITheme): any {
 //     views: "1.2k",
 //   },
 // ];
-
+const filterOptions = [
+  { label: "Today", value: "today" },
+  { label: "Yesterday", value: "yesterday" },
+  { label: "Last Week", value: "lastWeek" },
+  { label: "Last Month", value: "lastMonth" },
+];
 const PressReleases: React.FC<{ navigation: any; route: any }> = ({
   navigation,
   route,
 }) => {
+  const [filter, setFilter] = useState("");
   const { theme, currentRegion } = useContext(ThemeContext);
-  const { articles, articleLoading } = useContext(ArticleContext);
+  const { articlesOwn: articles, articleLoading } = useContext(ArticleContext);
+  const [tempArticles, setTempArticles] = useState<any>();
   const { navigation: myNavigation } = useStackNavigator();
+  useEffect(() => {
+    console.log(filter);
+  });
+  // useEffect(() => {
+  //   function handleFilter() {
+  //     const newData = oldData.map((item) => item2);
+  //   }
+  //   handleFilter();
+  // }, [filter]);
+  useEffect(() => {
+    setTempArticles(articles);
+  }, [articles]);
   return (
     <MainLayout
       customStyles={getStyle(theme).container}
       disableDefaultPadding={true}
     >
+      <View
+        style={{
+          width: "100%",
+          margin: 0,
+          padding: 0,
+          flexDirection: "row",
+          justifyContent: "flex-end",
+        }}
+      >
+        <DropdownComponent
+          style={{ width: 150, marginRight: 10, marginTop: 5 }}
+          value={filter}
+          onChange={setFilter}
+          myData={filterOptions}
+        />
+      </View>
       {articleLoading ? (
         <View style={{ paddingTop: 10 }}>
           <LoadingSkeleton />
@@ -150,8 +230,8 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
         <FlatList
           showsVerticalScrollIndicator={false}
           style={{ width: "100%" }}
-          contentContainerStyle={{ marginTop: 12, paddingBottom: 24 }}
-          data={articles}
+          contentContainerStyle={{ paddingBottom: 24 }}
+          data={tempArticles}
           keyExtractor={(item) => item._id}
           renderItem={({ item }) => <HomeCard article={item} />}
         />
@@ -159,14 +239,49 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
     </MainLayout>
   );
 };
-
+export const DropdownComponent: React.FC<{
+  myData?: any;
+  value: string;
+  style?: any;
+  onChange: (value: any) => void;
+}> = ({ myData, value, onChange, style }) => {
+  const renderItem = (item: any) => {
+    return (
+      <View style={getStyle(theme).item}>
+        <Text style={getStyle(theme).textItem}>{item.label}</Text>
+      </View>
+    );
+  };
+  const { theme } = useContext(ThemeContext);
+  return (
+    <Dropdown
+      style={{ ...getStyle(theme).dropdown, ...style }}
+      placeholderStyle={getStyle(theme).placeholderStyle}
+      selectedTextStyle={getStyle(theme).selectedTextStyle}
+      inputSearchStyle={getStyle(theme).inputSearchStyle}
+      iconStyle={getStyle(theme).iconStyle}
+      data={myData}
+      containerStyle={getStyle(theme).dropdownItemContainer}
+      iconColor={theme.colors.g1}
+      showsVerticalScrollIndicator={false}
+      maxHeight={300}
+      labelField="label"
+      valueField="value"
+      placeholder="Select item"
+      searchPlaceholder="Search..."
+      value={value}
+      onChange={onChange}
+      renderItem={renderItem}
+    />
+  );
+};
 const HomeCard: React.FC<{
   article: any;
 }> = ({ article }) => {
   const { navigation } = useContext(StackNavigatorContext);
 
   function onPress() {
-    navigation.navigate("WebViewArticle", {
+    navigation.navigate("Article", {
       id: article._id,
       value: article.link,
     });

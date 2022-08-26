@@ -341,11 +341,12 @@ const ThemeCard: React.FC<{ themeName: string; onPress: any }> = ({
   );
 };
 
-const DropdownComponent: React.FC<{
+export const DropdownComponent: React.FC<{
   myData?: any;
   value: string;
+  style?: any;
   onChange: (value: any) => void;
-}> = ({ myData, value, onChange }) => {
+}> = ({ myData, value, onChange, style }) => {
   const renderItem = (item: any) => {
     return (
       <View style={getStyle(theme).item}>
@@ -356,7 +357,7 @@ const DropdownComponent: React.FC<{
   const { theme } = useContext(ThemeContext);
   return (
     <Dropdown
-      style={getStyle(theme).dropdown}
+      style={{ ...getStyle(theme).dropdown, ...style }}
       placeholderStyle={getStyle(theme).placeholderStyle}
       selectedTextStyle={getStyle(theme).selectedTextStyle}
       inputSearchStyle={getStyle(theme).inputSearchStyle}

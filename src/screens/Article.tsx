@@ -271,6 +271,10 @@ const Article: React.FC<{ route: any; navigation: any }> = ({
     isPressed ? handleSBtn() : handleHBtn();
   }, [isPressed]);
 
+  useEffect(() => {
+    console.log(article);
+  });
+
   const { getArticle } = useContext(ArticleContext);
 
   //@ts-ignore
@@ -283,6 +287,7 @@ const Article: React.FC<{ route: any; navigation: any }> = ({
       const res = await getArticle(id);
       //console.log("MYARTICLE", res.data);
       setArticle(res.data);
+
       let finalData: any = {};
       Object.keys(res.data.content).forEach((item) => {
         finalData[item] = Object.values(res.data.content[item])
@@ -313,6 +318,7 @@ const Article: React.FC<{ route: any; navigation: any }> = ({
             style={{
               ...getStyles(theme).innerContainer,
               height: headerHeight,
+              // display: "none",
             }}
           >
             <Animated.View

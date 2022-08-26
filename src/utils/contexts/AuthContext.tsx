@@ -63,6 +63,21 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
       fetchUser();
     }
   }, [currentUser]);
+  useEffect(() => {
+    async function updateUser() {
+      console.log("UPDATE USER CALLED");
+      const fcmToken = await AsyncStorage.getItem("fcmToken");
+      if (fcmToken && currentUser?.id) {
+        const res = await API_USER.patch("https://dsalgo.tech/user/update", {
+          id: currentUser.id,
+          fcmToken,
+        });
+        console.log(res.data);
+      }
+    }
+
+    updateUser();
+  }, [currentUser]);
 
   // useEffect(() => {
   //   setCurrentUser({

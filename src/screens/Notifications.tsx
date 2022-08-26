@@ -6,6 +6,8 @@ import { ThemeContext } from "../utils/contexts";
 import { Button } from "../components";
 import { PinkThemeIcon } from "../assets/icons";
 
+export const API_NOTIFICATION = {};
+
 const PIBImage = require("../assets/pib.png");
 const notifications = [
   {

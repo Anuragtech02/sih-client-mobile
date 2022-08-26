@@ -63,7 +63,12 @@ function getStyle(theme: ITheme): any {
     },
   });
 }
-
+const filterOptions = [
+  { label: "Today", value: "today" },
+  { label: "Yesterday", value: "yesterday" },
+  { label: "Last Week", value: "lastWeek" },
+  { label: "Last Month", value: "lastMonth" },
+];
 const Home: React.FC<{ navigation?: any }> = ({ navigation }) => {
   const { theme, currentRegion } = useContext(ThemeContext);
   const [name, setName] = useState("Adarsh");
@@ -124,6 +129,7 @@ const Home: React.FC<{ navigation?: any }> = ({ navigation }) => {
           />
         </View>
       </View>
+
       <TopTabsNavigation />
     </MainLayout>
   );
