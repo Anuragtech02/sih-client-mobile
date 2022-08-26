@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useContext, useEffect } from "react";
 import { Image, StyleSheet, View, Text } from "react-native";
 import MainLayout from "../layouts/MainLayout";
@@ -9,7 +10,7 @@ import { ITheme } from "../utils/contexts/interfaces";
 
 const Splash: React.FC<{ navigation: any }> = ({ navigation }) => {
   //const { navigation } = useStackNavigator();
-  const { currentUser } = useContext(AuthContext);
+  const { setCurrentUser } = useContext(AuthContext);
   function getStyle(theme: ITheme): any {
     return StyleSheet.create({
       heading: {
@@ -24,11 +25,23 @@ const Splash: React.FC<{ navigation: any }> = ({ navigation }) => {
       },
     });
   }
+
   useEffect(() => {
-    setTimeout(() => {
-      navigation.navigate("ChooseLanguageScreen");
-    }, 3000);
+    async function getCurrentUser() {
+      const user = await AsyncStorage.getItem("CURRENT_USER");
+      if (user) {
+        setCurrentUser(JSON.parse(user));
+        navigation.navigate("AppNavigation");
+        return;
+      }
+      setTimeout(() => {
+        navigation.navigate("ChooseLanguageScreen");
+      }, 3000);
+    }
+
+    getCurrentUser();
   }, []);
+
   const { theme } = useContext(ThemeContext);
   return (
     <MainLayout

@@ -162,6 +162,7 @@ export interface IAuthContext {
   signInWithPhoneNumber: (number: string) => void;
   confirmCode: (cd: string, cb: any) => void;
   code: string;
+  userDetails: any;
   phone: string;
   setCode: Dispatch<SetStateAction<string>>;
   setCurrentUser: any;

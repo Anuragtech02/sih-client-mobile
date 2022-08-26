@@ -23,6 +23,7 @@ const AuthContext = createContext<IAuthContext>({
   confirmCode: () => {},
   code: "",
   phone: "",
+  userDetails: {},
   setCode: () => {},
   setCurrentUser: () => {},
   handleLogin: () => {},
@@ -37,23 +38,31 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
   children,
 }) => {
   const [currentUser, setCurrentUser] = useState<any>({});
+  const [userDetails, setUserDetails] = useState<any>({});
   const [confirmOTP, setConfirmOTP] = useState<any>(null);
   const [code, setCode] = useState("");
   const [phone, setPhone] = useState("");
 
   useEffect(() => {
     async function fetchUser() {
-      const tUser = await AsyncStorage.getItem("CURRENT_USER");
-      console.log(tUser);
-      if (tUser) {
-        const us = JSON.parse(tUser);
-        const user = await API_USER.get("/single", { params: { id: us._id } });
-        setCurrentUser(user);
-        console.log({ user });
-      }
+      // const tUser = await AsyncStorage.getItem("CURRENT_USER");
+      // console.log(tUser);
+      // if (tUser) {
+      //   const us = JSON.parse(tUser);
+      console.log("FETCH USER CALLED");
+      const user = await API_USER.get("/single", {
+        params: {
+          id: currentUser?.id,
+        },
+      });
+      console.log(user.data);
+      setUserDetails(user.data);
+      // }
     }
-    fetchUser();
-  }, []);
+    if (currentUser?.id) {
+      fetchUser();
+    }
+  }, [currentUser]);
 
   // useEffect(() => {
   //   setCurrentUser({
@@ -140,6 +149,7 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
         handleLogin,
         createNewUser,
         phone,
+        userDetails,
       }}
     >
       {children}
