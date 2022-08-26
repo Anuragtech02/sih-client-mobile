@@ -23,3 +23,4 @@ export { default as SavedReleases } from "./SavedReleases";
 export { default as Register } from "./Register";
 export { default as Leaderboard } from "./Leaderboard";
 export { default as Splash } from "./Splash";
+export { default as PMV } from "./PMV";

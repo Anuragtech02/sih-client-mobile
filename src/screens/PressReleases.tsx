@@ -27,6 +27,7 @@ import {
   ShareIcon,
 } from "../assets/icons";
 import { regionalThemes } from "../utils/theme";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -182,8 +183,21 @@ const HomeCard: React.FC<{
   const [isSaved, setIsSaved] = useState<boolean>(false);
   const { currentUser, setCurrentUser } = useContext(AuthContext);
 
-  function handlePressSave() {
+  async function handlePressSave() {
     isSaved ? setIsSaved(false) : setIsSaved(true);
+
+    const prev = await AsyncStorage.getItem("articles");
+    if (prev) {
+      const prevData = JSON.parse(prev);
+
+      const res = await AsyncStorage.setItem(
+        "articles",
+        JSON.stringify([...prevData, article])
+      );
+    } else {
+      await AsyncStorage.setItem("articles", JSON.stringify([article]));
+    }
+
     //const newSavedArticles = [...currentUser.savedArticles, article]; ERROR
     // return () => {
     //   setCurrentUser((prev: any) => ({

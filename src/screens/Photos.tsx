@@ -113,14 +113,16 @@ const Photos: React.FC = () => {
   }, []);
   return (
     <MainLayout customStyles={getStyle(theme).container}>
-      <PinkThemeIcon
-        customStyle={{
-          position: "absolute",
-          top: 0,
-          right: 0,
-          opacity: 0.1,
-        }}
-      />
+      {currentRegion === "pink" && (
+        <PinkThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
       <FlatList
         ListHeaderComponent={
           <Text style={getStyle(theme).headerHeading}>Photos</Text>

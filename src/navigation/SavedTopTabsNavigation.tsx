@@ -56,7 +56,7 @@ function SavedTopTabsNavigation() {
           tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Events"
         component={SocialMedia}
         options={{
@@ -83,7 +83,7 @@ function SavedTopTabsNavigation() {
           },
           tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 }

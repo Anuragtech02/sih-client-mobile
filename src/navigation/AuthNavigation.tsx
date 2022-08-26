@@ -13,6 +13,7 @@ import {
   Register,
   WebViewArticle,
   Splash,
+  PMV,
 } from "../screens/";
 import AppNavigation from "./AppNavigation";
 
@@ -64,6 +65,11 @@ const AuthNavigation = () => {
       <Stack.Screen
         name="WebViewArticle"
         component={WebViewArticle}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="PMV"
+        component={PMV}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

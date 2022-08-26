@@ -178,17 +178,19 @@ function getStyle(theme: ITheme): any {
 }
 
 function Notifications() {
-  const { theme } = useContext(ThemeContext);
+  const { theme, currentRegion } = useContext(ThemeContext);
   return (
     <MainLayout customStyles={getStyle(theme).container}>
-      <PinkThemeIcon
-        customStyle={{
-          position: "absolute",
-          top: 0,
-          right: 0,
-          opacity: 0.1,
-        }}
-      />
+      {currentRegion === "pink" && (
+        <PinkThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
       <Text style={getStyle(theme).heading}>Notifications</Text>
       <View style={getStyle(theme).actions}>
         <View style={getStyle(theme).lButtons}>

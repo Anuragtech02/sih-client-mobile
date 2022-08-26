@@ -65,7 +65,7 @@ function getStyle(theme: ITheme): any {
 }
 
 const Home: React.FC<{ navigation?: any }> = ({ navigation }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, currentRegion } = useContext(ThemeContext);
   const [name, setName] = useState("Adarsh");
 
   const { userDetails } = useContext(AuthContext);
@@ -78,19 +78,22 @@ const Home: React.FC<{ navigation?: any }> = ({ navigation }) => {
     initializeAppLanguage();
   }, [initializeAppLanguage]);
 
+  console.log("SHISHIR", currentRegion);
   return (
     <MainLayout
       customStyles={getStyle(theme).container}
       disableDefaultPadding={true}
     >
-      <PinkThemeIcon
-        customStyle={{
-          position: "absolute",
-          top: 0,
-          right: 0,
-          opacity: 0.1,
-        }}
-      />
+      {currentRegion === "pink" && (
+        <PinkThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
       <View style={getStyle(theme).innerContainer}>
         <View style={getStyle(theme).drawerContainer}>
           <DrawerIcon customOnPress={() => navigation.openDrawer()} />

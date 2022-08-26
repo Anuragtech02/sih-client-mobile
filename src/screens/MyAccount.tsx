@@ -372,14 +372,16 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
 
   return (
     <MainLayout customStyles={getStyles(theme).container}>
-      <PinkThemeIcon
-        customStyle={{
-          position: "absolute",
-          top: 0,
-          right: 0,
-          opacity: 0.1,
-        }}
-      />
+      {currentRegion === "pink" && (
+        <PinkThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={getStyles(theme).innerContainer}>
           <BackArrowIcon
@@ -499,7 +501,7 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
           </View>
 
           <Text style={getStyles(theme).title}>Select Region</Text>
-          <DropdownComponent
+          {/* <DropdownComponent
             value={region}
             myData={regions}
             onChange={(value: string) => setRegion(value)}
@@ -508,7 +510,7 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
             }}
           />
 
-          <Text style={getStyles(theme).title}>Select Ministry</Text>
+          <Text style={getStyles(theme).title}>Select Ministry</Text> */}
           <MultiSelect
             style={getStyles(theme).multiSelectDropdown}
             placeholderStyle={getStyles(theme).multiSelectPlaceholder}
@@ -516,10 +518,10 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
             inputSearchStyle={getStyles(theme).multiSelectInputSearch}
             iconStyle={{
               ...getStyles(theme).multiSelectIconStyle,
-              tintColor: ministry ? theme.colors.primary : theme.colors.g1,
+              tintColor: region ? theme.colors.primary : theme.colors.g1,
             }}
             containerStyle={getStyles(theme).multiSelectDropdownItemContainer}
-            data={ministries}
+            data={regions}
             maxHeight={300}
             showsVerticalScrollIndicator={false}
             labelField="label"
@@ -527,9 +529,9 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
             placeholder="Select item"
             alwaysRenderItemSelected
             // search
-            value={ministry}
+            value={region}
             onChange={(item: any) => {
-              setMinistry(item);
+              setRegion(item);
             }}
             activeColor={"#E5E5E5"}
             selectedStyle={getStyles(theme).multiSelectSelectedStyle}

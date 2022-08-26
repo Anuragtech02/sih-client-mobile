@@ -10,7 +10,7 @@ import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
 import { LocaleContext, ThemeContext } from "../utils/contexts";
 import BackArrow from "../assets/icons/BackArrowIcon";
-import { CloseIcon, DrawerIcon } from "../assets/icons";
+import { CloseIcon, DrawerIcon, PinkThemeIcon } from "../assets/icons";
 import { Dropdown } from "react-native-element-dropdown";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { APP_LANGUAGE } from "../utils/constants";
@@ -249,8 +249,20 @@ const Settings: React.FC<{ navigation: any }> = ({ navigation }) => {
   function handleChangeLanguage(lang: any) {
     setLocaleLanguage(lang.value);
   }
+
   return (
     <MainLayout customStyles={getStyle(theme).container}>
+      {currentRegion === "pink" && (
+        <PinkThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
+
       <View style={getStyle(theme).iconContainer}>
         <Text style={getStyle(theme).heading}>SETTINGS</Text>
         <CloseIcon

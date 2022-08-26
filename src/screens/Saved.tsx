@@ -61,20 +61,22 @@ function getStyle(theme: ITheme): any {
 }
 
 const Saved: React.FC = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, currentRegion } = useContext(ThemeContext);
   return (
     <MainLayout
       customStyles={getStyle(theme).container}
       disableDefaultPadding={true}
     >
-      <PinkThemeIcon
-        customStyle={{
-          position: "absolute",
-          top: 0,
-          right: 0,
-          opacity: 0.1,
-        }}
-      />
+      {currentRegion === "pink" && (
+        <PinkThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
       <Text style={getStyle(theme).heading}>Saved</Text>
       <SavedTopTabsNavigation />
     </MainLayout>
