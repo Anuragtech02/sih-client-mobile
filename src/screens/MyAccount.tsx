@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Image,
   StyleSheet,
@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
-import { ThemeContext } from "../utils/contexts";
+import { AuthContext, ThemeContext } from "../utils/contexts";
 import BackArrow from "../assets/icons/BackArrowIcon";
 import { BackArrowIcon, DrawerIcon, RadioButtonIcon } from "../assets/icons";
 import { ScrollView } from "react-native-gesture-handler";
@@ -330,10 +330,22 @@ function getStyles(theme: ITheme): any {
 const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
 
+  const { userDetails } = useContext(AuthContext);
+
   const [gender, setGender] = useState<String>();
   const [region, setRegion] = useState<any>("");
   const [ministry, setMinistry] = useState<any>("");
   const [image, setImage] = useState<any>();
+
+  useEffect(() => {
+    if (userDetails?._id) {
+      setGender(userDetails.gender);
+      setRegion(userDetails.pibs[0].value);
+      console.log("Ministry", userDetails);
+      // set
+      setMinistry(userDetails.region);
+    }
+  }, [userDetails]);
 
   return (
     <MainLayout customStyles={getStyles(theme).container}>
@@ -359,6 +371,7 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
             <TextInput
               style={getStyles(theme).searchInput}
               placeholder="Enter Full Name"
+              value={userDetails?.name}
             />
           </View>
           <Text style={getStyles(theme).title}>Gender</Text>

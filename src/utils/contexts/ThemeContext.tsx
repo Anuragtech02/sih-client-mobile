@@ -27,7 +27,7 @@ export const ThemeContextProvider: React.FC<{
       regionalColor: regionalThemes[currentRegion].color,
     };
     setTheme(newTheme);
-    console.log(newTheme);
+    // console.log(newTheme);
   }, [currentRegion]);
   useEffect(() => {
     async function getTheme() {
