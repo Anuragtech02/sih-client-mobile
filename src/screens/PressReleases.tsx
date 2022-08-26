@@ -20,6 +20,7 @@ import StackNavigatorContext, {
   useStackNavigator,
 } from "../navigation/stackNaviagtionContext";
 import { ClockIcon, EyeIcon, SavedIcon, ShareIcon } from "../assets/icons";
+import { regionalThemes } from "../utils/theme";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -124,7 +125,7 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
   navigation,
   route,
 }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, currentRegion } = useContext(ThemeContext);
   const { articles, articleLoading } = useContext(ArticleContext);
   const { navigation: myNavigation } = useStackNavigator();
   return (
@@ -171,18 +172,18 @@ const HomeCard: React.FC<{
     views,
     id: _id,
   } = article;
-  const { theme } = useContext(ThemeContext);
+  const { theme, currentRegion } = useContext(ThemeContext);
   const [isSaved, setIsSaved] = useState(false);
   const { currentUser, setCurrentUser } = useContext(AuthContext);
   function handlePressSave() {
     setIsSaved((prev) => !prev);
     const newSavedArticles = [...currentUser.savedArticles, article];
-    return () => {
-      setCurrentUser((prev: any) => ({
-        ...prev,
-        savedArticles: newSavedArticles,
-      }));
-    };
+    // return () => {
+    //   setCurrentUser((prev: any) => ({
+    //     ...prev,
+    //     savedArticles: newSavedArticles,
+    //   }));
+    // };
   }
   async function handleShare() {
     try {
@@ -240,7 +241,7 @@ const HomeCard: React.FC<{
                 e.stopPropagation();
               }}
             >
-              <TouchableOpacity onPress={handleShare}>
+              <TouchableOpacity style={{ padding: 5 }} onPress={handleShare}>
                 <ShareIcon
                   width={18}
                   color={theme.colors.g1}
@@ -254,13 +255,17 @@ const HomeCard: React.FC<{
                 e.stopPropagation();
               }}
             >
-              <TouchableOpacity onPress={handlePressSave}>
+              <TouchableOpacity
+                style={{ padding: 5 }}
+                onPress={handlePressSave}
+              >
                 <SavedIcon
                   width={18}
                   opacity={0}
-                  color={isSaved ? theme.colors.regionalColor : theme.colors.g1}
-                  colorFill={
-                    isSaved ? theme.colors.regionalColor : theme.colors.white
+                  color={
+                    isSaved
+                      ? regionalThemes[currentRegion].color
+                      : theme.colors.g1
                   }
                 />
               </TouchableOpacity>

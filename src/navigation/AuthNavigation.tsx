@@ -12,6 +12,7 @@ import {
   Article,
   Register,
   WebViewArticle,
+  Splash,
 } from "../screens/";
 import AppNavigation from "./AppNavigation";
 
@@ -20,6 +21,11 @@ const Stack = createStackNavigator();
 const AuthNavigation = () => {
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name="SplashScreen"
+        component={Splash}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="ChooseLanguageScreen"
         component={ChooseLanguage}
