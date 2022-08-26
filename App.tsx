@@ -25,7 +25,7 @@ import {
 } from "./src/utils/contexts/";
 import { LogBox } from "react-native";
 import Leaderboard from "./src/screens/Leaderboard";
-
+LogBox.ignoreAllLogs();
 const App = () => {
   React.useEffect(() => {
     // StatusBar.setHidden(true);

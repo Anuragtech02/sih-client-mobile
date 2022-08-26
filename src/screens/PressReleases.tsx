@@ -21,6 +21,7 @@ import StackNavigatorContext, {
 } from "../navigation/stackNaviagtionContext";
 import { ClockIcon, EyeIcon, SavedIcon, ShareIcon } from "../assets/icons";
 import { regionalThemes } from "../utils/theme";
+import { DropdownComponent } from "./Settings";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -35,7 +36,7 @@ function getStyle(theme: ITheme): any {
       borderBottomWidth: 1,
       borderRadius: 0,
       borderColor: theme.colors.g4,
-      marginVertical: 12,
+      marginBottom: 12,
       marginHorizontal: 12,
     },
     container: {
@@ -120,19 +121,44 @@ function getStyle(theme: ITheme): any {
 //     views: "1.2k",
 //   },
 // ];
-
+const filterOptions = [
+  { label: "Today", value: "today" },
+  { label: "Yesterday", value: "yesterday" },
+  { label: "Last Week", value: "lastWeek" },
+  { label: "Last Month", value: "lastMonth" },
+];
 const PressReleases: React.FC<{ navigation: any; route: any }> = ({
   navigation,
   route,
 }) => {
+  const [filter, setFilter] = useState("");
   const { theme, currentRegion } = useContext(ThemeContext);
   const { articles, articleLoading } = useContext(ArticleContext);
   const { navigation: myNavigation } = useStackNavigator();
+  useEffect(() => {
+    console.log(filter);
+  });
   return (
     <MainLayout
       customStyles={getStyle(theme).container}
       disableDefaultPadding={true}
     >
+      <View
+        style={{
+          width: "100%",
+          margin: 0,
+          padding: 0,
+          flexDirection: "row",
+          justifyContent: "flex-end",
+        }}
+      >
+        <DropdownComponent
+          style={{ width: 150, marginRight: 10, marginTop: 5 }}
+          value={filter}
+          onChange={setFilter}
+          myData={filterOptions}
+        />
+      </View>
       {articleLoading ? (
         <View style={{ paddingTop: 10 }}>
           <LoadingSkeleton />
@@ -143,7 +169,7 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
         <FlatList
           showsVerticalScrollIndicator={false}
           style={{ width: "100%" }}
-          contentContainerStyle={{ marginTop: 12, paddingBottom: 24 }}
+          contentContainerStyle={{ paddingBottom: 24 }}
           data={articles}
           keyExtractor={(item) => item._id}
           renderItem={({ item }) => <HomeCard article={item} />}
