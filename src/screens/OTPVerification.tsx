@@ -94,7 +94,6 @@ number`}
         autoFocusOnLoad
         codeInputFieldStyle={getStyles(theme).underlineStyleBase}
         codeInputHighlightStyle={getStyles(theme).underlineStyleHighLighted}
-        secureTextEntry={true}
         onCodeFilled={(code: any) => {
           setPin(code);
           console.log(code);

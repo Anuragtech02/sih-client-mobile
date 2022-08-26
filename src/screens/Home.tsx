@@ -72,7 +72,7 @@ const Home: React.FC<{ navigation?: any }> = ({ navigation }) => {
 
   const { translations, initializeAppLanguage } = useContext(LocaleContext);
   useEffect(() => {
-    console.log(currentUser);
+    console.log("HOME", currentUser);
   }, [currentUser]);
   useEffect(() => {
     initializeAppLanguage();

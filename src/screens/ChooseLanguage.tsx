@@ -285,8 +285,15 @@ const StyledCard: React.FC<{
         <View style={getStyles(theme).tickContainer}>
           <TickIcon />
         </View>
+      ) : selectedId ? (
+        <View
+          style={{
+            ...getStyles(theme).tickContainer,
+            backgroundColor: "rgba(255,255,255,0.4)",
+          }}
+        ></View>
       ) : (
-        <View style={getStyles(theme).tickContainer}></View>
+        ""
       )}
     </Card>
   );

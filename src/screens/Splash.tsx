@@ -28,7 +28,7 @@ const Splash: React.FC<{ navigation: any }> = ({ navigation }) => {
     setTimeout(() => {
       navigation.navigate("ChooseLanguageScreen");
     }, 3000);
-  });
+  }, []);
   const { theme } = useContext(ThemeContext);
   return (
     <MainLayout

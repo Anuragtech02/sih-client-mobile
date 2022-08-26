@@ -1,7 +1,14 @@
 import React from "react";
 import AuthNavigation from "./src/navigation/AuthNavigation";
 import { NavigationContainer } from "@react-navigation/native";
-import { About, Article, Home, Register, Settings } from "./src/screens";
+import {
+  About,
+  Article,
+  Home,
+  PMVideo,
+  Register,
+  Settings,
+} from "./src/screens";
 import TopTabsNavigation from "./src/navigation/TopTabsNavigation";
 import {
   notificationServices,
@@ -38,6 +45,7 @@ const App = () => {
               <NavigationContainer>
                 {/* <Settings navigation={""} /> */}
                 <AuthNavigation />
+                {/* <PMVideo /> */}
                 {/* <Leaderboard /> */}
                 {/* <Register navigation={""} /> */}
                 {/* <Article /> */}
