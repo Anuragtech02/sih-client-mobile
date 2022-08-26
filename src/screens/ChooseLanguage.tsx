@@ -15,7 +15,7 @@ import { ThemeContext } from "../utils/contexts";
 import MainLayout from "../layouts/MainLayout";
 import metrics from "../utils/metrics";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { APP_LANGUAGE } from "../utils/constants";
+import { APP_LANGUAGE, IS_FIRST_TIME } from "../utils/constants";
 
 const languageOptions = [
   {
@@ -181,6 +181,11 @@ const ChooseLanguage: React.FC<{ navigation: any }> = ({ navigation }) => {
   useEffect(() => {
     selectedId ? handleSBtn() : handleHBtn();
   }, [selectedId]);
+
+  // navigation.reset({
+  //   index: 0,
+  //   routes: [{ name: "ChooseLanguageScreen" }],
+  // });
   return (
     <MainLayout
       customStyles={{
@@ -236,6 +241,7 @@ const ChooseLanguage: React.FC<{ navigation: any }> = ({ navigation }) => {
               onPress={() => {
                 AsyncStorage.setItem(APP_LANGUAGE, selectedId);
                 navigation.navigate("LoginScreen");
+                AsyncStorage.setItem(IS_FIRST_TIME, "false");
               }}
             >
               Continue
