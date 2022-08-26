@@ -10,11 +10,12 @@ import {
   TrendingTabs,
 } from "../screens";
 import { ThemeContext } from "../utils/contexts";
+import { regionalThemes } from "../utils/theme";
 
 const Tab = createMaterialTopTabNavigator();
 
 function TopTabsNavigation() {
-  const { theme } = useContext(ThemeContext);
+  const { theme, currentRegion } = useContext(ThemeContext);
   return (
     <Tab.Navigator
       initialRouteName="Press Releases"
@@ -30,7 +31,7 @@ function TopTabsNavigation() {
           alignSelf: "center",
         },
         tabBarIndicatorStyle: {
-          backgroundColor: theme.colors.primary,
+          backgroundColor: regionalThemes[currentRegion].color,
         },
       }}
     >
@@ -45,7 +46,7 @@ function TopTabsNavigation() {
             fontFamily: theme.fonts.subTitle.fontFamily,
             fontSize: theme.fonts.body.fontSize,
           },
-          tabBarActiveTintColor: theme.colors.primary,
+          tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
       />
       <Tab.Screen
@@ -59,7 +60,7 @@ function TopTabsNavigation() {
             fontFamily: theme.fonts.subTitle.fontFamily,
             fontSize: theme.fonts.body.fontSize,
           },
-          tabBarActiveTintColor: theme.colors.primary,
+          tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
       />
       <Tab.Screen
@@ -73,7 +74,7 @@ function TopTabsNavigation() {
             fontFamily: theme.fonts.subTitle.fontFamily,
             fontSize: theme.fonts.body.fontSize,
           },
-          tabBarActiveTintColor: theme.colors.primary,
+          tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
       />
       <Tab.Screen
@@ -87,7 +88,7 @@ function TopTabsNavigation() {
             fontFamily: theme.fonts.subTitle.fontFamily,
             fontSize: theme.fonts.body.fontSize,
           },
-          tabBarActiveTintColor: theme.colors.primary,
+          tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
       />
       <Tab.Screen
@@ -101,7 +102,7 @@ function TopTabsNavigation() {
             fontFamily: theme.fonts.subTitle.fontFamily,
             fontSize: theme.fonts.body.fontSize,
           },
-          tabBarActiveTintColor: theme.colors.primary,
+          tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
       />
       <Tab.Screen
@@ -115,7 +116,7 @@ function TopTabsNavigation() {
             fontFamily: theme.fonts.subTitle.fontFamily,
             fontSize: theme.fonts.body.fontSize,
           },
-          tabBarActiveTintColor: theme.colors.primary,
+          tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
       />
     </Tab.Navigator>

@@ -155,7 +155,9 @@ const CustomDrawerContent: React.FC<{
   }
   async function handleLogout() {
     await AsyncStorage.removeItem(CURRENT_USER);
+    await AsyncStorage.removeItem("fcmToken");
     navigation.navigate("LoginScreen");
+    navigation.closeDrawer();
   }
   useEffect(() => {
     if (!state.index) setSelectedID("");

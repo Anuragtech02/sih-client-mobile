@@ -6,6 +6,7 @@ import { ThemeContext } from "../utils/contexts";
 import BackArrow from "../assets/icons/BackArrowIcon";
 import { ClockIcon, DrawerIcon, EventIcon, ShareIcon } from "../assets/icons";
 import { Card } from "../components";
+import { regionalThemes } from "../utils/theme";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -140,7 +141,7 @@ const MediaCard: React.FC<{
   date: string;
   time: string;
 }> = ({ heading, body, date, time }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, currentRegion } = useContext(ThemeContext);
   return (
     <Card onPress={() => {}} style={getStyle(theme).cardContainer}>
       <Text style={getStyle(theme).articleHeading}>{heading}</Text>
@@ -153,7 +154,7 @@ const MediaCard: React.FC<{
         <ClockIcon color={theme.colors.g1} />
         <Text style={getStyle(theme).time}>{time}</Text>
         <ShareIcon
-          color={theme.colors.g1}
+          color={regionalThemes[currentRegion].color}
           customStyle={getStyle(theme).shareIcon}
         />
       </View>

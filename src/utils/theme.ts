@@ -3,21 +3,21 @@ export const regionalThemes: any = {
     color: "#292D32",
   },
   blue: {
-    color: "#0077B6",
-  },
-  yellow: {
-    color: "#F9DC5C",
-  },
-  pink: {
-    color: "#F582A8",
+    color: "#4091DB",
   },
   green: {
     color: "#88CA5E",
   },
+  pink: {
+    color: "#F582A8",
+  },
+  yellow: {
+    color: "#F9DC5C",
+  },
   lavender: {
     color: "#CDB4DB",
   },
-  bhagwa: {
+  reddishOrange: {
     color: "#FF7F51",
   },
   reddishBrown: {

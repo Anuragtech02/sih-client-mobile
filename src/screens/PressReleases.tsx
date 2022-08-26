@@ -244,7 +244,7 @@ const HomeCard: React.FC<{
               <TouchableOpacity style={{ padding: 5 }} onPress={handleShare}>
                 <ShareIcon
                   width={18}
-                  color={theme.colors.g1}
+                  color={regionalThemes[currentRegion].color}
                   customStyle={{ marginEnd: 12 }}
                 />
               </TouchableOpacity>
