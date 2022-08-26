@@ -22,6 +22,8 @@ import {
   Videos2Icon,
 } from "../assets/icons";
 import DrawerOptions from "./DrawerOptions";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { CURRENT_USER } from "../utils/constants";
 
 const data = [
   {
@@ -151,6 +153,10 @@ const CustomDrawerContent: React.FC<{
       console.log(error.message);
     }
   }
+  async function handleLogout() {
+    await AsyncStorage.removeItem(CURRENT_USER);
+    navigation.navigate("LoginScreen");
+  }
   useEffect(() => {
     if (!state.index) setSelectedID("");
     if (index !== 0) {
@@ -225,6 +231,7 @@ const CustomDrawerContent: React.FC<{
             customOnPress={() => {
               if (item.name === "Share this App") return handleShare();
               setSelectedID(item.id);
+              if (item.name === "Log Out") return handleLogout();
               navigation.navigate(`${item.name}`), { name: item.name };
             }}
           />

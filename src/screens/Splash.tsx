@@ -1,15 +1,17 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useContext, useEffect } from "react";
 import { Image, StyleSheet, View, Text } from "react-native";
 import MainLayout from "../layouts/MainLayout";
 import StackNavigatorContext, {
   useStackNavigator,
 } from "../navigation/stackNaviagtionContext";
+import { IS_FIRST_TIME } from "../utils/constants";
 import { AuthContext, ThemeContext } from "../utils/contexts";
 import { ITheme } from "../utils/contexts/interfaces";
 
 const Splash: React.FC<{ navigation: any }> = ({ navigation }) => {
   //const { navigation } = useStackNavigator();
-  const { currentUser } = useContext(AuthContext);
+  const { setCurrentUser } = useContext(AuthContext);
   function getStyle(theme: ITheme): any {
     return StyleSheet.create({
       heading: {
@@ -24,11 +26,32 @@ const Splash: React.FC<{ navigation: any }> = ({ navigation }) => {
       },
     });
   }
+
   useEffect(() => {
-    setTimeout(() => {
-      navigation.navigate("ChooseLanguageScreen");
-    }, 3000);
+    async function initialize() {
+      const firstTime = await AsyncStorage.getItem("IS_FIRST_TIME");
+      if (!firstTime) {
+        AsyncStorage.setItem(IS_FIRST_TIME, "true");
+      }
+    }
+    async function getCurrentUser() {
+      const user = await AsyncStorage.getItem("CURRENT_USER");
+      const firstTime = await AsyncStorage.getItem("IS_FIRST_TIME");
+      if (user) {
+        setCurrentUser(JSON.parse(user));
+        navigation.navigate("AppNavigation");
+        return;
+      }
+      setTimeout(() => {
+        navigation.navigate(
+          firstTime === "false" ? "LoginScreen" : "ChooseLanguageScreen"
+        );
+      }, 3000);
+    }
+    initialize();
+    getCurrentUser();
   }, []);
+
   const { theme } = useContext(ThemeContext);
   return (
     <MainLayout

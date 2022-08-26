@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   View,
   Text,
@@ -16,6 +16,9 @@ import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts/";
 import metrics from "../utils/metrics";
 import MainLayout from "../layouts/MainLayout";
+import { useNavigation, CommonActions } from "@react-navigation/native";
+
+const myNavigation = useNavigation();
 
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
@@ -72,6 +75,24 @@ function getStyles(theme: ITheme): any {
 }
 
 const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+  //   myNavigation.reset({
+  //     index: 0,
+  //     routes: [{name: "" }],
+  //   });
+
+  // useEffect(() => {
+  //   CommonActions.reset(
+  //     navigation.dispatch(
+  //       CommonActions.reset({
+  //         index: 0,
+  //         routes: [
+  //           { name: "LoginScreen" },
+  //         ],
+  //       })
+  //     )
+  //   );
+  // }, []);
+
   const { theme } = useContext(ThemeContext);
   return (
     <MainLayout

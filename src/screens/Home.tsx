@@ -68,12 +68,12 @@ const Home: React.FC<{ navigation?: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   const [name, setName] = useState("Adarsh");
 
-  const { currentUser } = useContext(AuthContext);
+  const { userDetails } = useContext(AuthContext);
 
   const { translations, initializeAppLanguage } = useContext(LocaleContext);
   useEffect(() => {
-    console.log("HOME", currentUser);
-  }, [currentUser]);
+    console.log("HOME", userDetails);
+  }, [userDetails]);
   useEffect(() => {
     initializeAppLanguage();
   }, [initializeAppLanguage]);
@@ -91,7 +91,7 @@ const Home: React.FC<{ navigation?: any }> = ({ navigation }) => {
         <View style={getStyle(theme).profileContainer}>
           <Text style={getStyle(theme).name}>
             {translations.formatString(translations["home.greeting"], {
-              name: currentUser?.name,
+              name: userDetails?.name,
             })}
           </Text>
           <Text style={getStyle(theme).greetings}>
