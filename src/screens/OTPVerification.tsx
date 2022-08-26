@@ -14,6 +14,7 @@ import MainLayout from "../layouts/MainLayout";
 import BackArrow from "../assets/icons/BackArrowIcon";
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 import jwtDecode from "jwt-decode";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
@@ -105,6 +106,7 @@ number`}
               } else {
                 const user = jwtDecode(data);
                 setCurrentUser(user);
+                AsyncStorage.setItem("CURRENT_USER", JSON.stringify(user));
                 // console.log(user);
                 console.log(data);
                 navigation.navigate("AppNavigation");
