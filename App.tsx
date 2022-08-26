@@ -47,7 +47,7 @@ const App = () => {
                 <AuthNavigation />
                 {/* <PMVideo /> */}
                 {/* <Leaderboard /> */}
-                {/* <Register navigation={""} /> */}
+                {/* <Register /> */}
                 {/* <Article /> */}
                 {/* <AppNavigation /> */}
               </NavigationContainer>

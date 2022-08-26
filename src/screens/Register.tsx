@@ -464,7 +464,9 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
           <DropdownComponent
             value={region}
             myData={regions}
-            onChange={(label: string) => setRegion(label)}
+            onChange={(item) => {
+              console.log(item), setRegion(item);
+            }}
             colorStyle={{
               tintColor: region ? theme.colors.primary : theme.colors.g1,
             }}
@@ -515,7 +517,7 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
                   region: region.label,
                   fcmToken,
                   avatar: "OK",
-                  ministries: ministry.map((it: any) => ministries[it].label),
+                  ministries: ministry,
                 },
                 (data: any) => {
                   const user = jwtDecode(data);

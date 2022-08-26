@@ -4,6 +4,7 @@ import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
 import Card from "./Card";
 import { ClockIcon, EyeIcon, SavedIcon } from "../assets/icons";
+import { regionalThemes } from "../utils/theme";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -59,7 +60,7 @@ const SavedCard: React.FC<{
   views: string;
   onPress: () => void;
 }> = ({ image, articleHeading, time, views, onPress }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, currentRegion } = useContext(ThemeContext);
   return (
     <Card onPress={onPress} style={getStyle(theme).cardContainer}>
       <View style={getStyle(theme).innerContainer}>
@@ -76,7 +77,7 @@ const SavedCard: React.FC<{
           <View style={{ marginStart: "auto" }}>
             <SavedIcon
               opacity={0}
-              color={theme.colors.primary}
+              color={regionalThemes[currentRegion].color}
               colorFill={theme.colors.primary}
             />
           </View>

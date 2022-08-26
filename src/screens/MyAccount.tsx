@@ -15,6 +15,7 @@ import { BackArrowIcon, DrawerIcon, RadioButtonIcon } from "../assets/icons";
 import { ScrollView } from "react-native-gesture-handler";
 import { Button } from "../components";
 import { Dropdown, MultiSelect } from "react-native-element-dropdown";
+import EditIcon from "../assets/icons/EditIcon";
 
 const female = [
   require("../assets/avatars/Female/Assamee.png"),
@@ -317,12 +318,19 @@ function getStyles(theme: ITheme): any {
       justifyContent: "center",
       alignItems: "center",
       marginTop: 24,
+      flexDirection: "row",
     },
     textItem: {
       flex: 1,
       fontSize: theme.fonts.body.fontSize,
       fontFamily: theme.fonts.subTitle.fontFamily,
       color: theme.colors.g1,
+    },
+    editIcon: {
+      position: "absolute",
+      bottom: 0,
+      left: 180,
+      alignSelf: "center",
     },
   });
 }
@@ -340,10 +348,19 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
   useEffect(() => {
     if (userDetails?._id) {
       setGender(userDetails.gender);
-      setRegion(userDetails.pibs[0].value);
+
+      setRegion(["PIB Mumbai"]);
+      //userDetails.pibs[0].value
       console.log("Ministry", userDetails);
-      // set
-      setMinistry(userDetails.region);
+      setMinistry(userDetails.ministries);
+
+      if (userDetails.gender === "Male") {
+        setImage(require("../assets/avatars/Male/Bengali.png"));
+      } else if (userDetails.gender === "Female") {
+        setImage(require("../assets/avatars/Female/Assamee.png"));
+      } else {
+        setImage(require("../assets/avatars/Starting/StartingAvatar.png"));
+      }
     }
   }, [userDetails]);
 
@@ -357,14 +374,8 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
           />
           <Text style={getStyles(theme).heading}>My Account</Text>
           <View style={getStyles(theme).imageContainer}>
-            <Image
-              source={
-                gender === ""
-                  ? require("../assets/avatars/Starting/StartingAvatar.png")
-                  : image
-              }
-              style={getStyles(theme).image}
-            />
+            <Image source={image} style={getStyles(theme).image} />
+            <EditIcon customStyle={getStyles(theme).editIcon} />
           </View>
           <Text style={getStyles(theme).title}>Name</Text>
           <View style={getStyles(theme).searchContainer}>

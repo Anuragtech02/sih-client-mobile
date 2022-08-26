@@ -34,6 +34,7 @@ import MainLayout from "../layouts/MainLayout";
 import TextToSpeech from "../utils/contexts/TextToSpeech";
 import Slider from "@react-native-community/slider";
 import WebView from "react-native-webview";
+import EditIcon from "../assets/icons/EditIcon";
 
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
@@ -185,9 +186,9 @@ const HEADER_COLLAPSED_HEIGHT = 50;
 
 const { width: SCREEN_WIDTH } = Dimensions.get("screen");
 
-const Article: React.FC<{ props: any; navigation: any }> = ({
+const Article: React.FC<{ route: any; navigation: any }> = ({
   navigation,
-  ...props
+  route,
 }) => {
   const [scrollY, setscrollY] = useState(new Animated.Value(0));
   const [headerHeight, setHeaderHeight] = useState<any>(0);
@@ -200,7 +201,8 @@ const Article: React.FC<{ props: any; navigation: any }> = ({
   const [body, Setbody] = useState<string>(
     "कमोडोर संजय पांडा कमांडिंग ऑफिसर, आईएनएस मंडोवी ने 20 अगस्त 22 की तड़के गोवा से पोर्ट लुइस, मॉरीशस के लिए एक नौकायन अभियान को हरी झंडी दिखाई। अभियान आईएनएसवी तारिणी पर छह (तीन महिला अधिकारियों सहित) के दल द्वारा चलाया जा रहा है। लगभग 2500 एनएम (लगभग 45000 किमी) की दूरी को एक तरफ से कवर करते हुए, चालक दल, 20 - 21 दिनों की अवधि में अत्यधिक मौसम और मानसून की खराब समुद्री परिस्थितियों का सामना करने की उम्मीद है। इन परिस्थितियों में नौकायन के अलावा चालक दल नाव रखरखाव, मशीनरी दिनचर्या और अपना भोजन तैयार करने का भी कार्य करेगा। एक बार जब वे भारतीय तटों को छोड़ देंगे तो मरग ननसटप हग। भरतय नसन क पस छह महसगरय भरतय नसन नकयन पत (आईएनएसव) ह, जस महदई, तरण, बलबल, हरयल, कदलपर और नलकठ उनक सच म। य नकए नयमत रप स नसनक करमय क एक छट दल क सथ अभयन सबध नकयन करत ह। समदर उडन क लए चलक दल क चयन परयपत समदर नकयन अनभव वल सवयसवक म स कय जत ह। समदर नकयन एक अतयत कठन सहसक खल ह। य समदर नकयन अभयन सहसक क भवन पद करन म मदद करत ह, जखम लन क कषमत क बढन क सथ-सथ नवगशन, सचर, इजन और जहज पर मशनर क तकनक सचलन, इनमरसट उपकरण क सचलन, रसद यजन आद सहत आवशयक नवक कशल क सममन करत ह। यह परयजन क भरतय नसन क कषमत क भ बढत ह। सगर परकरम और कप टउन स रय ड जनरय दड, आईओएनएस और बगल क खड क नकयन अभयन जस नकयन अभयन म भग लकर दनय भर म अपन समय उपसथत। तरण क 2017 म सभ महल अधकरय क दल क सथ गलब 'नवक सगर परकरम' क लए जन जत ह। वरतमन अभयन म, चयनत दल एक लग तटसथ ह जसम परतयक म तन परष और तन महल अधकर शमल ह। पत क भरतय नसन क सबस अनभव नवक कपटन वड महरश दवर सकप कय ज रह ह। चलक दल क सदसय म कमडर वकस शयरण, लफटनट कमडर पयल गपत, लफटनट कमडर कशल पडनकर, लफटनट कमडर दलन क और लफटनट कमडर रप ए शमल ह।"
   );
-  const [article, setArticle] = useState<IArticle>({} as IArticle);
+  const [article, setArticle] = useState<any>();
+  const [content, setContent] = useState<any>();
   const [loading, setLoading] = useState(true);
   const { readText, stopTTS } = useContext(TextToSpeech);
 
@@ -272,13 +274,22 @@ const Article: React.FC<{ props: any; navigation: any }> = ({
   const { getArticle } = useContext(ArticleContext);
 
   //@ts-ignore
-  const { id } = props.route.params;
+  const { id } = route.params;
   const { appLanguage } = useContext(LocaleContext);
 
   useEffect(() => {
     async function fetchArticle() {
+      console.log("MYID", id);
       const res = await getArticle(id);
+      //console.log("MYARTICLE", res.data);
       setArticle(res.data);
+      let finalData: any = {};
+      Object.keys(res.data.content).forEach((item) => {
+        finalData[item] = Object.values(res.data.content[item])
+          .join("")
+          .replace("#$#", " ");
+      });
+      setContent(finalData);
       setLoading(false);
     }
     if (id) fetchArticle();
@@ -416,9 +427,7 @@ const Article: React.FC<{ props: any; navigation: any }> = ({
               </View>
               <Text style={getStyles(theme).content}>{article.title}</Text>
               <Text style={getStyles(theme).contentBody}>
-                {article.content[appLanguage] +
-                  article.content[appLanguage] +
-                  article.content[appLanguage]}
+                {content[appLanguage]}
               </Text>
             </Animated.View>
           </ScrollView>
