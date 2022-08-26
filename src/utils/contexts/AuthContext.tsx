@@ -3,6 +3,7 @@ import React, { createContext, useState, ReactNode, useEffect } from "react";
 import { IArticle, IArticleCard, IAuthContext } from "./interfaces";
 import auth from "@react-native-firebase/auth";
 import { Alert } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const API_ARTICLE = axios.create({
   baseURL: `https://sih-server-staging.onrender.com/article`,
@@ -12,14 +13,20 @@ const API_AUTH = axios.create({
   baseURL: "https://dsalgo.tech/auth",
 });
 
+const API_USER = axios.create({
+  baseURL: "https://dsalgo.tech/user",
+});
+
 const AuthContext = createContext<IAuthContext>({
   currentUser: {},
   signInWithPhoneNumber: () => {},
   confirmCode: () => {},
   code: "",
+  phone: "",
   setCode: () => {},
   setCurrentUser: () => {},
   handleLogin: () => {},
+  createNewUser: () => {},
 });
 
 interface IAuthContextProvider {
@@ -35,37 +42,43 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
   const [phone, setPhone] = useState("");
 
   useEffect(() => {
-    async function fetchArticles() {
-      //   const res = await API_ARTICLE.get("/all");
-      //   console.log({ res });
+    async function fetchUser() {
+      const tUser = await AsyncStorage.getItem("CURRENT_USER");
+      console.log(tUser);
+      if (tUser) {
+        const us = JSON.parse(tUser);
+        const user = await API_USER.get("/single", { params: { id: us.id } });
+        setCurrentUser(user);
+        console.log({ user });
+      }
     }
-    fetchArticles();
+    fetchUser();
   }, []);
 
-  useEffect(() => {
-    setCurrentUser({
-      _id: "123",
-      name: "Testing User",
-      contact: "124567890",
-      gender: "female",
-      pibs: ["234"],
-      interests: ["test"],
-      avatar: "url", // CDN Img URI
-      userType: "user",
-      savedArticles: [], // array of articleIds
-      likedArticles: [], // array of articleIds
-      rewards: [],
-      rewardPoints: 234, // number of rewardPoints
-      notifications: [
-        {
-          _id: "234234",
-          status: "status", // read or unread or sent
-        },
-      ],
-      createdAt: "234nkji jfjhhdfs",
-      updatedAt: "3wefwfds",
-    });
-  }, []);
+  // useEffect(() => {
+  //   setCurrentUser({
+  //     _id: "123",
+  //     name: "Testing User",
+  //     contact: "124567890",
+  //     gender: "female",
+  //     pibs: ["234"],
+  //     interests: ["test"],
+  //     avatar: "url", // CDN Img URI
+  //     userType: "user",
+  //     savedArticles: [], // array of articleIds
+  //     likedArticles: [], // array of articleIds
+  //     rewards: [],
+  //     rewardPoints: 234, // number of rewardPoints
+  //     notifications: [
+  //       {
+  //         _id: "234234",
+  //         status: "status", // read or unread or sent
+  //       },
+  //     ],
+  //     createdAt: "234nkji jfjhhdfs",
+  //     updatedAt: "3wefwfds",
+  //   });
+  // }, []);
 
   async function signInWithPhoneNumber(phoneNumber: string) {
     setPhone(phoneNumber);
@@ -82,7 +95,7 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
       // let userData = await auth().currentUser?.linkWithCredential(credential);
       await confirmOTP.confirm(cd);
       console.log(phone);
-      handleLogin(phone);
+      //handleLogin(phone);
       if (cb) cb();
       setConfirmOTP(null);
     } catch (error) {
@@ -90,14 +103,28 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
     }
   }
 
-  async function handleLogin(phone: string) {
+  async function handleLogin(phone: string, cb: any) {
     try {
       const res = await API_AUTH.post("/login", {
-        phone,
+        contact: phone,
       });
-      console.log(res.data);
+      console.log(res.status);
+      // if (res.status === 404) {
+      // }
+      cb(res.data.token);
     } catch (error) {
-      console.log(error?.message);
+      cb("404");
+      // console.log(error?.message);
+    }
+  }
+
+  async function createNewUser(user: any, cb: any) {
+    try {
+      const res = await API_USER.post("/create", user);
+      console.log(res.data.token);
+      cb(res.data);
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -111,6 +138,8 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
         code,
         setCode,
         handleLogin,
+        createNewUser,
+        phone,
       }}
     >
       {children}

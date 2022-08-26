@@ -1,5 +1,6 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 import {
+  ActivityIndicator,
   StyleSheet,
   Text,
   TextInput,
@@ -12,6 +13,7 @@ import Timer from "../components/Timer";
 import MainLayout from "../layouts/MainLayout";
 import BackArrow from "../assets/icons/BackArrowIcon";
 import OTPInputView from "@twotalltotems/react-native-otp-input";
+import jwtDecode from "jwt-decode";
 
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
@@ -68,7 +70,8 @@ const OTPVerification: React.FC<{ navigation: any; route: any }> = ({
   const { theme } = useContext(ThemeContext);
   const phoneNumber = route.params.number;
   const [pin, setPin] = useState<String>();
-  const { confirmCode } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
+  const { confirmCode, handleLogin, setCurrentUser } = useContext(AuthContext);
 
   return (
     <MainLayout
@@ -91,19 +94,37 @@ number`}
         autoFocusOnLoad
         codeInputFieldStyle={getStyles(theme).underlineStyleBase}
         codeInputHighlightStyle={getStyles(theme).underlineStyleHighLighted}
+        secureTextEntry={true}
         onCodeFilled={(code: any) => {
-          navigation.navigate("Register");
-          // setPin(code);
-          // confirmCode(code, () => navigation.navigate("Register"));
-        }}
-        onCodeChanged={(code) => {
-          if (pin === "123456") navigation.navigate("Register");
+          setPin(code);
+          console.log(code);
+          setLoading(true);
+          confirmCode(code, () =>
+            handleLogin(phoneNumber, (data: any) => {
+              if (data === "404") {
+                navigation.navigate("Register");
+              } else {
+                const user = jwtDecode(data);
+                setCurrentUser(user);
+                // console.log(user);
+                console.log(data);
+                navigation.navigate("AppNavigation");
+              }
+            })
+          );
         }}
       />
-
       <View style={getStyles(theme).resendCodeContainer}>
         <Timer initialSeconds="30" text="Resend" />
       </View>
+      {loading ? (
+        <ActivityIndicator
+          color={theme.colors.primary}
+          style={{ alignSelf: "center", flex: 1 }}
+        />
+      ) : (
+        <></>
+      )}
     </MainLayout>
   );
 };

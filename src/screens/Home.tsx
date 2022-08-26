@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image, TextInput } from "react-native";
 import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
-import { LocaleContext, ThemeContext } from "../utils/contexts";
+import { AuthContext, LocaleContext, ThemeContext } from "../utils/contexts";
 import { DrawerIcon, SearchIcon } from "../assets/icons";
 import TopTabsNavigation from "../navigation/TopTabsNavigation";
 import DrawerNavigation from "../navigation/DrawerNavigation";
@@ -68,8 +68,12 @@ const Home: React.FC<{ navigation?: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   const [name, setName] = useState("Adarsh");
 
-  const { translations, initializeAppLanguage } = useContext(LocaleContext);
+  const { currentUser } = useContext(AuthContext);
 
+  const { translations, initializeAppLanguage } = useContext(LocaleContext);
+  useEffect(() => {
+    console.log(currentUser);
+  }, [currentUser]);
   useEffect(() => {
     initializeAppLanguage();
   }, [initializeAppLanguage]);
@@ -87,7 +91,7 @@ const Home: React.FC<{ navigation?: any }> = ({ navigation }) => {
         <View style={getStyle(theme).profileContainer}>
           <Text style={getStyle(theme).name}>
             {translations.formatString(translations["home.greeting"], {
-              name,
+              name: currentUser?.name,
             })}
           </Text>
           <Text style={getStyle(theme).greetings}>

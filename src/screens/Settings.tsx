@@ -150,7 +150,7 @@ function getStyle(theme: ITheme): any {
   return StyleSheet.create({
     container: {
       flex: 1,
-      padding: 40,
+      padding: 12,
       backgroundColor: theme.colors.background,
     },
     closeIcon: {
@@ -235,11 +235,20 @@ const Settings: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [ministry, setMinistry] = useState("1");
   const { currentRegion, setCurrentRegion } = useContext(ThemeContext);
   const { setLocaleLanguage, appLanguage } = useContext(LocaleContext);
+  const [themes, setThemes] = useState<any>([]);
+
+  useEffect(() => {
+    setThemes(
+      Object.keys(regionalThemes).map((item: any, i: number) => ({
+        id: i,
+        color: item,
+      }))
+    );
+  }, [regionalThemes]);
 
   function handleChangeLanguage(lang: any) {
     setLocaleLanguage(lang.value);
   }
-
   return (
     <MainLayout customStyles={getStyle(theme).container}>
       <View style={getStyle(theme).iconContainer}>
@@ -263,31 +272,21 @@ const Settings: React.FC<{ navigation: any }> = ({ navigation }) => {
           myData={langugages}
           onChange={(value: string) => handleChangeLanguage(value)}
         />
-        <Text style={getStyle(theme).selectSize}>Change Region</Text>
-        <DropdownComponent
-          value={region}
-          myData={regions}
-          onChange={(value: string) => setRegion(value)}
-        />
-        <Text style={getStyle(theme).selectSize}>Change Ministry</Text>
-        <DropdownComponent
-          value={ministry}
-          myData={ministries}
-          onChange={(value: string) => setMinistry(value)}
-        />
-        <FlatList
-          data={Object.keys(regionalThemes)}
-          keyExtractor={(item, idx) => item + idx}
-          renderItem={({ item }) => {
-            return (
-              <ThemeCard
-                onPress={() => setCurrentRegion(item)}
-                themeName={item}
-              />
-            );
-          }}
-        />
+
+        <Text style={getStyle(theme).selectSize}>Change Theme</Text>
       </View>
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        horizontal
+        data={themes}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <ThemeCard
+            onPress={() => setCurrentRegion(item.color)}
+            themeName={item.color}
+          />
+        )}
+      />
     </MainLayout>
   );
 };
@@ -296,15 +295,37 @@ const ThemeCard: React.FC<{ themeName: string; onPress: any }> = ({
   themeName,
   onPress,
 }) => {
+  const { theme } = useContext(ThemeContext);
   return (
-    <TouchableOpacity
-      style={{
-        width: 50,
-        height: 50,
-        backgroundColor: regionalThemes[themeName].color,
-      }}
-      onPress={onPress}
-    ></TouchableOpacity>
+    <TouchableOpacity onPress={onPress} style={{ padding: 12 }}>
+      <View style={{ flexDirection: "row" }}>
+        <View
+          style={{
+            width: 30,
+            height: 60,
+            backgroundColor: themeName
+              ? regionalThemes[themeName].color
+              : "red",
+          }}
+        />
+        <View>
+          <View
+            style={{
+              width: 30,
+              height: 30,
+              backgroundColor: theme.colors.g1,
+            }}
+          />
+          <View
+            style={{
+              width: 30,
+              height: 30,
+              backgroundColor: theme.colors.g4,
+            }}
+          />
+        </View>
+      </View>
+    </TouchableOpacity>
   );
 };
 
