@@ -9,11 +9,13 @@ import {
   ScrollView,
 } from "react-native";
 import { ITheme } from "../utils/contexts/interfaces";
-import { ThemeContext } from "../utils/contexts";
+import { AuthContext, ThemeContext } from "../utils/contexts";
 import MainLayout from "../layouts/MainLayout";
 import { BackArrowIcon, RadioButtonIcon } from "../assets/icons";
 import { Dropdown, MultiSelect } from "react-native-element-dropdown";
 import { Button } from "../components";
+import jwtDecode from "jwt-decode";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const female = [
   require("../assets/avatars/Female/Assamee.png"),
@@ -340,6 +342,7 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
     require("../assets/avatars/Starting/StartingAvatar.png")
   );
 
+  const { phone, setCurrentUser, createNewUser } = useContext(AuthContext);
   return (
     <MainLayout customStyles={getStyles(theme).container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -482,6 +485,7 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
             maxHeight={300}
             showsVerticalScrollIndicator={false}
             labelField="label"
+            activeColor={"#E5E5E5"}
             valueField="value"
             placeholder="Select item"
             searchPlaceholder="Search..."
@@ -499,8 +503,28 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
         <View style={getStyles(theme).buttonContainer}>
           <Button
             disabled={gender && name && region && ministry ? false : true}
-            onPress={() => {
-              navigation.navigate("AppNavigation");
+            onPress={async () => {
+              //console.log(ministry.map((it: any) => ministries[it].label));
+              const fcmToken = await AsyncStorage.getItem("fcmToken");
+              createNewUser(
+                {
+                  name,
+                  contact: phone,
+                  gender,
+                  pibs: [region],
+                  region: region.label,
+                  fcmToken,
+                  avatar: "OK",
+                  ministries: ministry.map((it: any) => ministries[it].label),
+                },
+                (data: any) => {
+                  const user = jwtDecode(data);
+                  console.log(user);
+                  setCurrentUser(user);
+                  AsyncStorage.setItem("CURRENT_USER", JSON.stringify(user));
+                  navigation.navigate("AppNavigation");
+                }
+              );
             }}
           >
             Register
@@ -535,6 +559,7 @@ const DropdownComponent: React.FC<{
       data={myData}
       containerStyle={getStyles(theme).dropdownItemContainer}
       iconColor={theme.colors.g1}
+      activeColor={"#E5E5E5"}
       showsVerticalScrollIndicator={false}
       maxHeight={300}
       labelField="label"

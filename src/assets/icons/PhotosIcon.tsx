@@ -62,7 +62,7 @@ const PhotosIcon: React.FC<{ color: any; opacity: any }> = ({
           fill={color}
           stroke={
             color === regionalThemes[currentRegion].color
-              ? regionalThemes[currentRegion].color
+              ? theme.colors.absoluteWhite
               : theme.colors.g1
           }
           stroke-width="1.5"

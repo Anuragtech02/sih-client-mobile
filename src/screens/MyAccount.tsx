@@ -194,7 +194,7 @@ function getStyles(theme: ITheme): any {
       marginTop: 24,
     },
     dropdownItemContainer: {
-      backgroundColor: theme.colors.background,
+      backgroundColor: "white", //theme.colors.background,
     },
     firstItem: {
       flexDirection: "row",
@@ -267,7 +267,7 @@ function getStyles(theme: ITheme): any {
       borderRadius: 12,
     },
     multiSelectDropdownItemContainer: {
-      backgroundColor: theme.colors.background,
+      backgroundColor: "white", //theme.colors.background,
     },
     placeholderStyle: {
       fontSize: theme.fonts.subTitle.fontSize,
@@ -473,20 +473,20 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
               ...getStyles(theme).multiSelectIconStyle,
               tintColor: ministry ? theme.colors.primary : theme.colors.g1,
             }}
-            data={ministries}
             containerStyle={getStyles(theme).multiSelectDropdownItemContainer}
+            data={ministries}
             maxHeight={300}
             showsVerticalScrollIndicator={false}
             labelField="label"
             valueField="value"
             placeholder="Select item"
-            searchPlaceholder="Search..."
             alwaysRenderItemSelected
-            //renderItem={renderItem}
+            // search
             value={ministry}
-            onChange={(item) => {
+            onChange={(item: any) => {
               setMinistry(item);
             }}
+            activeColor={"#E5E5E5"}
             selectedStyle={getStyles(theme).multiSelectSelectedStyle}
           />
           <View style={getStyles(theme).buttonContainer}>
@@ -503,14 +503,7 @@ const DropdownComponent: React.FC<{
   value: string;
   colorStyle?: any;
   onChange: (value: any) => void;
-}> = ({ myData, value, onChange, colorStyle }) => {
-  const renderItem = (item: any) => {
-    return (
-      <View style={getStyles(theme).item}>
-        <Text style={getStyles(theme).textItem}>{item.label}</Text>
-      </View>
-    );
-  };
+}> = ({ myData, onChange, colorStyle }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <Dropdown
@@ -519,18 +512,16 @@ const DropdownComponent: React.FC<{
       selectedTextStyle={getStyles(theme).selectedTextStyle}
       inputSearchStyle={getStyles(theme).inputSearchStyle}
       iconStyle={{ ...getStyles(theme).iconStyle, ...colorStyle }}
-      data={myData}
       containerStyle={getStyles(theme).dropdownItemContainer}
-      iconColor={theme.colors.g1}
+      data={myData}
       showsVerticalScrollIndicator={false}
       maxHeight={300}
+      activeColor={"#E5E5E5"}
       labelField="label"
       valueField="value"
       placeholder="Select item"
-      searchPlaceholder="Search..."
-      value={value}
+      //search
       onChange={onChange}
-      renderItem={renderItem}
     />
   );
 };

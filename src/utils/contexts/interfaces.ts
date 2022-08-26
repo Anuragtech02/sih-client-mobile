@@ -5,8 +5,8 @@ export interface IThemeContext {
   theme: any;
   handleChangeTheme?: (theme: string) => void;
   isDarkMode: boolean;
-  currentRegion:string;
-  setCurrentRegion:any;
+  currentRegion: string;
+  setCurrentRegion: any;
 }
 
 export interface INotificationCard {
@@ -162,7 +162,9 @@ export interface IAuthContext {
   signInWithPhoneNumber: (number: string) => void;
   confirmCode: (cd: string, cb: any) => void;
   code: string;
+  phone: string;
   setCode: Dispatch<SetStateAction<string>>;
   setCurrentUser: any;
   handleLogin: any;
+  createNewUser: any;
 }

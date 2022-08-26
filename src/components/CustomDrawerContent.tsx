@@ -223,7 +223,7 @@ const CustomDrawerContent: React.FC<{
                 selectedID === item.id ? theme.colors.primary : theme.colors.g1,
             }}
             customOnPress={() => {
-              if ((item.name = "Share This App")) handleShare();
+              if (item.name === "Share this App") return handleShare();
               setSelectedID(item.id);
               navigation.navigate(`${item.name}`), { name: item.name };
             }}
