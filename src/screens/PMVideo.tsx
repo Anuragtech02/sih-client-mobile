@@ -36,7 +36,7 @@ function getStyle(theme: ITheme): any {
       marginTop: 24,
     },
     icon: { marginStart: "auto", marginEnd: 12 },
-    image: { width: "100%" },
+    image: { width: "100%", height: 200 },
     subHeading: {
       fontSize: theme.fonts.body.fontSize,
       fontFamily: theme.fonts.body.fontFamily,
@@ -64,34 +64,36 @@ function getStyle(theme: ITheme): any {
 const data = [
   {
     id: "1",
-    image: require("../assets/photos.png"),
-    heading: "Ministry of Finance",
-    subHeading:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
+    image: require("../assets/one.jpeg"),
+    heading:
+      "PM Modi addressed at the homi Bhabha Cancer Hospital and center...",
     time: "Aug 14, 2022",
   },
   {
     id: "2",
-    image: require("../assets/photos.png"),
-    heading: "Ministry of Finance",
-    subHeading:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
+    image: require("../assets/two.jpeg"),
+    heading:
+      "PM Modi attends inaugural event of Amrita Hospital in Faridabad, Harya...",
     time: "Aug 14, 2022",
   },
   {
     id: "3",
-    image: require("../assets/photos.png"),
-    heading: "Ministry of Finance",
-    subHeading:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
+    image: require("../assets/three.jpeg"),
+    heading:
+      "PM Modi Inaugurates State-of-the-art Amrita Hospital in Faridabad | PM...",
     time: "Aug 14, 2022",
   },
   {
     id: "4",
-    image: require("../assets/photos.png"),
-    heading: "Ministry of Finance",
-    subHeading:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
+    image: require("../assets/four.jpeg"),
+    heading: "PM Modi Addresses Har Ghar Jal Utsav in Goal PMO",
+    time: "Aug 14, 2022",
+  },
+  {
+    id: "5",
+    image: require("../assets/five.jpeg"),
+    heading:
+      "PM Modi's walkthrough in Homi Bhabha Cancer Hospital & Research Centre...",
     time: "Aug 14, 2022",
   },
 ];
@@ -112,7 +114,6 @@ const PMVideos: React.FC = () => {
           <PhotoCard
             image={item.image}
             heading={item.heading}
-            subHeading={item.subHeading}
             time={item.time}
           />
         )}
@@ -124,9 +125,8 @@ const PMVideos: React.FC = () => {
 const PhotoCard: React.FC<{
   image: any;
   heading: string;
-  subHeading: string;
   time: string;
-}> = ({ image, heading, subHeading, time }) => {
+}> = ({ image, heading, time }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <Card onPress={() => {}} style={getStyle(theme).cardContainer}>
@@ -138,7 +138,6 @@ const PhotoCard: React.FC<{
       />
       <View style={getStyle(theme).textContainer}>
         <Text style={getStyle(theme).heading}>{heading}</Text>
-        <Text style={getStyle(theme).subHeading}>{subHeading}</Text>
         <View style={getStyle(theme).timeContainer}>
           <Text style={getStyle(theme).time}>{time}</Text>
           <ShareIcon
@@ -147,6 +146,16 @@ const PhotoCard: React.FC<{
           />
         </View>
       </View>
+      <Image
+        source={require("../assets/Group123.png")}
+        style={{
+          position: "absolute",
+          alignSelf: "center",
+          top: 80,
+          width: 50,
+          height: 50,
+        }}
+      />
     </Card>
   );
 };
