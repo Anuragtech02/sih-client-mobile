@@ -6,6 +6,7 @@ import { AuthContext, LocaleContext, ThemeContext } from "../utils/contexts";
 import { DrawerIcon, SearchIcon } from "../assets/icons";
 import TopTabsNavigation from "../navigation/TopTabsNavigation";
 import DrawerNavigation from "../navigation/DrawerNavigation";
+import { DropdownComponent } from "./Settings";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -63,7 +64,12 @@ function getStyle(theme: ITheme): any {
     },
   });
 }
-
+const filterOptions = [
+  { label: "Today", value: "today" },
+  { label: "Yesterday", value: "yesterday" },
+  { label: "Last Week", value: "lastWeek" },
+  { label: "Last Month", value: "lastMonth" },
+];
 const Home: React.FC<{ navigation?: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   const [name, setName] = useState("Adarsh");
@@ -113,6 +119,7 @@ const Home: React.FC<{ navigation?: any }> = ({ navigation }) => {
           />
         </View>
       </View>
+
       <TopTabsNavigation />
     </MainLayout>
   );

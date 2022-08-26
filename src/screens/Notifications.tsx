@@ -5,6 +5,8 @@ import { INotificationCard, ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
 import { Button } from "../components";
 
+export const API_NOTIFICATION = {};
+
 const PIBImage = require("../assets/pib.png");
 const notifications = [
   {
