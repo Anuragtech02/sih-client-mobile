@@ -4,6 +4,7 @@ import MainLayout from "../layouts/MainLayout";
 import { INotificationCard, ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
 import { Button } from "../components";
+import { PinkThemeIcon } from "../assets/icons";
 
 const PIBImage = require("../assets/pib.png");
 const notifications = [
@@ -180,6 +181,14 @@ function Notifications() {
   const { theme } = useContext(ThemeContext);
   return (
     <MainLayout customStyles={getStyle(theme).container}>
+      <PinkThemeIcon
+        customStyle={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          opacity: 0.1,
+        }}
+      />
       <Text style={getStyle(theme).heading}>Notifications</Text>
       <View style={getStyle(theme).actions}>
         <View style={getStyle(theme).lButtons}>

@@ -19,7 +19,13 @@ import { MAIN_LAYOUT_DEFAULT_PADDING } from "../utils/constants";
 import StackNavigatorContext, {
   useStackNavigator,
 } from "../navigation/stackNaviagtionContext";
-import { ClockIcon, EyeIcon, SavedIcon, ShareIcon } from "../assets/icons";
+import {
+  ClockIcon,
+  EyeIcon,
+  PinkThemeIcon,
+  SavedIcon,
+  ShareIcon,
+} from "../assets/icons";
 import { regionalThemes } from "../utils/theme";
 
 function getStyle(theme: ITheme): any {
@@ -173,11 +179,12 @@ const HomeCard: React.FC<{
     id: _id,
   } = article;
   const { theme, currentRegion } = useContext(ThemeContext);
-  const [isSaved, setIsSaved] = useState(false);
+  const [isSaved, setIsSaved] = useState<boolean>(false);
   const { currentUser, setCurrentUser } = useContext(AuthContext);
+
   function handlePressSave() {
-    setIsSaved((prev) => !prev);
-    const newSavedArticles = [...currentUser.savedArticles, article];
+    isSaved ? setIsSaved(false) : setIsSaved(true);
+    //const newSavedArticles = [...currentUser.savedArticles, article]; ERROR
     // return () => {
     //   setCurrentUser((prev: any) => ({
     //     ...prev,

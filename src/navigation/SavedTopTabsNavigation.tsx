@@ -20,7 +20,8 @@ function SavedTopTabsNavigation() {
       initialRouteName="Releases"
       screenOptions={{
         tabBarScrollEnabled: true,
-        tabBarStyle: { backgroundColor: theme.colors.background },
+
+        tabBarStyle: { backgroundColor: theme.colors.background, elevation: 0 },
         tabBarItemStyle: { padding: 0 },
         tabBarIndicatorStyle: {
           backgroundColor: regionalThemes[currentRegion].color,

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, TextInput } from "react-native";
 import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
 import { AuthContext, LocaleContext, ThemeContext } from "../utils/contexts";
-import { DrawerIcon, SearchIcon } from "../assets/icons";
+import { DrawerIcon, PinkThemeIcon, SearchIcon } from "../assets/icons";
 import TopTabsNavigation from "../navigation/TopTabsNavigation";
 import DrawerNavigation from "../navigation/DrawerNavigation";
 
@@ -83,6 +83,14 @@ const Home: React.FC<{ navigation?: any }> = ({ navigation }) => {
       customStyles={getStyle(theme).container}
       disableDefaultPadding={true}
     >
+      <PinkThemeIcon
+        customStyle={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          opacity: 0.1,
+        }}
+      />
       <View style={getStyle(theme).innerContainer}>
         <View style={getStyle(theme).drawerContainer}>
           <DrawerIcon customOnPress={() => navigation.openDrawer()} />

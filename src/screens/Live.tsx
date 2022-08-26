@@ -14,7 +14,7 @@ import { ThemeContext } from "../utils/contexts";
 import YoutubePlayer, { getYoutubeMeta } from "react-native-youtube-iframe";
 import metrics from "../utils/metrics";
 import { getYouTubeID } from "../utils";
-import { ShareIcon } from "../assets/icons";
+import { PinkThemeIcon, ShareIcon } from "../assets/icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {
   Collapse,

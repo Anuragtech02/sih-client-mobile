@@ -4,7 +4,7 @@ import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
 import { Card } from "../components";
-import { ShareIcon } from "../assets/icons";
+import { PinkThemeIcon, ShareIcon } from "../assets/icons";
 import { FlatList } from "react-native-gesture-handler";
 import axios from "axios";
 import { regionalThemes } from "../utils/theme";
@@ -113,6 +113,14 @@ const Photos: React.FC = () => {
   }, []);
   return (
     <MainLayout customStyles={getStyle(theme).container}>
+      <PinkThemeIcon
+        customStyle={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          opacity: 0.1,
+        }}
+      />
       <FlatList
         ListHeaderComponent={
           <Text style={getStyle(theme).headerHeading}>Photos</Text>
