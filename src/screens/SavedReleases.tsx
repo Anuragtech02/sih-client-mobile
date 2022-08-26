@@ -32,36 +32,36 @@ function getStyle(theme: ITheme): any {
   });
 }
 
-const data = [
-  {
-    id: "1",
-    image: require("../assets/SavedPhotos.png"),
-    heading: "President of india reached the netherlands yesterday",
-    time: "2 hours ago",
-    views: "1.2k",
-  },
-  {
-    id: "2",
-    image: require("../assets/SavedPhotos.png"),
-    heading: "President of india reached the netherlands yesterday",
-    time: "2 hours ago",
-    views: "1.2k",
-  },
-  {
-    id: "3",
-    image: require("../assets/SavedPhotos.png"),
-    heading: "President of india reached the netherlands yesterday",
-    time: "2 hours ago",
-    views: "1.2k",
-  },
-  {
-    id: "4",
-    image: require("../assets/SavedPhotos.png"),
-    heading: "President of india reached the netherlands yesterday",
-    time: "2 hours ago",
-    views: "1.2k",
-  },
-];
+// const data = [
+//   {
+//     id: "1",
+//     image: require("../assets/SavedPhotos.png"),
+//     heading: "President of india reached the netherlands yesterday",
+//     time: "2 hours ago",
+//     views: "1.2k",
+//   },
+//   {
+//     id: "2",
+//     image: require("../assets/SavedPhotos.png"),
+//     heading: "President of india reached the netherlands yesterday",
+//     time: "2 hours ago",
+//     views: "1.2k",
+//   },
+//   {
+//     id: "3",
+//     image: require("../assets/SavedPhotos.png"),
+//     heading: "President of india reached the netherlands yesterday",
+//     time: "2 hours ago",
+//     views: "1.2k",
+//   },
+//   {
+//     id: "4",
+//     image: require("../assets/SavedPhotos.png"),
+//     heading: "President of india reached the netherlands yesterday",
+//     time: "2 hours ago",
+//     views: "1.2k",
+//   },
+// ];
 
 const SavedReleases: React.FC<{ navigation: any; route: any }> = ({
   navigation,
@@ -88,14 +88,17 @@ const SavedReleases: React.FC<{ navigation: any; route: any }> = ({
           contentContainerStyle={{ marginTop: 12, paddingBottom: 24 }}
           data={articles}
           keyExtractor={(itme) => itme._id}
-          renderItem={({ item }) => (
+          renderItem={({ item, index }) => (
             <SavedCard
               image={item.thumbnail}
               articleHeading={item.title}
               time={new Date(item.createdAt).toLocaleString()}
               views={item.views?.toString()}
               onPress={() => {
-                navigator.navigate("Article", { id: item._id });
+                navigator.navigate("Article", {
+                  id: item._id,
+                });
+                //  articles.slice(index, articles.length)
               }}
             />
           )}

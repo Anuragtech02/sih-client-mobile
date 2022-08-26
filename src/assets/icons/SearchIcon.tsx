@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Svg, { Path, Rect } from "react-native-svg";
 import { ThemeContext } from "../../utils/contexts";
+import { regionalThemes } from "../../utils/theme";
 
 const SearchIcon: React.FC<{
   customStyles?: any;
@@ -9,7 +10,7 @@ const SearchIcon: React.FC<{
   height?: number | string;
   color?: string;
 }> = ({ customStyles, width = 48, color, height = 48 }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, currentRegion } = useContext(ThemeContext);
   return (
     <View
       style={{
@@ -27,7 +28,11 @@ const SearchIcon: React.FC<{
           fill="none"
           //xmlns="http://www.w3.org/2000/svg"
         >
-          <Rect width={width} height={height} fill={theme.colors.primary} />
+          <Rect
+            width={width}
+            height={height}
+            fill={regionalThemes[currentRegion].color}
+          />
           <Path
             d="M19.6666 26C23.1644 26 25.9999 23.1645 25.9999 19.6667C25.9999 16.1689 23.1644 13.3333 19.6666 13.3333C16.1688 13.3333 13.3333 16.1689 13.3333 19.6667C13.3333 23.1645 16.1688 26 19.6666 26Z"
             stroke={color}

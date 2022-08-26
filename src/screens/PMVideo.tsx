@@ -6,6 +6,7 @@ import { ThemeContext } from "../utils/contexts";
 import { Card } from "../components";
 import { ShareIcon } from "../assets/icons";
 import { FlatList } from "react-native-gesture-handler";
+import { regionalThemes } from "../utils/theme";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -99,7 +100,7 @@ const data = [
 ];
 
 const PMVideos: React.FC = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, currentRegion } = useContext(ThemeContext);
   return (
     <MainLayout customStyles={getStyle(theme).container}>
       <FlatList
@@ -127,7 +128,7 @@ const PhotoCard: React.FC<{
   heading: string;
   time: string;
 }> = ({ image, heading, time }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, currentRegion } = useContext(ThemeContext);
   return (
     <Card onPress={() => {}} style={getStyle(theme).cardContainer}>
       <Image
@@ -141,7 +142,7 @@ const PhotoCard: React.FC<{
         <View style={getStyle(theme).timeContainer}>
           <Text style={getStyle(theme).time}>{time}</Text>
           <ShareIcon
-            color={theme.colors.primary}
+            color={regionalThemes[currentRegion].color}
             customStyle={getStyle(theme).icon}
           />
         </View>

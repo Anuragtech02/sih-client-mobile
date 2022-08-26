@@ -8,11 +8,12 @@ import {
   TrendingTabs,
 } from "../screens";
 import { ThemeContext } from "../utils/contexts";
+import { regionalThemes } from "../utils/theme";
 
 const Tab = createMaterialTopTabNavigator();
 
 function SavedTopTabsNavigation() {
-  const { theme } = useContext(ThemeContext);
+  const { theme, currentRegion } = useContext(ThemeContext);
   return (
     <Tab.Navigator
       style={{ marginStart: 0 }}
@@ -22,7 +23,7 @@ function SavedTopTabsNavigation() {
         tabBarStyle: { backgroundColor: theme.colors.background },
         tabBarItemStyle: { padding: 0 },
         tabBarIndicatorStyle: {
-          backgroundColor: theme.colors.primary,
+          backgroundColor: regionalThemes[currentRegion].color,
         },
       }}
     >
@@ -37,7 +38,7 @@ function SavedTopTabsNavigation() {
             fontFamily: theme.fonts.subTitle.fontFamily,
             fontSize: theme.fonts.body.fontSize,
           },
-          tabBarActiveTintColor: theme.colors.primary,
+          tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
       />
       <Tab.Screen
@@ -51,7 +52,7 @@ function SavedTopTabsNavigation() {
             fontFamily: theme.fonts.subTitle.fontFamily,
             fontSize: theme.fonts.body.fontSize,
           },
-          tabBarActiveTintColor: theme.colors.primary,
+          tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
       />
       <Tab.Screen
@@ -65,7 +66,7 @@ function SavedTopTabsNavigation() {
             fontFamily: theme.fonts.subTitle.fontFamily,
             fontSize: theme.fonts.body.fontSize,
           },
-          tabBarActiveTintColor: theme.colors.primary,
+          tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
       />
       <Tab.Screen
@@ -79,7 +80,7 @@ function SavedTopTabsNavigation() {
             fontFamily: theme.fonts.subTitle.fontFamily,
             fontSize: theme.fonts.body.fontSize,
           },
-          tabBarActiveTintColor: theme.colors.primary,
+          tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
       />
     </Tab.Navigator>

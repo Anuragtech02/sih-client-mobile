@@ -7,6 +7,7 @@ import { Card } from "../components";
 import { ShareIcon } from "../assets/icons";
 import { FlatList } from "react-native-gesture-handler";
 import axios from "axios";
+import { regionalThemes } from "../utils/theme";
 
 export const API_IMAGES = axios.create({
   baseURL: `https://dsalgo.tech/image`,
@@ -102,7 +103,7 @@ const data = [
 ];
 
 const Photos: React.FC = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, currentRegion } = useContext(ThemeContext);
   async function fetchPhotos() {
     const res = await API_IMAGES.get("/all");
     console.log(res?.data);
@@ -139,7 +140,7 @@ const PhotoCard: React.FC<{
   subHeading: string;
   time: string;
 }> = ({ image, heading, subHeading, time }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, currentRegion } = useContext(ThemeContext);
   return (
     <Card onPress={() => {}} style={getStyle(theme).cardContainer}>
       <Image
@@ -154,7 +155,7 @@ const PhotoCard: React.FC<{
         <View style={getStyle(theme).timeContainer}>
           <Text style={getStyle(theme).time}>{time}</Text>
           <ShareIcon
-            color={theme.colors.primary}
+            color={regionalThemes[currentRegion].color}
             customStyle={getStyle(theme).icon}
           />
         </View>
