@@ -47,7 +47,7 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
       console.log(tUser);
       if (tUser) {
         const us = JSON.parse(tUser);
-        const user = await API_USER.get("/single", { params: { id: us.id } });
+        const user = await API_USER.get("/single", { params: { id: us._id } });
         setCurrentUser(user);
         console.log({ user });
       }
