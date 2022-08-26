@@ -61,13 +61,13 @@ const data = [
     label: "drawer.factChacker",
     goto: SendIcon,
   },
-  {
-    id: "6",
-    icon: Videos2Icon,
-    name: "Videos",
-    label: "drawer.videos",
-    goto: RightArrowIcon,
-  },
+  // {
+  //   id: "6",
+  //   icon: Videos2Icon,
+  //   name: "Videos",
+  //   label: "drawer.videos",
+  //   goto: RightArrowIcon,
+  // },
   // {
   //   id: "7",
   //   icon: MediaInvitaionsIcon,

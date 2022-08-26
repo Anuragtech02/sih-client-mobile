@@ -271,12 +271,15 @@ const Article: React.FC<{ route: any; navigation: any }> = ({
     isPressed ? handleSBtn() : handleHBtn();
   }, [isPressed]);
 
+  useEffect(() => {
+    console.log(article);
+  });
+
   const { getArticle } = useContext(ArticleContext);
 
   //@ts-ignore
   const { id } = route.params;
   const { appLanguage } = useContext(LocaleContext);
-  const [content, setContent] = useState<any>({});
 
   useEffect(() => {
     async function fetchArticle() {
@@ -315,7 +318,7 @@ const Article: React.FC<{ route: any; navigation: any }> = ({
             style={{
               ...getStyles(theme).innerContainer,
               height: headerHeight,
-              display: "none",
+              // display: "none",
             }}
           >
             <Animated.View

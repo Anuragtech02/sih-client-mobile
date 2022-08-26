@@ -7,6 +7,8 @@ import {
   Text,
   ToastAndroid,
   View,
+  TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
@@ -14,8 +16,8 @@ import { ThemeContext } from "../utils/contexts";
 import YoutubePlayer, { getYoutubeMeta } from "react-native-youtube-iframe";
 import metrics from "../utils/metrics";
 import { getYouTubeID } from "../utils";
+import { PinkThemeIcon } from "../assets/icons";
 import { BackArrowIcon, ShareIcon } from "../assets/icons";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import {
   Collapse,
   CollapseHeader,

@@ -77,7 +77,7 @@ function TopTabsNavigation() {
           tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Events"
         component={SocialMedia}
         options={{
@@ -90,7 +90,7 @@ function TopTabsNavigation() {
           },
           tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
-      />
+      /> */}
       <Tab.Screen
         name="SocialMedia"
         component={SocialMedia}
@@ -105,7 +105,7 @@ function TopTabsNavigation() {
           tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Videos"
         component={SocialMedia}
         options={{
@@ -118,7 +118,7 @@ function TopTabsNavigation() {
           },
           tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 }

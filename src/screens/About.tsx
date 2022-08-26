@@ -12,6 +12,7 @@ import {
   BackArrowIcon,
   InfoIcon,
   DrawerIcon,
+  PinkThemeIcon,
 } from "../assets/icons";
 
 function getStyle(theme: ITheme): any {
@@ -63,10 +64,20 @@ function getStyle(theme: ITheme): any {
 }
 
 const About: React.FC<{ navigation: any }> = ({ navigation }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, currentRegion } = useContext(ThemeContext);
 
   return (
     <MainLayout customStyles={getStyle(theme).container}>
+      {currentRegion === "pink" && (
+        <PinkThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
       <View style={getStyle(theme).header}>
         <BackArrowIcon
           customOnPress={() => navigation.navigate("Home")}

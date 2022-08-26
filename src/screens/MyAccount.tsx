@@ -11,11 +11,17 @@ import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
 import { AuthContext, ThemeContext } from "../utils/contexts";
 import BackArrow from "../assets/icons/BackArrowIcon";
-import { BackArrowIcon, DrawerIcon, RadioButtonIcon } from "../assets/icons";
+import {
+  BackArrowIcon,
+  DrawerIcon,
+  PinkThemeIcon,
+  RadioButtonIcon,
+} from "../assets/icons";
 import { ScrollView } from "react-native-gesture-handler";
 import { Button } from "../components";
 import { Dropdown, MultiSelect } from "react-native-element-dropdown";
 import EditIcon from "../assets/icons/EditIcon";
+import { regionalThemes } from "../utils/theme";
 
 const female = [
   require("../assets/avatars/Female/Assamee.png"),
@@ -336,7 +342,7 @@ function getStyles(theme: ITheme): any {
 }
 
 const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, currentRegion } = useContext(ThemeContext);
 
   const { userDetails } = useContext(AuthContext);
 
@@ -366,6 +372,16 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
 
   return (
     <MainLayout customStyles={getStyles(theme).container}>
+      {currentRegion === "pink" && (
+        <PinkThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={getStyles(theme).innerContainer}>
           <BackArrowIcon
@@ -397,11 +413,13 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
             >
               <RadioButtonIcon
                 color={
-                  gender === "Female" ? theme.colors.primary : theme.colors.g1
+                  gender === "Female"
+                    ? regionalThemes[currentRegion].color
+                    : theme.colors.g1
                 }
                 colorFill={
                   gender === "Female"
-                    ? theme.colors.primary
+                    ? regionalThemes[currentRegion].color
                     : theme.colors.background
                 }
               />
@@ -410,7 +428,7 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
                   ...getStyles(theme).radioButtonName,
                   color:
                     gender === "Female"
-                      ? theme.colors.primary
+                      ? regionalThemes[currentRegion].color
                       : theme.colors.g1,
                 }}
               >
@@ -428,11 +446,13 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
             >
               <RadioButtonIcon
                 color={
-                  gender === "Male" ? theme.colors.primary : theme.colors.g1
+                  gender === "Male"
+                    ? regionalThemes[currentRegion].color
+                    : theme.colors.g1
                 }
                 colorFill={
                   gender === "Male"
-                    ? theme.colors.primary
+                    ? regionalThemes[currentRegion].color
                     : theme.colors.background
                 }
               />
@@ -440,7 +460,9 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
                 style={{
                   ...getStyles(theme).radioButtonName,
                   color:
-                    gender === "Male" ? theme.colors.primary : theme.colors.g1,
+                    gender === "Male"
+                      ? regionalThemes[currentRegion].color
+                      : theme.colors.g1,
                 }}
               >
                 Male
@@ -452,16 +474,17 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
               style={getStyles(theme).items}
               onPress={() => {
                 setGender("Other");
-                setGender("");
               }}
             >
               <RadioButtonIcon
                 color={
-                  gender === "Other" ? theme.colors.primary : theme.colors.g1
+                  gender === "Other"
+                    ? regionalThemes[currentRegion].color
+                    : theme.colors.g1
                 }
                 colorFill={
                   gender === "Other"
-                    ? theme.colors.primary
+                    ? regionalThemes[currentRegion].color
                     : theme.colors.background
                 }
               />
@@ -478,7 +501,7 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
           </View>
 
           <Text style={getStyles(theme).title}>Select Region</Text>
-          <DropdownComponent
+          {/* <DropdownComponent
             value={region}
             myData={regions}
             onChange={(value: string) => setRegion(value)}
@@ -487,7 +510,7 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
             }}
           />
 
-          <Text style={getStyles(theme).title}>Select Ministry</Text>
+          <Text style={getStyles(theme).title}>Select Ministry</Text> */}
           <MultiSelect
             style={getStyles(theme).multiSelectDropdown}
             placeholderStyle={getStyles(theme).multiSelectPlaceholder}
@@ -495,10 +518,10 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
             inputSearchStyle={getStyles(theme).multiSelectInputSearch}
             iconStyle={{
               ...getStyles(theme).multiSelectIconStyle,
-              tintColor: ministry ? theme.colors.primary : theme.colors.g1,
+              tintColor: region ? theme.colors.primary : theme.colors.g1,
             }}
             containerStyle={getStyles(theme).multiSelectDropdownItemContainer}
-            data={ministries}
+            data={regions}
             maxHeight={300}
             showsVerticalScrollIndicator={false}
             labelField="label"
@@ -506,9 +529,9 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
             placeholder="Select item"
             alwaysRenderItemSelected
             // search
-            value={ministry}
+            value={region}
             onChange={(item: any) => {
-              setMinistry(item);
+              setRegion(item);
             }}
             activeColor={"#E5E5E5"}
             selectedStyle={getStyles(theme).multiSelectSelectedStyle}

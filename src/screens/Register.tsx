@@ -461,7 +461,7 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
           </View>
 
           <Text style={getStyles(theme).title}>Select Region</Text>
-          <DropdownComponent
+          {/* <DropdownComponent
             value={region}
             myData={regions}
             onChange={(item) => {
@@ -472,7 +472,7 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
             }}
           />
 
-          <Text style={getStyles(theme).title}>Select Ministry</Text>
+          <Text style={getStyles(theme).title}>Select Ministry</Text> */}
           <MultiSelect
             style={getStyles(theme).multiSelectDropdown}
             placeholderStyle={getStyles(theme).multiSelectPlaceholder}
@@ -480,9 +480,9 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
             inputSearchStyle={getStyles(theme).multiSelectInputSearch}
             iconStyle={{
               ...getStyles(theme).multiSelectIconStyle,
-              tintColor: ministry ? theme.colors.primary : theme.colors.g1,
+              tintColor: region ? theme.colors.primary : theme.colors.g1,
             }}
-            data={ministries}
+            data={regions}
             containerStyle={getStyles(theme).multiSelectDropdownItemContainer}
             maxHeight={300}
             showsVerticalScrollIndicator={false}
@@ -496,7 +496,7 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
             value={selected}
             onChange={(item) => {
               setSelected(item);
-              setMinistry(item);
+              setRegion(item);
             }}
             selectedStyle={getStyles(theme).multiSelectSelectedStyle}
           />
@@ -504,7 +504,7 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
 
         <View style={getStyles(theme).buttonContainer}>
           <Button
-            disabled={gender && name && region && ministry ? false : true}
+            disabled={gender && name && region ? false : true}
             onPress={async () => {
               //console.log(ministry.map((it: any) => ministries[it].label));
               const fcmToken = await AsyncStorage.getItem("fcmToken");

@@ -20,7 +20,8 @@ function SavedTopTabsNavigation() {
       initialRouteName="Releases"
       screenOptions={{
         tabBarScrollEnabled: true,
-        tabBarStyle: { backgroundColor: theme.colors.background },
+
+        tabBarStyle: { backgroundColor: theme.colors.background, elevation: 0 },
         tabBarItemStyle: { padding: 0 },
         tabBarIndicatorStyle: {
           backgroundColor: regionalThemes[currentRegion].color,
@@ -55,7 +56,7 @@ function SavedTopTabsNavigation() {
           tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Events"
         component={SocialMedia}
         options={{
@@ -82,7 +83,7 @@ function SavedTopTabsNavigation() {
           },
           tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 }

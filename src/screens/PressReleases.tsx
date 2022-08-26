@@ -19,8 +19,15 @@ import { MAIN_LAYOUT_DEFAULT_PADDING } from "../utils/constants";
 import StackNavigatorContext, {
   useStackNavigator,
 } from "../navigation/stackNaviagtionContext";
-import { ClockIcon, EyeIcon, SavedIcon, ShareIcon } from "../assets/icons";
+import {
+  ClockIcon,
+  EyeIcon,
+  PinkThemeIcon,
+  SavedIcon,
+  ShareIcon,
+} from "../assets/icons";
 import { regionalThemes } from "../utils/theme";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Dropdown } from "react-native-element-dropdown";
 
 function getStyle(theme: ITheme): any {
@@ -43,6 +50,25 @@ function getStyle(theme: ITheme): any {
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
+      backgroundColor: theme.colors.background,
+    },
+    dropdown: {
+      height: 50,
+      backgroundColor: theme.colors.background,
+      borderRadius: 4,
+      padding: 12,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 1.41,
+      color: theme.colors.primary,
+      elevation: 2,
+      marginBottom: 24,
+    },
+    dropdownItemContainer: {
       backgroundColor: theme.colors.background,
     },
     eyeContainer: {
@@ -87,6 +113,31 @@ function getStyle(theme: ITheme): any {
       fontFamily: theme.fonts.body.fontFamily,
       color: theme.colors.g1,
       marginStart: 8,
+    },
+    iconStyle: {
+      width: 20,
+      height: 20,
+    },
+    inputSearchStyle: {
+      height: 40,
+      fontSize: 16,
+      backgroundColor: theme.colors.background,
+    },
+    placeholderStyle: {
+      fontSize: theme.fonts.subTitle.fontSize,
+      fontFamily: theme.fonts.body.fontFamily,
+      color: theme.colors.g1,
+    },
+    selectedTextStyle: {
+      fontSize: theme.fonts.subTitle.fontSize,
+      fontFamily: theme.fonts.body.fontFamily,
+      color: theme.colors.primary,
+    },
+    selectSize: {
+      fontSize: theme.fonts.subTitle.fontSize,
+      fontFamily: theme.fonts.body.fontFamily,
+      color: theme.colors.g1,
+      marginBottom: 8,
     },
   });
 }
@@ -133,19 +184,21 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
 }) => {
   const [filter, setFilter] = useState("");
   const { theme, currentRegion } = useContext(ThemeContext);
-  const { articles, articleLoading } = useContext(ArticleContext);
+  const { articlesOwn: articles, articleLoading } = useContext(ArticleContext);
   const [tempArticles, setTempArticles] = useState<any>();
   const { navigation: myNavigation } = useStackNavigator();
   useEffect(() => {
     console.log(filter);
   });
+  // useEffect(() => {
+  //   function handleFilter() {
+  //     const newData = oldData.map((item) => item2);
+  //   }
+  //   handleFilter();
+  // }, [filter]);
   useEffect(() => {
     setTempArticles(articles);
   }, [articles]);
-  function handleDateFilter(e: any) {
-    setFilter(e.target.value);
-    setTempArticles(articles);
-  }
   return (
     <MainLayout
       customStyles={getStyle(theme).container}
@@ -163,7 +216,7 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
         <DropdownComponent
           style={{ width: 150, marginRight: 10, marginTop: 5 }}
           value={filter}
-          onChange={handleDateFilter}
+          onChange={setFilter}
           myData={filterOptions}
         />
       </View>
@@ -228,7 +281,7 @@ const HomeCard: React.FC<{
   const { navigation } = useContext(StackNavigatorContext);
 
   function onPress() {
-    navigation.navigate("WebViewArticle", {
+    navigation.navigate("Article", {
       id: article._id,
       value: article.link,
     });
@@ -242,11 +295,25 @@ const HomeCard: React.FC<{
     id: _id,
   } = article;
   const { theme, currentRegion } = useContext(ThemeContext);
-  const [isSaved, setIsSaved] = useState(false);
+  const [isSaved, setIsSaved] = useState<boolean>(false);
   const { currentUser, setCurrentUser } = useContext(AuthContext);
-  function handlePressSave() {
-    setIsSaved((prev) => !prev);
-    const newSavedArticles = [...currentUser.savedArticles, article];
+
+  async function handlePressSave() {
+    isSaved ? setIsSaved(false) : setIsSaved(true);
+
+    const prev = await AsyncStorage.getItem("articles");
+    if (prev) {
+      const prevData = JSON.parse(prev);
+
+      const res = await AsyncStorage.setItem(
+        "articles",
+        JSON.stringify([...prevData, article])
+      );
+    } else {
+      await AsyncStorage.setItem("articles", JSON.stringify([article]));
+    }
+
+    //const newSavedArticles = [...currentUser.savedArticles, article]; ERROR
     // return () => {
     //   setCurrentUser((prev: any) => ({
     //     ...prev,

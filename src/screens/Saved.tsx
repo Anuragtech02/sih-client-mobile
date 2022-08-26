@@ -4,6 +4,7 @@ import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
 import SavedTopTabsNavigation from "../navigation/SavedTopTabsNavigation";
+import { PinkThemeIcon } from "../assets/icons";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -60,12 +61,22 @@ function getStyle(theme: ITheme): any {
 }
 
 const Saved: React.FC = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, currentRegion } = useContext(ThemeContext);
   return (
     <MainLayout
       customStyles={getStyle(theme).container}
       disableDefaultPadding={true}
     >
+      {currentRegion === "pink" && (
+        <PinkThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
       <Text style={getStyle(theme).heading}>Saved</Text>
       <SavedTopTabsNavigation />
     </MainLayout>

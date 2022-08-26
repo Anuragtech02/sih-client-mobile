@@ -7,6 +7,7 @@ import { Card } from "../components";
 import { ShareIcon } from "../assets/icons";
 import { FlatList } from "react-native-gesture-handler";
 import { regionalThemes } from "../utils/theme";
+import { useStackNavigator } from "../navigation/stackNaviagtionContext";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -69,6 +70,7 @@ const data = [
     heading:
       "PM Modi addressed at the homi Bhabha Cancer Hospital and center...",
     time: "Aug 14, 2022",
+    link: "https://www.pib.gov.in/ViewVideo.aspx?V_ID=125793&MinID=1325&VPRID=116619&Day=&Month=8&Year=2022",
   },
   {
     id: "2",
@@ -76,6 +78,7 @@ const data = [
     heading:
       "PM Modi attends inaugural event of Amrita Hospital in Faridabad, Harya...",
     time: "Aug 14, 2022",
+    link: "https://www.pib.gov.in/ViewVideo.aspx?V_ID=125836&MinID=1325&VPRID=116662&Day=&Month=8&Year=2022",
   },
   {
     id: "3",
@@ -83,12 +86,14 @@ const data = [
     heading:
       "PM Modi Inaugurates State-of-the-art Amrita Hospital in Faridabad | PM...",
     time: "Aug 14, 2022",
+    link: "https://www.pib.gov.in/ViewVideo.aspx?V_ID=125793&MinID=1325&VPRID=116619&Day=&Month=8&Year=2022",
   },
   {
     id: "4",
     image: require("../assets/four.jpeg"),
     heading: "PM Modi Addresses Har Ghar Jal Utsav in Goal PMO",
     time: "Aug 14, 2022",
+    link: "https://www.pib.gov.in/ViewVideo.aspx?V_ID=125794&MinID=1325&VPRID=116620&Day=&Month=8&Year=2022",
   },
   {
     id: "5",
@@ -96,11 +101,13 @@ const data = [
     heading:
       "PM Modi's walkthrough in Homi Bhabha Cancer Hospital & Research Centre...",
     time: "Aug 14, 2022",
+    link: "https://www.pib.gov.in/ViewVideo.aspx?V_ID=125795&MinID=1325&VPRID=116621&Day=&Month=8&Year=2022",
   },
 ];
 
-const PMVideos: React.FC = () => {
+const PMVideos: React.FC<{ navigation?: any }> = ({ navigation }) => {
   const { theme, currentRegion } = useContext(ThemeContext);
+  const { navigation: navigator } = useStackNavigator();
   return (
     <MainLayout customStyles={getStyle(theme).container}>
       <FlatList
@@ -116,6 +123,7 @@ const PMVideos: React.FC = () => {
             image={item.image}
             heading={item.heading}
             time={item.time}
+            onPress={() => navigator.navigate("PMV", { link: item.link })}
           />
         )}
       />
@@ -127,10 +135,12 @@ const PhotoCard: React.FC<{
   image: any;
   heading: string;
   time: string;
-}> = ({ image, heading, time }) => {
+  navigation?: any;
+  onPress?: any;
+}> = ({ image, heading, time, navigation, onPress }) => {
   const { theme, currentRegion } = useContext(ThemeContext);
   return (
-    <Card onPress={() => {}} style={getStyle(theme).cardContainer}>
+    <Card onPress={onPress} style={getStyle(theme).cardContainer}>
       <Image
         source={image}
         borderTopLeftRadius={8}
