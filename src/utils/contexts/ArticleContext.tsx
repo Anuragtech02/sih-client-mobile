@@ -3,7 +3,7 @@ import React, { createContext, useState, ReactNode, useEffect } from "react";
 import { IArticle, IArticleCard, IArticleContext } from "./interfaces";
 
 const API_ARTICLE = axios.create({
-  baseURL: `https://dsalgo.tech/article`,
+  baseURL: `https://sih-server-staging.onrender.com/article`,
 });
 
 const ArticleContext = createContext<IArticleContext>({

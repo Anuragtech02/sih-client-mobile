@@ -271,9 +271,9 @@ const Article: React.FC<{ route: any; navigation: any }> = ({
     isPressed ? handleSBtn() : handleHBtn();
   }, [isPressed]);
 
-  useEffect(() => {
-    console.log(article);
-  });
+  // useEffect(() => {
+  //   console.log(article);
+  // });
 
   const { getArticle } = useContext(ArticleContext);
 
@@ -329,7 +329,7 @@ const Article: React.FC<{ route: any; navigation: any }> = ({
             >
               <BackArrowIcon
                 color={theme.colors.primary}
-                customOnPress={() => navigation.navigate("Home")}
+                customOnPress={() => navigation.navigate("AppNavigation")}
               />
             </Animated.View>
 
@@ -381,7 +381,7 @@ const Article: React.FC<{ route: any; navigation: any }> = ({
                 {article.title}
               </Text>
 
-              <Text style={getStyles(theme).more}>{article.title}</Text>
+              {/* <Text style={getStyles(theme).more}>{article.title}</Text> */}
             </Animated.View>
           </Animated.View>
 
@@ -475,7 +475,7 @@ const Article: React.FC<{ route: any; navigation: any }> = ({
 
 const WebViewArticle: React.FC<{ route: any }> = ({ route }) => {
   const adb = route.params.value;
-  console.log(adb);
+  //console.log(adb);
   const { theme } = useContext(ThemeContext);
   return (
     <MainLayout

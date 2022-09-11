@@ -1,5 +1,4 @@
 import React from "react";
-import {} from "react-native";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import {
@@ -14,6 +13,9 @@ import {
   WebViewArticle,
   Splash,
   PMV,
+  MyAccount,
+  FactChecker,
+  Settings,
 } from "../screens/";
 import AppNavigation from "./AppNavigation";
 
@@ -70,6 +72,26 @@ const AuthNavigation = () => {
       <Stack.Screen
         name="PMV"
         component={PMV}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="My Account"
+        component={MyAccount}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="About PIB"
+        component={About}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Fact Checker"
+        component={FactChecker}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Settings"
+        component={Settings}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

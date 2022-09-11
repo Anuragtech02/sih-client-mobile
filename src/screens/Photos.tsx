@@ -4,13 +4,23 @@ import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
 import { Card } from "../components";
-import { PinkThemeIcon, ShareIcon } from "../assets/icons";
+import {
+  BlueThemeIcon,
+  GreenThemeIcon,
+  LavenderThemeIcon,
+  OrangeThemeIcon,
+  PinkThemeIcon,
+  ReddishBrownThemeIcon,
+  ReddishOrangeThemeIcon,
+  ShareIcon,
+  YellowThemeIcon,
+} from "../assets/icons";
 import { FlatList } from "react-native-gesture-handler";
 import axios from "axios";
 import { regionalThemes } from "../utils/theme";
 
 export const API_IMAGES = axios.create({
-  baseURL: `https://dsalgo.tech/image`,
+  baseURL: `https://sih-server-staging.onrender.com/image`,
 });
 
 function getStyle(theme: ITheme): any {
@@ -106,18 +116,88 @@ const Photos: React.FC = () => {
   const { theme, currentRegion } = useContext(ThemeContext);
   async function fetchPhotos() {
     const res = await API_IMAGES.get("/all");
-    console.log(res?.data);
+    //console.log(res?.data);
   }
   useEffect(() => {
     fetchPhotos();
   }, []);
   return (
     <MainLayout customStyles={getStyle(theme).container}>
+      {currentRegion === "blue" && (
+        <BlueThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
+      {currentRegion === "green" && (
+        <GreenThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
       {currentRegion === "pink" && (
         <PinkThemeIcon
           customStyle={{
             position: "absolute",
             top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
+      {currentRegion === "yellow" && (
+        <YellowThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
+            right: 0,
+            opacity: 0.6,
+          }}
+        />
+      )}
+      {currentRegion === "lavender" && (
+        <LavenderThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
+            right: 0,
+            opacity: 0.3,
+          }}
+        />
+      )}
+      {currentRegion === "reddishOrange" && (
+        <ReddishOrangeThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
+            right: 0,
+            opacity: 0.3,
+          }}
+        />
+      )}
+      {currentRegion === "reddishBrown" && (
+        <ReddishBrownThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
+      {currentRegion === "orange" && (
+        <OrangeThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
             right: 0,
             opacity: 0.1,
           }}

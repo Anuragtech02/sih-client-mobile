@@ -13,6 +13,13 @@ import {
   InfoIcon,
   DrawerIcon,
   PinkThemeIcon,
+  GreenThemeIcon,
+  BlueThemeIcon,
+  ReddishBrownThemeIcon,
+  YellowThemeIcon,
+  LavenderThemeIcon,
+  ReddishOrangeThemeIcon,
+  OrangeThemeIcon,
 } from "../assets/icons";
 
 function getStyle(theme: ITheme): any {
@@ -68,6 +75,26 @@ const About: React.FC<{ navigation: any }> = ({ navigation }) => {
 
   return (
     <MainLayout customStyles={getStyle(theme).container}>
+      {currentRegion === "blue" && (
+        <BlueThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
+      {currentRegion === "green" && (
+        <GreenThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
       {currentRegion === "pink" && (
         <PinkThemeIcon
           customStyle={{
@@ -78,14 +105,61 @@ const About: React.FC<{ navigation: any }> = ({ navigation }) => {
           }}
         />
       )}
+      {currentRegion === "yellow" && (
+        <YellowThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
+            right: 0,
+            opacity: 0.6,
+          }}
+        />
+      )}
+      {currentRegion === "lavender" && (
+        <LavenderThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
+            right: 0,
+            opacity: 0.3,
+          }}
+        />
+      )}
+      {currentRegion === "reddishOrange" && (
+        <ReddishOrangeThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
+            right: 0,
+            opacity: 0.3,
+          }}
+        />
+      )}
+      {currentRegion === "reddishBrown" && (
+        <ReddishBrownThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
+      {currentRegion === "orange" && (
+        <OrangeThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
       <View style={getStyle(theme).header}>
         <BackArrowIcon
-          customOnPress={() => navigation.navigate("Home")}
+          customOnPress={() => navigation.navigate("AppNavigation")}
           color={theme.colors.primary}
         />
-        <View style={{ marginStart: "auto" }}>
-          <DrawerIcon customOnPress={() => navigation.openDrawer()} />
-        </View>
       </View>
       <View style={getStyle(theme).horizontalLine}></View>
       <View style={getStyle(theme).section}>

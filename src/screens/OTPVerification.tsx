@@ -97,7 +97,7 @@ number`}
         codeInputHighlightStyle={getStyles(theme).underlineStyleHighLighted}
         onCodeFilled={(code: any) => {
           setPin(code);
-          console.log(code);
+          // console.log(code);
           setLoading(true);
           confirmCode(code, () =>
             handleLogin(phoneNumber, (data: any) => {
@@ -108,7 +108,7 @@ number`}
                 setCurrentUser(user);
                 AsyncStorage.setItem("CURRENT_USER", JSON.stringify(user));
                 // console.log(user);
-                console.log(data);
+                // console.log(data);
                 navigation.navigate("AppNavigation");
               }
             })

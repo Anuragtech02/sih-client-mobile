@@ -2,7 +2,14 @@ import React, { useContext } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ThemeContext } from "../utils/contexts";
 
-import { Home, Live, Notifications, Photos, Saved } from "../screens";
+import {
+  Home,
+  Live,
+  MyAccount,
+  Notifications,
+  Photos,
+  Saved,
+} from "../screens";
 import {
   HomeIcon,
   NotificationsIcon,
@@ -10,9 +17,10 @@ import {
   SavedIcon,
   PhotosIcon,
 } from "../assets/icons";
-import DrawerNavigation from "./DrawerNavigation";
-import StackNavigatorContext from "./stackNaviagtionContext";
+
 import { regionalThemes } from "../utils/theme";
+import { StackNavigatorContext } from "./stackNaviagtionContext";
+
 const App = createBottomTabNavigator();
 
 const AppNavigation: React.FC<{ navigation: any; route: any }> = ({
@@ -28,8 +36,8 @@ const AppNavigation: React.FC<{ navigation: any; route: any }> = ({
         }}
       >
         <App.Screen
-          name="DrawerNavigation"
-          component={DrawerNavigation}
+          name="Home"
+          component={Home}
           options={{
             tabBarShowLabel: false,
             headerShown: false,

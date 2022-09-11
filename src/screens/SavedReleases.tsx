@@ -13,7 +13,7 @@ import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 import { SavedCard } from "../components";
 import metrics from "../utils/metrics";
 import { MAIN_LAYOUT_DEFAULT_PADDING } from "../utils/constants";
-import { useStackNavigator } from "../navigation/stackNaviagtionContext";
+import { StackNavigatorContext } from "../navigation/stackNaviagtionContext";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -69,7 +69,7 @@ const SavedReleases: React.FC<{ navigation: any; route: any }> = ({
 }) => {
   const { theme } = useContext(ThemeContext);
   const { articlesOwn: articles, articleLoading } = useContext(ArticleContext);
-  const { navigation: navigator } = useStackNavigator();
+  const { navigation: navigator } = useContext(StackNavigatorContext);
   return (
     <MainLayout
       customStyles={getStyle(theme).container}
@@ -98,7 +98,6 @@ const SavedReleases: React.FC<{ navigation: any; route: any }> = ({
                 navigator.navigate("Article", {
                   id: item._id,
                 });
-                //  articles.slice(index, articles.length)
               }}
             />
           )}

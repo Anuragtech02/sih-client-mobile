@@ -3,11 +3,9 @@ import { StyleSheet, View } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import {
   MediaInvitations,
-  Photos,
   PMVideo,
   PressReleases,
   SocialMedia,
-  TrendingTabs,
 } from "../screens";
 import { ThemeContext } from "../utils/contexts";
 import { regionalThemes } from "../utils/theme";
@@ -77,20 +75,6 @@ function TopTabsNavigation() {
           tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
       />
-      {/* <Tab.Screen
-        name="Events"
-        component={SocialMedia}
-        options={{
-          tabBarLabel: "Events",
-          tabBarInactiveTintColor: theme.colors.g1,
-          tabBarLabelStyle: {
-            textTransform: "none",
-            fontFamily: theme.fonts.subTitle.fontFamily,
-            fontSize: theme.fonts.body.fontSize,
-          },
-          tabBarActiveTintColor: regionalThemes[currentRegion].color,
-        }}
-      /> */}
       <Tab.Screen
         name="SocialMedia"
         component={SocialMedia}
@@ -105,20 +89,6 @@ function TopTabsNavigation() {
           tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
       />
-      {/* <Tab.Screen
-        name="Videos"
-        component={SocialMedia}
-        options={{
-          tabBarLabel: "Videos",
-          tabBarInactiveTintColor: theme.colors.g1,
-          tabBarLabelStyle: {
-            textTransform: "none",
-            fontFamily: theme.fonts.subTitle.fontFamily,
-            fontSize: theme.fonts.body.fontSize,
-          },
-          tabBarActiveTintColor: regionalThemes[currentRegion].color,
-        }}
-      /> */}
     </Tab.Navigator>
   );
 }

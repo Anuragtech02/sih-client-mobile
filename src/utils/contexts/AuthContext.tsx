@@ -10,11 +10,11 @@ const API_ARTICLE = axios.create({
 });
 
 const API_AUTH = axios.create({
-  baseURL: "https://dsalgo.tech/auth",
+  baseURL: "https://sih-server-staging.onrender.com/auth",
 });
 
 const API_USER = axios.create({
-  baseURL: "https://dsalgo.tech/user",
+  baseURL: "https://sih-server-staging.onrender.com/user",
 });
 
 const AuthContext = createContext<IAuthContext>({
@@ -68,10 +68,13 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
       console.log("UPDATE USER CALLED");
       const fcmToken = await AsyncStorage.getItem("fcmToken");
       if (fcmToken && currentUser?.id) {
-        const res = await API_USER.patch("https://dsalgo.tech/user/update", {
-          id: currentUser.id,
-          fcmToken,
-        });
+        const res = await API_USER.patch(
+          "https://sih-server-staging.onrender.com/user/update",
+          {
+            id: currentUser.id,
+            fcmToken,
+          }
+        );
         console.log(res.data);
       }
     }

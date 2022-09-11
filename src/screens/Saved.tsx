@@ -4,7 +4,17 @@ import MainLayout from "../layouts/MainLayout";
 import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
 import SavedTopTabsNavigation from "../navigation/SavedTopTabsNavigation";
-import { PinkThemeIcon } from "../assets/icons";
+import {
+  BlueThemeIcon,
+  GreenThemeIcon,
+  LavenderThemeIcon,
+  OrangeThemeIcon,
+  PinkThemeIcon,
+  ReddishBrownThemeIcon,
+  ReddishOrangeThemeIcon,
+  YellowThemeIcon,
+} from "../assets/icons";
+import { NavigationContainer } from "@react-navigation/native";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -67,6 +77,26 @@ const Saved: React.FC = () => {
       customStyles={getStyle(theme).container}
       disableDefaultPadding={true}
     >
+      {currentRegion === "blue" && (
+        <BlueThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
+      {currentRegion === "green" && (
+        <GreenThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
       {currentRegion === "pink" && (
         <PinkThemeIcon
           customStyle={{
@@ -77,8 +107,60 @@ const Saved: React.FC = () => {
           }}
         />
       )}
+      {currentRegion === "yellow" && (
+        <YellowThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
+            right: 0,
+            opacity: 0.6,
+          }}
+        />
+      )}
+      {currentRegion === "lavender" && (
+        <LavenderThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
+            right: 0,
+            opacity: 0.3,
+          }}
+        />
+      )}
+      {currentRegion === "reddishOrange" && (
+        <ReddishOrangeThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
+            right: 0,
+            opacity: 0.3,
+          }}
+        />
+      )}
+      {currentRegion === "reddishBrown" && (
+        <ReddishBrownThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
+      {currentRegion === "orange" && (
+        <OrangeThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
       <Text style={getStyle(theme).heading}>Saved</Text>
+      {/* <NavigationContainer> */}
       <SavedTopTabsNavigation />
+      {/* </NavigationContainer> */}
     </MainLayout>
   );
 };
