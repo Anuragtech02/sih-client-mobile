@@ -2,9 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useContext, useEffect } from "react";
 import { Image, StyleSheet, View, Text } from "react-native";
 import MainLayout from "../layouts/MainLayout";
-import StackNavigatorContext, {
-  useStackNavigator,
-} from "../navigation/stackNaviagtionContext";
+
 import { IS_FIRST_TIME } from "../utils/constants";
 import { AuthContext, ThemeContext } from "../utils/contexts";
 import { ITheme } from "../utils/contexts/interfaces";

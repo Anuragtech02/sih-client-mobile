@@ -7,7 +7,6 @@ import Svg, { Path } from "react-native-svg";
 import { regionalThemes } from "../../utils/theme";
 
 function getStyles(theme: ITheme): any {
-  console.log({ color: theme.colors.regionalColor });
   return StyleSheet.create({
     // bar: opacity => ({
     //     backgroundColor: colors.black,
@@ -34,7 +33,7 @@ const HomeIcon: React.FC<{ color: any; opacity: any }> = ({
   opacity,
 }) => {
   const { theme, currentRegion } = useContext(ThemeContext);
-  console.log(currentRegion);
+
   return (
     <>
       <Svg

@@ -61,13 +61,18 @@ const SavedIcon: React.FC<{
       <Svg
         width={width}
         height="24"
-        viewBox="0 0 24 24"
+        viewBox="-3 0 24 24"
         fill="none"
         //xmlns="http://www.w3.org/2000/svg"
       >
         <Path
           d="M0 20H16.4706V17.6471H0M16.4706 7.05882H11.7647V0H4.70588V7.05882H0L8.23529 15.2941L16.4706 7.05882Z"
           fill={
+            color === regionalThemes[currentRegion].color
+              ? regionalThemes[currentRegion].color
+              : theme.colors.absoluteWhite
+          }
+          stroke={
             color === regionalThemes[currentRegion].color
               ? regionalThemes[currentRegion].color
               : theme.colors.g1

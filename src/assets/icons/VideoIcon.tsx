@@ -3,6 +3,7 @@ import { StyleSheet, View } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { ITheme } from "../../utils/contexts/interfaces";
 import { ThemeContext } from "../../utils/contexts";
+import { regionalThemes } from "../../utils/theme";
 
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
@@ -23,8 +24,8 @@ const VideoIcon: React.FC<{
   fillColor?: any;
   opacity?: any;
   newColor?: any;
-}> = ({ color, fillColor, opacity = 0, newColor }) => {
-  const { theme } = useContext(ThemeContext);
+}> = ({ color, fillColor, opacity, newColor }) => {
+  const { theme, currentRegion } = useContext(ThemeContext);
   return (
     <>
       <Svg
@@ -59,7 +60,13 @@ const VideoIcon: React.FC<{
           stroke-linejoin="round"
         />
       </Svg>
-      <View style={{ ...getStyles(theme).bar, opacity: opacity }} />
+      <View
+        style={{
+          ...getStyles(theme).bar,
+          opacity: opacity,
+          backgroundColor: regionalThemes[currentRegion].color,
+        }}
+      />
     </>
   );
 };

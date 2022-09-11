@@ -7,7 +7,7 @@ import { Card } from "../components";
 import { ShareIcon } from "../assets/icons";
 import { FlatList } from "react-native-gesture-handler";
 import { regionalThemes } from "../utils/theme";
-import { useStackNavigator } from "../navigation/stackNaviagtionContext";
+import { StackNavigatorContext } from "../navigation/stackNaviagtionContext";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -105,9 +105,9 @@ const data = [
   },
 ];
 
-const PMVideos: React.FC<{ navigation?: any }> = ({ navigation }) => {
+const PMVideos: React.FC = () => {
   const { theme, currentRegion } = useContext(ThemeContext);
-  const { navigation: navigator } = useStackNavigator();
+  const { navigation: navigator } = useContext(StackNavigatorContext);
   return (
     <MainLayout customStyles={getStyle(theme).container}>
       <FlatList

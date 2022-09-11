@@ -32,7 +32,6 @@ const TrendingTabs: React.FC<{ navigation: any }> = ({ navigation }) => {
     }
     always();
   }, []);
-  console.log("HELLO", myArticle);
   return (
     <MainLayout customStyles={getStyle(theme).container}>
       <Text style={getStyle(theme).heading}>{myArticle}</Text>

@@ -4,7 +4,16 @@ import MainLayout from "../layouts/MainLayout";
 import { INotificationCard, ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts";
 import { Button } from "../components";
-import { PinkThemeIcon } from "../assets/icons";
+import {
+  BlueThemeIcon,
+  GreenThemeIcon,
+  LavenderThemeIcon,
+  OrangeThemeIcon,
+  PinkThemeIcon,
+  ReddishBrownThemeIcon,
+  ReddishOrangeThemeIcon,
+  YellowThemeIcon,
+} from "../assets/icons";
 
 export const API_NOTIFICATION = {};
 
@@ -183,11 +192,81 @@ function Notifications() {
   const { theme, currentRegion } = useContext(ThemeContext);
   return (
     <MainLayout customStyles={getStyle(theme).container}>
+      {currentRegion === "blue" && (
+        <BlueThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
+      {currentRegion === "green" && (
+        <GreenThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
       {currentRegion === "pink" && (
         <PinkThemeIcon
           customStyle={{
             position: "absolute",
             top: 0,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
+      {currentRegion === "yellow" && (
+        <YellowThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
+            right: 0,
+            opacity: 0.6,
+          }}
+        />
+      )}
+      {currentRegion === "lavender" && (
+        <LavenderThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
+            right: 0,
+            opacity: 0.3,
+          }}
+        />
+      )}
+      {currentRegion === "reddishOrange" && (
+        <ReddishOrangeThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
+            right: 0,
+            opacity: 0.3,
+          }}
+        />
+      )}
+      {currentRegion === "reddishBrown" && (
+        <ReddishBrownThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
+            right: 0,
+            opacity: 0.1,
+          }}
+        />
+      )}
+      {currentRegion === "orange" && (
+        <OrangeThemeIcon
+          customStyle={{
+            position: "absolute",
+            top: -10,
             right: 0,
             opacity: 0.1,
           }}

@@ -507,26 +507,27 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
             disabled={gender && name && region ? false : true}
             onPress={async () => {
               //console.log(ministry.map((it: any) => ministries[it].label));
-              const fcmToken = await AsyncStorage.getItem("fcmToken");
-              createNewUser(
-                {
-                  name,
-                  contact: phone,
-                  gender,
-                  pibs: [region],
-                  region: region.label,
-                  fcmToken,
-                  avatar: "OK",
-                  ministries: ministry,
-                },
-                (data: any) => {
-                  const user = jwtDecode(data);
-                  console.log(user);
-                  setCurrentUser(user);
-                  AsyncStorage.setItem("CURRENT_USER", JSON.stringify(user));
-                  navigation.navigate("AppNavigation");
-                }
-              );
+              AsyncStorage.getItem("fcmToken").then((fcmToken) => {
+                createNewUser(
+                  {
+                    name,
+                    contact: phone,
+                    gender,
+                    pibs: [region],
+                    region: region.label,
+                    fcmToken,
+                    avatar: "OK",
+                    ministries: ministry,
+                  },
+                  (data: any) => {
+                    const user = jwtDecode(data);
+                    //console.log(user);
+                    setCurrentUser(user);
+                    AsyncStorage.setItem("CURRENT_USER", JSON.stringify(user));
+                    navigation.navigate("AppNavigation");
+                  }
+                );
+              });
             }}
           >
             Register

@@ -1,12 +1,7 @@
 import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import {
-  PressReleases,
-  SavedReleases,
-  SocialMedia,
-  TrendingTabs,
-} from "../screens";
+import { SavedReleases, TrendingTabs } from "../screens";
 import { ThemeContext } from "../utils/contexts";
 import { regionalThemes } from "../utils/theme";
 
@@ -56,34 +51,6 @@ function SavedTopTabsNavigation() {
           tabBarActiveTintColor: regionalThemes[currentRegion].color,
         }}
       />
-      {/* <Tab.Screen
-        name="Events"
-        component={SocialMedia}
-        options={{
-          tabBarLabel: "Events",
-          tabBarInactiveTintColor: theme.colors.g1,
-          tabBarLabelStyle: {
-            textTransform: "none",
-            fontFamily: theme.fonts.subTitle.fontFamily,
-            fontSize: theme.fonts.body.fontSize,
-          },
-          tabBarActiveTintColor: regionalThemes[currentRegion].color,
-        }}
-      />
-      <Tab.Screen
-        name="Media Invitation"
-        component={SocialMedia}
-        options={{
-          tabBarLabel: "Media Invitation",
-          tabBarInactiveTintColor: theme.colors.g1,
-          tabBarLabelStyle: {
-            textTransform: "none",
-            fontFamily: theme.fonts.subTitle.fontFamily,
-            fontSize: theme.fonts.body.fontSize,
-          },
-          tabBarActiveTintColor: regionalThemes[currentRegion].color,
-        }}
-      /> */}
     </Tab.Navigator>
   );
 }

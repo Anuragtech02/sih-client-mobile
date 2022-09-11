@@ -9,8 +9,6 @@ import {
   ScrollView,
 } from "react-native";
 import { Button } from "../components";
-// import LoginBackgroundImage from "../assets/LoginBackgroundImage";
-// import {ReactComponent as LoginBackground} from "../assets/LoginBackgroundImage.svg"
 
 import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts/";
@@ -74,25 +72,7 @@ function getStyles(theme: ITheme): any {
   });
 }
 
-const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
-  //   myNavigation.reset({
-  //     index: 0,
-  //     routes: [{name: "" }],
-  //   });
-
-  // useEffect(() => {
-  //   CommonActions.reset(
-  //     navigation.dispatch(
-  //       CommonActions.reset({
-  //         index: 0,
-  //         routes: [
-  //           { name: "LoginScreen" },
-  //         ],
-  //       })
-  //     )
-  //   );
-  // }, []);
-
+const Login: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <MainLayout
@@ -130,4 +110,4 @@ Let’s get started.`}</Text>
   );
 };
 
-export default LoginScreen;
+export default Login;

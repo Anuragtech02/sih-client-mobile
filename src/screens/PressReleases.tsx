@@ -16,9 +16,7 @@ import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 import { Card } from "../components";
 import metrics from "../utils/metrics";
 import { MAIN_LAYOUT_DEFAULT_PADDING } from "../utils/constants";
-import StackNavigatorContext, {
-  useStackNavigator,
-} from "../navigation/stackNaviagtionContext";
+
 import {
   ClockIcon,
   EyeIcon,
@@ -29,6 +27,7 @@ import {
 import { regionalThemes } from "../utils/theme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Dropdown } from "react-native-element-dropdown";
+import { StackNavigatorContext } from "../navigation/stackNaviagtionContext";
 
 function getStyle(theme: ITheme): any {
   return StyleSheet.create({
@@ -186,10 +185,10 @@ const PressReleases: React.FC<{ navigation: any; route: any }> = ({
   const { theme, currentRegion } = useContext(ThemeContext);
   const { articlesOwn: articles, articleLoading } = useContext(ArticleContext);
   const [tempArticles, setTempArticles] = useState<any>();
-  const { navigation: myNavigation } = useStackNavigator();
-  useEffect(() => {
-    console.log(filter);
-  });
+
+  // useEffect(() => {
+  //   console.log(filter);
+  // });
   // useEffect(() => {
   //   function handleFilter() {
   //     const newData = oldData.map((item) => item2);

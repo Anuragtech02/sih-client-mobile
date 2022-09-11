@@ -25,6 +25,8 @@ import {
 } from "./src/utils/contexts/";
 import { LogBox } from "react-native";
 import Leaderboard from "./src/screens/Leaderboard";
+import LiveIcon from "./src/assets/icons/LiveIcon";
+import { SavedIcon, VideoIcon } from "./src/assets/icons";
 LogBox.ignoreAllLogs();
 const App = () => {
   React.useEffect(() => {
@@ -43,13 +45,7 @@ const App = () => {
           <TextToSpeechProvider>
             <ArticleContextProvider>
               <NavigationContainer>
-                {/* <Settings navigation={""} /> */}
                 <AuthNavigation />
-                {/* <PMVideo /> */}
-                {/* <Leaderboard /> */}
-                {/* <Register /> */}
-                {/* <Article /> */}
-                {/* <AppNavigation /> */}
               </NavigationContainer>
             </ArticleContextProvider>
           </TextToSpeechProvider>
