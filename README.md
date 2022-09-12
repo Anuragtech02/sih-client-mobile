@@ -32,6 +32,13 @@ _This mobile application for PIB was made as a Grand Finale Project for Smart In
 
 [![portfolio](https://img.shields.io/badge/Anurag_Pal-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Anuragtech02/) [![portfolio](https://img.shields.io/badge/Adarsh_Hondadakatti-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/adarsh434) [![portfolio](https://img.shields.io/badge/Arinjay_Saraf-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/arinjaysaraf/) [![portfolio](https://img.shields.io/badge/Shishir_Tiwari-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/shishirtiwari23)
 
+## Demo
+
+https://user-images.githubusercontent.com/56652667/189685185-cf90a9e6-d457-45b0-a1b2-73153096eb1a.mp4
+
+https://user-images.githubusercontent.com/56652667/189685017-4d957e5a-5bfa-4f99-8af4-e28bf75d839c.mp4
+
 ## Screenshots
 
 <img src="imagesAll/1.jpg" alt="alt" width="180" style="margin:10px"/> <img src="imagesAll/11.jpg" alt="alt" width="180" style="margin:10px"/> <img src="imagesAll/2.jpg" alt="alt" width="180" style="margin:10px"/> <img src="imagesAll/3.jpg" alt="alt" width="180" style="margin:10px"/> <img src="imagesAll/4.jpg" alt="alt" width="180" style="margin:10px"/> <img src="imagesAll/5.jpg" alt="alt" width="180" style="margin:10px"/> <img src="imagesAll/6.jpg" alt="alt" width="180" style="margin:10px"/> <img src="imagesAll/7.jpg" alt="alt" width="180" style="margin:10px"/> <img src="imagesAll/8.jpg" alt="alt" width="180" style="margin:10px"/>
+
