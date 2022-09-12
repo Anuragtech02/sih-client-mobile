@@ -34,12 +34,4 @@ _This mobile application for PIB was made as a Grand Finale Project for Smart In
 
 ## Screenshots
 
-<img src="imagesAll/1.jpg" alt="alt" width="180" style="margin:10px"/>
-<img src="imagesAll/11.jpg" alt="alt" width="180" style="margin:10px"/>
-<img src="imagesAll/2.jpg" alt="alt" width="180" style="margin:10px"/>
-<img src="imagesAll/3.jpg" alt="alt" width="180" style="margin:10px"/>
-<img src="imagesAll/4.jpg" alt="alt" width="180" style="margin:10px"/>
-<img src="imagesAll/5.jpg" alt="alt" width="180" style="margin:10px"/>
-<img src="imagesAll/6.jpg" alt="alt" width="180" style="margin:10px"/>
-<img src="imagesAll/7.jpg" alt="alt" width="180" style="margin:10px"/>
-<img src="imagesAll/8.jpg" alt="alt" width="180" style="margin:10px"/>
+<img src="imagesAll/1.jpg" alt="alt" width="180" style="margin:10px"/> <img src="imagesAll/11.jpg" alt="alt" width="180" style="margin:10px"/> <img src="imagesAll/2.jpg" alt="alt" width="180" style="margin:10px"/> <img src="imagesAll/3.jpg" alt="alt" width="180" style="margin:10px"/> <img src="imagesAll/4.jpg" alt="alt" width="180" style="margin:10px"/> <img src="imagesAll/5.jpg" alt="alt" width="180" style="margin:10px"/> <img src="imagesAll/6.jpg" alt="alt" width="180" style="margin:10px"/> <img src="imagesAll/7.jpg" alt="alt" width="180" style="margin:10px"/> <img src="imagesAll/8.jpg" alt="alt" width="180" style="margin:10px"/>
