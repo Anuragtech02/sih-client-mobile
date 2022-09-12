@@ -69,31 +69,38 @@ function getStyle(theme: ITheme): any {
 const data = [
   {
     id: "1",
-    heading: "Ministry of Finance",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
-    date: "Aug 14, 2022",
-    time: "9:00 AM",
+    heading: "Ministry of Housing & Urban Affairs",
+    body: "City-Startup Partnership Summit for Water Security – Launching of Start-up Gateway by Shri Hardeep S Puri, Hon’ble Minister for  Housing & Urban Affairs.",
+    date: "Sep 12, 2022",
+    time: "10:00 AM",
   },
   {
     id: "2",
-    heading: "Ministry of Finance",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
-    date: "Aug 14, 2022",
-    time: "9:00 AM",
+    heading: "Ministry of Education",
+    body: "Inauguration of Shikshak Parv 2022 and launch of new initiatives relating to Education and Skill Development.  Awards to be conferred upon teachers  under CBSE, AICTE and Skill Development.",
+    date: "Sep 11, 2022",
+    time: "10:30 AM",
   },
   {
     id: "3",
-    heading: "Ministry of Finance",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
-    date: "Aug 14, 2022",
-    time: "9:00 AM",
+    heading: "Ministry of Youth Affairs and Sports",
+    body: "Fit India Freedom Moto Ride Union Home Minister Shri Amit Shah will flag off the Fit India Freedom Moto Ride, a pan-India Bike Ride by 75 bikers to 75 iconic locations. Minister of State for Youth Affairs & Sports.",
+    date: "Sep 10, 2022",
+    time: "7:45 AM",
   },
   {
     id: "4",
-    heading: "Ministry of Finance",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
-    date: "Aug 14, 2022",
-    time: "9:00 AM",
+    heading: "Ministry of Culture",
+    body: "Cultural performances and a ten- minute drone show on Netaji Subash Chandra Bose. Ms. Meenakashi Lekhi, Minister of State for External Affairs and Culture Affairs will grace the event.",
+    date: "Sep 10, 2022",
+    time: "6:00 PM",
+  },
+  {
+    id: "5",
+    heading: "Ministry of Health and Family Welfare",
+    body: "Dr. Mansukh Mandaviya, Union Minister of Health and Family Welfare will inaugurate the NCDC Laboratory Block -1 & Residential Complex and virtually lay the foundation stone of NCDC Branches in six States.",
+    date: "Sep 9, 2022",
+    time: "10:30 AM",
   },
 ];
 
@@ -143,7 +150,11 @@ const MediaCard: React.FC<{
 }> = ({ heading, body, date, time }) => {
   const { theme, currentRegion } = useContext(ThemeContext);
   return (
-    <Card onPress={() => {}} style={getStyle(theme).cardContainer}>
+    <Card
+      onPress={() => {}}
+      style={getStyle(theme).cardContainer}
+      activeOpacity={1}
+    >
       <Text style={getStyle(theme).articleHeading}>{heading}</Text>
       <Text style={getStyle(theme).bodyContainer}>{body}</Text>
       <View style={getStyle(theme).eventContainer}>

@@ -52,7 +52,7 @@ function getStyle(theme: ITheme): any {
       marginTop: 24,
     },
     icon: { marginStart: "auto", marginEnd: 12 },
-    image: { width: "100%" },
+    image: { width: "100%", height: 200 },
     subHeading: {
       fontSize: theme.fonts.body.fontSize,
       fontFamily: theme.fonts.body.fontFamily,
@@ -81,34 +81,37 @@ const data = [
   {
     id: "1",
     image: require("../assets/photos.png"),
-    heading: "Ministry of Finance",
     subHeading:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
-    time: "Aug 14, 2022",
+      "The Minister of State for Science & Technology and Earth Sciences (I/C), Prime Minister’s Office, Personnel, Public Grievances & Pensions, Atomic Energy and Space, Dr. Jitendra Singh addressing at the valedictory session of the 2-day ‘Centre-State Science Conclave’ at Science City, in Ahmedabad.",
+    time: "Sep 11, 2022",
   },
   {
     id: "2",
-    image: require("../assets/photos.png"),
-    heading: "Ministry of Finance",
+    image: require("../assets/photos1.jpeg"),
     subHeading:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
-    time: "Aug 14, 2022",
+      "Gathering at the AGM of District Cooperatives of Amreli, in Gujarat. The Union Minister for Home Affairs and Cooperation, Shri Amit Shah addressing on the occasion.",
+    time: "Sep 11, 2022",
   },
   {
     id: "3",
-    image: require("../assets/photos.png"),
-    heading: "Ministry of Finance",
+    image: require("../assets/photos2.jpeg"),
     subHeading:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
-    time: "Aug 14, 2022",
+      "The Union Minister for Home Affairs and Cooperation, Shri Amit Shah addressing at the AGM of District Cooperatives of Amreli, in Gujarat on",
+    time: "Sep 11, 2022",
   },
   {
     id: "4",
-    image: require("../assets/photos.png"),
-    heading: "Ministry of Finance",
+    image: require("../assets/photos3.jpeg"),
     subHeading:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
-    time: "Aug 14, 2022",
+      "The Minister of State for Fisheries, Animal Husbandry & Dairying, Information and Broadcasting, Dr. L. Murugan visits the stalls at Fish Food Festival organised by Matsyakara Samithi at VRC grounds, in Nellore, Andhra Pradesh.",
+    time: "Sep 11, 2022",
+  },
+  {
+    id: "5",
+    image: require("../assets/photos4.jpeg"),
+    subHeading:
+      "The Secretary, Ministry of Commerce and Industry, Shri BVR Subrahmanyam holds a media briefing, in New Delhi.",
+    time: "Sep 03, 2022",
   },
 ];
 
@@ -214,7 +217,6 @@ const Photos: React.FC = () => {
         renderItem={({ item }) => (
           <PhotoCard
             image={item.image}
-            heading={item.heading}
             subHeading={item.subHeading}
             time={item.time}
           />
@@ -226,21 +228,24 @@ const Photos: React.FC = () => {
 
 const PhotoCard: React.FC<{
   image: any;
-  heading: string;
   subHeading: string;
   time: string;
-}> = ({ image, heading, subHeading, time }) => {
+}> = ({ image, subHeading, time }) => {
   const { theme, currentRegion } = useContext(ThemeContext);
   return (
-    <Card onPress={() => {}} style={getStyle(theme).cardContainer}>
+    <Card
+      onPress={() => {}}
+      style={getStyle(theme).cardContainer}
+      activeOpacity={1}
+    >
       <Image
         source={image}
         borderTopLeftRadius={8}
         borderTopRightRadius={8}
         style={getStyle(theme).image}
+        resizeMode="stretch"
       />
       <View style={getStyle(theme).textContainer}>
-        <Text style={getStyle(theme).heading}>{heading}</Text>
         <Text style={getStyle(theme).subHeading}>{subHeading}</Text>
         <View style={getStyle(theme).timeContainer}>
           <Text style={getStyle(theme).time}>{time}</Text>

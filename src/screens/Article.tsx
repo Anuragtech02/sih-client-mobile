@@ -329,7 +329,15 @@ const Article: React.FC<{ route: any; navigation: any }> = ({
             >
               <BackArrowIcon
                 color={theme.colors.primary}
-                customOnPress={() => navigation.navigate("AppNavigation")}
+                customOnPress={() =>
+                  navigation.navigate(
+                    "AppNavigation",
+                    navigation.reset({
+                      index: 0,
+                      routes: [{ name: "AppNavigation" }],
+                    })
+                  )
+                }
               />
             </Animated.View>
 

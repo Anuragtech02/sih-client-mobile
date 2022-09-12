@@ -347,7 +347,15 @@ const Settings: React.FC<{ navigation: any }> = ({ navigation }) => {
         <Text style={getStyle(theme).heading}>SETTINGS</Text>
         <CloseIcon
           color={theme.colors.primary}
-          customOnPress={() => navigation.navigate("AppNavigation")}
+          customOnPress={() =>
+            navigation.navigate(
+              "AppNavigation",
+              navigation.reset({
+                index: 0,
+                routes: [{ name: "AppNavigation" }],
+              })
+            )
+          }
           customStyle={getStyle(theme).closeIcon}
         />
       </View>

@@ -20,12 +20,22 @@ function getStyles(theme: ITheme): any {
   });
 }
 
-const Card: React.FC<ICard> = ({ children, style, onPress, ...remaining }) => {
+const Card: React.FC<ICard> = ({
+  children,
+  style,
+  onPress,
+  activeOpacity,
+  ...remaining
+}) => {
   const { theme } = useContext(ThemeContext);
 
   return (
     <View>
-      <TouchableOpacity onPress={onPress} {...remaining}>
+      <TouchableOpacity
+        onPress={onPress}
+        {...remaining}
+        activeOpacity={activeOpacity}
+      >
         <View style={{ ...getStyles(theme).container, ...style }}>
           {children}
         </View>
