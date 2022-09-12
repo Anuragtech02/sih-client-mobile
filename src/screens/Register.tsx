@@ -524,7 +524,13 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
                     //console.log(user);
                     setCurrentUser(user);
                     AsyncStorage.setItem("CURRENT_USER", JSON.stringify(user));
-                    navigation.navigate("AppNavigation");
+                    navigation.navigate(
+                      "AppNavigation",
+                      navigation.reset({
+                        index: 0,
+                        routes: [{ name: "AppNavigation" }],
+                      })
+                    );
                   }
                 );
               });

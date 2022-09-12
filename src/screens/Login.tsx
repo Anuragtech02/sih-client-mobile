@@ -102,7 +102,17 @@ Let’s get started.`}</Text>
         >
           Login
         </Button>
-        <TouchableOpacity onPress={() => navigation.navigate("AppNavigation")}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate(
+              "AppNavigation",
+              navigation.reset({
+                index: 0,
+                routes: [{ name: "AppNavigation" }],
+              })
+            )
+          }
+        >
           <Text style={getStyles(theme).skipButton}>{`Skip & Continue`}</Text>
         </TouchableOpacity>
       </View>

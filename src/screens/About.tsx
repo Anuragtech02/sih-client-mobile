@@ -157,7 +157,15 @@ const About: React.FC<{ navigation: any }> = ({ navigation }) => {
       )}
       <View style={getStyle(theme).header}>
         <BackArrowIcon
-          customOnPress={() => navigation.navigate("AppNavigation")}
+          customOnPress={() =>
+            navigation.navigate(
+              "AppNavigation",
+              navigation.reset({
+                index: 0,
+                routes: [{ name: "AppNavigation" }],
+              })
+            )
+          }
           color={theme.colors.primary}
         />
       </View>

@@ -109,7 +109,13 @@ number`}
                 AsyncStorage.setItem("CURRENT_USER", JSON.stringify(user));
                 // console.log(user);
                 // console.log(data);
-                navigation.navigate("AppNavigation");
+                navigation.navigate(
+                  "AppNavigation",
+                  navigation.reset({
+                    index: 0,
+                    routes: [{ name: "AppNavigation" }],
+                  })
+                );
               }
             })
           );

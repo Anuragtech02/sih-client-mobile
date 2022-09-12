@@ -402,6 +402,7 @@ const HomeCard: React.FC<{
                       ? regionalThemes[currentRegion].color
                       : theme.colors.g1
                   }
+                  colorFill={regionalThemes[currentRegion].color}
                 />
               </TouchableOpacity>
             </View>

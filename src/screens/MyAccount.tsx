@@ -463,7 +463,15 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
         <View style={getStyles(theme).innerContainer}>
           <BackArrowIcon
             color={theme.colors.primary}
-            customOnPress={() => navigation.navigate("AppNavigation")}
+            customOnPress={() =>
+              navigation.navigate(
+                "AppNavigation",
+                navigation.reset({
+                  index: 0,
+                  routes: [{ name: "AppNavigation" }],
+                })
+              )
+            }
           />
           <Text style={getStyles(theme).heading}>My Account</Text>
           <View style={getStyles(theme).imageContainer}>

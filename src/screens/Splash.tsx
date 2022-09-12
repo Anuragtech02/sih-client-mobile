@@ -37,12 +37,22 @@ const Splash: React.FC<{ navigation: any }> = ({ navigation }) => {
       const firstTime = await AsyncStorage.getItem("IS_FIRST_TIME");
       if (user) {
         setCurrentUser(JSON.parse(user));
-        navigation.navigate("AppNavigation");
+        navigation.navigate(
+          "AppNavigation",
+          navigation.reset({
+            index: 0,
+            routes: [{ name: "AppNavigation" }],
+          })
+        );
         return;
       }
       setTimeout(() => {
         navigation.navigate(
-          firstTime === "false" ? "LoginScreen" : "ChooseLanguageScreen"
+          firstTime === "false" ? "LoginScreen" : "ChooseLanguageScreen",
+          navigation.reset({
+            index: 0,
+            routes: [{ name: "LoginScreen" }],
+          })
         );
       }, 3000);
     }
