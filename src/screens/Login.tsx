@@ -14,9 +14,6 @@ import { ITheme } from "../utils/contexts/interfaces";
 import { ThemeContext } from "../utils/contexts/";
 import metrics from "../utils/metrics";
 import MainLayout from "../layouts/MainLayout";
-import { useNavigation, CommonActions } from "@react-navigation/native";
-
-const myNavigation = useNavigation();
 
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
@@ -106,10 +103,7 @@ Let’s get started.`}</Text>
           onPress={() =>
             navigation.navigate(
               "AppNavigation",
-              navigation.reset({
-                index: 0,
-                routes: [{ name: "AppNavigation" }],
-              })
+              navigation.replace("AppNavigation")
             )
           }
         >

@@ -13,7 +13,7 @@ import { AuthContext, ThemeContext } from "../utils/contexts";
 import MainLayout from "../layouts/MainLayout";
 import { BackArrowIcon, RadioButtonIcon } from "../assets/icons";
 import { Dropdown, MultiSelect } from "react-native-element-dropdown";
-import { Button } from "../components";
+import { Button, DropDownMultiSelect } from "../components";
 import jwtDecode from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -53,18 +53,18 @@ const male = [
 ];
 
 const regions = [
-  { label: "PIB Mumbai", value: "1" },
-  { label: "PIB Delhi", value: "2" },
-  { label: "PIB Hyderabad", value: "3" },
-  { label: "PIB Chennai", value: "4" },
-  { label: "PIB Chandigarh", value: "5" },
-  { label: "PIB Kolkata", value: "6" },
-  { label: "PIB Bengaluru", value: "7" },
-  { label: "PIB Bhubaneshwar", value: "8" },
-  { label: "PIB Ahmedabad", value: "9" },
-  { label: "PIB Guwahati", value: "10" },
-  { label: "PIB Thiruvananthpuram", value: "11" },
-  { label: "PIB Imphal", value: "12" },
+  { name: "PIB Mumbai", id: "1" },
+  { name: "PIB Delhi", id: "2" },
+  { name: "PIB Hyderabad", id: "3" },
+  { name: "PIB Chennai", id: "4" },
+  { name: "PIB Chandigarh", id: "5" },
+  { name: "PIB Kolkata", id: "6" },
+  { name: "PIB Bengaluru", id: "7" },
+  { name: "PIB Bhubaneshwar", id: "8" },
+  { name: "PIB Ahmedabad", id: "9" },
+  { name: "PIB Guwahati", id: "10" },
+  { name: "PIB Thiruvananthpuram", id: "11" },
+  { name: "PIB Imphal", id: "12" },
 ];
 const ministries = [
   { label: "President's Secretariat", value: "1" },
@@ -169,6 +169,7 @@ function getStyles(theme: ITheme): any {
   return StyleSheet.create({
     buttonContainer: {
       marginTop: 48,
+      paddingBottom: 24,
     },
     container: {
       flex: 1,
@@ -209,7 +210,6 @@ function getStyles(theme: ITheme): any {
     },
     innerContainer: {
       marginTop: 20,
-      paddingBottom: 24,
     },
     items: {
       marginStart: 24,
@@ -461,45 +461,7 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
           </View>
 
           <Text style={getStyles(theme).title}>Select Region</Text>
-          {/* <DropdownComponent
-            value={region}
-            myData={regions}
-            onChange={(item) => {
-              console.log(item), setRegion(item);
-            }}
-            colorStyle={{
-              tintColor: region ? theme.colors.primary : theme.colors.g1,
-            }}
-          />
-
-          <Text style={getStyles(theme).title}>Select Ministry</Text> */}
-          <MultiSelect
-            style={getStyles(theme).multiSelectDropdown}
-            placeholderStyle={getStyles(theme).multiSelectPlaceholder}
-            selectedTextStyle={getStyles(theme).multiSelectedText}
-            inputSearchStyle={getStyles(theme).multiSelectInputSearch}
-            iconStyle={{
-              ...getStyles(theme).multiSelectIconStyle,
-              tintColor: region ? theme.colors.primary : theme.colors.g1,
-            }}
-            data={regions}
-            containerStyle={getStyles(theme).multiSelectDropdownItemContainer}
-            maxHeight={300}
-            showsVerticalScrollIndicator={false}
-            labelField="label"
-            activeColor={"#E5E5E5"}
-            valueField="value"
-            placeholder="Select item"
-            searchPlaceholder="Search..."
-            alwaysRenderItemSelected
-            //renderItem={renderItem}
-            value={selected}
-            onChange={(item) => {
-              setSelected(item);
-              setRegion(item);
-            }}
-            selectedStyle={getStyles(theme).multiSelectSelectedStyle}
-          />
+          <DropDownMultiSelect myList={regions} />
         </View>
 
         <View style={getStyles(theme).buttonContainer}>
@@ -541,53 +503,6 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
         </View>
       </ScrollView>
     </MainLayout>
-  );
-};
-
-const DropdownComponent: React.FC<{
-  myData?: any;
-  value: string;
-  colorStyle?: any;
-  onChange: (value: any) => void;
-}> = ({ myData, value, onChange, colorStyle }) => {
-  const renderItem = (item: any) => {
-    return (
-      <View style={getStyles(theme).item}>
-        <Text style={getStyles(theme).textItem}>{item.label}</Text>
-      </View>
-    );
-  };
-  const { theme } = useContext(ThemeContext);
-  return (
-    <Dropdown
-      style={getStyles(theme).dropdown}
-      placeholderStyle={getStyles(theme).placeholderStyle}
-      selectedTextStyle={getStyles(theme).selectedTextStyle}
-      inputSearchStyle={getStyles(theme).inputSearchStyle}
-      iconStyle={{ ...getStyles(theme).iconStyle, ...colorStyle }}
-      data={myData}
-      containerStyle={getStyles(theme).dropdownItemContainer}
-      iconColor={theme.colors.g1}
-      activeColor={"#E5E5E5"}
-      showsVerticalScrollIndicator={false}
-      maxHeight={300}
-      labelField="label"
-      valueField="value"
-      placeholder="Select item"
-      //searchPlaceholder="Search..."
-      //value={value}
-      onChange={onChange}
-      //renderItem={renderItem}
-    />
-  );
-};
-
-const renderItem = (item: any) => {
-  const { theme } = useContext(ThemeContext);
-  return (
-    <View style={getStyles(theme).item}>
-      <Text style={getStyles(theme).textItem}>{item.label}</Text>
-    </View>
   );
 };
 export default Register;

@@ -10,7 +10,7 @@ const EditIcon: React.FC<{
 }> = ({ color, customStyle, width = "24" }) => {
   return (
     <View style={customStyle}>
-      <TouchableOpacity>
+      <TouchableOpacity activeOpacity={0.8}>
         <Svg
           width="24"
           height="24"

@@ -13,6 +13,7 @@ import {
   AuthContextProvider,
 } from "./src/utils/contexts/";
 import { LogBox } from "react-native";
+import { Register } from "./src/screens";
 LogBox.ignoreAllLogs();
 const App = () => {
   React.useEffect(() => {

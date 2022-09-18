@@ -29,6 +29,7 @@ export { default as Videos2Icon } from "./Videos2Icon";
 export { default as PMVideoIcon } from "./PMVideoIcon";
 export { default as PlayIcon } from "./PlayIcon";
 export { default as MediaInvitaionsIcon } from "./MediaInvitaionsIcon";
+export { default as DropDownIcon } from "./DropDownIcon";
 export { default as TTSIcon } from "./TTSIcon";
 export { default as RadioButtonIcon } from "./RadioButtonIcon";
 export { default as PinkThemeIcon } from "./PinkThemeIcon";
