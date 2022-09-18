@@ -47,13 +47,23 @@ const Splash: React.FC<{ navigation: any }> = ({ navigation }) => {
         return;
       }
       setTimeout(() => {
-        navigation.navigate(
-          firstTime === "false" ? "LoginScreen" : "ChooseLanguageScreen",
-          navigation.reset({
-            index: 0,
-            routes: [{ name: "LoginScreen" }],
-          })
-        );
+        if (firstTime === "false") {
+          navigation.navigate(
+            "LoginScreen",
+            navigation.reset({
+              index: 0,
+              routes: [{ name: "LoginScreen" }],
+            })
+          );
+        } else {
+          navigation.navigate(
+            "ChooseLanguageScreen",
+            navigation.reset({
+              index: 0,
+              routes: [{ name: "ChooseLanguageScreen" }],
+            })
+          );
+        }
       }, 3000);
     }
     initialize();

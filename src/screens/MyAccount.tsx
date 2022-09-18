@@ -25,7 +25,7 @@ import {
   YellowThemeIcon,
 } from "../assets/icons";
 import { ScrollView } from "react-native-gesture-handler";
-import { Button } from "../components";
+import { Button, DropDownMultiSelect } from "../components";
 import { Dropdown, MultiSelect } from "react-native-element-dropdown";
 import EditIcon from "../assets/icons/EditIcon";
 import { regionalThemes } from "../utils/theme";
@@ -64,20 +64,19 @@ const male = [
   require("../assets/avatars/Male/Punjabi.png"),
   require("../assets/avatars/Male/South_Indian.png"),
 ];
-
 const regions = [
-  { label: "PIB Mumbai", value: "1" },
-  { label: "PIB Delhi", value: "2" },
-  { label: "PIB Hyderabad", value: "3" },
-  { label: "PIB Chennai", value: "4" },
-  { label: "PIB Chandigarh", value: "5" },
-  { label: "PIB Kolkata", value: "6" },
-  { label: "PIB Bengaluru", value: "7" },
-  { label: "PIB Bhubaneshwar", value: "8" },
-  { label: "PIB Ahmedabad", value: "9" },
-  { label: "PIB Guwahati", value: "10" },
-  { label: "PIB Thiruvananthpuram", value: "11" },
-  { label: "PIB Imphal", value: "12" },
+  { name: "PIB Mumbai", id: "1" },
+  { name: "PIB Delhi", id: "2" },
+  { name: "PIB Hyderabad", id: "3" },
+  { name: "PIB Chennai", id: "4" },
+  { name: "PIB Chandigarh", id: "5" },
+  { name: "PIB Kolkata", id: "6" },
+  { name: "PIB Bengaluru", id: "7" },
+  { name: "PIB Bhubaneshwar", id: "8" },
+  { name: "PIB Ahmedabad", id: "9" },
+  { name: "PIB Guwahati", id: "10" },
+  { name: "PIB Thiruvananthpuram", id: "11" },
+  { name: "PIB Imphal", id: "12" },
 ];
 const ministries = [
   { label: "President's Secretariat", value: "1" },
@@ -221,8 +220,8 @@ function getStyles(theme: ITheme): any {
       marginTop: 16,
     },
     innerContainer: {
-      marginTop: 20,
-      paddingBottom: 24,
+      //marginTop: 20,
+      padding: 24,
     },
     items: {
       marginStart: 24,
@@ -328,10 +327,9 @@ function getStyles(theme: ITheme): any {
       alignItems: "center",
     },
     imageContainer: {
-      justifyContent: "center",
-      alignItems: "center",
+      alignSelf: "center",
       marginTop: 24,
-      flexDirection: "row",
+      flexDirection: "column",
     },
     textItem: {
       flex: 1,
@@ -342,8 +340,7 @@ function getStyles(theme: ITheme): any {
     editIcon: {
       position: "absolute",
       bottom: 0,
-      left: 180,
-      alignSelf: "center",
+      right: 0,
     },
   });
 }
@@ -354,7 +351,7 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { userDetails } = useContext(AuthContext);
 
   const [gender, setGender] = useState<String>();
-  const [region, setRegion] = useState<any>("");
+  const [region, setRegion] = useState<any[]>([]);
   const [ministry, setMinistry] = useState<any>("");
   const [image, setImage] = useState<any>();
 
@@ -362,7 +359,7 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
     if (userDetails?._id) {
       setGender(userDetails.gender);
 
-      setRegion(["PIB Mumbai"]);
+      setRegion(["PIB Mumbai", "PIB Delhi", "PIB Hyderabad"]);
       //userDetails.pibs[0].value
 
       setMinistry(userDetails.ministries);
@@ -378,7 +375,10 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
   }, [userDetails]);
 
   return (
-    <MainLayout customStyles={getStyles(theme).container}>
+    <MainLayout
+      customStyles={getStyles(theme).container}
+      disableDefaultPadding={true}
+    >
       {currentRegion === "blue" && (
         <BlueThemeIcon
           customStyle={{
@@ -586,40 +586,9 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
           </View>
 
           <Text style={getStyles(theme).title}>Select Region</Text>
-          {/* <DropdownComponent
-            value={region}
-            myData={regions}
-            onChange={(value: string) => setRegion(value)}
-            colorStyle={{
-              tintColor: region === "" ? theme.colors.g1 : theme.colors.primary,
-            }}
-          />
-
-          <Text style={getStyles(theme).title}>Select Ministry</Text> */}
-          <MultiSelect
-            style={getStyles(theme).multiSelectDropdown}
-            placeholderStyle={getStyles(theme).multiSelectPlaceholder}
-            selectedTextStyle={getStyles(theme).multiSelectedText}
-            inputSearchStyle={getStyles(theme).multiSelectInputSearch}
-            iconStyle={{
-              ...getStyles(theme).multiSelectIconStyle,
-              tintColor: region ? theme.colors.primary : theme.colors.g1,
-            }}
-            containerStyle={getStyles(theme).multiSelectDropdownItemContainer}
-            data={regions}
-            maxHeight={300}
-            showsVerticalScrollIndicator={false}
-            labelField="label"
-            valueField="value"
-            placeholder="Select item"
-            alwaysRenderItemSelected
-            // search
-            value={region}
-            onChange={(item: any) => {
-              setRegion(item);
-            }}
-            activeColor={"#E5E5E5"}
-            selectedStyle={getStyles(theme).multiSelectSelectedStyle}
+          <DropDownMultiSelect
+            myList={regions}
+            selected={["PIB Mumbai", "PIB Delhi", "PIB Hyderabad"]}
           />
           <View style={getStyles(theme).buttonContainer}>
             <Button>Update</Button>
@@ -629,33 +598,4 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
     </MainLayout>
   );
 };
-
-const DropdownComponent: React.FC<{
-  myData?: any;
-  value: string;
-  colorStyle?: any;
-  onChange: (value: any) => void;
-}> = ({ myData, onChange, colorStyle }) => {
-  const { theme } = useContext(ThemeContext);
-  return (
-    <Dropdown
-      style={getStyles(theme).dropdown}
-      placeholderStyle={getStyles(theme).placeholderStyle}
-      selectedTextStyle={getStyles(theme).selectedTextStyle}
-      inputSearchStyle={getStyles(theme).inputSearchStyle}
-      iconStyle={{ ...getStyles(theme).iconStyle, ...colorStyle }}
-      containerStyle={getStyles(theme).dropdownItemContainer}
-      data={myData}
-      showsVerticalScrollIndicator={false}
-      maxHeight={300}
-      activeColor={"#E5E5E5"}
-      labelField="label"
-      valueField="value"
-      placeholder="Select item"
-      //search
-      onChange={onChange}
-    />
-  );
-};
-
 export default MyAccount;
