@@ -4,13 +4,13 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Svg, { Path, Circle } from "react-native-svg";
 
 const EditIcon: React.FC<{
-  color?: string;
+  customOnPress?: any;
   customStyle?: any;
   width?: any;
-}> = ({ color, customStyle, width = "24" }) => {
+}> = ({ customStyle, width = "24", customOnPress }) => {
   return (
     <View style={customStyle}>
-      <TouchableOpacity activeOpacity={0.8}>
+      <TouchableOpacity activeOpacity={0.8} onPress={customOnPress}>
         <Svg
           width="24"
           height="24"

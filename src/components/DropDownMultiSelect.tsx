@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -29,7 +29,7 @@ function getStyles(theme: ITheme): any {
       width: "100%",
       flexDirection: "row",
       flexWrap: "wrap",
-      backgroundColor: "white",
+      backgroundColor: theme.colors.absoluteWhite,
       padding: 8,
       justifyContent: "flex-start",
       alignItems: "center",
@@ -85,15 +85,31 @@ function getStyles(theme: ITheme): any {
   });
 }
 
-const DropDownMultiSelect: React.FC<{ myList: any; selected: any }> = ({
-  myList,
-  selected,
-}) => {
+const DropDownMultiSelect: React.FC<{
+  myList: any;
+  selected?: any;
+  onChange: Function;
+}> = ({ myList, selected, onChange }) => {
   const [openDropDown, setOpenDropDown] = useState<boolean>(false);
-  const [list, setList] = useState<any[]>(selected);
+  const [list, setList] = useState<string[]>([]);
   const { theme } = useContext(ThemeContext);
+
+  useEffect(() => {
+    if (
+      typeof selected !== "undefined" &&
+      selected.length > 0 &&
+      list.length === 0
+    ) {
+      setList(selected);
+    }
+  }, [selected]);
+
+  useEffect(() => {
+    onChange(list);
+  }, [list]);
+
   return (
-    <MainLayout customStyles={getStyles(theme).container} disableDefaultPadding>
+    <>
       {openDropDown && (
         <View style={{ width: "100%" }}>
           <View style={getStyles(theme).dropDownItemsContainer}>
@@ -116,11 +132,13 @@ const DropDownMultiSelect: React.FC<{ myList: any; selected: any }> = ({
                     //     ? list.filter((data) => data.name != item.name)
                     //     : [...list, { id: item.id, name: item.name }]
                     // )
-                    setList(
-                      list.includes(item.name)
-                        ? list.filter((data) => data != item.name)
-                        : [...list, item.name]
-                    )
+                    {
+                      setList(
+                        list.includes(item.name)
+                          ? list.filter((data) => data != item.name)
+                          : [...list, item.name]
+                      );
+                    }
                   }
                 >
                   <Text style={getStyles(theme).dropDownAllItems}>
@@ -134,7 +152,13 @@ const DropDownMultiSelect: React.FC<{ myList: any; selected: any }> = ({
       )}
 
       {/* <View style={getStyles(theme).dropDownContainer}> */}
-      <View style={getStyles(theme).dropDown}>
+      <TouchableOpacity
+        style={getStyles(theme).dropDown}
+        activeOpacity={1}
+        onPress={() =>
+          openDropDown ? setOpenDropDown(false) : setOpenDropDown(true)
+        }
+      >
         {list.length !== 0 ? (
           list.map((items) => (
             <View style={getStyles(theme).placeHolderContainer}>
@@ -164,8 +188,8 @@ const DropDownMultiSelect: React.FC<{ myList: any; selected: any }> = ({
             openDropDown ? setOpenDropDown(false) : setOpenDropDown(true)
           }
         />
-      </View>
-    </MainLayout>
+      </TouchableOpacity>
+    </>
     // </View>
   );
 };

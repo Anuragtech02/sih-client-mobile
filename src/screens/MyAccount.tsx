@@ -25,7 +25,12 @@ import {
   YellowThemeIcon,
 } from "../assets/icons";
 import { ScrollView } from "react-native-gesture-handler";
-import { Button, DropDownMultiSelect } from "../components";
+import {
+  Button,
+  DropDownMultiSelect,
+  FemaleAvatars,
+  MaleAvatars,
+} from "../components";
 import { Dropdown, MultiSelect } from "react-native-element-dropdown";
 import EditIcon from "../assets/icons/EditIcon";
 import { regionalThemes } from "../utils/theme";
@@ -45,6 +50,7 @@ const female = [
   require("../assets/avatars/Female/Parsi.png"),
   require("../assets/avatars/Female/Punjabi.png"),
   require("../assets/avatars/Female/Rajasthani.png"),
+  require("../assets/avatars/Female/Hindu.png"),
 ];
 const male = [
   require("../assets/avatars/Male/Bengali.png"),
@@ -60,7 +66,6 @@ const male = [
   require("../assets/avatars/Male/Marathi.png"),
   require("../assets/avatars/Male/Muslim.png"),
   require("../assets/avatars/Male/Pandit.png"),
-  require("../assets/avatars/Male/Parsi.png"),
   require("../assets/avatars/Male/Punjabi.png"),
   require("../assets/avatars/Male/South_Indian.png"),
 ];
@@ -348,32 +353,33 @@ function getStyles(theme: ITheme): any {
 const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { theme, currentRegion } = useContext(ThemeContext);
 
-  const { userDetails } = useContext(AuthContext);
+  const { userDetails, editUser, updateCurrentUser } = useContext(AuthContext);
 
+  const [name, setName] = useState<string>("");
   const [gender, setGender] = useState<String>();
   const [region, setRegion] = useState<any[]>([]);
-  const [ministry, setMinistry] = useState<any>("");
   const [image, setImage] = useState<any>();
+  const [imageID, setImageID] = useState<string>("-1");
+
+  const [openMaleAvatars, setOpenMaleAvatars] = useState<boolean>(false);
+  const [openFemaleAvatars, setOpenFemaleAvatars] = useState<boolean>(false);
 
   useEffect(() => {
     if (userDetails?._id) {
+      setImageID(userDetails.avatar);
+      setName(userDetails.name);
       setGender(userDetails.gender);
-
-      setRegion(["PIB Mumbai", "PIB Delhi", "PIB Hyderabad"]);
-      //userDetails.pibs[0].value
-
-      setMinistry(userDetails.ministries);
+      setRegion(userDetails.pibs);
 
       if (userDetails.gender === "Male") {
-        setImage(require("../assets/avatars/Male/Bengali.png"));
+        setImage(male[userDetails.avatar]);
       } else if (userDetails.gender === "Female") {
-        setImage(require("../assets/avatars/Female/Assamee.png"));
+        setImage(female[userDetails.avatar]);
       } else {
         setImage(require("../assets/avatars/Starting/StartingAvatar.png"));
       }
     }
   }, [userDetails]);
-
   return (
     <MainLayout
       customStyles={getStyles(theme).container}
@@ -459,7 +465,27 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
           }}
         />
       )}
-      <ScrollView showsVerticalScrollIndicator={false}>
+      {openMaleAvatars && (
+        <MaleAvatars
+          onPress={() => {
+            setOpenMaleAvatars(false);
+          }}
+          changeTo={(id: any) => {
+            setImage(male[id]), setImageID(id), setOpenMaleAvatars(false);
+          }}
+        />
+      )}
+      {openFemaleAvatars && (
+        <FemaleAvatars
+          onPress={() => {
+            setOpenFemaleAvatars(false);
+          }}
+          changeTo={(id: any) => {
+            setImage(female[id]), setImageID(id), setOpenFemaleAvatars(false);
+          }}
+        />
+      )}
+      <ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled>
         <View style={getStyles(theme).innerContainer}>
           <BackArrowIcon
             color={theme.colors.primary}
@@ -476,14 +502,24 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
           <Text style={getStyles(theme).heading}>My Account</Text>
           <View style={getStyles(theme).imageContainer}>
             <Image source={image} style={getStyles(theme).image} />
-            <EditIcon customStyle={getStyles(theme).editIcon} />
+            <EditIcon
+              customStyle={getStyles(theme).editIcon}
+              customOnPress={() => {
+                gender === "Male"
+                  ? setOpenMaleAvatars(true)
+                  : setOpenFemaleAvatars(true);
+              }}
+            />
           </View>
           <Text style={getStyles(theme).title}>Name</Text>
           <View style={getStyles(theme).searchContainer}>
             <TextInput
               style={getStyles(theme).searchInput}
               placeholder="Enter Full Name"
-              value={userDetails?.name}
+              onChangeText={(text: string) => {
+                setName(text);
+              }}
+              value={name}
             />
           </View>
           <Text style={getStyles(theme).title}>Gender</Text>
@@ -588,10 +624,24 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
           <Text style={getStyles(theme).title}>Select Region</Text>
           <DropDownMultiSelect
             myList={regions}
-            selected={["PIB Mumbai", "PIB Delhi", "PIB Hyderabad"]}
+            selected={region}
+            onChange={(list: any) => {
+              setRegion(list);
+            }}
           />
+
           <View style={getStyles(theme).buttonContainer}>
-            <Button>Update</Button>
+            <Button
+              onPress={() => {
+                editUser("gender", gender);
+                editUser("name", name);
+                editUser("pibs", region);
+                editUser("avatar", imageID);
+                //updateCurrentUser({ gender: "Female" });
+              }}
+            >
+              Update
+            </Button>
           </View>
         </View>
       </ScrollView>

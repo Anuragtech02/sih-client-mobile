@@ -28,6 +28,8 @@ const AuthContext = createContext<IAuthContext>({
   setCurrentUser: () => {},
   handleLogin: () => {},
   createNewUser: () => {},
+  editUser: () => {},
+  updateCurrentUser: () => {},
 });
 
 interface IAuthContextProvider {
@@ -55,8 +57,8 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
           id: currentUser?.id,
         },
       });
-      console.log(user.data);
       setUserDetails(user.data);
+      // console.log("user ka data:", user.data);
       // }
     }
     if (currentUser?.id) {
@@ -82,6 +84,14 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
     updateUser();
   }, [currentUser]);
 
+  async function editUser(change: any, value: any) {
+    setUserDetails((userDetails: any) => {
+      return {
+        ...userDetails,
+        [change]: value,
+      };
+    });
+  }
   // useEffect(() => {
   //   setCurrentUser({
   //     _id: "123",
@@ -148,11 +158,22 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
   async function createNewUser(user: any, cb: any) {
     try {
       const res = await API_USER.post("/create", user);
-      console.log(res.data.token);
-      cb(res.data);
+      console.log("Axios createUser success, token: ", res.data.token);
+      cb(res.data.token);
     } catch (error) {
-      console.log(error);
+      console.log("Error in creating new user, axios: ", error);
     }
+  }
+  async function updateCurrentUser(value: object) {
+    // try {
+    //   const res = await API_USER.patch("/update", {
+    //     ...value,
+    //     id: currentUser._id,
+    //   });
+    //   console.log("RES:", res.data);
+    // } catch (error) {
+    //   console.log("Error in updating value:", error);
+    // }
   }
 
   return (
@@ -168,6 +189,8 @@ export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
         createNewUser,
         phone,
         userDetails,
+        editUser,
+        updateCurrentUser,
       }}
     >
       {children}

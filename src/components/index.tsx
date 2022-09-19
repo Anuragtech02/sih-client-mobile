@@ -5,3 +5,6 @@ export { default as Timer } from "./Timer";
 export { default as SavedCard } from "./SavedCard";
 export { default as DropDownMultiSelect } from "./DropDownMultiSelect";
 export { default as DropDownSingleSelect } from "./DropDownSingleSelect";
+export { default as OTP } from "./OTP";
+export { default as MaleAvatars } from "./MaleAvatars";
+export { default as FemaleAvatars } from "./FemaleAvatars";

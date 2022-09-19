@@ -72,11 +72,11 @@ const DropDownSingleSelect: React.FC<{
   myList: any;
   onChange: Function;
   current: any;
-}> = ({ myList, onChange, current }) => {
+  placeHolder: string;
+}> = ({ myList, onChange, current, placeHolder }) => {
   const [openDropDown, setOpenDropDown] = useState<boolean>(false);
   const [value, setValue] = useState<String>(current);
   const { theme } = useContext(ThemeContext);
-  //console.log(current);
   return (
     <View style={getStyles(theme).dropDown}>
       {value ? (
@@ -98,7 +98,7 @@ const DropDownSingleSelect: React.FC<{
           }
         >
           <Text style={getStyles(theme).dropDownPlaceHolder}>
-            Select Language
+            {placeHolder}
           </Text>
         </TouchableOpacity>
       )}

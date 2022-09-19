@@ -210,6 +210,7 @@ const Settings: React.FC<{ navigation: any }> = ({ navigation }) => {
           <DropDownSingleSelect
             myList={fontSizes}
             current={currentFont}
+            placeHolder={"Choose FontSize"}
             onChange={(value: string) => setFontSize(value)}
           />
         </View>
@@ -219,6 +220,7 @@ const Settings: React.FC<{ navigation: any }> = ({ navigation }) => {
           <DropDownSingleSelect
             myList={langugages}
             current={currentLanguage}
+            placeHolder={"Choose Language"}
             onChange={(value: string) => handleChangeLanguage(value)}
           />
         </View>
