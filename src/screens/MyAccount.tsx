@@ -465,7 +465,7 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
           }}
         />
       )}
-      {openMaleAvatars && (
+      {openMaleAvatars ? (
         <MaleAvatars
           onPress={() => {
             setOpenMaleAvatars(false);
@@ -474,8 +474,7 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
             setImage(male[id]), setImageID(id), setOpenMaleAvatars(false);
           }}
         />
-      )}
-      {openFemaleAvatars && (
+      ) : openFemaleAvatars ? (
         <FemaleAvatars
           onPress={() => {
             setOpenFemaleAvatars(false);
@@ -484,167 +483,172 @@ const MyAccount: React.FC<{ navigation: any }> = ({ navigation }) => {
             setImage(female[id]), setImageID(id), setOpenFemaleAvatars(false);
           }}
         />
-      )}
-      <ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled>
-        <View style={getStyles(theme).innerContainer}>
-          <BackArrowIcon
-            color={theme.colors.primary}
-            customOnPress={() =>
-              navigation.navigate(
-                "AppNavigation",
-                navigation.reset({
-                  index: 0,
-                  routes: [{ name: "AppNavigation" }],
-                })
-              )
-            }
-          />
-          <Text style={getStyles(theme).heading}>My Account</Text>
-          <View style={getStyles(theme).imageContainer}>
-            <Image source={image} style={getStyles(theme).image} />
-            <EditIcon
-              customStyle={getStyles(theme).editIcon}
-              customOnPress={() => {
-                gender === "Male"
-                  ? setOpenMaleAvatars(true)
-                  : setOpenFemaleAvatars(true);
-              }}
+      ) : (
+        <ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled>
+          <View style={getStyles(theme).innerContainer}>
+            <BackArrowIcon
+              color={theme.colors.primary}
+              customOnPress={() =>
+                navigation.navigate(
+                  "AppNavigation",
+                  navigation.reset({
+                    index: 0,
+                    routes: [{ name: "AppNavigation" }],
+                  })
+                )
+              }
             />
-          </View>
-          <Text style={getStyles(theme).title}>Name</Text>
-          <View style={getStyles(theme).searchContainer}>
-            <TextInput
-              style={getStyles(theme).searchInput}
-              placeholder="Enter Full Name"
-              onChangeText={(text: string) => {
-                setName(text);
-              }}
-              value={name}
-            />
-          </View>
-          <Text style={getStyles(theme).title}>Gender</Text>
-          <View style={getStyles(theme).radioContainer}>
-            <TouchableOpacity
-              activeOpacity={0.5}
-              style={getStyles(theme).firstItem}
-              onPress={() => {
-                setGender("Female");
-                setImage(female[Math.floor(Math.random() * female.length)]);
-              }}
-            >
-              <RadioButtonIcon
-                color={
-                  gender === "Female"
-                    ? regionalThemes[currentRegion].color
-                    : theme.colors.g1
-                }
-                colorFill={
-                  gender === "Female"
-                    ? regionalThemes[currentRegion].color
-                    : theme.colors.background
-                }
+            <Text style={getStyles(theme).heading}>My Account</Text>
+            <View style={getStyles(theme).imageContainer}>
+              <Image source={image} style={getStyles(theme).image} />
+              <EditIcon
+                customStyle={getStyles(theme).editIcon}
+                customOnPress={() => {
+                  gender === "Male"
+                    ? setOpenMaleAvatars(true)
+                    : setOpenFemaleAvatars(true);
+                }}
               />
-              <Text
-                style={{
-                  ...getStyles(theme).radioButtonName,
-                  color:
+            </View>
+            <Text style={getStyles(theme).title}>Name</Text>
+            <View style={getStyles(theme).searchContainer}>
+              <TextInput
+                style={getStyles(theme).searchInput}
+                placeholder="Enter Full Name"
+                onChangeText={(text: string) => {
+                  setName(text);
+                }}
+                value={name}
+              />
+            </View>
+            <Text style={getStyles(theme).title}>Gender</Text>
+            <View style={getStyles(theme).radioContainer}>
+              <TouchableOpacity
+                activeOpacity={0.5}
+                style={getStyles(theme).firstItem}
+                onPress={() => {
+                  setGender("Female");
+                  setImage(female[Math.floor(Math.random() * female.length)]);
+                }}
+              >
+                <RadioButtonIcon
+                  color={
                     gender === "Female"
                       ? regionalThemes[currentRegion].color
-                      : theme.colors.g1,
+                      : theme.colors.g1
+                  }
+                  colorFill={
+                    gender === "Female"
+                      ? regionalThemes[currentRegion].color
+                      : theme.colors.background
+                  }
+                />
+                <Text
+                  style={{
+                    ...getStyles(theme).radioButtonName,
+                    color:
+                      gender === "Female"
+                        ? regionalThemes[currentRegion].color
+                        : theme.colors.g1,
+                  }}
+                >
+                  Female
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                activeOpacity={0.5}
+                style={getStyles(theme).items}
+                onPress={() => {
+                  setGender("Male");
+                  setImage(male[Math.floor(Math.random() * male.length)]);
                 }}
               >
-                Female
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              activeOpacity={0.5}
-              style={getStyles(theme).items}
-              onPress={() => {
-                setGender("Male");
-                setImage(male[Math.floor(Math.random() * male.length)]);
-              }}
-            >
-              <RadioButtonIcon
-                color={
-                  gender === "Male"
-                    ? regionalThemes[currentRegion].color
-                    : theme.colors.g1
-                }
-                colorFill={
-                  gender === "Male"
-                    ? regionalThemes[currentRegion].color
-                    : theme.colors.background
-                }
-              />
-              <Text
-                style={{
-                  ...getStyles(theme).radioButtonName,
-                  color:
+                <RadioButtonIcon
+                  color={
                     gender === "Male"
                       ? regionalThemes[currentRegion].color
-                      : theme.colors.g1,
+                      : theme.colors.g1
+                  }
+                  colorFill={
+                    gender === "Male"
+                      ? regionalThemes[currentRegion].color
+                      : theme.colors.background
+                  }
+                />
+                <Text
+                  style={{
+                    ...getStyles(theme).radioButtonName,
+                    color:
+                      gender === "Male"
+                        ? regionalThemes[currentRegion].color
+                        : theme.colors.g1,
+                  }}
+                >
+                  Male
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                activeOpacity={0.5}
+                style={getStyles(theme).items}
+                onPress={() => {
+                  setGender("Other");
                 }}
               >
-                Male
-              </Text>
-            </TouchableOpacity>
+                <RadioButtonIcon
+                  color={
+                    gender === "Other"
+                      ? regionalThemes[currentRegion].color
+                      : theme.colors.g1
+                  }
+                  colorFill={
+                    gender === "Other"
+                      ? regionalThemes[currentRegion].color
+                      : theme.colors.background
+                  }
+                />
+                <Text
+                  style={{
+                    ...getStyles(theme).radioButtonName,
+                    color:
+                      gender === "Other"
+                        ? theme.colors.primary
+                        : theme.colors.g1,
+                  }}
+                >
+                  Others
+                </Text>
+              </TouchableOpacity>
+            </View>
 
-            <TouchableOpacity
-              activeOpacity={0.5}
-              style={getStyles(theme).items}
-              onPress={() => {
-                setGender("Other");
-              }}
-            >
-              <RadioButtonIcon
-                color={
-                  gender === "Other"
-                    ? regionalThemes[currentRegion].color
-                    : theme.colors.g1
-                }
-                colorFill={
-                  gender === "Other"
-                    ? regionalThemes[currentRegion].color
-                    : theme.colors.background
-                }
+            <Text style={getStyles(theme).title}>Select Region</Text>
+            <View style={{ marginTop: 12 }}>
+              <DropDownMultiSelect
+                myList={regions}
+                selected={region}
+                onChange={(list: any) => {
+                  setRegion(list);
+                }}
               />
-              <Text
-                style={{
-                  ...getStyles(theme).radioButtonName,
-                  color:
-                    gender === "Other" ? theme.colors.primary : theme.colors.g1,
+            </View>
+
+            <View style={getStyles(theme).buttonContainer}>
+              <Button
+                onPress={() => {
+                  editUser("gender", gender);
+                  editUser("name", name);
+                  editUser("pibs", region);
+                  editUser("avatar", imageID);
+                  //updateCurrentUser({ gender: "Female" });
                 }}
               >
-                Others
-              </Text>
-            </TouchableOpacity>
+                Update
+              </Button>
+            </View>
           </View>
-
-          <Text style={getStyles(theme).title}>Select Region</Text>
-          <DropDownMultiSelect
-            myList={regions}
-            selected={region}
-            onChange={(list: any) => {
-              setRegion(list);
-            }}
-          />
-
-          <View style={getStyles(theme).buttonContainer}>
-            <Button
-              onPress={() => {
-                editUser("gender", gender);
-                editUser("name", name);
-                editUser("pibs", region);
-                editUser("avatar", imageID);
-                //updateCurrentUser({ gender: "Female" });
-              }}
-            >
-              Update
-            </Button>
-          </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      )}
     </MainLayout>
   );
 };
