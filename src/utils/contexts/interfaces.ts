@@ -168,4 +168,6 @@ export interface IAuthContext {
   setCurrentUser: any;
   handleLogin: any;
   createNewUser: any;
+  editUser: any;
+  updateCurrentUser: any;
 }

@@ -14,6 +14,7 @@ import {
 } from "./src/utils/contexts/";
 import { LogBox } from "react-native";
 import { Register } from "./src/screens";
+import { FemaleAvatars, MaleAvatars } from "./src/components";
 LogBox.ignoreAllLogs();
 const App = () => {
   React.useEffect(() => {

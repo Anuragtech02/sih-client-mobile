@@ -50,7 +50,7 @@ const paletteLight: paletteType = {
   g4: "#E5E5E5",
   g5: "#646464",
 };
-console.log(currentRegion);
+// console.log(currentRegion);
 const paletteDark: paletteType = {
   black: "#000000",
   green: "#00B894",

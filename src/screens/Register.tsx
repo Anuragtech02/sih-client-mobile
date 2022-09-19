@@ -32,6 +32,7 @@ const female = [
   require("../assets/avatars/Female/Parsi.png"),
   require("../assets/avatars/Female/Punjabi.png"),
   require("../assets/avatars/Female/Rajasthani.png"),
+  require("../assets/avatars/Female/Hindu.png"),
 ];
 const male = [
   require("../assets/avatars/Male/Bengali.png"),
@@ -47,7 +48,6 @@ const male = [
   require("../assets/avatars/Male/Marathi.png"),
   require("../assets/avatars/Male/Muslim.png"),
   require("../assets/avatars/Male/Pandit.png"),
-  require("../assets/avatars/Male/Parsi.png"),
   require("../assets/avatars/Male/Punjabi.png"),
   require("../assets/avatars/Male/South_Indian.png"),
 ];
@@ -334,13 +334,10 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [name, setName] = useState<any>();
   const [gender, setGender] = useState<any>();
   const [region, setRegion] = useState<any>();
-
-  const [ministry, setMinistry] = useState<any>();
-  const [selected, setSelected] = useState([]);
-
   const [image, setImage] = useState<any>(
     require("../assets/avatars/Starting/StartingAvatar.png")
   );
+  const [imageID, setImageID] = useState<string>("-1");
 
   const { phone, setCurrentUser, createNewUser } = useContext(AuthContext);
   return (
@@ -373,7 +370,9 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
               style={getStyles(theme).firstItem}
               onPress={() => {
                 setGender("Female");
-                setImage(female[Math.floor(Math.random() * female.length)]);
+                const number = Math.floor(Math.random() * female.length);
+                setImage(female[number]);
+                setImageID(number.toString());
               }}
             >
               <RadioButtonIcon
@@ -404,7 +403,9 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
               style={getStyles(theme).items}
               onPress={() => {
                 setGender("Male");
-                setImage(male[Math.floor(Math.random() * male.length)]);
+                const number = Math.floor(Math.random() * male.length);
+                setImage(male[number]);
+                setImageID(number.toString());
               }}
             >
               <RadioButtonIcon
@@ -436,6 +437,7 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
                 setImage(
                   require("../assets/avatars/Starting/StartingAvatar.png")
                 );
+                setImageID("-1");
               }}
             >
               <RadioButtonIcon
@@ -461,7 +463,12 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
           </View>
 
           <Text style={getStyles(theme).title}>Select Region</Text>
-          <DropDownMultiSelect myList={regions} />
+          <DropDownMultiSelect
+            myList={regions}
+            onChange={(list: any) => {
+              setRegion(list);
+            }}
+          />
         </View>
 
         <View style={getStyles(theme).buttonContainer}>
@@ -470,19 +477,25 @@ const Register: React.FC<{ navigation: any }> = ({ navigation }) => {
             onPress={async () => {
               //console.log(ministry.map((it: any) => ministries[it].label));
               AsyncStorage.getItem("fcmToken").then((fcmToken) => {
+                console.log("token: ", fcmToken);
                 createNewUser(
                   {
                     name,
                     contact: phone,
                     gender,
-                    pibs: [region],
-                    region: region.label,
+                    pibs: region,
+                    region: region,
                     fcmToken,
-                    avatar: "OK",
-                    ministries: ministry,
+                    avatar: imageID,
                   },
                   (data: any) => {
-                    const user = jwtDecode(data);
+                    let user = null;
+                    try {
+                      user = jwtDecode(data);
+                    } catch (error) {
+                      console.log("Error in jwt decode: ", error);
+                    }
+                    if (!user) return;
                     //console.log(user);
                     setCurrentUser(user);
                     AsyncStorage.setItem("CURRENT_USER", JSON.stringify(user));

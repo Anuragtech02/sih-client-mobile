@@ -7,7 +7,7 @@ export async function requestUserPermission() {
   const enabled =
     authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
     authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-
+  console.log("requestUserPermission. enabled: ", enabled);
   if (enabled) {
     // console.log("Authorization status:", authStatus);
     getFCMToken();

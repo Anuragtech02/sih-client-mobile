@@ -12,9 +12,9 @@ import { AuthContext, ThemeContext } from "../utils/contexts";
 import Timer from "../components/Timer";
 import MainLayout from "../layouts/MainLayout";
 import BackArrow from "../assets/icons/BackArrowIcon";
-import OTPInputView from "@twotalltotems/react-native-otp-input";
 import jwtDecode from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { OTP } from "../components";
 
 function getStyles(theme: ITheme): any {
   return StyleSheet.create({
@@ -36,30 +36,14 @@ function getStyles(theme: ITheme): any {
       marginTop: 16,
       fontWeight: "100",
     },
-    option: {
-      marginTop: 8,
-      textDecorationLine: "underline",
-      fontSize: theme.fonts.body.fontSize,
-      color: theme.colors.primary,
-    },
     resendCodeContainer: {
       marginTop: 70,
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "center",
     },
-    inputOTP: { width: "100%", height: 50, marginTop: 32 },
-    underlineStyleBase: {
-      width: 30,
-      height: 45,
-      borderWidth: 0,
-      borderBottomWidth: 1,
-      borderColor: theme.colors.g1,
-      color: theme.colors.primary,
-      fontSize: theme.fonts.subTitle.fontSize,
-    },
-    underlineStyleHighLighted: {
-      borderColor: theme.colors.primary,
+    otpContainer: {
+      marginTop: 12,
     },
   });
 }
@@ -89,15 +73,10 @@ number`}
         </Text>
       </View>
 
-      <OTPInputView
-        style={getStyles(theme).inputOTP}
-        pinCount={6}
-        autoFocusOnLoad
-        codeInputFieldStyle={getStyles(theme).underlineStyleBase}
-        codeInputHighlightStyle={getStyles(theme).underlineStyleHighLighted}
+      <OTP
+        customStyles={getStyles(theme).otpContainer}
         onCodeFilled={(code: any) => {
           setPin(code);
-          // console.log(code);
           setLoading(true);
           confirmCode(code, () =>
             handleLogin(phoneNumber, (data: any) => {
